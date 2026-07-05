@@ -1,0 +1,34 @@
+#!/bin/sh
+# Wrapper for running Calamares on StrayLight live media.
+
+set -u
+
+FSTAB_BACKUP=/etc/fstab.orig.calamares
+restore_fstab=0
+
+# live-build leaves a live-media /etc/fstab behind. Debian's Calamares
+# wrapper moves it aside because it can interfere with partitioning jobs.
+if [ -e /etc/fstab ] && [ ! -e "${FSTAB_BACKUP}" ]; then
+    if sudo mv /etc/fstab "${FSTAB_BACKUP}"; then
+        restore_fstab=1
+    fi
+fi
+
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
+if command -v xhost >/dev/null 2>&1; then
+    xhost +si:localuser:root >/dev/null 2>&1 || true
+fi
+
+pkexec calamares
+status=$?
+
+if command -v xhost >/dev/null 2>&1; then
+    xhost -si:localuser:root >/dev/null 2>&1 || true
+fi
+
+if [ "${restore_fstab}" -eq 1 ] && [ -e "${FSTAB_BACKUP}" ]; then
+    sudo mv "${FSTAB_BACKUP}" /etc/fstab || true
+fi
+
+exit "${status}"
