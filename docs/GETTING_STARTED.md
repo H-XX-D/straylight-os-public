@@ -53,8 +53,7 @@ preflight command and expected starter failure modes.
 
 ## ISO Candidate Flow
 
-Run this only after the complete source tree is present and package builds have
-produced `output/debs/Packages.gz`:
+Run this only after package builds have produced `output/debs/Packages.gz`:
 
 ```bash
 scripts/check_iso_candidate_requirements.sh .

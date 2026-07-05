@@ -17,6 +17,14 @@ package artifact.
 
 - ISO candidate requirement checks now separate repository-controlled source
   paths from generated package repository output.
+- Package build wrapper now points `straylight-common` at the published
+  `packaging/straylight-common` directory.
+- Package builds now stage repository-root build trees for Debian packaging and
+  collect generated `.deb` artifacts under `output/debs` for ISO input.
+- Release hygiene now treats `output/` as the generated artifact boundary during
+  package and ISO build workflows.
+- `straylight-core` packaging now installs the `straylight-numa-run` helper
+  emitted by the core package build.
 - Status, roadmap, FAQ, and build docs now reflect that package and ISO
   source-only checks pass on the public tree; package builds, package
   repository generation, ISO builds, and VM/install validation remain gated.

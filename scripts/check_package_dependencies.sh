@@ -70,6 +70,27 @@ host_packages=(
   devscripts
   dkms
   linux-headers-amd64
+  nlohmann-json3-dev
+  libspdlog-dev
+  libsdbus-c++-dev
+  libeigen3-dev
+  libpmem2-dev
+  libfuse3-dev
+  libbpf-dev
+  libdpdk-dev
+  libibverbs-dev
+  librdmacm-dev
+  libelf-dev
+  clang
+  llvm
+  libwayland-dev
+  wayland-protocols
+  libegl-dev
+  libgles-dev
+  libpam0g-dev
+  libpipewire-0.3-dev
+  libglfw3-dev
+  libopengl-dev
 )
 
 source_paths=(

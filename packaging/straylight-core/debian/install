@@ -3,3 +3,4 @@ usr/bin/straylight-bus
 usr/bin/straylight-registry
 usr/bin/straylight-scheduler
 usr/bin/straylight-entropy
+usr/bin/straylight-numa-run

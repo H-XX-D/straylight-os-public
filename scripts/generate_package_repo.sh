@@ -14,8 +14,8 @@ Outputs:
   output/debs/Packages
   output/debs/Packages.gz
 
-The current public starter is expected to report missing .deb inputs until the
-complete source tree can build package artifacts.
+The public source tree does not include generated .deb inputs. Build packages
+first, then generate the local package repository.
 USAGE
 }
 

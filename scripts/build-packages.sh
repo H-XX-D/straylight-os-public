@@ -20,8 +20,8 @@ Examples:
   scripts/build-packages.sh --clean --no-sign
   scripts/build-packages.sh --no-sign straylight-desktop
 
-The current public starter is expected to stop at the dependency/source
-preflight until the v0.2.0-alpha complete-source-tree gate is finished.
+The public source tree should pass source preflight. Package builds still
+require a prepared Debian-compatible host with the documented build packages.
 USAGE
 }
 
@@ -95,7 +95,7 @@ package_order=(
 )
 
 package_paths=(
-  "straylight-common|packaging/libstraylight-common"
+  "straylight-common|packaging/straylight-common"
   "straylight-kernel|packaging/straylight-kernel"
   "straylight-core|packaging/straylight-core"
   "straylight-ml|packaging/straylight-ml"
@@ -156,12 +156,16 @@ if [ "$check_deps" -eq 1 ]; then
   exit $?
 fi
 
+if [ "$clean" -eq 1 ]; then
+  rm -rf output/debs output/package-build
+  rm -f packaging/*.buildinfo packaging/*.changes packaging/*.deb
+fi
+
 scripts/straylight_release_audit.sh .
 
 if ! scripts/check_package_dependencies.sh .; then
   echo "[BUILD_BLOCKED] package dependency preflight failed" >&2
   echo "Resolve the public host/source gaps above before running package builds." >&2
-  echo "The source-only public starter is expected to stop here until v0.2.0-alpha is complete." >&2
   exit 1
 fi
 
@@ -171,15 +175,31 @@ if ! command -v dpkg-buildpackage >/dev/null 2>&1; then
   exit 1
 fi
 
-if [ "$clean" -eq 1 ]; then
-  rm -rf output/debs
-fi
 mkdir -p output/debs
+mkdir -p output/package-build
 
 build_args=()
 if [ "$no_sign" -eq 1 ]; then
   build_args+=(-us -uc)
 fi
+
+stage_package_tree() {
+  local package="$1"
+  local package_debian="$2/debian"
+  local build_dir="output/package-build/$package"
+
+  rm -rf "$build_dir"
+  mkdir -p "$build_dir"
+  rsync -a --delete \
+    --exclude .git \
+    --exclude output \
+    --exclude 'packaging/*.buildinfo' \
+    --exclude 'packaging/*.changes' \
+    --exclude 'packaging/*.deb' \
+    "$root"/ "$build_dir"/
+  rm -rf "$build_dir/debian"
+  cp -a "$package_debian" "$build_dir/debian"
+}
 
 for package in "${packages[@]}"; do
   path="$(package_path "$package")"
@@ -190,10 +210,12 @@ for package in "${packages[@]}"; do
   fi
 
   echo "[BUILD_PACKAGE] $package"
+  stage_package_tree "$package" "$path"
   (
-    cd "$path"
+    cd "output/package-build/$package"
     dpkg-buildpackage -b "${build_args[@]}"
   )
+  find output/package-build -maxdepth 1 -type f -name '*.deb' -exec mv -f {} output/debs/ \;
 done
 
 scripts/generate_package_repo.sh

@@ -35,10 +35,10 @@ else
   echo "[OK] private SSH material files absent"
 fi
 
-if find . \( -path './.git' -o -path './node_modules' \) -prune -o \
+if find . \( -path './.git' -o -path './node_modules' -o -path './build' -o -path './output' -o -path './out' -o -path './.tmp' \) -prune -o \
   \( -name '*.iso' -o -name '*.img' -o -name '*.qcow2' -o -name '*.raw' -o -name '*.deb' -o -name '*.ko' \) -print | grep -q .; then
   echo "[FAIL] generated binary/package artifacts present" >&2
-  find . \( -path './.git' -o -path './node_modules' \) -prune -o \
+  find . \( -path './.git' -o -path './node_modules' -o -path './build' -o -path './output' -o -path './out' -o -path './.tmp' \) -prune -o \
     \( -name '*.iso' -o -name '*.img' -o -name '*.qcow2' -o -name '*.raw' -o -name '*.deb' -o -name '*.ko' \) -print >&2
   fail=1
 else

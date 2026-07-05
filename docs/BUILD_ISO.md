@@ -104,10 +104,11 @@ scripts/build-packages.sh --clean --no-sign
 scripts/generate_package_repo.sh
 ```
 
-The public wrapper is documented in `docs/PACKAGE_BUILD_WRAPPER.md`. On an
-incomplete source snapshot, it fails before build execution with public-safe
-missing payload messages. Once the complete source tree is present, it invokes
-`dpkg-buildpackage` for package groups in dependency order.
+The public wrapper is documented in `docs/PACKAGE_BUILD_WRAPPER.md`. It runs
+preflight checks before build execution, then invokes `dpkg-buildpackage` for
+package groups in dependency order. Each package build uses a staged
+repository-root tree under `output/package-build/`, and generated `.deb` files
+are collected under `output/debs/`.
 
 Expected package output:
 

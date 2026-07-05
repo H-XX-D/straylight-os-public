@@ -21,6 +21,12 @@ Build all package groups once the host dependencies are present:
 scripts/build-packages.sh --clean --no-sign
 ```
 
+The wrapper stages a repository-root build tree under `output/package-build/`
+for each package group and copies that group's `packaging/<name>/debian/`
+metadata to the staged root before invoking `dpkg-buildpackage`. Generated
+`.deb` artifacts are collected under `output/debs/` before the local APT
+repository index is written.
+
 Build one package group:
 
 ```bash
@@ -70,8 +76,8 @@ paths only.
 
 ## Promotion Gate
 
-The `v0.2.0-alpha` source-tree gate is not complete until this wrapper can run
-from a clean public clone and either:
+The package-build validation gate is not complete until this wrapper can run
+from a clean public clone on a prepared Debian-compatible host and either:
 
 - build the selected package groups, or
 - fail with documented public-safe dependency or source-payload messages.
