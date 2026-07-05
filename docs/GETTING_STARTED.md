@@ -35,15 +35,13 @@ A complete StrayLight source tree should provide these top-level areas:
 - `docs/` for public documentation.
 - `scripts/` for release audit, package build, and ISO build commands.
 
-## Build Flow
+## Package Build Flow
 
 ```bash
 scripts/straylight_release_audit.sh .
 scripts/check_package_dependencies.sh .
 scripts/build-packages.sh --check-deps --no-sign
 scripts/build-packages.sh --clean --no-sign
-sudo scripts/build-iso.sh --clean
-sha256sum -c output/straylight-os-1.0.0-amd64.iso.sha256
 ```
 
 This public starter does not include every implementation file needed to produce
@@ -53,6 +51,17 @@ layout, package payload, root/live-build requirements, and validation gates.
 See [Clean-Clone Package Dependency Check](CLEAN_CLONE_PACKAGE_CHECK.md) for the
 preflight command and expected starter failure modes.
 
+## ISO Candidate Flow
+
+Run this only after the complete source tree is present and package builds have
+produced `output/debs/Packages.gz`:
+
+```bash
+scripts/check_iso_candidate_requirements.sh .
+sudo scripts/build-iso.sh --clean --config-only
+sudo scripts/build-iso.sh --clean
+scripts/generate_iso_checksum.sh --check output/straylight-os-1.0.0-amd64.iso
+```
 
 ## Starter Examples
 
