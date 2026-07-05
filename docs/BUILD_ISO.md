@@ -182,20 +182,27 @@ The ISO candidate release-note and checksum flow is documented in
 
 ## Smoke Test
 
-The build script prints a QEMU command after a successful ISO build. A typical
-VM smoke test uses:
+The build script prints a QEMU command after a successful ISO build. The public
+VM boot validation procedure is documented in `docs/VM_BOOT_VALIDATION.md`.
+
+A typical BIOS-compatible smoke test uses:
 
 ```bash
 qemu-system-x86_64 \
+  -machine q35,accel=kvm:tcg \
+  -cpu max \
+  -smp 4 \
+  -m 8192 \
+  -boot d \
   -cdrom output/straylight-os-1.0.0-amd64.iso \
-  -m 8G \
-  -enable-kvm \
-  -smp 4
+  -netdev user,id=net0 \
+  -device virtio-net-pci,netdev=net0
 ```
 
 Before treating an ISO as distributable, verify:
 
-- VM boot reaches the live desktop.
+- VM boot reaches the documented live target and is summarized according to
+  `docs/VM_BOOT_VALIDATION.md`.
 - Calamares launches and completes an install.
 - Firstboot services complete.
 - Post-install health checks pass.

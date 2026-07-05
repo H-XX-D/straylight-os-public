@@ -11,6 +11,7 @@ package artifact.
 
 ### Added
 
+- Public VM boot validation procedure in `docs/VM_BOOT_VALIDATION.md`.
 - ISO candidate checksum and release-note flow in
   `docs/ISO_CANDIDATE_RELEASE.md`.
 - Public ISO checksum wrapper `scripts/generate_iso_checksum.sh`.

@@ -73,7 +73,7 @@ machine.
 
 Required outcomes:
 
-- Boot path is documented.
+- Boot path is documented in `docs/VM_BOOT_VALIDATION.md`.
 - Installer path is documented.
 - Firstboot behavior is documented.
 - Post-install health checks are documented.

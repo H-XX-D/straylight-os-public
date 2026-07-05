@@ -76,9 +76,12 @@ For ISO candidates, include the ISO and checksum file:
 
 ### VM Boot
 
-- Runtime:
+- Runtime class:
+- Firmware mode:
+- Boot target:
 - Result:
-- Notes:
+- Failure class:
+- Public summary:
 
 ### Installer
 

@@ -25,6 +25,16 @@ scripts/generate_iso_checksum.sh --check output/straylight-os-1.0.0-amd64.iso
 The current source-only starter is expected to stop before this point because
 the complete package and ISO source payloads are not present.
 
+## VM Boot Validation
+
+After checksum verification, use `docs/VM_BOOT_VALIDATION.md` to test the ISO
+candidate in a generic amd64 VM.
+
+Release notes may mark VM boot as `passed` only when the ISO checksum verifies,
+the VM starts from the ISO, the boot loader and kernel path complete, and the
+documented live target is reached. Keep installer, firstboot, and post-install
+health results separate from this boot-only gate.
+
 ## Checksum Requirements
 
 The checksum command writes:

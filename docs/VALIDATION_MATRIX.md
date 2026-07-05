@@ -26,6 +26,7 @@ the repository remains a source-only alpha starter.
 | ISO build requirements documented | Documented | `docs/BUILD_ISO.md`, `docs/LIVE_BUILD_REQUIREMENTS.md`, `docs/RELEASE_PROCESS.md`, `scripts/check_iso_candidate_requirements.sh` | Add complete public source and live-build configuration |
 | Package repository generation | Documented | `docs/PACKAGE_REPOSITORY.md`, `scripts/generate_package_repo.sh`, `.gitignore`, `.gitattributes` | Generate `Packages.gz` from public package outputs before ISO candidate builds |
 | ISO candidate checksum and release notes | Documented | `docs/ISO_CANDIDATE_RELEASE.md`, `docs/RELEASE_NOTES_TEMPLATE.md`, `scripts/generate_iso_checksum.sh` | Generate and verify checksum before attaching ISO candidate artifacts |
+| VM boot validation flow | Documented | `docs/VM_BOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, `docs/RELEASE_NOTES_TEMPLATE.md` | Run VM boot validation on an ISO candidate |
 | ISO artifact is publicly verified | Gated | README marks ISO as alpha test media, `docs/ARTIFACT_POLICY.md` defines attachment requirements | Build reproducible ISO candidate and pass VM boot/install gates |
 | Public source snapshot hygiene | Verified | `.gitattributes`, `docs/PUBLIC_SOURCE_MANIFEST.md`, verifier script | Keep CI and local verifier passing |
 
@@ -46,6 +47,7 @@ the repository remains a source-only alpha starter.
 |-------|----------------|-----------------|-----------|
 | Debian/Trixie-compatible target | Documented | README status table, build docs | Validate package and ISO flow on a clean public build host |
 | Distro GNOME/GDM/Mutter desktop profile | Documented | README desktop profile notes | Validate installed desktop behavior from public ISO candidate |
+| VM boot path | Documented | `docs/VM_BOOT_VALIDATION.md`, release notes template | Complete VM boot validation issue |
 | Installer path | Gated | Roadmap, release process | Complete VM installer validation issue |
 | Firstboot path | Gated | Roadmap, release process | Complete firstboot validation issue |
 | Post-install health | Gated | Roadmap, seeded issues | Complete post-install health checklist issue |
