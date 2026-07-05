@@ -193,6 +193,11 @@ stage_package_tree() {
   rsync -a --delete \
     --exclude .git \
     --exclude output \
+    --exclude iso/live-build/.build \
+    --exclude iso/live-build/binary \
+    --exclude iso/live-build/build.log \
+    --exclude iso/live-build/cache \
+    --exclude iso/live-build/chroot \
     --exclude 'packaging/*.buildinfo' \
     --exclude 'packaging/*.changes' \
     --exclude 'packaging/*.deb' \
