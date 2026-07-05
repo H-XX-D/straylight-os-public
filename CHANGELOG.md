@@ -29,6 +29,10 @@ package artifact.
   validation paths cannot collide on stale `/tmp` permissions.
 - Release audit now excludes generated live-build work directories and local
   package injection state.
+- Release audit now excludes generated live-build package, file, contents, log,
+  and timestamp reports emitted by completed ISO builds.
+- Public snapshot Markdown and shell checks now skip generated live-build
+  worktrees so post-build validation stays scoped to repository source.
 - ISO live-build SGX udev includes now match the packaged source rule emitted
   during config-only staging.
 - Status, roadmap, FAQ, and build docs now reflect that package and ISO

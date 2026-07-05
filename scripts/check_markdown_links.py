@@ -47,7 +47,19 @@ def anchors_for(path: pathlib.Path) -> set[str]:
 
 
 def markdown_files(root: pathlib.Path) -> list[pathlib.Path]:
-    ignored = {".git", "node_modules", "build", "out", "output", ".tmp"}
+    ignored = {
+        ".git",
+        "node_modules",
+        "build",
+        "out",
+        "output",
+        ".tmp",
+        ".build",
+        "binary",
+        "cache",
+        "chroot",
+        "packages.chroot",
+    }
     files: list[pathlib.Path] = []
     for path in root.rglob("*.md"):
         if ignored.intersection(path.relative_to(root).parts):

@@ -8,11 +8,33 @@ fail=0
 check() {
   local name="$1"
   local pattern="$2"
+  local grep_excludes=(
+    --exclude=.gitignore
+    --exclude=straylight_release_audit.sh
+    --exclude=binary.modified_timestamps
+    --exclude=build.log
+    --exclude=chroot.files
+    --exclude='chroot.packages.*'
+    --exclude='*.contents'
+    --exclude='*.files'
+    --exclude='*.packages'
+    --exclude-dir=.git
+    --exclude-dir=node_modules
+    --exclude-dir=build
+    --exclude-dir=output
+    --exclude-dir=out
+    --exclude-dir=.tmp
+    --exclude-dir=.build
+    --exclude-dir=binary
+    --exclude-dir=cache
+    --exclude-dir=chroot
+    --exclude-dir=packages.chroot
+  )
   local match_file
   local grep_status
   match_file="$(mktemp "${TMPDIR:-/tmp}/straylight-audit-match.XXXXXX")"
   set +e
-  grep -RInE --exclude=.gitignore --exclude=straylight_release_audit.sh --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=build --exclude-dir=output --exclude-dir=out --exclude-dir=.tmp --exclude-dir=.build --exclude-dir=binary --exclude-dir=cache --exclude-dir=chroot --exclude-dir=packages.chroot "$pattern" . >"$match_file"
+  grep -RInE "${grep_excludes[@]}" "$pattern" . >"$match_file"
   grep_status=$?
   set -e
 

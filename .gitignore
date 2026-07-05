@@ -55,6 +55,10 @@ iso/live-build/config/chroot
 iso/live-build/config/common
 iso/live-build/config/source
 iso/live-build/config/packages.chroot/
+iso/live-build/binary.modified_timestamps
+iso/live-build/build.log
+iso/live-build/chroot.files
+iso/live-build/chroot.packages.*
 iso/live-build/*.contents
 iso/live-build/*.files
 iso/live-build/*.packages

@@ -14,7 +14,7 @@ while IFS= read -r -d '' script; do
     fail=1
   fi
 done < <(find . \
-  \( -path './.git' -o -path './node_modules' -o -path './build' -o -path './out' -o -path './output' -o -path './.tmp' \) -prune -o \
+  \( -path './.git' -o -path './node_modules' -o -path './build' -o -path './out' -o -path './output' -o -path './.tmp' -o -path './iso/live-build/.build' -o -path './iso/live-build/binary' -o -path './iso/live-build/cache' -o -path './iso/live-build/chroot' -o -path './iso/live-build/config/packages.chroot' \) -prune -o \
   -type f -name '*.sh' -print0 | sort -z)
 
 if [ "$fail" -ne 0 ]; then
