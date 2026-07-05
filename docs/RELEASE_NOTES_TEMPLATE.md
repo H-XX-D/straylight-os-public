@@ -53,6 +53,13 @@ scripts/verify_public_snapshot.sh .
 |----------|--------|-------|
 | `<artifact>` | `<sha256>` | `<purpose>` |
 
+For ISO candidates, include the ISO and checksum file:
+
+| Artifact | SHA256 | Notes |
+|----------|--------|-------|
+| `output/straylight-os-1.0.0-amd64.iso` | `<sha256>` | ISO candidate, not a verified ISO |
+| `output/straylight-os-1.0.0-amd64.iso.sha256` | `<sha256-of-checksum-file-if-attached>` | Checksum sidecar |
+
 ## Validation Results
 
 ### Package Build
@@ -119,3 +126,9 @@ Describe compatibility expectations, if any.
 For source-only alpha snapshots, omit artifact, boot, installer, firstboot, and
 post-install health sections unless they are explicitly relevant. State clearly
 that no binary artifacts are attached.
+
+## ISO Candidate Shortcut
+
+For ISO candidates, keep boot, installer, firstboot, and post-install health
+sections even when they are not run yet. Mark them as `not run` or `gated` so
+the release notes do not imply verified install support.

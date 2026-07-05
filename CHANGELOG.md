@@ -7,6 +7,14 @@ examples, release hygiene, and build guidance. Tags do not imply a supported
 binary distribution unless a release explicitly attaches and verifies an ISO or
 package artifact.
 
+## Unreleased
+
+### Added
+
+- ISO candidate checksum and release-note flow in
+  `docs/ISO_CANDIDATE_RELEASE.md`.
+- Public ISO checksum wrapper `scripts/generate_iso_checksum.sh`.
+
 ## v0.1.0-alpha - 2026-07-05
 
 Initial public alpha starter snapshot.

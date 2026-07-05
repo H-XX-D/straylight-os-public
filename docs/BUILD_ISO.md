@@ -167,7 +167,8 @@ After package and config-only gates pass:
 
 ```bash
 sudo scripts/build-iso.sh --clean
-sha256sum -c output/straylight-os-1.0.0-amd64.iso.sha256
+scripts/generate_iso_checksum.sh output/straylight-os-1.0.0-amd64.iso
+scripts/generate_iso_checksum.sh --check output/straylight-os-1.0.0-amd64.iso
 ```
 
 Expected ISO outputs:
@@ -175,6 +176,9 @@ Expected ISO outputs:
 - `output/straylight-os-1.0.0-amd64.iso`
 - `output/straylight-os-1.0.0-amd64.iso.sha256`
 - `output/iso-build-<timestamp>.log`
+
+The ISO candidate release-note and checksum flow is documented in
+`docs/ISO_CANDIDATE_RELEASE.md`.
 
 ## Smoke Test
 

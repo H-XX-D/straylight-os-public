@@ -48,6 +48,8 @@ Confirm:
   package-build gate remains blocked.
 - ISO candidate releases run `scripts/check_iso_candidate_requirements.sh .` or
   document why the ISO gate remains blocked.
+- ISO candidate releases generate and verify checksums with
+  `scripts/generate_iso_checksum.sh`.
 - No personal paths, private hostnames, local IP addresses, MAC addresses,
   serials, machine IDs, credentials, or generated artifacts are present.
 - GitHub Actions passes on the commit to be tagged.
@@ -67,6 +69,9 @@ Then create a GitHub release from the tag and mark it as a pre-release.
 
 Use `docs/RELEASE_NOTES_TEMPLATE.md` when preparing a public release. Source
 snapshots should explicitly say that no binary artifacts are attached.
+ISO candidates should follow `docs/ISO_CANDIDATE_RELEASE.md` and distinguish
+ISO build success from VM boot, installer, firstboot, and post-install health
+validation.
 
 ## Artifact Policy
 

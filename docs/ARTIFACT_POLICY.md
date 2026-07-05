@@ -39,6 +39,13 @@ Use:
 sha256sum <artifact>
 ```
 
+For StrayLight ISO candidates, use the repository wrapper:
+
+```bash
+scripts/generate_iso_checksum.sh output/straylight-os-1.0.0-amd64.iso
+scripts/generate_iso_checksum.sh --check output/straylight-os-1.0.0-amd64.iso
+```
+
 If multiple artifacts are attached, include one table row per artifact in the
 release notes.
 

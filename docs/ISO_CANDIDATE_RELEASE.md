@@ -1,0 +1,95 @@
+# ISO Candidate Release Flow
+
+This document defines the public release-note and checksum flow for a
+StrayLight ISO candidate.
+
+An ISO candidate is not a verified installation release. It means a complete
+public source tree produced an ISO and checksum from documented commands, while
+VM boot, installer, firstboot, and post-install health validation may still be
+pending.
+
+## Candidate Build Flow
+
+Run these commands from a clean public source tree:
+
+```bash
+scripts/verify_public_snapshot.sh .
+scripts/build-packages.sh --clean --no-sign
+scripts/generate_package_repo.sh
+scripts/check_iso_candidate_requirements.sh .
+sudo scripts/build-iso.sh --clean
+scripts/generate_iso_checksum.sh output/straylight-os-1.0.0-amd64.iso
+scripts/generate_iso_checksum.sh --check output/straylight-os-1.0.0-amd64.iso
+```
+
+The current source-only starter is expected to stop before this point because
+the complete package and ISO source payloads are not present.
+
+## Checksum Requirements
+
+The checksum command writes:
+
+```text
+output/straylight-os-1.0.0-amd64.iso.sha256
+```
+
+Generate it with:
+
+```bash
+scripts/generate_iso_checksum.sh output/straylight-os-1.0.0-amd64.iso
+```
+
+Verify it with:
+
+```bash
+scripts/generate_iso_checksum.sh --check output/straylight-os-1.0.0-amd64.iso
+```
+
+## Release Notes Requirements
+
+Use `docs/RELEASE_NOTES_TEMPLATE.md` and mark exactly:
+
+```markdown
+- [ ] Source snapshot
+- [x] ISO candidate
+- [ ] Verified ISO
+```
+
+The release notes must distinguish build success from install validation:
+
+- Package build: passed, failed, or gated.
+- ISO build: passed, failed, or gated.
+- Checksum: generated and verified, or gated.
+- VM boot: not run, passed, failed, or gated.
+- Installer: not run, passed, failed, or gated.
+- Firstboot: not run, passed, failed, or gated.
+- Post-install health: not run, passed, failed, or gated.
+
+Do not write "verified ISO" unless the VM boot, installer, firstboot, and
+post-install health gates have passed and are documented.
+
+## Artifact Attachment Rule
+
+Do not attach ISO artifacts to a source snapshot.
+
+For an ISO candidate release, attach generated artifacts only when all of these
+are true:
+
+- the complete public source tree was used
+- package repository generation completed
+- ISO build completed
+- SHA256 checksum was generated and verified
+- release notes include build host class, commands, checksum, known
+  limitations, and gated validation state
+- the artifact is explicitly labeled "ISO candidate"
+
+## Privacy Boundary
+
+Release notes may include sanitized summaries and repository-relative paths.
+They must not include:
+
+- private hostnames, local IP addresses, MAC addresses, serials, or machine IDs
+- personal filesystem paths
+- local interface names or lab topology
+- credentials, tokens, keys, `.env` files, or private certificates
+- raw logs, packet captures, traces, caches, or private benchmark output

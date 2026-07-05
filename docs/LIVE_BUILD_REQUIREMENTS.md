@@ -100,4 +100,5 @@ The `v0.3.0-alpha` ISO candidate gate is not complete until:
   build host
 - `sudo scripts/build-iso.sh --clean --config-only` succeeds
 - `sudo scripts/build-iso.sh --clean` produces an ISO and checksum
+- `scripts/generate_iso_checksum.sh --check` verifies the ISO checksum
 - release notes mark the artifact as an ISO candidate, not a verified ISO
