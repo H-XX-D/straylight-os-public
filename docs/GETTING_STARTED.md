@@ -49,3 +49,16 @@ This public starter does not include every implementation file needed to produce
 an ISO by itself. Use it as the public documentation and hygiene frame for a
 complete source release. See [Build The ISO](BUILD_ISO.md) for the full source
 layout, package payload, root/live-build requirements, and validation gates.
+
+
+## Starter Examples
+
+Use the sanitized examples as a starting point for a complete private or public
+source tree:
+
+- [`examples/hardware-fabric.yaml`](../examples/hardware-fabric.yaml)
+- [`examples/xdp.conf`](../examples/xdp.conf)
+- [`examples/package-profile.json`](../examples/package-profile.json)
+- [`examples/iso-build.env`](../examples/iso-build.env)
+
+Keep deployment-specific values in private repos or local configuration files.

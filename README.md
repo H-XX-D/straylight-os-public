@@ -33,6 +33,7 @@ plane, then translating that state back into concise operator-readable output.
 - [Kernel And Datapath Surfaces](#kernel-and-datapath-surfaces)
 - [Research Tracks](#research-tracks)
 - [Package Groups](#package-groups)
+- [Examples](#examples)
 - [Build From Source](#build-from-source)
 - [ISO Build Requirements](#iso-build-requirements)
 - [Installed-System Verification](#installed-system-verification)
@@ -241,6 +242,21 @@ measured research results and scaffolds, not production guarantees.
 | `straylight-desktop` | Graphical apps, app CLI layer, OOBE, wizard, widgets, and firstboot helpers |
 | `straylight-os` | Metapackage for the complete install profile |
 
+## Examples
+
+The `examples/` directory contains sanitized templates people can adapt when
+building their own StrayLight-style source tree:
+
+- [hardware-fabric.yaml](examples/hardware-fabric.yaml) for controller,
+  accelerator, network, and kernel-surface inventory.
+- [xdp.conf](examples/xdp.conf) for safe stats/pass-through XDP stand-up.
+- [package-profile.json](examples/package-profile.json) for package groups,
+  build order, release outputs, and gates.
+- [iso-build.env](examples/iso-build.env) for build-script environment knobs.
+
+Keep examples generic. Replace placeholders only in private deployment repos,
+and run the release audit before publishing adapted files.
+
 ## App And CLI Surface
 
 StrayLight desktop apps ship with a native multicall CLI layer.
@@ -411,6 +427,7 @@ Current boundaries:
 
 - [Getting started](docs/GETTING_STARTED.md)
 - [Build the ISO](docs/BUILD_ISO.md)
+- [Examples](examples/README.md)
 - [Current release condition](docs/STRAYLIGHT_CURRENT_STATUS.md)
 - [Component surface map](docs/STRAYLIGHT_SURFACE_MAP.md)
 - [Hardware fabric manifest example](docs/STRAYLIGHT_HARDWARE_FABRIC_MANIFEST_EXAMPLE.md)

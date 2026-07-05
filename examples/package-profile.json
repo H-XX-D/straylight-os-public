@@ -1,0 +1,50 @@
+{
+  "schema": "straylight.package_profile.v1",
+  "profile": "straylight-os-public-starter",
+  "status": "example",
+  "target_distribution": "trixie",
+  "architecture": "amd64",
+  "desktop_stack": "gnome-gdm-mutter",
+  "excluded_from_release_profile": [
+    "straylight-compositor",
+    "straylight-shell"
+  ],
+  "build_order": [
+    "straylight-common",
+    "straylight-kernel",
+    "straylight-core",
+    "straylight-ml",
+    "straylight-network",
+    "straylight-exotic",
+    "straylight-desktop",
+    "straylight-os"
+  ],
+  "binary_packages": [
+    "libstraylight-common1",
+    "libstraylight-common-dev",
+    "straylight-core",
+    "straylight-kernel",
+    "straylight-ml",
+    "straylight-network",
+    "straylight-exotic",
+    "straylight-desktop",
+    "straylight-os"
+  ],
+  "required_outputs": {
+    "package_repository": "output/debs/Packages.gz",
+    "iso": "output/straylight-os-1.0.0-amd64.iso",
+    "checksum": "output/straylight-os-1.0.0-amd64.iso.sha256"
+  },
+  "release_gates": [
+    "release_audit_passed",
+    "package_dependencies_satisfied",
+    "packages_built",
+    "iso_config_only_passed",
+    "iso_built",
+    "checksum_verified",
+    "vm_boot_tested",
+    "installer_tested",
+    "firstboot_tested",
+    "post_install_health_checked"
+  ]
+}

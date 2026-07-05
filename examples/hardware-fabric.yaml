@@ -1,0 +1,79 @@
+schema: straylight.hardware_fabric_manifest.v1
+name: reference-controller
+profile: workstation-control-plane
+status: example
+
+compute:
+  cpu:
+    class: dual-socket-xeon-class
+    physical_cores: 40
+    threads: 80
+    numa_nodes: 2
+    memory_channels_total: 12
+  memory:
+    ram_gib: 93
+    zram_swap: optional
+  storage:
+    nvme_devices: 2
+    sata_devices: 2
+
+accelerators:
+  gpu:
+    class: local-inference-workstation-gpu
+    vram_gib: 16
+    role:
+      - local inference
+      - workstation acceleration
+  fpga_stcr:
+    state: gated
+    required_before_operation:
+      - endpoint_probe_passed
+      - safe_controller_gate_passed
+      - explicit_operator_policy
+
+network:
+  switch_facing:
+    class: 10gbe
+    interface: <switch-facing-interface>
+    xdp_mode: stats_pass_through
+  auxiliary_links:
+    class: 1gbe
+    count: 2
+
+surfaces:
+  hypervisor:
+    state: online
+    paths:
+      - /dev/straylight-hv
+      - /proc/straylight/hv/stats
+  vpu:
+    state: online
+    paths:
+      - /dev/straylight-vpu
+      - /sys/kernel/straylight-vpu
+  scheduler:
+    state: online
+    paths:
+      - /proc/straylight/sched/status
+      - /proc/straylight/sched/policy
+      - /proc/straylight/sched/tasks
+  entropy:
+    state: online
+    path: /proc/straylight/entropy
+  enclave:
+    state: online_without_hardware_sgx_in_sample
+    paths:
+      - /dev/straylight-enclave
+      - /dev/straylight/sgx
+  xdp:
+    state: stats_pass_through
+    service_template: straylight-xdp@<iface>.service
+
+publication_notes:
+  do_not_publish:
+    - private_hostnames
+    - local_ip_addresses
+    - mac_addresses
+    - serial_numbers
+    - machine_ids
+    - private_interface_names
