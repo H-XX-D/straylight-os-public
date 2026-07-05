@@ -1,0 +1,21 @@
+# /etc/default/grub — StrayLight OS GRUB configuration
+# Installed to /etc/default/grub on the target system.
+
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="StrayLight OS"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash loglevel=3 nvidia-drm.modeset=1"
+GRUB_CMDLINE_LINUX=""
+
+# Enable scanning for other bootable operating systems (Windows, Ubuntu, etc.)
+# Set to "true" to suppress detection of other OSes.
+GRUB_DISABLE_OS_PROBER=false
+
+# Graphics
+GRUB_GFXMODE=auto
+GRUB_GFXPAYLOAD_LINUX=keep
+GRUB_TERMINAL_OUTPUT=gfxterm
+
+# Theme
+GRUB_THEME=/boot/grub/themes/straylight/theme.txt
+GRUB_BACKGROUND=/boot/grub/themes/straylight/background.png

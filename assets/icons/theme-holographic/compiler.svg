@@ -1,0 +1,26 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.25"/>
+    </linearGradient>
+  </defs>
+  <!-- AR Corner Frame -->
+  <path d="M4 12 L4 4 L12 4" stroke="#ff00ff" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M60 12 L60 4 L52 4" stroke="#ff00ff" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M4 52 L4 60 L12 60" stroke="#ff00ff" stroke-width="1" fill="none" opacity="0.5"/>
+  <path d="M60 52 L60 60 L52 60" stroke="#ff00ff" stroke-width="1" fill="none" opacity="0.5"/>
+  <!-- Main Glass Shape -->
+  <polygon points="32,8 56,24 56,48 32,56 8,48 8,24" fill="url(#g3)" stroke="#00d4ff" stroke-width="1.5" opacity="0.9"/>
+  <!-- JIT Flow Lines -->
+  <polyline points="16,28 24,32 16,36" fill="none" stroke="#ff00ff" stroke-width="1.5" opacity="0.8"/>
+  <polyline points="28,28 36,32 28,36" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.8"/>
+  <polyline points="40,28 48,32 40,36" fill="none" stroke="#ff00ff" stroke-width="1.5" opacity="0.8"/>
+  <!-- Center Core -->
+  <circle cx="32" cy="36" r="4" fill="#00d4ff" opacity="0.7"/>
+  <text x="32" y="40" text-anchor="middle" fill="#ff00ff" font-size="5" font-family="monospace" opacity="0.9">JIT</text>
+  <!-- Data Flow Dots -->
+  <circle cx="20" cy="20" r="1.5" fill="#00d4ff" opacity="0.9"/>
+  <circle cx="44" cy="20" r="1.5" fill="#ff00ff" opacity="0.9"/>
+  <circle cx="32" cy="50" r="1.5" fill="#00d4ff" opacity="0.9"/>
+</svg>

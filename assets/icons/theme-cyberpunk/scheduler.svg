@@ -1,0 +1,39 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Clock/scheduler ring -->
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+  <circle cx="32" cy="32" r="20" fill="none" stroke="#00ffff" stroke-width="1" opacity="0.7"/>
+
+  <!-- Clock ticks -->
+  <path d="M32 8 V12 M32 52 V56 M8 32 H12 M52 32 H56" stroke="#ffff00" stroke-width="2" filter="url(#glow-pink)"/>
+  <path d="M16 16 L19 19 M45 45 L48 48 M48 16 L45 19 M19 45 L16 48" stroke="#00ffff" stroke-width="1.5" filter="url(#glow-cyan)"/>
+
+  <!-- Clock hands -->
+  <path d="M32 32 L32 18" stroke="#ffff00" stroke-width="2.5" filter="url(#glow-pink)"/>
+  <path d="M32 32 L42 38" stroke="#00ffff" stroke-width="2" filter="url(#glow-cyan)"/>
+
+  <!-- Thread indicators -->
+  <circle cx="32" cy="14" r="2" fill="#ff00ff" filter="url(#glow-pink)"/>
+  <circle cx="46" cy="32" r="2" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <circle cx="32" cy="50" r="2" fill="#ffff00" filter="url(#glow-pink)"/>
+
+  <!-- Priority queue arrows -->
+  <path d="M56 8 L60 12 L56 16" fill="none" stroke="#ffff00" stroke-width="1.5" filter="url(#glow-cyan)"/>
+  <path d="M4 48 L8 52 L4 56" fill="none" stroke="#ffff00" stroke-width="1.5" filter="url(#glow-cyan)"/>
+</svg>

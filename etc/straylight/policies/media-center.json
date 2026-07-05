@@ -1,0 +1,58 @@
+{
+  "name": "media-center",
+  "description": "Media center — compositor optimized for video playback, low-latency audio priority",
+  "autotune_profile": "desktop",
+  "active_services": [
+    "compositor",
+    "whisper",
+    "autotune",
+    "health",
+    "flux",
+    "alice"
+  ],
+  "disabled_services": [
+    "mesh",
+    "replay",
+    "hotpatch",
+    "lens"
+  ],
+  "service_configs": {
+    "compositor": {
+      "video_overlay": true,
+      "hardware_decode": true
+    },
+    "flux": {
+      "audio_priority": "realtime",
+      "low_latency": true,
+      "buffer_size": 256
+    }
+  },
+  "resource_limits": {
+    "cpu_quota_percent": 100,
+    "memory_limit_mb": 0,
+    "vram_reserve_percent": 70,
+    "io_weight": 200,
+    "nice_level": -10
+  },
+  "thermal": {
+    "cooling_mode": "balanced",
+    "cpu_temp_warn": 80,
+    "cpu_temp_critical": 95,
+    "gpu_temp_warn": 85,
+    "gpu_temp_critical": 100
+  },
+  "compositor": {
+    "mode": "video",
+    "max_fps": 60,
+    "vsync": true,
+    "direct_scanout": true,
+    "low_latency_input": true
+  },
+  "mesh_advertise": false,
+  "mesh_capabilities": "",
+  "debug_tools": false,
+  "trace_always_on": false,
+  "replay_recording": false,
+  "health_mode": "minimal",
+  "ssh_mode": "disabled"
+}

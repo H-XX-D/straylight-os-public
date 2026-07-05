@@ -1,0 +1,51 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="steel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a6a6a"/>
+      <stop offset="50%" style="stop-color:#8a8a8a"/>
+      <stop offset="100%" style="stop-color:#4a4a4a"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#daa520"/>
+      <stop offset="50%" style="stop-color:#cd7f32"/>
+      <stop offset="100%" style="stop-color:#b87333"/>
+    </linearGradient>
+    <linearGradient id="rust" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#cd853f"/>
+      <stop offset="50%" style="stop-color:#a0522d"/>
+      <stop offset="100%" style="stop-color:#8b4513"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer vault frame -->
+  <rect x="6" y="6" width="52" height="52" rx="4" fill="none" stroke="url(#steel)" stroke-width="4"/>
+
+  <!-- Reinforced corners -->
+  <path d="M6 14 L14 14 L14 6" fill="none" stroke="url(#brass)" stroke-width="3"/>
+  <path d="M58 14 L50 14 L50 6" fill="none" stroke="url(#brass)" stroke-width="3"/>
+  <path d="M6 50 L14 50 L14 58" fill="none" stroke="url(#brass)" stroke-width="3"/>
+  <path d="M58 50 L50 50 L50 58" fill="none" stroke="url(#brass)" stroke-width="3"/>
+
+  <!-- Inner door -->
+  <rect x="14" y="14" width="36" height="36" rx="2" fill="none" stroke="url(#brass)" stroke-width="2"/>
+
+  <!-- Lock mechanism -->
+  <circle cx="32" cy="32" r="10" fill="none" stroke="url(#rust)" stroke-width="3"/>
+  <circle cx="32" cy="32" r="6" fill="none" stroke="url(#brass)" stroke-width="2"/>
+
+  <!-- Keyhole -->
+  <circle cx="32" cy="30" r="2.5" fill="url(#steel)"/>
+  <rect x="30.5" y="30" width="3" height="6" fill="url(#steel)"/>
+
+  <!-- Locking bolts -->
+  <line x1="22" y1="32" x2="18" y2="32" stroke="url(#brass)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="46" y1="32" x2="42" y2="32" stroke="url(#brass)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="32" y1="22" x2="32" y2="18" stroke="url(#brass)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="32" y1="46" x2="32" y2="42" stroke="url(#brass)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Corner rivets -->
+  <circle cx="10" cy="10" r="2" fill="url(#rust)"/>
+  <circle cx="54" cy="10" r="2" fill="url(#rust)"/>
+  <circle cx="10" cy="54" r="2" fill="url(#rust)"/>
+  <circle cx="54" cy="54" r="2" fill="url(#rust)"/>
+</svg>

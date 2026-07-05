@@ -1,0 +1,144 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "dev",
+            "displayName": "Development",
+            "description": "Debug build with sanitizers and tests enabled",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/dev",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_STANDARD": "20",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_CXX_FLAGS": "-fsanitize=address,undefined -fno-omit-frame-pointer",
+                "CMAKE_EXE_LINKER_FLAGS": "-fsanitize=address,undefined",
+                "CMAKE_SHARED_LINKER_FLAGS": "-fsanitize=address,undefined",
+                "STRAYLIGHT_BUILD_TESTS": "ON",
+                "STRAYLIGHT_BUILD_BENCHMARKS": "OFF",
+                "STRAYLIGHT_ENABLE_SANITIZERS": "ON",
+                "BUILD_SHARED_LIBS": "ON"
+            },
+            "environment": {
+                "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+                "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+            }
+        },
+        {
+            "name": "release",
+            "displayName": "Release",
+            "description": "Optimized release build with LTO, no tests",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_STANDARD": "20",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "ON",
+                "CMAKE_CXX_FLAGS": "-march=x86-64-v3",
+                "STRAYLIGHT_BUILD_TESTS": "OFF",
+                "STRAYLIGHT_BUILD_BENCHMARKS": "OFF",
+                "BUILD_SHARED_LIBS": "ON",
+                "CMAKE_INSTALL_PREFIX": "/usr"
+            }
+        },
+        {
+            "name": "package",
+            "displayName": "Package",
+            "description": "RelWithDebInfo build for Debian packaging",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/package",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "CMAKE_CXX_STANDARD": "20",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "ON",
+                "CMAKE_INSTALL_PREFIX": "/usr",
+                "CMAKE_INSTALL_LIBDIR": "lib/x86_64-linux-gnu",
+                "STRAYLIGHT_BUILD_TESTS": "OFF",
+                "STRAYLIGHT_BUILD_BENCHMARKS": "OFF",
+                "BUILD_SHARED_LIBS": "ON",
+                "CPACK_GENERATOR": "DEB",
+                "CPACK_DEBIAN_PACKAGE_MAINTAINER": "StrayLight OS Team <dev@straylight.dev>",
+                "CPACK_DEBIAN_PACKAGE_HOMEPAGE": "https://straylight.dev",
+                "CPACK_DEBIAN_PACKAGE_SECTION": "admin"
+            }
+        },
+        {
+            "name": "test",
+            "displayName": "Test + Coverage",
+            "description": "Debug build with code coverage (gcov) and tests enabled",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/test",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_STANDARD": "20",
+                "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_CXX_FLAGS": "--coverage -fprofile-arcs -ftest-coverage",
+                "CMAKE_EXE_LINKER_FLAGS": "--coverage",
+                "CMAKE_SHARED_LINKER_FLAGS": "--coverage",
+                "STRAYLIGHT_BUILD_TESTS": "ON",
+                "STRAYLIGHT_BUILD_BENCHMARKS": "OFF",
+                "STRAYLIGHT_ENABLE_COVERAGE": "ON",
+                "BUILD_SHARED_LIBS": "ON"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "dev",
+            "configurePreset": "dev",
+            "jobs": 0
+        },
+        {
+            "name": "release",
+            "configurePreset": "release",
+            "jobs": 0
+        },
+        {
+            "name": "package",
+            "configurePreset": "package",
+            "jobs": 0
+        },
+        {
+            "name": "test",
+            "configurePreset": "test",
+            "jobs": 0
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "dev",
+            "configurePreset": "dev",
+            "output": {
+                "outputOnFailure": true,
+                "verbosity": "default"
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": false,
+                "jobs": 0
+            }
+        },
+        {
+            "name": "test",
+            "configurePreset": "test",
+            "output": {
+                "outputOnFailure": true,
+                "verbosity": "default"
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": false,
+                "jobs": 0
+            }
+        }
+    ]
+}

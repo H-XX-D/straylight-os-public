@@ -1,0 +1,34 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Bypass tunnel -->
+  <path d="M8 20 Q32 10 56 20 V44 Q32 54 8 44 Z" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+  <path d="M14 24 Q32 16 50 24 V40 Q32 48 14 40 Z" fill="none" stroke="#00ffff" stroke-width="1.5" filter="url(#glow-cyan)"/>
+
+  <!-- Speed lines -->
+  <path d="M16 32 L28 32" stroke="#ffff00" stroke-width="3" filter="url(#glow-pink)"/>
+  <path d="M32 32 L48 32" stroke="#ffff00" stroke-width="3" filter="url(#glow-pink)"/>
+  <path d="M20 28 L32 28" stroke="#00ffff" stroke-width="2" opacity="0.7"/>
+  <path d="M20 36 L32 36" stroke="#00ffff" stroke-width="2" opacity="0.7"/>
+
+  <!-- Kernel bypass indicator -->
+  <path d="M52 16 L58 10 M52 10 L58 16" stroke="#ffff00" stroke-width="2" filter="url(#glow-pink)"/>
+
+  <!-- Data flow arrows -->
+  <polygon points="44,30 50,32 44,34" fill="#ff00ff"/>
+</svg>

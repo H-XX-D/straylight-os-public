@@ -1,0 +1,55 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="steel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a6a6a"/>
+      <stop offset="50%" style="stop-color:#8a8a8a"/>
+      <stop offset="100%" style="stop-color:#4a4a4a"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#daa520"/>
+      <stop offset="50%" style="stop-color:#cd7f32"/>
+      <stop offset="100%" style="stop-color:#b87333"/>
+    </linearGradient>
+    <linearGradient id="rust" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#cd853f"/>
+      <stop offset="50%" style="stop-color:#a0522d"/>
+      <stop offset="100%" style="stop-color:#8b4513"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Network pipe/bridge -->
+  <rect x="4" y="20" width="56" height="24" rx="2" fill="none" stroke="url(#steel)" stroke-width="3"/>
+
+  <!-- Data flow line -->
+  <line x1="8" y1="32" x2="56" y2="32" stroke="url(#brass)" stroke-width="4"/>
+
+  <!-- Fast path bypass -->
+  <path d="M18 32 L18 16 L46 16 L46 32" fill="none" stroke="url(#rust)" stroke-width="3" stroke-linejoin="round"/>
+  <polygon points="42,12 50,16 42,20" fill="url(#rust)"/>
+
+  <!-- X mark for express -->
+  <g stroke="url(#steel)" stroke-width="3" stroke-linecap="round">
+    <line x1="26" y1="24" x2="38" y2="40"/>
+    <line x1="38" y1="24" x2="26" y2="40"/>
+  </g>
+
+  <!-- Packet indicators -->
+  <g fill="url(#brass)">
+    <rect x="12" y="28" width="4" height="8" rx="1"/>
+    <rect x="48" y="28" width="4" height="8" rx="1"/>
+  </g>
+
+  <!-- Filter mesh/grid -->
+  <g stroke="url(#steel)" stroke-width="1">
+    <line x1="28" y1="22" x2="28" y2="42"/>
+    <line x1="36" y1="22" x2="36" y2="42"/>
+    <line x1="24" y1="28" x2="40" y2="28"/>
+    <line x1="24" y1="36" x2="40" y2="36"/>
+  </g>
+
+  <!-- Flange bolts -->
+  <circle cx="6" cy="24" r="1.5" fill="url(#brass)"/>
+  <circle cx="6" cy="40" r="1.5" fill="url(#brass)"/>
+  <circle cx="58" cy="24" r="1.5" fill="url(#brass)"/>
+  <circle cx="58" cy="40" r="1.5" fill="url(#brass)"/>
+</svg>

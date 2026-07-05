@@ -1,0 +1,37 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Layered VMs -->
+  <rect x="12" y="36" width="40" height="18" rx="2" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+  <rect x="8" y="30" width="40" height="18" rx="2" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#glow-cyan)"/>
+  <rect x="4" y="24" width="40" height="18" rx="2" fill="none" stroke="#ffff00" stroke-width="2" filter="url(#glow-pink)"/>
+
+  <!-- VM labels -->
+  <rect x="8" y="28" width="8" height="3" fill="#ff00ff" opacity="0.8"/>
+  <rect x="12" y="34" width="8" height="3" fill="#00ffff" opacity="0.8"/>
+  <rect x="16" y="40" width="8" height="3" fill="#ffff00" opacity="0.8"/>
+
+  <!-- Hypervisor H -->
+  <path d="M48 8 V24 M40 16 H56" stroke="#00ffff" stroke-width="3" filter="url(#glow-cyan)"/>
+
+  <!-- Connection lines -->
+  <path d="M24 24 V20 H48 M24 42 V46 H48" stroke="#ffff00" stroke-width="1" opacity="0.6"/>
+
+  <!-- Isolation barriers -->
+  <path d="M44 12 V20 M52 12 V20" stroke="#ff00ff" stroke-width="1" opacity="0.7"/>
+</svg>

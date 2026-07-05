@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+override_dh_auto_build:
+override_dh_auto_test:
+override_dh_auto_install:
+	# Install source-only DKMS trees. The dkms.conf files expect the
+	# upstream kernel/<module>/ layout, so preserve it inside each tree.
+	install -d debian/tmp/usr/src
+	for mod in vpu hypervisor scheduler xdp entropy enclave; do \
+		srcdir=debian/tmp/usr/src/straylight-$$mod-1.0.0; \
+		install -d $$srcdir/kernel/$$mod; \
+		find kernel/$$mod -maxdepth 1 -type f \
+			\( -name '*.c' -o -name '*.h' -o -name 'Kbuild' -o -name 'Makefile' \) \
+			! -name '*.mod.c' \
+			-exec cp -a {} $$srcdir/kernel/$$mod/ \; ; \
+		install -m 644 kernel/dkms/straylight-$$mod-dkms/dkms.conf \
+			$$srcdir/dkms.conf; \
+	done

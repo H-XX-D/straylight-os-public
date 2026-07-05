@@ -1,0 +1,26 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Persistent Memory - Contaminated storage cells -->
+  <!-- Memory chip with organic corruption -->
+  <rect x="12" y="8" width="40" height="48" rx="3" fill="currentColor" opacity="0.9"/>
+  <rect x="16" y="12" width="32" height="36" rx="2" fill="#000"/>
+  <!-- Biohazard infected cells -->
+  <rect x="20" y="16" width="10" height="10" rx="1" fill="currentColor"/>
+  <rect x="34" y="16" width="10" height="10" rx="1" fill="currentColor"/>
+  <rect x="20" y="30" width="10" height="10" rx="1" fill="currentColor"/>
+  <rect x="34" y="30" width="10" height="10" rx="1" fill="currentColor"/>
+  <!-- Cell infection symbols -->
+  <circle cx="25" cy="21" r="3" fill="#000"/>
+  <circle cx="39" cy="21" r="3" fill="#000"/>
+  <circle cx="25" cy="35" r="3" fill="#000"/>
+  <circle cx="39" cy="35" r="3" fill="#000"/>
+  <!-- Persistence/battery indicator -->
+  <rect x="26" y="52" width="12" height="6" rx="1" fill="currentColor"/>
+  <rect x="28" y="54" width="8" height="2" fill="#000"/>
+  <!-- Toxic pins -->
+  <path d="M16 56v4M24 56v4M32 56v4M40 56v4M48 56v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <!-- Corruption blob -->
+  <circle cx="8" cy="32" r="4" fill="currentColor" opacity="0.7"/>
+  <circle cx="56" cy="24" r="3" fill="currentColor" opacity="0.6"/>
+  <!-- Slime drip -->
+  <path d="M52 8c0 0 2 4 2 8s-2 6-2 6" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+</svg>

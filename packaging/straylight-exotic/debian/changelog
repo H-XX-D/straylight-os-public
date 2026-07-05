@@ -1,0 +1,10 @@
+straylight-exotic (1.0.0-1) unstable; urgency=medium
+
+  * Initial release.
+  * straylight-quantum: state vector gate simulator with noise models
+  * straylight-photonics: MZI mesh simulation + optical device I/O
+  * straylight-pmem: persistent memory DAX allocator + checkpointing
+  * straylight-enclave: SGX secure inference + sealed storage
+  * straylight-fuse: FUSE3 tensor compression filesystem
+
+ -- StrayLight OS Team <dev@straylight.dev>  Sun, 16 Mar 2026 00:00:00 +0000

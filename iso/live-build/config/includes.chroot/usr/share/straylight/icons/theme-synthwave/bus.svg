@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+
+  <defs>
+    <!-- Sunset gradient -->
+    <linearGradient id="sunset" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b35"/>
+      <stop offset="50%" style="stop-color:#f7931e"/>
+      <stop offset="100%" style="stop-color:#ff00a0"/>
+    </linearGradient>
+    <!-- Cyan glow -->
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff"/>
+      <stop offset="100%" style="stop-color:#0080ff"/>
+    </linearGradient>
+    <!-- Chrome gradient -->
+    <linearGradient id="chrome" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff00a0"/>
+      <stop offset="50%" style="stop-color:#00ffff"/>
+      <stop offset="100%" style="stop-color:#ff6b35"/>
+    </linearGradient>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#ff00a0" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+    <!-- Pink glow filter -->
+    <filter id="pinkGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Cyan glow filter -->
+    <filter id="cyanGlowFilter" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background with grid -->
+  <rect width="64" height="64" fill="#1a0b2e" rx="4"/>
+  <rect width="64" height="64" fill="url(#grid)" rx="4"/>
+
+  <!-- Communication Bus Icon -->
+  <line x1="8" y1="32" x2="56" y2="32" stroke="url(#chrome)" stroke-width="3" filter="url(#pinkGlow)"/>
+  <line x1="16" y1="20" x2="16" y2="44" stroke="#00ffff" stroke-width="2" filter="url(#cyanGlowFilter)"/>
+  <line x1="32" y1="16" x2="32" y2="48" stroke="#00ffff" stroke-width="2" filter="url(#cyanGlowFilter)"/>
+  <line x1="48" y1="20" x2="48" y2="44" stroke="#00ffff" stroke-width="2" filter="url(#cyanGlowFilter)"/>
+  <circle cx="16" cy="32" r="3" fill="#ff00a0" filter="url(#pinkGlow)"/>
+  <circle cx="32" cy="32" r="4" fill="#ff00a0" filter="url(#pinkGlow)"/>
+  <circle cx="48" cy="32" r="3" fill="#ff00a0" filter="url(#pinkGlow)"/>
+  <circle cx="24" cy="32" r="1.5" fill="#f7931e"/>
+  <circle cx="40" cy="32" r="1.5" fill="#f7931e"/>
+
+</svg>

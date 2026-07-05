@@ -1,0 +1,49 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="xdpSpeed" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="#d4af37" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <!-- Ethereal X frame -->
+  <line x1="16" y1="16" x2="48" y2="48" stroke="#ffffff" stroke-width="2" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="1s" repeatCount="indefinite"/>
+  </line>
+  <line x1="48" y1="16" x2="16" y2="48" stroke="#ffffff" stroke-width="2" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="1.2s" repeatCount="indefinite"/>
+  </line>
+  <!-- Divine center intersection -->
+  <circle cx="32" cy="32" r="6" fill="#d4af37" opacity="0.8">
+    <animate attributeName="r" values="6;8;6" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="32" cy="32" r="3" fill="#ffffff" opacity="0.9"/>
+  <!-- Speed packet lines -->
+  <line x1="4" y1="20" x2="60" y2="20" stroke="url(#xdpSpeed)" stroke-width="2" opacity="0.8">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 4,0; 0,0" dur="0.3s" repeatCount="indefinite"/>
+  </line>
+  <line x1="4" y1="32" x2="60" y2="32" stroke="url(#xdpSpeed)" stroke-width="2.5" opacity="0.9">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 4,0; 0,0" dur="0.25s" repeatCount="indefinite"/>
+  </line>
+  <line x1="4" y1="44" x2="60" y2="44" stroke="url(#xdpSpeed)" stroke-width="2" opacity="0.8">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 4,0; 0,0" dur="0.35s" repeatCount="indefinite"/>
+  </line>
+  <!-- Divine bypass indicators -->
+  <path d="M8 28 L14 28 M8 36 L14 36" stroke="#d4af37" stroke-width="1.5" opacity="0.8"/>
+  <path d="M50 28 L56 28 M50 36 L56 36" stroke="#d4af37" stroke-width="1.5" opacity="0.8"/>
+  <!-- Spiritual arrows -->
+  <path d="M10 24 L16 24 M14 22 L16 24 L14 26" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.6">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 36,0; 0,0" dur="0.5s" repeatCount="indefinite"/>
+  </path>
+  <path d="M10 40 L16 40 M14 38 L16 40 L14 42" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.6">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 36,0; 0,0" dur="0.6s" repeatCount="indefinite"/>
+  </path>
+  <!-- XDP letters (ethereal) -->
+  <text x="24" y="10" fill="#d4af37" font-family="monospace" font-size="5" opacity="0.6">X</text>
+  <text x="30" y="10" fill="#ffffff" font-family="monospace" font-size="5" opacity="0.6">D</text>
+  <text x="36" y="10" fill="#d4af37" font-family="monospace" font-size="5" opacity="0.6">P</text>
+  <!-- Sacred outer glow -->
+  <rect x="10" y="10" width="44" height="44" fill="none" stroke="#d4af37" stroke-width="0.3" opacity="0.3" rx="2">
+    <animate attributeName="opacity" values="0.3;0.5;0.3" dur="2s" repeatCount="indefinite"/>
+  </rect>
+</svg>

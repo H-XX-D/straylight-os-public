@@ -1,0 +1,52 @@
+# StrayLight OS GPU device rules
+# Provides /dev/straylight-vpu and sets permissions for GPU access
+
+# NVIDIA GPUs — set group and permissions
+SUBSYSTEM=="drm", KERNEL=="card[0-9]*", DRIVERS=="nvidia", \
+    GROUP="straylight", MODE="0660", \
+    TAG+="straylight-gpu", ENV{STRAYLIGHT_GPU_VENDOR}="nvidia"
+
+# NVIDIA render nodes
+SUBSYSTEM=="drm", KERNEL=="renderD[0-9]*", DRIVERS=="nvidia", \
+    GROUP="straylight", MODE="0666"
+
+# AMD GPUs
+SUBSYSTEM=="drm", KERNEL=="card[0-9]*", DRIVERS=="amdgpu", \
+    GROUP="straylight", MODE="0660", \
+    TAG+="straylight-gpu", ENV{STRAYLIGHT_GPU_VENDOR}="amd"
+
+# AMD render nodes
+SUBSYSTEM=="drm", KERNEL=="renderD[0-9]*", DRIVERS=="amdgpu", \
+    GROUP="straylight", MODE="0666"
+
+# Intel GPUs
+SUBSYSTEM=="drm", KERNEL=="card[0-9]*", DRIVERS=="i915", \
+    GROUP="straylight", MODE="0660", \
+    TAG+="straylight-gpu", ENV{STRAYLIGHT_GPU_VENDOR}="intel"
+
+# Intel render nodes
+SUBSYSTEM=="drm", KERNEL=="renderD[0-9]*", DRIVERS=="i915", \
+    GROUP="straylight", MODE="0666"
+
+# StrayLight VPU kernel module device node
+KERNEL=="straylight-vpu", SUBSYSTEM=="misc", \
+    GROUP="straylight", MODE="0660", \
+    SYMLINK+="straylight/vpu"
+
+# NVIDIA UVM (Unified Virtual Memory)
+KERNEL=="nvidia-uvm", \
+    GROUP="straylight", MODE="0660"
+
+# NVIDIA control device
+KERNEL=="nvidiactl", \
+    GROUP="straylight", MODE="0660"
+
+# NVIDIA per-GPU devices
+KERNEL=="nvidia[0-9]*", \
+    GROUP="straylight", MODE="0660"
+
+# Notify straylight-core on GPU hotplug
+SUBSYSTEM=="drm", ACTION=="add", TAG=="straylight-gpu", \
+    RUN+="/usr/bin/straylight-core --notify gpu-added %k"
+SUBSYSTEM=="drm", ACTION=="remove", TAG=="straylight-gpu", \
+    RUN+="/usr/bin/straylight-core --notify gpu-removed %k"

@@ -1,0 +1,37 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Database cylinder -->
+  <ellipse cx="32" cy="16" rx="20" ry="6" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+  <path d="M12 16 V40 Q12 48 32 48 Q52 48 52 40 V16" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+  <ellipse cx="32" cy="40" rx="20" ry="6" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#glow-cyan)"/>
+
+  <!-- Model layers -->
+  <ellipse cx="32" cy="24" rx="18" ry="5" fill="none" stroke="#00ffff" stroke-width="1" opacity="0.7"/>
+  <ellipse cx="32" cy="32" rx="18" ry="5" fill="none" stroke="#ffff00" stroke-width="1" opacity="0.7"/>
+
+  <!-- Registry entries -->
+  <rect x="20" y="18" width="8" height="3" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="32" y="18" width="8" height="3" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="20" y="26" width="8" height="3" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="32" y="26" width="8" height="3" fill="#00ffff" filter="url(#glow-cyan)"/>
+
+  <!-- Version tag -->
+  <path d="M48 8 L56 8 L58 12 L56 16 L48 16 L46 12 Z" fill="#ffff00" filter="url(#glow-pink)"/>
+  <text x="50" y="14" fill="#ff00ff" font-family="monospace" font-size="4">v1</text>
+</svg>

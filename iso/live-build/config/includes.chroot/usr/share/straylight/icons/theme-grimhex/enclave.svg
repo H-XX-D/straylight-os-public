@@ -1,0 +1,23 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer hexagon fortress -->
+  <path d="M32 4 L56 16 L56 44 L32 56 L8 44 L8 16 Z" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4"/>
+  <path d="M32 8 L52 18 L52 42 L32 52 L12 42 L12 18 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+
+  <!-- Inner hexagon - secure core -->
+  <path d="M32 16 L44 22 L44 34 L32 40 L20 34 L20 22 Z" fill="currentColor" opacity="0.15"/>
+  <path d="M32 16 L44 22 L44 34 L32 40 L20 34 L20 22 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+
+  <!-- Lock mechanism -->
+  <rect x="28" y="26" width="8" height="7" rx="1" fill="currentColor"/>
+  <path d="M30 26 L30 24 C30 22.5 31 21 32 21 C33 21 34 22.5 34 24 L34 26" fill="none" stroke="currentColor" stroke-width="1.5"/>
+
+  <!-- Keyhole -->
+  <circle cx="32" cy="29.5" r="1.2" fill="#1a1a1a" opacity="0.8"/>
+  <rect x="31.4" y="29.5" width="1.2" height="2" fill="#1a1a1a" opacity="0.8"/>
+
+  <!-- Security bolts -->
+  <circle cx="14" cy="18" r="1.5" fill="currentColor" opacity="0.6"/>
+  <circle cx="50" cy="18" r="1.5" fill="currentColor" opacity="0.6"/>
+  <circle cx="14" cy="42" r="1.5" fill="currentColor" opacity="0.6"/>
+  <circle cx="50" cy="42" r="1.5" fill="currentColor" opacity="0.6"/>
+</svg>

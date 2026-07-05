@@ -1,0 +1,22 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hypervisor - Multi-layered contamination containment -->
+  <!-- Bottom layer - contaminated substrate -->
+  <ellipse cx="32" cy="50" rx="24" ry="8" fill="currentColor" opacity="0.4"/>
+  <!-- Middle layer -->
+  <ellipse cx="32" cy="38" rx="20" ry="7" fill="currentColor" opacity="0.6"/>
+  <!-- Top layer -->
+  <ellipse cx="32" cy="28" rx="16" ry="6" fill="currentColor" opacity="0.8"/>
+  <!-- Core biohazard -->
+  <ellipse cx="32" cy="20" rx="12" ry="5" fill="currentColor"/>
+  <ellipse cx="32" cy="20" rx="8" ry="3" fill="#000"/>
+  <path d="M32 18c-2 0-3 1-4 2 1 0 2 0 2 0-1 1-1 2 0 3-1 0-2-1-2-2 0 1-1 3-3 3 2 2 4 2 6 0 0 0 0-1 0-1 1 1 2 1 3 0 1 0 1 1 0 1 2 2 4 2 6 0-2 0-3-2-3-3 0 1-1 2-2 2 0-1 0-2 0-3 0 0 1 0 2 0-1-1-2-2-4-2z" fill="currentColor"/>
+  <!-- Separation barriers -->
+  <path d="M12 42c4-2 8-3 12-3s8 1 12 3M16 32c4-2 8-3 12-3s8 1 12 3" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <!-- VM particles -->
+  <circle cx="16" cy="46" r="2" fill="currentColor"/>
+  <circle cx="48" cy="46" r="2" fill="currentColor"/>
+  <circle cx="20" cy="36" r="2" fill="currentColor"/>
+  <circle cx="44" cy="36" r="2" fill="currentColor"/>
+  <!-- Toxic overlay lines -->
+  <path d="M4 50c0-4 12-8 28-8s28 4 28 8" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+</svg>

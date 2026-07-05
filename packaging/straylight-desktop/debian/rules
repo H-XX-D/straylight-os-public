@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DSTRAYLIGHT_BUILD_DESKTOP_ONLY=ON \
+		-DSTRAYLIGHT_VERSION=$(DEB_VERSION_UPSTREAM)
+
+override_dh_auto_build:
+	dh_auto_build -- -j$(shell nproc) \
+		straylight-app-cli \
+		straylight-terminal straylight-files straylight-sysmon \
+		straylight-settings straylight-wizard straylight-oobe \
+		straylight-hwdetect straylight-widget-launcher \
+		straylight-audio-gui straylight-audio-mixer \
+		straylight-bench-gui straylight-boot-gui straylight-color-gui \
+		straylight-cron-gui straylight-disk-gui straylight-display-gui \
+		straylight-fabric-gui straylight-flux-gui straylight-fonts-gui \
+		straylight-health-gui straylight-hub straylight-input-gui \
+		straylight-intent-gui straylight-logview-gui straylight-mesh-gui \
+		straylight-migrate-gui straylight-morph-gui straylight-network-gui \
+		straylight-notify-gui straylight-photonics-gui straylight-pmem-gui \
+		straylight-policy-gui straylight-power-gui straylight-predict-gui \
+		straylight-probe-gui straylight-quantum-gui straylight-replay-gui \
+		straylight-rewind-gui straylight-rhem-gui straylight-sandbox-gui \
+		straylight-shield-gui straylight-snapshot-gui straylight-snn-gui \
+		straylight-update-gui straylight-users-gui straylight-vault-gui
+
+override_dh_auto_test:
+	dh_auto_test -- ARGS="--output-on-failure -L desktop"
+
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp
+
+override_dh_shlibdeps:
+	dh_shlibdeps -l/usr/lib/x86_64-linux-gnu
+
+override_dh_installsystemd:
+	dh_installsystemd

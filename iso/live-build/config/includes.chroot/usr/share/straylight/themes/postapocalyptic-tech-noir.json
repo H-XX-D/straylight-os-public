@@ -1,0 +1,21 @@
+{
+  "name": "Postapocalyptic Tech Noir",
+  "colors": {
+    "bg": "#0c0c0c",
+    "fg": "#d0d0d0",
+    "accent": "#ff6b35",
+    "panel": "#1f1f1f"
+  },
+  "font_size": 16.0,
+  "corner_radius": 2.0,
+  "icon_theme": "theme-tech-noir",
+  "vars": {
+    "surface.hover": "#8b4513",
+    "surface.active": "#5a5a5a",
+    "border.color": "#3a3a3a",
+    "text.dim": "#5a5a5a",
+    "success": "#f4d03f",
+    "warning": "#f4d03f",
+    "error": "#ff6b35"
+  }
+}

@@ -1,0 +1,19 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Security Enclave - Protected bio-containment -->
+  <!-- Outer containment vessel -->
+  <path d="M32 2L4 16v32l28 14 28-14V16L32 2z" fill="currentColor" opacity="0.7"/>
+  <!-- Inner shield -->
+  <path d="M32 10L12 20v24l20 10 20-10V20L32 10z" fill="#000"/>
+  <!-- Biohazard protected core -->
+  <circle cx="32" cy="32" r="10" fill="currentColor"/>
+  <circle cx="32" cy="32" r="6" fill="#000"/>
+  <path d="M32 27c-2 0-4 1-5 3 1 0 2 0 3 0-1 1-1 3-1 4-2-1-3-2-3-4 0 2-2 4-4 4 2 2 5 2 7 0 0-1 1-1 0-2 1 1 3 1 4 0 1 1 1 1 0 2 2 2 5 2 7 0-2 0-4-2-4-4 0 2-1 3-3 4 0-1 0-3-1-4 1 0 2 0 3 0-1-2-3-3-5-3z" fill="currentColor"/>
+  <!-- Lock mechanism -->
+  <rect x="28" y="44" width="8" height="6" rx="1" fill="currentColor"/>
+  <circle cx="32" cy="48" r="2" fill="#000"/>
+  <!-- Radiation shield lines -->
+  <path d="M32 2v8M4 16l8 4M60 16l-8 4M4 48l8-4M60 48l-8-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <!-- Toxic seal -->
+  <circle cx="8" cy="8" r="3" fill="currentColor" opacity="0.8"/>
+  <circle cx="56" cy="8" r="3" fill="currentColor" opacity="0.8"/>
+</svg>

@@ -1,0 +1,38 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Battery/energy outline -->
+  <rect x="12" y="16" width="36" height="28" rx="3" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+  <rect x="48" y="24" width="6" height="12" rx="1" fill="#ffff00" filter="url(#glow-cyan)"/>
+
+  <!-- Energy levels -->
+  <rect x="16" y="36" width="6" height="4" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="24" y="32" width="6" height="8" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="32" y="26" width="6" height="14" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="40" y="20" width="6" height="20" fill="#ff00ff" filter="url(#glow-pink)"/>
+
+  <!-- Power bolt -->
+  <path d="M30 8 L24 20 H30 L26 32 L38 18 H32 L36 8 Z" fill="#ffff00" filter="url(#glow-pink)"/>
+
+  <!-- Management gears -->
+  <circle cx="16" cy="50" r="4" fill="none" stroke="#00ffff" stroke-width="1.5" filter="url(#glow-cyan)"/>
+  <path d="M16 44 V46 M16 54 V56 M10 50 H12 M20 50 H22" stroke="#00ffff" stroke-width="1"/>
+
+  <circle cx="32" cy="52" r="3" fill="none" stroke="#ff00ff" stroke-width="1.5" filter="url(#glow-pink)"/>
+  <path d="M32 47 V49 M32 55 V57 M27 52 H29 M35 52 H37" stroke="#ff00ff" stroke-width="0.8"/>
+</svg>

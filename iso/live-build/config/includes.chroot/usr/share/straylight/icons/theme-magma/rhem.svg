@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Magma gradient - flowing lava -->
+    <linearGradient id="magmaGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff6600;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb700;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Intense fire gradient -->
+    <linearGradient id="fireGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b0000;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#ff4500;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#ff6600;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb700;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Ember glow -->
+    <radialGradient id="emberGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffb700;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#ff6600;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#ff4500;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Heat haze -->
+    <filter id="heatGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Intense fire blur -->
+    <filter id="fireBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background - volcanic rock -->
+  <circle cx="32" cy="32" r="30" fill="#1a0a05" stroke="#ff4500" stroke-width="2"/>
+
+
+  <!-- Energy Management - Volcanic power core -->
+  <circle cx="32" cy="32" r="20" fill="none" stroke="url(#magmaGrad)" stroke-width="2.5" filter="url(#heatGlow)"/>
+  <!-- Power symbol in flame -->
+  <path d="M32 18 L32 32" stroke="#ffb700" stroke-width="3" stroke-linecap="round" filter="url(#fireBlur)"/>
+  <path d="M32 20 Q24 24 24 32 Q24 42 32 46 Q40 42 40 32 Q40 24 32 20"
+        fill="none" stroke="#ff6600" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Energy waves -->
+  <path d="M12 32 Q16 28 20 32" stroke="#ff4500" stroke-width="1.5" fill="none"/>
+  <path d="M44 32 Q48 28 52 32" stroke="#ff4500" stroke-width="1.5" fill="none"/>
+  <path d="M32 12 Q28 16 32 20" stroke="#ff4500" stroke-width="1.5" fill="none"/>
+
+</svg>

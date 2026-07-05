@@ -1,0 +1,21 @@
+{
+  "name": "Holographic AR",
+  "colors": {
+    "bg": "#0a0f1a",
+    "fg": "#e0e8f0",
+    "accent": "#00d4ff",
+    "panel": "#101828"
+  },
+  "font_size": 16.0,
+  "corner_radius": 8.0,
+  "icon_theme": "theme-holographic",
+  "vars": {
+    "surface.hover": "#ff00ff",
+    "surface.active": "#0066ff",
+    "border.color": "#1a2540",
+    "text.dim": "#4a6080",
+    "success": "#00d4ff",
+    "warning": "#ff00ff",
+    "error": "#ff0066"
+  }
+}

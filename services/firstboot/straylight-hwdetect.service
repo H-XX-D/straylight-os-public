@@ -1,0 +1,20 @@
+[Unit]
+Description=StrayLight Hardware Detection and Driver Activation
+Documentation=https://straylight.os/docs/hwdetect
+DefaultDependencies=no
+After=local-fs.target systemd-udev-settle.service
+Before=straylight-firstboot.service
+Wants=systemd-udev-settle.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/straylight/straylight-hwdetect
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=straylight-hwdetect
+# Needs root to call modprobe and write to /var/lib/straylight
+User=root
+
+[Install]
+WantedBy=sysinit.target

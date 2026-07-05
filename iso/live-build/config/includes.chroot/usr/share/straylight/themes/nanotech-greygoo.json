@@ -1,0 +1,21 @@
+{
+  "name": "Nanotech Greygoo",
+  "colors": {
+    "bg": "#0f0f0f",
+    "fg": "#e8e8e8",
+    "accent": "#4a90d9",
+    "panel": "#2a2a2a"
+  },
+  "font_size": 16.0,
+  "corner_radius": 2.0,
+  "icon_theme": "theme-nanotech",
+  "vars": {
+    "surface.hover": "#c0c0c0",
+    "surface.active": "#7a7a7a",
+    "border.color": "#3a3a3a",
+    "text.dim": "#606060",
+    "success": "#4a90d9",
+    "warning": "#c0c0c0",
+    "error": "#ff4444"
+  }
+}

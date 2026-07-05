@@ -1,0 +1,22 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.2"/>
+    </linearGradient>
+  </defs>
+  <!-- AR Border -->
+  <rect x="6" y="6" width="52" height="52" rx="4" fill="none" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="4 2" opacity="0.4"/>
+  <!-- Main Bypass Channel -->
+  <path d="M12 32 L24 32 L28 20 L36 20 L40 32 L52 32" fill="none" stroke="url(#g4)" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+  <path d="M12 32 L24 32 L28 20 L36 20 L40 32 L52 32" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round"/>
+  <!-- Bypass Arrow -->
+  <polygon points="48,28 56,32 48,36" fill="#ff00ff" opacity="0.8"/>
+  <!-- Kernel Layer (Bypassed) -->
+  <rect x="14" y="38" width="36" height="12" rx="2" fill="#ff00ff" opacity="0.15" stroke="#ff00ff" stroke-width="0.8" stroke-dasharray="2 2"/>
+  <text x="32" y="46" text-anchor="middle" fill="#ff00ff" font-size="4" font-family="monospace" opacity="0.6">KERNEL</text>
+  <!-- Speed Indicator -->
+  <line x1="16" y1="14" x2="22" y2="14" stroke="#00d4ff" stroke-width="2" opacity="0.8"/>
+  <line x1="26" y1="14" x2="38" y2="14" stroke="#00d4ff" stroke-width="2" opacity="0.6"/>
+  <line x1="42" y1="14" x2="48" y2="14" stroke="#00d4ff" stroke-width="2" opacity="0.4"/>
+</svg>

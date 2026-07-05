@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "name": "neurolinkd_health",
+      "type": "system_command",
+      "commands": [
+        "straylight-neurolinkd health"
+      ],
+      "description": "Check neurolinkd health endpoint",
+      "destructive": false,
+      "aliases": ["neuro_health"]
+    },
+    {
+      "name": "neuro_switch_on",
+      "type": "system_command",
+      "commands": [
+        "straylight-neurolinkd intent SWITCH_ON --source=sim --strength=0.8 --confidence=0.7"
+      ],
+      "description": "Emit SWITCH_ON intent into neurolinkd IntentBus",
+      "destructive": false,
+      "aliases": ["switch_on_thought"]
+    },
+    {
+      "name": "neuro_switch_off",
+      "type": "system_command",
+      "commands": [
+        "straylight-neurolinkd intent SWITCH_OFF --source=sim --strength=0.8 --confidence=0.7"
+      ],
+      "description": "Emit SWITCH_OFF intent into neurolinkd IntentBus",
+      "destructive": false,
+      "aliases": ["switch_off_thought"]
+    },
+    {
+      "name": "neuro_cancel",
+      "type": "system_command",
+      "commands": [
+        "straylight-neurolinkd cancel"
+      ],
+      "description": "Emit CANCEL (dead-man) intent into neurolinkd IntentBus",
+      "destructive": false,
+      "aliases": ["neuro_stop", "panic_cancel"]
+    },
+    {
+      "name": "neurolinkd_propose_noop",
+      "type": "system_command",
+      "commands": [
+        "straylight-neurolinkd propose noop --risk=low"
+      ],
+      "description": "Ask neurolinkd SafetyGate to evaluate a noop action candidate",
+      "destructive": false,
+      "aliases": ["neuro_propose_noop"]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+usr/bin/straylight-xdp
+usr/bin/straylight-dpdk
+usr/bin/straylight-rdma-bus
+usr/lib/straylight/bpf/xdp_filter.bpf.o
+usr/lib/straylight/bpf/xdp_redirect.bpf.o
+usr/lib/straylight/bpf/xdp_stats.bpf.o
+etc/straylight/xdp.conf
+etc/systemd/system/straylight-xdp@.service
+etc/straylight/dpdk.conf

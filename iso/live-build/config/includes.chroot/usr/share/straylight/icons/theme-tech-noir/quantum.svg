@@ -1,0 +1,26 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Quantum processor base -->
+  <rect x="8" y="8" width="48" height="48" rx="4" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="2"/>
+  <!-- Cooling structure -->
+  <circle cx="32" cy="32" r="18" fill="none" stroke="#3d3d3d" stroke-width="2"/>
+  <circle cx="32" cy="32" r="14" fill="none" stroke="#4a4a4a" stroke-width="1"/>
+  <!-- Qubits -->
+  <circle cx="32" cy="18" r="3" fill="#ff6b35" opacity="0.9"/>
+  <circle cx="46" cy="32" r="3" fill="#ff6b35" opacity="0.9"/>
+  <circle cx="32" cy="46" r="3" fill="#ff6b35" opacity="0.9"/>
+  <circle cx="18" cy="32" r="3" fill="#ff6b35" opacity="0.9"/>
+  <!-- Superposition states (uncertainty) -->
+  <circle cx="26" cy="24" r="2" fill="#8b4513" opacity="0.7"/>
+  <circle cx="40" cy="24" r="2" fill="#8b4513" opacity="0.7"/>
+  <circle cx="40" cy="40" r="2" fill="#8b4513" opacity="0.7"/>
+  <circle cx="26" cy="40" r="2" fill="#8b4513" opacity="0.7"/>
+  <!-- Quantum connections (entanglement) -->
+  <path d="M32 21 L32 43 M21 32 L43 32" stroke="#ff6b35" stroke-width="1" opacity="0.5" stroke-dasharray="2 2"/>
+  <path d="M28 25 L36 39 M36 25 L28 39" stroke="#a0522d" stroke-width="1" opacity="0.4"/>
+  <!-- Wave function -->
+  <path d="M10 32 Q20 22 32 32 Q44 42 54 32" fill="none" stroke="#ff6b35" stroke-width="1.5" opacity="0.6"/>
+  <!-- Broken cooling line -->
+  <path d="M48 16 L52 12" stroke="#1a1a1a" stroke-width="2"/>
+  <!-- Rust -->
+  <circle cx="12" cy="52" r="2.5" fill="#8b4513" opacity="0.5"/>
+</svg>

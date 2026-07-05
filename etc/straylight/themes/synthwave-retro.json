@@ -1,0 +1,21 @@
+{
+  "name": "Synthwave Retro",
+  "colors": {
+    "bg": "#0a0a1a",
+    "fg": "#c0c0c0",
+    "accent": "#ff00a0",
+    "panel": "#2d1b4e"
+  },
+  "font_size": 16.0,
+  "corner_radius": 4.0,
+  "icon_theme": "theme-synthwave",
+  "vars": {
+    "surface.hover": "#ff1493",
+    "surface.active": "#1e90ff",
+    "border.color": "#120024",
+    "text.dim": "#604080",
+    "success": "#00ffff",
+    "warning": "#ffd700",
+    "error": "#ff6b35"
+  }
+}

@@ -1,0 +1,30 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f7ff"/>
+      <stop offset="100%" style="stop-color:#4fc3f7"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#4fc3f7;stop-opacity:0.4"/>
+    </linearGradient>
+  </defs>
+  <!-- Ice shield outline -->
+  <path d="M32 4 C32 4 12 12 12 28 C12 48 32 60 32 60 C32 60 52 48 52 28 C52 12 32 4 32 4 Z"
+        fill="url(#shieldGrad)" stroke="url(#iceGrad)" stroke-width="2"/>
+  <!-- Inner lock/snowflake -->
+  <g transform="translate(32,32)">
+    <circle r="10" fill="none" stroke="#e0f7ff" stroke-width="2"/>
+    <!-- Snowflake core -->
+    <g stroke="#4fc3f7" stroke-width="1.5">
+      <line x1="0" y1="-8" x2="0" y2="8"/>
+      <line x1="-7" y1="-4" x2="7" y2="4"/>
+      <line x1="-7" y1="4" x2="7" y2="-4"/>
+    </g>
+    <!-- Small crystal points -->
+    <circle r="3" fill="#e0f7ff"/>
+  </g>
+  <!-- Frost border details -->
+  <path d="M32 8 L32 12 M20 14 L23 16 M44 14 L41 16 M16 26 L20 27 M48 26 L44 27"
+        stroke="#4fc3f7" stroke-width="1" opacity="0.7"/>
+</svg>

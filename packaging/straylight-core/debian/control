@@ -1,0 +1,25 @@
+Source: straylight-core
+Section: admin
+Priority: optional
+Maintainer: StrayLight OS Team <dev@straylight.dev>
+Build-Depends: debhelper-compat (= 13),
+               cmake (>= 3.25),
+               pkg-config,
+               libstraylight-common-dev (>= 1.0.0),
+               libsdbus-c++-dev (>= 2.0)
+Standards-Version: 4.6.2
+Homepage: https://straylight.dev
+Rules-Requires-Root: no
+
+Package: straylight-core
+Architecture: amd64
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         libstraylight-common1 (>= 1.0.0),
+         dbus
+Description: StrayLight OS core daemons
+ Persistent daemon backbone for StrayLight OS.
+ Includes straylight-core (orchestrator), straylight-bus (IPC broker),
+ straylight-registry (KV config store), straylight-scheduler (CPU/GPU
+ pinning), and straylight-entropy (HWRNG pool). Provides systemd units
+ with proper dependency ordering for multi-user.target.

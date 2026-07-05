@@ -1,0 +1,21 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base -->
+  <rect x="4" y="4" width="56" height="56" rx="2" fill="#252525" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Morphing shape - transitions between cube and sphere -->
+  <path d="M20 20 Q32 14 44 20 Q50 32 44 44 Q32 50 20 44 Q14 32 20 20" fill="#2a2a2a" stroke="#ff6b35" stroke-width="2"/>
+  <!-- Inner morphing core -->
+  <path d="M26 26 Q32 22 38 26 Q42 32 38 38 Q32 42 26 38 Q22 32 26 26" fill="#ff6b35" opacity="0.5"/>
+  <!-- Transformation arrows (circular) -->
+  <path d="M48 16 A28 28 0 0 1 52 48" fill="none" stroke="#8b4513" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="50,46 54,50 48,50" fill="#8b4513"/>
+  <path d="M16 48 A28 28 0 0 1 12 16" fill="none" stroke="#a0522d" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <polygon points="14,18 10,14 16,14" fill="#a0522d" opacity="0.7"/>
+  <!-- Dynamic fragments -->
+  <rect x="10" y="10" width="4" height="4" fill="#ff6b35" opacity="0.6" transform="rotate(15 12 12)"/>
+  <rect x="50" y="50" width="4" height="4" fill="#ff6b35" opacity="0.6" transform="rotate(30 52 52)"/>
+  <!-- Distortion waves -->
+  <path d="M8 32 Q16 28 24 32" fill="none" stroke="#8b4513" stroke-width="1" opacity="0.5"/>
+  <path d="M40 32 Q48 36 56 32" fill="none" stroke="#8b4513" stroke-width="1" opacity="0.5"/>
+  <!-- Rust -->
+  <circle cx="8" cy="52" r="2" fill="#a0522d" opacity="0.5"/>
+</svg>

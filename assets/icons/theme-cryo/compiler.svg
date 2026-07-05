@@ -1,0 +1,30 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f7ff"/>
+      <stop offset="100%" style="stop-color:#4fc3f7"/>
+    </linearGradient>
+    <linearGradient id="frostGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#4fc3f7;stop-opacity:0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- Ice crystal container -->
+  <polygon points="32,6 54,18 54,46 32,58 10,46 10,18" fill="none" stroke="url(#iceGrad)" stroke-width="2"/>
+  <polygon points="32,6 54,18 54,46 32,58 10,46 10,18" fill="url(#frostGrad)" opacity="0.2"/>
+  <!-- Code brackets with ice effect -->
+  <text x="32" y="38" text-anchor="middle" font-family="monospace" font-size="24" font-weight="bold" fill="url(#iceGrad)">&lt;/&gt;</text>
+  <!-- Crystal snowflake decoration -->
+  <g stroke="#4fc3f7" stroke-width="1" opacity="0.6">
+    <line x1="32" y1="12" x2="32" y2="16"/>
+    <line x1="28" y1="14" x2="36" y2="14"/>
+    <line x1="16" y1="20" x2="19" y2="23"/>
+    <line x1="48" y1="20" x2="45" y2="23"/>
+    <line x1="16" y1="44" x2="19" y2="41"/>
+    <line x1="48" y1="44" x2="45" y2="41"/>
+  </g>
+  <!-- Frost particles -->
+  <circle cx="20" cy="30" r="1.5" fill="#e0f7ff"/>
+  <circle cx="44" cy="34" r="1.5" fill="#e0f7ff"/>
+  <circle cx="32" cy="50" r="1.5" fill="#e0f7ff"/>
+</svg>

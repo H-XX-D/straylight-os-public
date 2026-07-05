@@ -1,0 +1,31 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#7a7a7a"/>
+    </linearGradient>
+  </defs>
+  <!-- Input hexagon -->
+  <path d="M16 12 L24 16 L24 24 L16 28 L8 24 L8 16 Z" fill="#a0a0a0" stroke="#7a7a7a"/>
+  <text x="16" y="22" text-anchor="middle" font-size="6" fill="#333">&lt;/&gt;</text>
+  <!-- Arrow -->
+  <polygon points="28,18 36,20 28,22" fill="#7a7a7a"/>
+  <line x1="24" y1="20" x2="36" y2="20" stroke="#7a7a7a" stroke-width="2"/>
+  <!-- Compiler core - complex hex structure -->
+  <path d="M40 8 L56 16 L56 32 L40 40 L24 32 L24 16 Z" fill="url(#silver)"/>
+  <!-- Inner hex pattern -->
+  <path d="M40 14 L48 18 L48 26 L40 30 L32 26 L32 18 Z" fill="#7a7a7a"/>
+  <path d="M40 18 L44 20 L44 24 L40 26 L36 24 L36 20 Z" fill="#c0c0c0"/>
+  <!-- Output hexagons -->
+  <path d="M32 44 L40 48 L40 56 L32 60 L24 56 L24 48 Z" fill="#c0c0c0" stroke="#7a7a7a"/>
+  <path d="M48 44 L56 48 L56 56 L48 60 L40 56 L40 48 Z" fill="#c0c0c0" stroke="#7a7a7a"/>
+  <!-- Connection lines -->
+  <line x1="36" y1="38" x2="32" y2="44" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="44" y1="38" x2="48" y2="44" stroke="#7a7a7a" stroke-width="1"/>
+  <!-- Gear teeth around compiler -->
+  <rect x="38" y="6" width="4" height="2" fill="#7a7a7a"/>
+  <rect x="38" y="40" width="4" height="2" fill="#7a7a7a"/>
+  <rect x="22" y="22" width="2" height="4" fill="#7a7a7a"/>
+  <rect x="56" y="22" width="2" height="4" fill="#7a7a7a"/>
+</svg>

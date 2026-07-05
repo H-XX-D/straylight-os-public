@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#00ff41" stroke-width="1.5">
+  <!-- Database cylinder -->
+  <ellipse cx="32" cy="16" rx="18" ry="6"/>
+  <path d="M14 16v28c0 3 8 6 18 6s18-3 18-6V16"/>
+  <path d="M14 30c0 3 8 6 18 6s18-3 18-6"/>
+  <path d="M14 44c0 3 8 6 18 6s18-3 18-6"/>
+  <!-- Model cube -->
+  <path d="M28 34l8-4v8l-8 4z"/>
+  <path d="M28 34v8l-4 2v-8z" fill="#00ff41" fill-opacity="0.2"/>
+  <path d="M36 30l4 2v8l-4-2z" fill="#00ff41" fill-opacity="0.4"/>
+  <line x1="28" y1="34" x2="32" y2="32"/>
+  <line x1="36" y1="30" x2="32" y2="32"/>
+  <line x1="36" y1="38" x2="32" y2="40"/>
+  <line x1="28" y1="42" x2="32" y2="40"/>
+  <!-- Binary label -->
+  <text x="26" y="12" font-family="monospace" font-size="4" fill="#00ff41" stroke="none">REG</text>
+  <!-- Version tags -->
+  <rect x="44" y="12" width="10" height="5" rx="1" fill="#00ff41" stroke="none" opacity="0.5"/>
+  <text x="45" y="16" font-family="monospace" font-size="3" fill="#000" stroke="none">v1</text>
+  <rect x="44" y="26" width="10" height="5" rx="1" fill="#00ff41" stroke="none" opacity="0.3"/>
+  <text x="45" y="30" font-family="monospace" font-size="3" fill="#00ff41" stroke="none">v2</text>
+  <!-- Connection dots -->
+  <circle cx="14" cy="22" r="1.5" fill="#00ff41" stroke="none"/>
+  <circle cx="50" cy="22" r="1.5" fill="#00ff41" stroke="none"/>
+</svg>

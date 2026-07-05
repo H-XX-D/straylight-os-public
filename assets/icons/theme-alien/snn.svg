@@ -1,0 +1,36 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="neuronGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#bfffdb"/>
+      <stop offset="100%" stop-color="#39ff85"/>
+    </radialGradient>
+  </defs>
+  <!-- Neural network nodes -->
+  <circle cx="16" cy="16" r="5" fill="url(#neuronGrad)" filter="url(#glow)"/>
+  <circle cx="48" cy="16" r="5" fill="url(#neuronGrad)" filter="url(#glow)"/>
+  <circle cx="32" cy="32" r="7" fill="url(#neuronGrad)" filter="url(#glow)"/>
+  <circle cx="16" cy="48" r="5" fill="url(#neuronGrad)" filter="url(#glow)"/>
+  <circle cx="48" cy="48" r="5" fill="url(#neuronGrad)" filter="url(#glow)"/>
+  <!-- Synapse connections - organic tendrils -->
+  <path d="M20 19c8 6 8 6 8 6" stroke="#39ff85" stroke-width="2" fill="none" filter="url(#glow)"/>
+  <path d="M44 19c-8 6-8 6-8 6" stroke="#39ff85" stroke-width="2" fill="none" filter="url(#glow)"/>
+  <path d="M20 45c8-6 8-6 8-6" stroke="#39ff85" stroke-width="2" fill="none" filter="url(#glow)"/>
+  <path d="M44 45c-8-6-8-6-8-6" stroke="#39ff85" stroke-width="2" fill="none" filter="url(#glow)"/>
+  <path d="M16 21c0 10 0 10 0 10" stroke="#39ff85" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M48 21c0 10 0 10 0 10" stroke="#39ff85" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <!-- Spike pulses -->
+  <circle cx="24" cy="24" r="1.5" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="40" cy="24" r="1.5" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="24" cy="40" r="1.5" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="40" cy="40" r="1.5" fill="#7fffab" filter="url(#glow)"/>
+  <!-- Central nucleus -->
+  <circle cx="32" cy="32" r="3" fill="#0a1f0a"/>
+  <circle cx="32" cy="32" r="1.5" fill="#39ff85"/>
+</svg>

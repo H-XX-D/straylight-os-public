@@ -1,0 +1,30 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="oozeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#39ff85"/>
+      <stop offset="50%" stop-color="#7fffab"/>
+      <stop offset="100%" stop-color="#39ff85"/>
+    </linearGradient>
+  </defs>
+  <!-- Main vein/channel -->
+  <path d="M8 32 Q20 20 32 32 T56 32" stroke="url(#oozeGrad)" stroke-width="8" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Blob nodes along bus -->
+  <circle cx="8" cy="32" r="6" fill="#39ff85" filter="url(#glow)"/>
+  <circle cx="32" cy="32" r="8" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="56" cy="32" r="6" fill="#39ff85" filter="url(#glow)"/>
+  <!-- Tentacle branches -->
+  <path d="M20 32c-2-6-4-10-6-12" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M44 32c2-6 4-10 6-12" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M20 32c-2 6-4 10-6 12" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M44 32c2 6 4 10 6 12" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <!-- Data pulses -->
+  <circle cx="16" cy="28" r="2" fill="#bfffdb" filter="url(#glow)"/>
+  <circle cx="48" cy="36" r="2" fill="#bfffdb" filter="url(#glow)"/>
+</svg>

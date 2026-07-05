@@ -1,0 +1,25 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base layer -->
+  <rect x="6" y="40" width="52" height="14" rx="1" fill="#2a2a2a" stroke="#4a4a4a" stroke-width="2"/>
+  <!-- Middle layer -->
+  <rect x="10" y="26" width="44" height="14" rx="1" fill="#353535" stroke="#4a4a4a" stroke-width="2"/>
+  <!-- Top layer (VM) -->
+  <rect x="14" y="12" width="36" height="14" rx="1" fill="#404040" stroke="#ff6b35" stroke-width="2"/>
+  <!-- H symbol on top -->
+  <rect x="24" y="16" width="4" height="6" fill="#ff6b35"/>
+  <rect x="36" y="16" width="4" height="6" fill="#ff6b35"/>
+  <rect x="28" y="18" width="8" height="2" fill="#ff6b35"/>
+  <!-- Connection lines (abstracted) -->
+  <path d="M18 26 L18 22 M32 26 L32 22 M46 26 L46 22" stroke="#8b4513" stroke-width="1.5" opacity="0.7"/>
+  <path d="M22 40 L22 36 M32 40 L32 36 M42 40 L42 36" stroke="#8b4513" stroke-width="1.5" opacity="0.7"/>
+  <!-- Control dots -->
+  <circle cx="12" cy="47" r="2" fill="#ff6b35" opacity="0.8"/>
+  <circle cx="18" cy="47" r="2" fill="#ff6b35" opacity="0.6"/>
+  <circle cx="24" cy="47" r="2" fill="#8b4513" opacity="0.7"/>
+  <!-- Broken corner -->
+  <path d="M50 12 L54 16 L50 16 Z" fill="#1a1a1a"/>
+  <path d="M50 12 L54 16" stroke="#2a2a2a" stroke-width="1"/>
+  <!-- Rust -->
+  <circle cx="10" cy="50" r="2" fill="#a0522d" opacity="0.5"/>
+  <circle cx="54" cy="46" r="2.5" fill="#8b4513" opacity="0.4"/>
+</svg>

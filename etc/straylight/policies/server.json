@@ -1,0 +1,58 @@
+{
+  "name": "server",
+  "description": "Headless server — no compositor, powersave when idle, hardened SSH, aggressive health monitoring",
+  "autotune_profile": "powersave",
+  "active_services": [
+    "autotune",
+    "health",
+    "mesh",
+    "quota",
+    "whisper",
+    "cron"
+  ],
+  "disabled_services": [
+    "compositor",
+    "alice",
+    "flux",
+    "replay",
+    "fuse"
+  ],
+  "service_configs": {
+    "health": {
+      "tick_interval_seconds": 15,
+      "mode": "aggressive"
+    },
+    "autotune": {
+      "auto_detect": true,
+      "idle_action": "powersave"
+    }
+  },
+  "resource_limits": {
+    "cpu_quota_percent": 100,
+    "memory_limit_mb": 0,
+    "vram_reserve_percent": 0,
+    "io_weight": 100,
+    "nice_level": 0
+  },
+  "thermal": {
+    "cooling_mode": "balanced",
+    "cpu_temp_warn": 75,
+    "cpu_temp_critical": 90,
+    "gpu_temp_warn": 80,
+    "gpu_temp_critical": 95
+  },
+  "compositor": {
+    "mode": "disabled",
+    "max_fps": 0,
+    "vsync": false,
+    "direct_scanout": false,
+    "low_latency_input": false
+  },
+  "mesh_advertise": true,
+  "mesh_capabilities": "server,compute",
+  "debug_tools": false,
+  "trace_always_on": false,
+  "replay_recording": false,
+  "health_mode": "aggressive",
+  "ssh_mode": "hardened"
+}

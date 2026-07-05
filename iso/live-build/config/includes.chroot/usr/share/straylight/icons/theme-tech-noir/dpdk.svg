@@ -1,0 +1,22 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Concrete panel -->
+  <rect x="4" y="4" width="56" height="56" rx="2" fill="#252525" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Bypass tunnel -->
+  <path d="M8 32 L56 32" stroke="#1a1a1a" stroke-width="12" stroke-linecap="round"/>
+  <path d="M8 32 L56 32" stroke="#4a4a4a" stroke-width="8" stroke-linecap="round"/>
+  <!-- Fast path - orange core -->
+  <path d="M10 32 L54 32" stroke="#ff6b35" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+  <!-- Lightning bolts (speed) -->
+  <path d="M18 24 L22 32 L18 32 L24 40" fill="none" stroke="#ff6b35" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M40 24 L44 32 L40 32 L46 40" fill="none" stroke="#ff6b35" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Kernel boundary (broken) -->
+  <rect x="28" y="8" width="8" height="48" fill="none" stroke="#8b4513" stroke-width="2" stroke-dasharray="4 2" opacity="0.7"/>
+  <path d="M30 12 L34 16" stroke="#1a1a1a" stroke-width="2"/>
+  <!-- Bypass arrow -->
+  <path d="M48 20 L56 32 L48 44" fill="none" stroke="#a0522d" stroke-width="2" opacity="0.8"/>
+  <!-- Rust spots -->
+  <circle cx="12" cy="50" r="3" fill="#8b4513" opacity="0.5"/>
+  <circle cx="52" cy="14" r="2" fill="#a0522d" opacity="0.4"/>
+  <!-- Cracks -->
+  <path d="M4 48 L8 52" stroke="#0d0d0d" stroke-width="1"/>
+</svg>

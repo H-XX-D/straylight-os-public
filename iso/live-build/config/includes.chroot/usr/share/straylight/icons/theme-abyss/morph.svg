@@ -1,0 +1,35 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="morphgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ccff"/>
+      <stop offset="50%" stop-color="#39ff85"/>
+      <stop offset="100%" stop-color="#00ccff"/>
+    </linearGradient>
+  </defs>
+  <!-- Octopus as morphing entity -->
+  <ellipse cx="32" cy="30" rx="10" ry="8" fill="#001a2e" stroke="#00ccff" stroke-width="1.5"/>
+  <!-- Morphing tentacles in different states -->
+  <path d="M26 36 Q20 44 18 38 Q16 46 22 48" fill="none" stroke="#39ff85" stroke-width="1.5">
+    <animate attributeName="d" values="M26 36 Q20 44 18 38 Q16 46 22 48;M26 36 Q18 42 20 36 Q14 42 20 46;M26 36 Q20 44 18 38 Q16 46 22 48" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M38 36 Q44 44 46 38 Q48 46 42 48" fill="none" stroke="#39ff85" stroke-width="1.5">
+    <animate attributeName="d" values="M38 36 Q44 44 46 38 Q48 46 42 48;M38 36 Q46 42 44 36 Q50 42 44 46;M38 36 Q44 44 46 38 Q48 46 42 48" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+  </path>
+  <path d="M28 36 Q24 50 26 52" fill="none" stroke="#00ccff" stroke-width="1.5">
+    <animate attributeName="d" values="M28 36 Q24 50 26 52;M28 36 Q22 48 24 54;M28 36 Q24 50 26 52" dur="2s" begin="0.25s" repeatCount="indefinite"/>
+  </path>
+  <path d="M36 36 Q40 50 38 52" fill="none" stroke="#00ccff" stroke-width="1.5">
+    <animate attributeName="d" values="M36 36 Q40 50 38 52;M36 36 Q42 48 40 54;M36 36 Q40 50 38 52" dur="2s" begin="0.75s" repeatCount="indefinite"/>
+  </path>
+  <!-- Central eye that changes -->
+  <ellipse cx="32" cy="30" rx="4" ry="3" fill="url(#morphgrad)">
+    <animate attributeName="rx" values="4;5;3;4" dur="1.5s" repeatCount="indefinite"/>
+  </ellipse>
+  <!-- Bubbles showing transformation -->
+  <circle cx="12" cy="24" r="2" fill="#39ff85" opacity="0.6">
+    <animate attributeName="cy" values="24;20;24" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="52" cy="28" r="2" fill="#00ccff" opacity="0.6">
+    <animate attributeName="cy" values="28;24;28" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+</svg>

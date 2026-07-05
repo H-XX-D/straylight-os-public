@@ -1,0 +1,41 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Morphing shape outline -->
+  <path d="M32 8 Q48 8 52 24 Q56 40 40 52 Q24 60 12 48 Q4 32 16 16 Q24 8 32 8"
+        fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+
+  <!-- Inner morphing layer -->
+  <path d="M32 16 Q42 16 46 28 Q48 38 36 46 Q26 50 18 42 Q12 30 22 20 Q28 16 32 16"
+        fill="none" stroke="#00ffff" stroke-width="1.5" filter="url(#glow-cyan)"/>
+
+  <!-- Transformation arrows -->
+  <path d="M52 8 L56 12 L52 16" fill="none" stroke="#ffff00" stroke-width="2" filter="url(#glow-pink)"/>
+  <path d="M8 48 L4 44 L8 40" fill="none" stroke="#ffff00" stroke-width="2" filter="url(#glow-pink)"/>
+
+  <!-- Grid deformation -->
+  <path d="M20 28 Q32 24 44 28" fill="none" stroke="#ffff00" stroke-width="1" opacity="0.7"/>
+  <path d="M24 36 Q32 40 40 36" fill="none" stroke="#ffff00" stroke-width="1" opacity="0.7"/>
+
+  <!-- Center nucleus -->
+  <circle cx="32" cy="32" r="3" fill="#ffff00" filter="url(#glow-pink)"/>
+
+  <!-- Morph indicators -->
+  <circle cx="8" cy="8" r="2" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <circle cx="56" cy="56" r="2" fill="#00ffff" filter="url(#glow-cyan)"/>
+</svg>

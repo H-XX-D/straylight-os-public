@@ -1,0 +1,12 @@
+{
+    "name": "minimal",
+    "colors": {
+        "bg": "#F2F2F2",
+        "fg": "#1A1A1A",
+        "accent": "#3373E6",
+        "panel": "#E0E0E0"
+    },
+    "font_size": 15.0,
+    "corner_radius": 6.0,
+    "icon_theme": "straylight-icons-light"
+}

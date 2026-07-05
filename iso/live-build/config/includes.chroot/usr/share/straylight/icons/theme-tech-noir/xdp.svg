@@ -1,0 +1,25 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Network card base -->
+  <rect x="4" y="8" width="56" height="48" rx="2" fill="#252525" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Data path -->
+  <path d="M8 32 L56 32" stroke="#1a1a1a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M8 32 L56 32" stroke="#3d3d3d" stroke-width="6" stroke-linecap="round"/>
+  <!-- XDP fast path (bypass) -->
+  <path d="M10 32 L54 32" stroke="#ff6b35" stroke-width="3" stroke-linecap="round"/>
+  <!-- X symbol -->
+  <path d="M28 20 L36 28 M36 20 L28 28" stroke="#ff6b35" stroke-width="3" stroke-linecap="round"/>
+  <!-- D symbol (partially broken) -->
+  <path d="M40 20 L40 28 L44 28 Q46 28 46 24 Q46 20 44 20 Z" fill="none" stroke="#8b4513" stroke-width="2" opacity="0.8"/>
+  <path d="M46 22 L47 23" stroke="#1a1a1a" stroke-width="1"/>
+  <!-- P symbol -->
+  <path d="M18 20 L18 28 M18 20 L22 20 Q24 20 24 22 Q24 24 22 24 L18 24" fill="none" stroke="#ff6b35" stroke-width="2" opacity="0.9"/>
+  <!-- Network ports -->
+  <rect x="12" y="44" width="8" height="6" fill="#1a1a1a" stroke="#8b4513" stroke-width="1"/>
+  <rect x="24" y="44" width="8" height="6" fill="#1a1a1a" stroke="#ff6b35" stroke-width="1"/>
+  <rect x="36" y="44" width="8" height="4" fill="#1a1a1a" stroke="#8b4513" stroke-width="1" opacity="0.5"/>
+  <!-- Speed indicator -->
+  <path d="M48 40 L52 32 L56 40" fill="none" stroke="#ff6b35" stroke-width="1.5" opacity="0.7"/>
+  <!-- Rust -->
+  <circle cx="8" cy="52" r="2.5" fill="#a0522d" opacity="0.5"/>
+  <circle cx="56" cy="12" r="2" fill="#8b4513" opacity="0.4"/>
+</svg>

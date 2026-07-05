@@ -1,0 +1,32 @@
+Source: straylight-network
+Section: net
+Priority: optional
+Maintainer: StrayLight OS Team <dev@straylight.dev>
+Build-Depends: debhelper-compat (= 13),
+               cmake (>= 3.25),
+               pkg-config,
+               libstraylight-common-dev (>= 1.0.0),
+               libbpf-dev (>= 1.3),
+               libdpdk-dev (>= 23.11),
+               libibverbs-dev,
+               librdmacm-dev,
+               libelf-dev,
+               clang,
+               llvm
+Standards-Version: 4.6.2
+Homepage: https://straylight.dev
+Rules-Requires-Root: no
+
+Package: straylight-network
+Architecture: amd64
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         libstraylight-common1 (>= 1.0.0),
+         straylight-core (>= 1.0.0),
+         libbpf1 (>= 1.3)
+Recommends: dpdk (>= 23.11),
+            rdma-core
+Description: StrayLight OS high-performance networking
+ Network subsystem for StrayLight OS. Includes straylight-xdp
+ (eBPF/AF_XDP loader), straylight-dpdk (packet processing pipeline),
+ and straylight-rdma-bus (RDMA zero-copy tensor transport).

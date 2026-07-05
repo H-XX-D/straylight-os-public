@@ -1,0 +1,33 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon frame -->
+  <path d="M32 4 L56 16 L56 44 L32 56 L8 44 L8 16 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Battery/energy core -->
+  <path d="M26 14 L38 14 L38 42 L26 42 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <rect x="28" y="10" width="8" height="4" rx="1" fill="currentColor" opacity="0.6"/>
+
+  <!-- Energy levels -->
+  <rect x="28" y="36" width="8" height="4" fill="currentColor" opacity="0.9"/>
+  <rect x="28" y="30" width="8" height="4" fill="currentColor" opacity="0.7"/>
+  <rect x="28" y="24" width="8" height="4" fill="currentColor" opacity="0.5"/>
+  <rect x="28" y="18" width="8" height="4" fill="currentColor" opacity="0.3"/>
+
+  <!-- Power flow indicators -->
+  <line x1="20" y1="20" x2="24" y2="24" stroke="currentColor" stroke-width="1.5"/>
+  <polygon points="24,24 22,22 20,24" fill="currentColor"/>
+
+  <line x1="20" y1="36" x2="24" y2="32" stroke="currentColor" stroke-width="1.5"/>
+  <polygon points="24,32 22,34 20,32" fill="currentColor"/>
+
+  <line x1="44" y1="20" x2="40" y2="24" stroke="currentColor" stroke-width="1.5"/>
+  <polygon points="40,24 42,22 44,24" fill="currentColor"/>
+
+  <line x1="44" y1="36" x2="40" y2="32" stroke="currentColor" stroke-width="1.5"/>
+  <polygon points="40,32 42,34 44,32" fill="currentColor"/>
+
+  <!-- Hexagon power nodes -->
+  <path d="M16 16 L18 17 L18 19 L16 20 L14 19 L14 17 Z" fill="currentColor"/>
+  <path d="M48 16 L50 17 L50 19 L48 20 L46 19 L46 17 Z" fill="currentColor"/>
+  <path d="M16 36 L18 37 L18 39 L16 40 L14 39 L14 37 Z" fill="currentColor"/>
+  <path d="M48 36 L50 37 L50 39 L48 40 L46 39 L46 37 Z" fill="currentColor"/>
+</svg>

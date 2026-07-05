@@ -1,0 +1,171 @@
+#!/usr/bin/env python3
+# probe-research — SNN, quantum, and experimental service telemetry
+# Primary: straylight-snn, straylight-quantum, straylight-predict IPC sockets
+# Eww renders these as status panels; heavy visualisation stays in straylight-widget-launcher
+
+import json, os, socket, time
+from pathlib import Path
+
+
+def ipc_call(sock_path, method, timeout=0.4):
+    try:
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.settimeout(timeout)
+        s.connect(sock_path)
+        req = json.dumps({"method": method}) + "\n"
+        s.sendall(req.encode())
+        data = b""
+        while True:
+            chunk = s.recv(8192)
+            if not chunk:
+                break
+            data += chunk
+            if b"\n" in data:
+                break
+        s.close()
+        return json.loads(data.decode().strip())
+    except Exception:
+        return None
+
+
+# ── SNN service (bin/snn → /run/straylight/snn.sock) ─────────────────
+
+def query_snn():
+    for path in ["/run/straylight/snn.sock", "/var/run/straylight/snn.sock"]:
+        r = ipc_call(path, "network_stats")
+        if r:
+            return r
+        r = ipc_call(path, "status")
+        if r:
+            return r
+    # Expose that the service is offline rather than crashing
+    return {"status": "offline", "neurons": 0, "layers": 0, "spikes_per_sec": 0.0}
+
+
+# ── Quantum service (bin/quantum → /run/straylight/quantum.sock) ──────
+
+def query_quantum():
+    for path in ["/run/straylight/quantum.sock", "/var/run/straylight/quantum.sock"]:
+        r = ipc_call(path, "circuit_stats")
+        if r:
+            return r
+        r = ipc_call(path, "status")
+        if r:
+            return r
+    return {"status": "offline", "qubits": 0, "gates": 0, "fidelity": 0.0}
+
+
+# ── Predict service (alice-based ML prediction) ───────────────────────
+
+def query_predict():
+    r = ipc_call("/run/straylight/alice.sock", "predict_stats")
+    if r:
+        return r
+    return {}
+
+
+# ── Entropy service health ────────────────────────────────────────────
+
+def query_entropy_service():
+    """Richer entropy data from straylight-entropy daemon."""
+    for path in ["/run/straylight/entropy.sock", "/var/run/straylight/entropy.sock"]:
+        r = ipc_call(path, "pool_status")
+        if r:
+            return r
+    # Fallback to /proc
+    try:
+        avail    = int(Path("/proc/sys/kernel/random/entropy_avail").read_text())
+        poolsize = int(Path("/proc/sys/kernel/random/poolsize").read_text())
+        return {
+            "avail":    avail,
+            "poolsize": poolsize,
+            "pct":      round(avail / max(poolsize, 1) * 100, 1),
+            "drbgs":    [],
+            "health":   "ok",
+        }
+    except Exception:
+        return {"avail": 0, "poolsize": 256, "pct": 0.0, "health": "unknown"}
+
+
+# ── Ghost (anomaly detection) ─────────────────────────────────────────
+
+def query_ghost():
+    r = ipc_call("/run/straylight/ghost.sock", "anomaly_summary")
+    if r:
+        return r
+    return {"alerts": [], "alert_count": 0, "status": "offline"}
+
+
+# ── Alice AI logs (recent activity) ──────────────────────────────────
+
+def query_alice():
+    r = ipc_call("/run/straylight/alice.sock", "recent_alerts")
+    if r:
+        return r
+    r = ipc_call("/run/straylight/alice.sock", "status")
+    if r:
+        return r
+    return {"status": "offline", "alerts": []}
+
+
+# ── Summary helpers ───────────────────────────────────────────────────
+
+def snn_summary(snn):
+    """Flatten SNN status to a short display string."""
+    if snn.get("status") == "offline":
+        return {"state": "offline", "neurons": 0, "layers": 0, "spikes_hz": 0.0, "health": "offline"}
+    return {
+        "state":     snn.get("state", "idle"),
+        "neurons":   snn.get("neurons", snn.get("neuron_count", 0)),
+        "layers":    snn.get("layers",  snn.get("layer_count",  0)),
+        "spikes_hz": round(float(snn.get("spikes_per_sec", snn.get("spike_rate", 0.0))), 1),
+        "health":    snn.get("health", "ok"),
+    }
+
+def quantum_summary(q):
+    if q.get("status") == "offline":
+        return {"state": "offline", "qubits": 0, "depth": 0, "fidelity": 0.0}
+    return {
+        "state":    q.get("state", "idle"),
+        "qubits":   q.get("qubits",   q.get("qubit_count", 0)),
+        "depth":    q.get("gates",    q.get("gate_count",  0)),
+        "fidelity": round(float(q.get("fidelity", 1.0)), 4),
+        "shots":    q.get("shots", 0),
+    }
+
+
+# ── Assemble ─────────────────────────────────────────────────────────
+
+def main():
+    snn      = query_snn()
+    quantum  = query_quantum()
+    entropy  = query_entropy_service()
+    ghost    = query_ghost()
+    alice    = query_alice()
+    predict  = query_predict()
+
+    out = {
+        "snn":     snn_summary(snn),
+        "quantum": quantum_summary(quantum),
+        "entropy": entropy,
+        "ghost": {
+            "alert_count": ghost.get("alert_count", len(ghost.get("alerts", []))),
+            "recent":      ghost.get("alerts", [])[:5],
+            "status":      ghost.get("status", "ok"),
+        },
+        "alice": {
+            "status":   alice.get("status", "ok"),
+            "recent":   alice.get("alerts", alice.get("recent_alerts", []))[:5],
+        },
+        "predict": predict,
+    }
+    print(json.dumps(out))
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        import json as _j, sys as _s
+        _j.dump({"snn": {"state": "offline", "neurons": 0, "layers": 0, "spikes_hz": 0.0, "health": "offline"}, "quantum": {"state": "offline", "qubits": 0, "depth": 0, "fidelity": 0.0}, "entropy": {"avail": 0, "poolsize": 256, "pct": 0.0, "health": "unknown"}, "ghost": {"alert_count": 0, "recent": [], "status": "offline"}, "alice": {"status": "offline", "recent": []}, "predict": {}, "_error": str(e)}, _s.stdout)
+        print()

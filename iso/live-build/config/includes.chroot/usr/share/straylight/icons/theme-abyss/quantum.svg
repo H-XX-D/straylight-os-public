@@ -1,0 +1,35 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="qubit" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#39ff85"/>
+      <stop offset="50%" stop-color="#00ccff"/>
+      <stop offset="100%" stop-color="#001a2e"/>
+    </radialGradient>
+  </defs>
+  <!-- Box jellyfish as quantum computer -->
+  <path d="M32 12 L48 28 L32 44 L16 28 Z" fill="#001a2e" stroke="#00ccff" stroke-width="1.5"/>
+  <!-- Quantum connections -->
+  <line x1="32" y1="12" x2="32" y2="44" stroke="#39ff85" stroke-width="1" opacity="0.6"/>
+  <line x1="16" y1="28" x2="48" y2="28" stroke="#39ff85" stroke-width="1" opacity="0.6"/>
+  <line x1="20" y1="18" x2="44" y2="38" stroke="#00ccff" stroke-width="1" opacity="0.6"/>
+  <line x1="44" y1="18" x2="20" y2="38" stroke="#00ccff" stroke-width="1" opacity="0.6"/>
+  <!-- Qubits as bioluminescent nodes -->
+  <circle cx="32" cy="28" r="4" fill="url(#qubit)">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="32" cy="12" r="2.5" fill="#39ff85" opacity="0.8"/>
+  <circle cx="48" cy="28" r="2.5" fill="#00ccff" opacity="0.8"/>
+  <circle cx="32" cy="44" r="2.5" fill="#39ff85" opacity="0.8"/>
+  <circle cx="16" cy="28" r="2.5" fill="#00ccff" opacity="0.8"/>
+  <!-- Tentacles as quantum states -->
+  <path d="M24 40 Q20 50 22 56" fill="none" stroke="#39ff85" stroke-width="1" opacity="0.6">
+    <animate attributeName="d" values="M24 40 Q20 50 22 56;M24 40 Q18 48 20 54;M24 40 Q20 50 22 56" dur="1.5s" repeatCount="indefinite"/>
+  </path>
+  <path d="M40 40 Q44 50 42 56" fill="none" stroke="#39ff85" stroke-width="1" opacity="0.6">
+    <animate attributeName="d" values="M40 40 Q44 50 42 56;M40 40 Q46 48 44 54;M40 40 Q44 50 42 56" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+  </path>
+  <path d="M32 44 Q32 52 32 58" fill="none" stroke="#00ccff" stroke-width="1" opacity="0.6"/>
+  <!-- Bubbles -->
+  <circle cx="10" cy="20" r="2" fill="#39ff85" opacity="0.5"/>
+  <circle cx="54" cy="50" r="2" fill="#00ccff" opacity="0.4"/>
+</svg>

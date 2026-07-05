@@ -1,0 +1,31 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="chaos" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#39ff85"/>
+      <stop offset="50%" stop-color="#00ccff"/>
+      <stop offset="100%" stop-color="#001a2e"/>
+    </radialGradient>
+  </defs>
+  <!-- Anglerfish as entropy source -->
+  <ellipse cx="28" cy="36" rx="14" ry="10" fill="#001a2e" stroke="#00ccff" stroke-width="1.5"/>
+  <!-- Lure with chaotic glow -->
+  <path d="M40 30 Q48 20 46 14" fill="none" stroke="#39ff85" stroke-width="1.5"/>
+  <circle cx="46" cy="12" r="4" fill="url(#chaos)" opacity="0.8">
+    <animate attributeName="r" values="3;5;3" dur="0.3s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Teeth as random bits -->
+  <path d="M20 34 L22 38 L24 34 L26 38 L28 34" fill="none" stroke="#39ff85" stroke-width="1"/>
+  <!-- Random particle emission -->
+  <circle cx="14" cy="30" r="1.5" fill="#00ccff" opacity="0.7"/>
+  <circle cx="10" cy="38" r="1" fill="#39ff85" opacity="0.6"/>
+  <circle cx="16" cy="44" r="1.5" fill="#00ccff" opacity="0.7"/>
+  <circle cx="54" cy="28" r="1" fill="#39ff85" opacity="0.5"/>
+  <circle cx="58" cy="40" r="1.5" fill="#00ccff" opacity="0.6"/>
+  <!-- Eye -->
+  <circle cx="22" cy="34" r="3" fill="#39ff85"/>
+  <circle cx="22" cy="34" r="1" fill="#001a2e"/>
+  <!-- Fin -->
+  <path d="M30 26 L34 18 L38 26" fill="#00ccff" opacity="0.5"/>
+  <!-- Bubbles -->
+  <circle cx="50" cy="52" r="2" fill="#39ff85" opacity="0.4"/>
+</svg>

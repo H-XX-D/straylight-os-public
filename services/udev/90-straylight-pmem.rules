@@ -1,0 +1,39 @@
+# StrayLight OS Persistent Memory device rules
+# Sets permissions for DAX devices and PMEM namespaces
+
+# PMEM block devices
+SUBSYSTEM=="block", KERNEL=="pmem[0-9]*", \
+    GROUP="straylight", MODE="0660", \
+    TAG+="straylight-pmem", \
+    ENV{STRAYLIGHT_PMEM_DEVICE}="1"
+
+# PMEM sector-mode block devices
+SUBSYSTEM=="block", KERNEL=="pmem[0-9]*s", \
+    GROUP="straylight", MODE="0660", \
+    TAG+="straylight-pmem"
+
+# DAX devices (fsdax mode)
+SUBSYSTEM=="dax", KERNEL=="dax[0-9]*.[0-9]*", \
+    GROUP="straylight", MODE="0660", \
+    SYMLINK+="straylight/pmem-%k", \
+    TAG+="straylight-dax"
+
+# devdax character devices
+KERNEL=="dax[0-9]*.[0-9]*", SUBSYSTEM=="misc", \
+    GROUP="straylight", MODE="0660"
+
+# NVDIMM bus devices (for monitoring)
+SUBSYSTEM=="nd", KERNEL=="nmem[0-9]*", \
+    TAG+="straylight-nvdimm"
+
+# NVDIMM region devices
+SUBSYSTEM=="nd", KERNEL=="region[0-9]*", \
+    TAG+="straylight-nvdimm-region"
+
+# Notify straylight-core on PMEM namespace changes
+SUBSYSTEM=="block", ACTION=="add", TAG=="straylight-pmem", \
+    RUN+="/usr/bin/straylight-core --notify pmem-added %k"
+SUBSYSTEM=="block", ACTION=="remove", TAG=="straylight-pmem", \
+    RUN+="/usr/bin/straylight-core --notify pmem-removed %k"
+SUBSYSTEM=="dax", ACTION=="add", TAG=="straylight-dax", \
+    RUN+="/usr/bin/straylight-core --notify dax-added %k"

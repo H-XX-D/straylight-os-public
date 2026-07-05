@@ -1,0 +1,15 @@
+[Unit]
+Description=StrayLight Userspace Task Scheduler
+After=straylight-registry.service
+Requires=straylight-registry.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-scheduler
+Restart=on-failure
+RestartSec=2s
+AmbientCapabilities=CAP_SYS_ADMIN
+WatchdogSec=60s
+
+[Install]
+WantedBy=multi-user.target

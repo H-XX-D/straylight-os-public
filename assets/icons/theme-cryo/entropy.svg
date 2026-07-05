@@ -1,0 +1,44 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f7ff"/>
+      <stop offset="100%" style="stop-color:#4fc3f7"/>
+    </linearGradient>
+    <radialGradient id="snowGrad" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#4fc3f7;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <!-- Central snowflake/rng core -->
+  <g transform="translate(32,32)">
+    <!-- Main crystal arms -->
+    <g stroke="url(#iceGrad)" stroke-width="2" stroke-linecap="round">
+      <line x1="0" y1="-18" x2="0" y2="18"/>
+      <line x1="-16" y1="-9" x2="16" y2="9"/>
+      <line x1="-16" y1="9" x2="16" y2="-9"/>
+    </g>
+    <!-- Branch crystals -->
+    <g stroke="#4fc3f7" stroke-width="1">
+      <line x1="0" y1="-18" x2="-4" y2="-14"/>
+      <line x1="0" y1="-18" x2="4" y2="-14"/>
+      <line x1="0" y1="18" x2="-4" y2="14"/>
+      <line x1="0" y1="18" x2="4" y2="14"/>
+      <line x1="-16" y1="-9" x2="-12" y2="-5"/>
+      <line x1="16" y1="9" x2="12" y2="5"/>
+      <line x1="-16" y1="9" x2="-12" y2="13"/>
+      <line x1="16" y1="-9" x2="12" y2="-13"/>
+    </g>
+    <!-- Center core -->
+    <circle r="6" fill="url(#snowGrad)"/>
+    <circle r="3" fill="#e0f7ff"/>
+  </g>
+  <!-- Random particles (entropy) -->
+  <g fill="#e0f7ff" opacity="0.6">
+    <circle cx="10" cy="12" r="1.5"/>
+    <circle cx="54" cy="18" r="1"/>
+    <circle cx="48" cy="48" r="1.5"/>
+    <circle cx="8" cy="52" r="1"/>
+    <circle cx="18" cy="56" r="1.2"/>
+    <circle cx="58" cy="42" r="1"/>
+  </g>
+</svg>

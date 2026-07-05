@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- Protective orbital rings -->
+  <ellipse cx="32" cy="32" rx="28" ry="28" fill="none" stroke="url(#purpleGrad)" stroke-width="0.5" opacity="0.3"/>
+  <ellipse cx="32" cy="32" rx="24" ry="24" fill="none" stroke="url(#cyanGrad)" stroke-width="0.5" opacity="0.4"/>
+  <ellipse cx="32" cy="32" rx="20" ry="20" fill="none" stroke="url(#silverGrad)" stroke-width="0.5" opacity="0.5"/>
+  <!-- Shield outer -->
+  <path d="M32 10 Q50 16 50 32 Q50 48 32 56 Q14 48 14 32 Q14 16 32 10 Z" fill="none" stroke="url(#purpleGrad)" stroke-width="2"/>
+  <!-- Shield inner -->
+  <path d="M32 16 Q44 20 44 32 Q44 44 32 50 Q20 44 20 32 Q20 20 32 16 Z" fill="url(#cyanGrad)" opacity="0.3"/>
+  <path d="M32 16 Q44 20 44 32 Q44 44 32 50 Q20 44 20 32 Q20 20 32 16 Z" fill="none" stroke="url(#cyanGrad)" stroke-width="1.5"/>
+  <!-- Lock core -->
+  <circle cx="32" cy="34" r="8" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <circle cx="32" cy="34" r="4" fill="url(#purpleGrad)"/>
+  <!-- Lock shackle -->
+  <path d="M26 30 Q26 22 32 22 Q38 22 38 30" fill="none" stroke="url(#silverGrad)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Stars -->
+  <circle cx="8" cy="12" r="0.6" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="56" cy="14" r="0.5" fill="#5eead4" opacity="0.6"/>
+  <circle cx="10" cy="52" r="0.7" fill="#a78bfa" opacity="0.5"/>
+  <circle cx="54" cy="54" r="0.5" fill="#e2e8f0" opacity="0.6"/>
+</svg>

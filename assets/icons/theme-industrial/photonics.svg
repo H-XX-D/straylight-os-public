@@ -1,0 +1,56 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="steel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a6a6a"/>
+      <stop offset="50%" style="stop-color:#8a8a8a"/>
+      <stop offset="100%" style="stop-color:#4a4a4a"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#daa520"/>
+      <stop offset="50%" style="stop-color:#cd7f32"/>
+      <stop offset="100%" style="stop-color:#b87333"/>
+    </linearGradient>
+    <linearGradient id="rust" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#cd853f"/>
+      <stop offset="50%" style="stop-color:#a0522d"/>
+      <stop offset="100%" style="stop-color:#8b4513"/>
+    </linearGradient>
+    <linearGradient id="light" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#daa520;stop-opacity:0.2"/>
+      <stop offset="50%" style="stop-color:#daa520;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#daa520;stop-opacity:0.2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Optical fiber cable -->
+  <path d="M4 32 Q16 20 32 32 Q48 44 60 32" fill="none" stroke="url(#steel)" stroke-width="8"/>
+  <path d="M4 32 Q16 20 32 32 Q48 44 60 32" fill="none" stroke="url(#brass)" stroke-width="4"/>
+
+  <!-- Light beam inside -->
+  <path d="M6 32 Q16 22 32 32 Q48 42 58 32" fill="none" stroke="url(#light)" stroke-width="2"/>
+
+  <!-- Light source -->
+  <rect x="2" y="26" width="8" height="12" rx="2" fill="url(#rust)"/>
+
+  <!-- Receivers/detectors -->
+  <rect x="54" y="26" width="8" height="12" rx="2" fill="url(#rust)"/>
+
+  <!-- Optical connectors -->
+  <rect x="10" y="28" width="4" height="8" rx="1" fill="url(#brass)"/>
+  <rect x="50" y="28" width="4" height="8" rx="1" fill="url(#brass)"/>
+
+  <!-- Light rays/beams -->
+  <g stroke="url(#brass)" stroke-width="1" opacity="0.6">
+    <line x1="20" y1="28" x2="26" y2="24"/>
+    <line x1="20" y1="36" x2="26" y2="40"/>
+    <line x1="38" y1="24" x2="44" y2="28"/>
+    <line x1="38" y1="40" x2="44" y2="36"/>
+  </g>
+
+  <!-- Central optical component -->
+  <circle cx="32" cy="32" r="8" fill="none" stroke="url(#steel)" stroke-width="2"/>
+  <circle cx="32" cy="32" r="4" fill="url(#brass)"/>
+
+  <!-- Lens/prism shape -->
+  <polygon points="32,26 38,32 32,38 26,32" fill="url(#rust)"/>
+</svg>

@@ -1,0 +1,18 @@
+[Unit]
+Description=StrayLight Out-of-Box Experience
+Documentation=https://straylight.dev/docs/oobe
+After=graphical.target
+ConditionPathExists=/var/lib/straylight/state
+ConditionFileNotEmpty=/var/lib/straylight/state
+
+[Service]
+Type=simple
+ExecCondition=/bin/sh -c '[ "$(cat /var/lib/straylight/state)" = "oobe" ]'
+ExecStart=/usr/bin/straylight-oobe
+User=root
+Environment=XDG_RUNTIME_DIR=/run/user/0
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical.target

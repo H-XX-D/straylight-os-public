@@ -27,6 +27,7 @@ plane, then translating that state back into concise operator-readable output.
 | Desktop model | Distro GNOME/GDM/Mutter plus StrayLight apps |
 | ISO artifact | `output/straylight-os-1.0.0-amd64.iso` |
 | Verified package build | 8 package groups succeeded, 0 failed |
+| Public source payload | Package source paths are present; generated build artifacts are excluded |
 | Public distribution gate | VM boot, install, firstboot, and post-install health validation still required |
 
 ## Contents
@@ -81,8 +82,10 @@ straylight-intent "<question or request>"
 
 ## Current Verified State
 
-The current source tree has completed package and ISO build preparation for an
-alpha test image.
+The public source tree now carries the package implementation payload needed to
+begin clean-clone package builds. The private handoff has completed package and
+ISO build preparation for an alpha test image; public package and ISO builds
+still need to be rerun from the sanitized repository.
 
 | Area | Verified state |
 |------|----------------|

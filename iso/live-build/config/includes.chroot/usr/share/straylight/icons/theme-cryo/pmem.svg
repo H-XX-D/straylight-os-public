@@ -1,0 +1,39 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f7ff"/>
+      <stop offset="100%" style="stop-color:#4fc3f7"/>
+    </linearGradient>
+    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#4fc3f7;stop-opacity:0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- Ice crystal memory chip -->
+  <rect x="12" y="12" width="40" height="40" rx="4" fill="url(#chipGrad)" stroke="url(#iceGrad)" stroke-width="2"/>
+  <!-- Memory cells as frost crystals -->
+  <g fill="none" stroke="#4fc3f7" stroke-width="1">
+    <rect x="18" y="18" width="8" height="8"/>
+    <rect x="32" y="18" width="8" height="8"/>
+    <rect x="18" y="32" width="8" height="8"/>
+    <rect x="32" y="32" width="8" height="8"/>
+  </g>
+  <!-- Crystal snowflake connectors -->
+  <g stroke="#e0f7ff" stroke-width="1.5">
+    <line x1="22" y1="22" x2="22" y2="26"/>
+    <line x1="20" y1="24" x2="24" y2="24"/>
+    <line x1="36" y1="22" x2="36" y2="26"/>
+    <line x1="34" y1="24" x2="38" y2="24"/>
+    <line x1="22" y1="36" x2="22" y2="40"/>
+    <line x1="20" y1="38" x2="24" y2="38"/>
+    <line x1="36" y1="36" x2="36" y2="40"/>
+    <line x1="34" y1="38" x2="38" y2="38"/>
+  </g>
+  <!-- Persistent indicator (infinite loop) -->
+  <path d="M44 50 A10 10 0 1 1 46 44" fill="none" stroke="url(#iceGrad)" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Frost corners -->
+  <circle cx="14" cy="14" r="1.5" fill="#4fc3f7"/>
+  <circle cx="50" cy="14" r="1.5" fill="#4fc3f7"/>
+  <circle cx="14" cy="50" r="1.5" fill="#4fc3f7"/>
+  <circle cx="50" cy="50" r="1.5" fill="#4fc3f7"/>
+</svg>

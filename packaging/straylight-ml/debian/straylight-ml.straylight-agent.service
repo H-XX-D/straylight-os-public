@@ -1,0 +1,22 @@
+[Unit]
+Description=StrayLight Task Distribution Agent
+Documentation=https://straylight.dev/docs/agent
+After=straylight-scheduler.service straylight-registry.service
+Requires=straylight-registry.service
+Wants=straylight-scheduler.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-agent
+Restart=on-failure
+RestartSec=2s
+User=root
+LimitNOFILE=65536
+LimitMEMLOCK=infinity
+WatchdogSec=30s
+ProtectSystem=strict
+ReadWritePaths=/run/straylight /var/lib/straylight /dev/shm
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

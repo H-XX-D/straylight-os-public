@@ -1,0 +1,36 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="schedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7fffab"/>
+      <stop offset="100%" stop-color="#39ff85"/>
+    </linearGradient>
+  </defs>
+  <!-- Central scheduler blob -->
+  <circle cx="32" cy="32" r="12" fill="url(#schedGrad)" filter="url(#glow)"/>
+  <!-- Clock/schedule eye -->
+  <circle cx="32" cy="32" r="6" fill="#0a1f0a"/>
+  <path d="M32 32v-4" stroke="#39ff85" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M32 32l3 2" stroke="#39ff85" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Orbiting thread blobs -->
+  <ellipse cx="32" cy="12" rx="5" ry="3" fill="#39ff85" filter="url(#glow)"/>
+  <ellipse cx="52" cy="32" rx="3" ry="5" fill="#39ff85" filter="url(#glow)"/>
+  <ellipse cx="32" cy="52" rx="5" ry="3" fill="#39ff85" filter="url(#glow)"/>
+  <ellipse cx="12" cy="32" rx="3" ry="5" fill="#39ff85" filter="url(#glow)"/>
+  <!-- Connection tendrils -->
+  <path d="M32 20c0-2 0-4 0-5" stroke="#39ff85" stroke-width="2" fill="none"/>
+  <path d="M44 32c2 0 4 0 5 0" stroke="#39ff85" stroke-width="2" fill="none"/>
+  <path d="M32 44c0 2 0 4 0 5" stroke="#39ff85" stroke-width="2" fill="none"/>
+  <path d="M20 32c-2 0-4 0-5 0" stroke="#39ff85" stroke-width="2" fill="none"/>
+  <!-- Priority indicators -->
+  <circle cx="32" cy="12" r="1.5" fill="#bfffdb"/>
+  <circle cx="52" cy="32" r="1.5" fill="#bfffdb"/>
+  <circle cx="32" cy="52" r="1.5" fill="#bfffdb"/>
+  <circle cx="12" cy="32" r="1.5" fill="#bfffdb"/>
+</svg>

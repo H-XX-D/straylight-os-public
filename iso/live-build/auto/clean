@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+lb clean noauto "${@}"
+rm -f build.log

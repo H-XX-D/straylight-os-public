@@ -1,0 +1,21 @@
+{
+  "name": "StrayLight Light",
+  "colors": {
+    "bg": "#EFF1F5",
+    "fg": "#4C4F69",
+    "accent": "#7287FD",
+    "panel": "#CCD0DA"
+  },
+  "font_size": 16.0,
+  "corner_radius": 6.0,
+  "icon_theme": "theme-nexus",
+  "vars": {
+    "surface.hover": "#8839EF",
+    "surface.active": "#1E66F5",
+    "border.color": "#ACB0BE",
+    "text.dim": "#9CA0B0",
+    "success": "#40A02B",
+    "warning": "#FE640B",
+    "error": "#D20F39"
+  }
+}

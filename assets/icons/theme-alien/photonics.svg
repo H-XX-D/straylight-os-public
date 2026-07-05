@@ -1,0 +1,36 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="beamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#39ff85" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#7fffab"/>
+      <stop offset="100%" stop-color="#39ff85" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Optical fiber tubes -->
+  <path d="M8 20c12-4 36-4 48 0" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M8 32c12-4 36-4 48 0" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M8 44c12-4 36-4 48 0" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Light beam pulses -->
+  <ellipse cx="24" cy="20" rx="8" ry="2" fill="url(#beamGrad)" filter="url(#glow)"/>
+  <ellipse cx="40" cy="32" rx="8" ry="2" fill="url(#beamGrad)" filter="url(#glow)"/>
+  <ellipse cx="28" cy="44" rx="8" ry="2" fill="url(#beamGrad)" filter="url(#glow)"/>
+  <!-- Photonic emitters -->
+  <circle cx="8" cy="20" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="8" cy="32" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="8" cy="44" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <!-- Receivers -->
+  <circle cx="56" cy="20" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="56" cy="32" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="56" cy="44" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <!-- Photon particles -->
+  <circle cx="32" cy="18" r="1.5" fill="#bfffdb" filter="url(#glow)"/>
+  <circle cx="48" cy="30" r="1.5" fill="#bfffdb" filter="url(#glow)"/>
+  <circle cx="20" cy="46" r="1.5" fill="#bfffdb" filter="url(#glow)"/>
+</svg>

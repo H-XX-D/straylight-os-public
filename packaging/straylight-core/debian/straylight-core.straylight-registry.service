@@ -1,0 +1,23 @@
+[Unit]
+Description=StrayLight Configuration Registry
+Documentation=https://straylight.dev/docs/registry
+After=straylight-bus.service straylight-entropy.service
+Requires=straylight-bus.service
+Wants=straylight-entropy.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-registry
+Restart=on-failure
+RestartSec=2s
+User=root
+LimitNOFILE=65536
+WatchdogSec=30s
+ProtectSystem=strict
+ReadWritePaths=/var/lib/straylight /run/straylight
+PrivateTmp=yes
+NoNewPrivileges=yes
+StateDirectory=straylight
+
+[Install]
+WantedBy=multi-user.target

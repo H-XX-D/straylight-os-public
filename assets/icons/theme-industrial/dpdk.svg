@@ -1,0 +1,54 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="steel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a6a6a"/>
+      <stop offset="50%" style="stop-color:#8a8a8a"/>
+      <stop offset="100%" style="stop-color:#4a4a4a"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#daa520"/>
+      <stop offset="50%" style="stop-color:#cd7f32"/>
+      <stop offset="100%" style="stop-color:#b87333"/>
+    </linearGradient>
+    <linearGradient id="rust" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#cd853f"/>
+      <stop offset="50%" style="stop-color:#a0522d"/>
+      <stop offset="100%" style="stop-color:#8b4513"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Bypass pipe main -->
+  <path d="M8 32 L56 32" stroke="url(#steel)" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <path d="M8 32 L56 32" stroke="url(#brass)" stroke-width="8" stroke-linecap="round" fill="none"/>
+
+  <!-- Bypass arrow showing direct path -->
+  <polygon points="48,24 60,32 48,40" fill="url(#rust)"/>
+
+  <!-- Vertical bypass channels -->
+  <line x1="20" y1="20" x2="20" y2="44" stroke="url(#steel)" stroke-width="6"/>
+  <line x1="20" y1="22" x2="20" y2="42" stroke="url(#rust)" stroke-width="3"/>
+
+  <line x1="44" y1="20" x2="44" y2="44" stroke="url(#steel)" stroke-width="6"/>
+  <line x1="44" y1="22" x2="44" y2="42" stroke="url(#rust)" stroke-width="3"/>
+
+  <!-- Flange connections -->
+  <rect x="4" y="24" width="8" height="16" rx="1" fill="url(#brass)"/>
+  <rect x="52" y="24" width="8" height="16" rx="1" fill="url(#brass)"/>
+
+  <!-- Flange bolts -->
+  <circle cx="8" cy="28" r="2" fill="url(#steel)"/>
+  <circle cx="8" cy="36" r="2" fill="url(#steel)"/>
+  <circle cx="56" cy="28" r="2" fill="url(#steel)"/>
+  <circle cx="56" cy="36" r="2" fill="url(#steel)"/>
+
+  <!-- Center valve gear -->
+  <circle cx="32" cy="32" r="10" fill="none" stroke="url(#brass)" stroke-width="2"/>
+  <circle cx="32" cy="32" r="5" fill="url(#rust)"/>
+
+  <!-- Speed indicators -->
+  <g stroke="url(#brass)" stroke-width="2">
+    <line x1="28" y1="14" x2="28" y2="18"/>
+    <line x1="32" y1="12" x2="32" y2="18"/>
+    <line x1="36" y1="14" x2="36" y2="18"/>
+  </g>
+</svg>

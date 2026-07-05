@@ -1,0 +1,11 @@
+straylight-kernel (1.0.0-1) unstable; urgency=medium
+
+  * Initial release.
+  * straylight-vpu.ko: GPU memory management via DMA-BUF + ioctl
+  * straylight-hypervisor.ko: KVM extensions with VMCS + EPT
+  * straylight-scheduler.ko: ML-aware sched_class with NUMA topology
+  * straylight-xdp: eBPF programs for packet filtering/redirect
+  * straylight-entropy.ko: hwrng with RDRAND + jitter harvesting
+  * straylight-enclave.ko: SGX EPC management + sealed storage
+
+ -- StrayLight OS Team <dev@straylight.dev>  Sun, 16 Mar 2026 00:00:00 +0000

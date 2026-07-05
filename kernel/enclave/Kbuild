@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: GPL-2.0
+# StrayLight OS — SGX Enclave Management Module
+
+obj-m := straylight-enclave.o
+
+straylight-enclave-y := enclave_main.o enclave_epc.o \
+                        enclave_sealed.o enclave_attestation.o
+
+ccflags-y := -std=gnu11 -DSTRAYLIGHT_ENCLAVE

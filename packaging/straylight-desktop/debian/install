@@ -1,0 +1,29 @@
+usr/bin/straylight-terminal
+usr/bin/straylight-files
+usr/bin/straylight-sysmon
+usr/bin/straylight-settings
+usr/bin/straylight-wizard
+usr/bin/straylight-oobe
+usr/bin/straylight-*-cli
+usr/bin/straylight-*-gui
+usr/bin/straylight-audio-mixer
+usr/bin/straylight-hub
+usr/bin/straylight-widget-launcher
+usr/lib/straylight/straylight-hwdetect
+usr/lib/straylight/straylight-firstboot
+usr/lib/straylight/straylight-oobe-check
+usr/lib/straylight/straylight-wizard-check
+usr/lib/systemd/system/straylight-firstboot.service
+usr/lib/systemd/system/straylight-hwdetect.service
+usr/lib/systemd/system/straylight-oobe.service
+usr/lib/systemd/system/straylight-wizard.service
+usr/lib/udev/rules.d/90-straylight-gpu.rules
+usr/lib/udev/rules.d/90-straylight-pmem.rules
+usr/lib/udev/rules.d/90-straylight-sgx.rules
+var/lib/straylight/
+config/themes/*.json usr/share/straylight/themes/
+docs/straylight-app-clis.md usr/share/doc/straylight-desktop/
+iso/calamares/settings.conf etc/calamares/
+iso/calamares/modules/*.conf etc/calamares/modules/
+iso/calamares/branding/straylight/* usr/share/calamares/branding/straylight/
+iso/live-build/config/includes.chroot/usr/share/applications/straylight-installer.desktop usr/share/applications/

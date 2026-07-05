@@ -1,0 +1,58 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="steel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a6a6a"/>
+      <stop offset="50%" style="stop-color:#8a8a8a"/>
+      <stop offset="100%" style="stop-color:#4a4a4a"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#daa520"/>
+      <stop offset="50%" style="stop-color:#cd7f32"/>
+      <stop offset="100%" style="stop-color:#b87333"/>
+    </linearGradient>
+    <linearGradient id="rust" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#cd853f"/>
+      <stop offset="50%" style="stop-color:#a0522d"/>
+      <stop offset="100%" style="stop-color:#8b4513"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Direct memory access channels -->
+  <rect x="8" y="12" width="20" height="40" rx="2" fill="none" stroke="url(#steel)" stroke-width="2.5"/>
+  <rect x="36" y="12" width="20" height="40" rx="2" fill="none" stroke="url(#steel)" stroke-width="2.5"/>
+
+  <!-- Memory modules inside -->
+  <g fill="none" stroke="url(#rust)" stroke-width="2">
+    <line x1="12" y1="20" x2="24" y2="20"/>
+    <line x1="12" y1="28" x2="24" y2="28"/>
+    <line x1="12" y1="36" x2="24" y2="36"/>
+    <line x1="12" y1="44" x2="24" y2="44"/>
+
+    <line x1="40" y1="20" x2="52" y2="20"/>
+    <line x1="40" y1="28" x2="52" y2="28"/>
+    <line x1="40" y1="36" x2="52" y2="36"/>
+    <line x1="40" y1="44" x2="52" y2="44"/>
+  </g>
+
+  <!-- Direct link bypassing CPU -->
+  <path d="M28 24 L36 24" stroke="url(#brass)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M28 32 L36 32" stroke="url(#brass)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M28 40 L36 40" stroke="url(#brass)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Direct arrows -->
+  <polygon points="32,20 36,24 32,28" fill="url(#rust)"/>
+  <polygon points="32,36 36,40 32,44" fill="url(#rust)"/>
+
+  <!-- Data flow indicators -->
+  <circle cx="32" cy="24" r="2" fill="url(#brass)"/>
+  <circle cx="32" cy="40" r="2" fill="url(#brass)"/>
+
+  <!-- Connector pins -->
+  <rect x="6" y="18" width="3" height="4" rx="0.5" fill="url(#brass)"/>
+  <rect x="6" y="30" width="3" height="4" rx="0.5" fill="url(#brass)"/>
+  <rect x="6" y="42" width="3" height="4" rx="0.5" fill="url(#brass)"/>
+
+  <rect x="55" y="18" width="3" height="4" rx="0.5" fill="url(#brass)"/>
+  <rect x="55" y="30" width="3" height="4" rx="0.5" fill="url(#brass)"/>
+  <rect x="55" y="42" width="3" height="4" rx="0.5" fill="url(#brass)"/>
+</svg>

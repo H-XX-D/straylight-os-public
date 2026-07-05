@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+
+# Metapackage — no build steps needed
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+override_dh_auto_build:
+override_dh_auto_test:
+override_dh_auto_install:

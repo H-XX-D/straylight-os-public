@@ -1,0 +1,21 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bh10" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000"/>
+      <stop offset="55%" stop-color="#1a0a00"/>
+      <stop offset="100%" stop-color="#ff6600"/>
+    </radialGradient>
+    <linearGradient id="memGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb700"/>
+      <stop offset="100%" stop-color="#ff6600"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="28" fill="url(#bh10)" stroke="#ff6600" stroke-width="2"/>
+  <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="#ffb700" stroke-width="1.5" opacity="0.5"/>
+  <path d="M10 32 Q32 20 54 32" fill="none" stroke="url(#memGlow)" stroke-width="2"/>
+  <path d="M10 32 Q32 44 54 32" fill="none" stroke="url(#memGlow)" stroke-width="2"/>
+  <rect x="14" y="26" width="8" height="12" rx="1" fill="#000" stroke="#ffb700" stroke-width="1"/>
+  <rect x="26" y="26" width="8" height="12" rx="1" fill="#ff6600"/>
+  <rect x="38" y="26" width="8" height="12" rx="1" fill="#000" stroke="#ffb700" stroke-width="1"/>
+  <path d="M18 30 L18 34 M30 30 L30 34 M42 30 L42 34" stroke="#fff" stroke-width="1.5"/>
+</svg>

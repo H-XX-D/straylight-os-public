@@ -1,0 +1,31 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7a7a7a"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#7a7a7a"/>
+    </linearGradient>
+  </defs>
+  <!-- Main bus line -->
+  <rect x="4" y="30" width="56" height="4" fill="url(#silver)" rx="1"/>
+  <!-- Hexagonal nodes along bus -->
+  <path d="M12 22 L18 25 L18 31 L12 34 L6 31 L6 25 Z" fill="#c0c0c0" stroke="#7a7a7a" stroke-width="1"/>
+  <path d="M28 22 L34 25 L34 31 L28 34 L22 31 L22 25 Z" fill="#c0c0c0" stroke="#7a7a7a" stroke-width="1"/>
+  <path d="M44 22 L50 25 L50 31 L44 34 L38 31 L38 25 Z" fill="#c0c0c0" stroke="#7a7a7a" stroke-width="1"/>
+  <!-- Data particles -->
+  <circle cx="12" cy="28" r="2" fill="#7a7a7a"/>
+  <circle cx="28" cy="28" r="2" fill="#7a7a7a"/>
+  <circle cx="44" cy="28" r="2" fill="#7a7a7a"/>
+  <!-- Nano connectors -->
+  <line x1="12" y1="34" x2="12" y2="42" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="28" y1="34" x2="28" y2="42" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="44" y1="34" x2="44" y2="42" stroke="#7a7a7a" stroke-width="1"/>
+  <!-- Bottom hexagons -->
+  <path d="M12 42 L16 44 L16 48 L12 50 L8 48 L8 44 Z" fill="#a0a0a0"/>
+  <path d="M28 42 L32 44 L32 48 L28 50 L24 48 L24 44 Z" fill="#a0a0a0"/>
+  <path d="M44 42 L48 44 L48 48 L44 50 L40 48 L40 44 Z" fill="#a0a0a0"/>
+  <!-- Circuit traces -->
+  <path d="M8 48 L8 56" stroke="#7a7a7a" stroke-width="0.5"/>
+  <path d="M32 50 L32 56" stroke="#7a7a7a" stroke-width="0.5"/>
+  <path d="M56 48 L56 56" stroke="#7a7a7a" stroke-width="0.5"/>
+</svg>

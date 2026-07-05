@@ -1,0 +1,21 @@
+[Unit]
+Description=StrayLight D-Bus Session Manager
+Documentation=https://straylight.dev/docs/bus
+After=dbus.service
+Requires=dbus.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-bus
+Restart=on-failure
+RestartSec=2s
+User=root
+LimitNOFILE=65536
+WatchdogSec=30s
+ProtectSystem=strict
+ReadWritePaths=/run/straylight /var/lib/straylight
+PrivateTmp=yes
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+[Unit]
+Description=StrayLight Tensor Filesystem (FUSE)
+Documentation=https://straylight.dev/docs/fuse
+After=straylight-bus.service
+Requires=straylight-bus.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-fuse --mountpoint=/mnt/straylight-tensors
+ExecStop=/bin/fusermount3 -u /mnt/straylight-tensors
+Restart=on-failure
+RestartSec=2s
+User=root
+AmbientCapabilities=CAP_SYS_ADMIN
+LimitNOFILE=65536
+WatchdogSec=30s
+ProtectSystem=no
+PrivateTmp=no
+
+[Install]
+WantedBy=multi-user.target

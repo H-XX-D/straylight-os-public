@@ -1,0 +1,30 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e0f7ff"/>
+      <stop offset="50%" style="stop-color:#4fc3f7"/>
+      <stop offset="100%" style="stop-color:#81d4fa"/>
+    </linearGradient>
+  </defs>
+  <!-- Main bus bar -->
+  <rect x="4" y="28" width="56" height="8" rx="2" fill="url(#iceGrad)" opacity="0.8"/>
+  <!-- Ice crystal nodes -->
+  <g fill="none" stroke="#e0f7ff" stroke-width="1.5">
+    <polygon points="12,24 16,20 20,24 20,40 16,44 12,40"/>
+    <polygon points="30,24 34,20 38,24 38,40 34,44 30,40"/>
+    <polygon points="48,24 52,20 56,24 56,40 52,44 48,40"/>
+  </g>
+  <!-- Snowflake accents -->
+  <g stroke="#4fc3f7" stroke-width="1" opacity="0.7">
+    <line x1="16" y1="16" x2="16" y2="12"/>
+    <line x1="12" y1="14" x2="20" y2="14"/>
+    <line x1="34" y1="16" x2="34" y2="12"/>
+    <line x1="30" y1="14" x2="38" y2="14"/>
+    <line x1="52" y1="16" x2="52" y2="12"/>
+    <line x1="48" y1="14" x2="56" y2="14"/>
+  </g>
+  <!-- Frost highlights -->
+  <circle cx="16" cy="32" r="3" fill="#e0f7ff" opacity="0.5"/>
+  <circle cx="34" cy="32" r="3" fill="#e0f7ff" opacity="0.5"/>
+  <circle cx="52" cy="32" r="3" fill="#e0f7ff" opacity="0.5"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g14" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.35"/>
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.25"/>
+    </linearGradient>
+  </defs>
+  <!-- AR Grid -->
+  <line x1="8" y1="16" x2="56" y2="16" stroke="#00d4ff" stroke-width="0.5" opacity="0.3"/>
+  <line x1="8" y1="48" x2="56" y2="48" stroke="#00d4ff" stroke-width="0.5" opacity="0.3"/>
+  <line x1="16" y1="8" x2="16" y2="56" stroke="#ff00ff" stroke-width="0.5" opacity="0.3"/>
+  <line x1="48" y1="8" x2="48" y2="56" stroke="#ff00ff" stroke-width="0.5" opacity="0.3"/>
+  <!-- Battery/Energy Core -->
+  <rect x="20" y="14" width="24" height="36" rx="3" fill="url(#g14)" stroke="#00d4ff" stroke-width="1.5" opacity="0.85"/>
+  <!-- Energy Level -->
+  <rect x="24" y="18" width="16" height="8" rx="1" fill="#ff00ff" opacity="0.6"/>
+  <rect x="24" y="28" width="16" height="8" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <rect x="24" y="38" width="16" height="8" rx="1" fill="#ff00ff" opacity="0.4"/>
+  <!-- Lightning -->
+  <polygon points="32,6 36,14 32,14 36,22 28,16 32,16 28,8" fill="#00d4ff" opacity="0.9"/>
+  <!-- Efficiency Ring -->
+  <path d="M16 48 Q32 56 48 48" fill="none" stroke="#ff00ff" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="16" cy="48" r="2" fill="#00d4ff" opacity="0.8"/>
+  <circle cx="48" cy="48" r="2" fill="#ff00ff" opacity="0.8"/>
+  <!-- Power Flow -->
+  <line x1="8" y1="32" x2="20" y2="32" stroke="#00d4ff" stroke-width="1" opacity="0.5" stroke-dasharray="2 2"/>
+  <line x1="44" y1="32" x2="56" y2="32" stroke="#ff00ff" stroke-width="1" opacity="0.5" stroke-dasharray="2 2"/>
+</svg>

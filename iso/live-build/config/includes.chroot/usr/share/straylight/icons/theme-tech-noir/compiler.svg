@@ -1,0 +1,22 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base -->
+  <rect x="6" y="6" width="52" height="52" rx="2" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Gears - outer (broken) -->
+  <path d="M32 10 L34 14 L38 14 L36 18 L38 22 L34 22 L32 26 L30 22 L26 22 L28 18 L26 14 L30 14 Z" fill="#4a4a4a" stroke="#1a1a1a"/>
+  <!-- Missing gear tooth -->
+  <path d="M32 10 L34 14 L36 12" fill="#2a2a2a"/>
+  <!-- Inner gear (functional) -->
+  <path d="M32 16 L33 18 L35 18 L34 20 L35 22 L33 22 L32 24 L31 22 L29 22 L30 20 L29 18 L31 18 Z" fill="#ff6b35"/>
+  <!-- Code brackets -->
+  <path d="M14 34 L10 38 L14 42" fill="none" stroke="#ff6b35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M50 34 L54 38 L50 42" fill="none" stroke="#ff6b35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Slash (broken) -->
+  <path d="M38 28 L26 48" stroke="#8b4513" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  <path d="M39 27 L40 29" stroke="#1a1a1a" stroke-width="2"/>
+  <!-- JIT indicator -->
+  <rect x="22" y="50" width="20" height="6" fill="#1a1a1a" stroke="#ff6b35" stroke-width="1"/>
+  <text x="32" y="55" font-family="monospace" font-size="5" fill="#ff6b35" text-anchor="middle">JIT</text>
+  <!-- Rust -->
+  <circle cx="10" cy="52" r="2.5" fill="#a0522d" opacity="0.6"/>
+  <circle cx="54" cy="10" r="2" fill="#8b4513" opacity="0.5"/>
+</svg>

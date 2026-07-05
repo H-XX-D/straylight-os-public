@@ -1,0 +1,12 @@
+{
+    "name": "cyberpunk",
+    "colors": {
+        "bg": "#0D0D1A",
+        "fg": "#00FFE0",
+        "accent": "#FF0080",
+        "panel": "#1A1A2E"
+    },
+    "font_size": 16.0,
+    "corner_radius": 2.0,
+    "icon_theme": "straylight-icons-neon"
+}

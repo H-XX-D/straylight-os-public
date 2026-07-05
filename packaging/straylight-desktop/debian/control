@@ -1,0 +1,46 @@
+Source: straylight-desktop
+Section: x11
+Priority: optional
+Maintainer: StrayLight OS Team <dev@straylight.dev>
+Build-Depends: debhelper-compat (= 13),
+               cmake (>= 3.25),
+               pkg-config,
+               libstraylight-common-dev (>= 1.0.0),
+               libwayland-dev (>= 1.22),
+               wayland-protocols (>= 1.34),
+               libegl-dev,
+               libgles-dev,
+               libpam0g-dev,
+               libpipewire-0.3-dev (>= 1.0),
+               libsdbus-c++-dev (>= 2.0),
+               libglfw3-dev,
+               libopengl-dev,
+               nlohmann-json3-dev,
+               libspdlog-dev
+Standards-Version: 4.6.2
+Homepage: https://straylight.dev
+Rules-Requires-Root: no
+
+Package: straylight-desktop
+Architecture: amd64
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         libstraylight-common1 (>= 1.0.0),
+         straylight-core (>= 1.0.0),
+         fonts-noto,
+         adwaita-icon-theme,
+         pipewire (>= 1.0),
+         wireplumber,
+         network-manager
+Conflicts: calamares-settings-debian
+Replaces: calamares-settings-debian
+Recommends: calamares (>= 3.3),
+            gnome-shell | x-window-manager,
+            gdm3 | x-display-manager
+Description: StrayLight OS desktop applications for Linux window managers
+ Built-in desktop applications (terminal, file manager, system monitor,
+ settings, wizard, OOBE, app GUI control panels), native app CLI launch/help
+ entrypoints, themes, firstboot helpers, and Calamares installer configuration.
+ These tools run on the
+ distribution-provided desktop and window manager; no StrayLight compositor
+ is shipped or required by this package.

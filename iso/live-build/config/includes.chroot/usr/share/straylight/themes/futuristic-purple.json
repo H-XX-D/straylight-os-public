@@ -1,0 +1,21 @@
+{
+  "name": "Futuristic Purple",
+  "colors": {
+    "bg": "#030308",
+    "fg": "#cbd5e1",
+    "accent": "#8b5cf6",
+    "panel": "#0a0a18"
+  },
+  "font_size": 16.0,
+  "corner_radius": 4.0,
+  "icon_theme": "theme-futuristic",
+  "vars": {
+    "surface.hover": "#a855f7",
+    "surface.active": "#d946ef",
+    "border.color": "#1a1a40",
+    "text.dim": "#606080",
+    "success": "#06b6d4",
+    "warning": "#d946ef",
+    "error": "#d946ef"
+  }
+}

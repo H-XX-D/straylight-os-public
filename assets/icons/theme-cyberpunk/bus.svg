@@ -1,0 +1,33 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Data bus lines -->
+  <rect x="4" y="12" width="56" height="6" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+  <rect x="4" y="24" width="56" height="6" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#glow-cyan)"/>
+  <rect x="4" y="36" width="56" height="6" fill="none" stroke="#ffff00" stroke-width="2" filter="url(#glow-pink)"/>
+  <rect x="4" y="48" width="56" height="6" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-cyan)"/>
+
+  <!-- Data packets -->
+  <rect x="8" y="13" width="4" height="4" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="24" y="25" width="4" height="4" fill="#ff00ff" filter="url(#glow-cyan)"/>
+  <rect x="40" y="37" width="4" height="4" fill="#00ffff" filter="url(#glow-pink)"/>
+  <rect x="52" y="49" width="4" height="4" fill="#ffff00" filter="url(#glow-cyan)"/>
+
+  <!-- Connectors -->
+  <path d="M2 10 H62 M2 22 H62 M2 34 H62 M2 46 H62 M2 58 H62" stroke="#00ffff" stroke-width="0.5" opacity="0.5"/>
+</svg>

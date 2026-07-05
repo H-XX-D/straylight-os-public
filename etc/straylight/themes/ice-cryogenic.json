@@ -1,0 +1,21 @@
+{
+  "name": "Ice Cryogenic",
+  "colors": {
+    "bg": "#000810",
+    "fg": "#ffffff",
+    "accent": "#4fc3f7",
+    "panel": "#001a30"
+  },
+  "font_size": 16.0,
+  "corner_radius": 4.0,
+  "icon_theme": "theme-cryo",
+  "vars": {
+    "surface.hover": "#b3e5fc",
+    "surface.active": "#0288d1",
+    "border.color": "#01579b",
+    "text.dim": "#4a7a9b",
+    "success": "#b3e5fc",
+    "warning": "#4fc3f7",
+    "error": "#0288d1"
+  }
+}

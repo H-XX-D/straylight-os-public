@@ -1,0 +1,41 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- GPU chip outline -->
+  <rect x="8" y="8" width="48" height="48" rx="4" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+
+  <!-- Internal grid -->
+  <path d="M16 8 V56 M24 8 V56 M32 8 V56 M40 8 V56 M48 8 V56" stroke="#00ffff" stroke-width="0.5" opacity="0.5"/>
+  <path d="M8 16 H56 M8 24 H56 M8 32 H56 M8 40 H56 M8 48 H56" stroke="#00ffff" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Processing cores -->
+  <rect x="18" y="18" width="10" height="10" fill="#00ffff" filter="url(#glow-cyan)" opacity="0.8"/>
+  <rect x="36" y="18" width="10" height="10" fill="#00ffff" filter="url(#glow-cyan)" opacity="0.8"/>
+  <rect x="18" y="36" width="10" height="10" fill="#00ffff" filter="url(#glow-cyan)" opacity="0.8"/>
+  <rect x="36" y="36" width="10" height="10" fill="#00ffff" filter="url(#glow-cyan)" opacity="0.8"/>
+
+  <!-- VRAM indicators -->
+  <rect x="10" y="10" width="4" height="4" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="50" y="10" width="4" height="4" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="10" y="50" width="4" height="4" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="50" y="50" width="4" height="4" fill="#ffff00" filter="url(#glow-pink)"/>
+
+  <!-- Video output symbol -->
+  <path d="M28 28 L36 32 L28 36 Z" fill="#ff00ff" filter="url(#glow-pink)"/>
+  <path d="M38 30 H44 M38 32 H44 M38 34 H44" stroke="#ffff00" stroke-width="1.5" filter="url(#glow-cyan)"/>
+</svg>

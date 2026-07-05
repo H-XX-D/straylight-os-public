@@ -1,0 +1,28 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base plate -->
+  <rect x="4" y="4" width="56" height="56" rx="3" fill="#252525" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Random noise pattern (hardware chaos) -->
+  <g opacity="0.8">
+    <rect x="12" y="12" width="4" height="4" fill="#ff6b35" opacity="0.9"/>
+    <rect x="24" y="10" width="3" height="6" fill="#8b4513" opacity="0.7"/>
+    <rect x="36" y="14" width="5" height="3" fill="#ff6b35" opacity="0.6"/>
+    <rect x="48" y="12" width="4" height="5" fill="#a0522d" opacity="0.8"/>
+    <rect x="10" y="24" width="6" height="3" fill="#a0522d" opacity="0.6"/>
+    <rect x="46" y="26" width="4" height="4" fill="#ff6b35" opacity="0.7"/>
+    <rect x="14" y="36" width="3" height="5" fill="#8b4513" opacity="0.8"/>
+    <rect x="28" y="38" width="5" height="3" fill="#a0522d" opacity="0.6"/>
+    <rect x="44" y="40" width="6" height="4" fill="#ff6b35" opacity="0.9"/>
+    <rect x="12" y="48" width="4" height="4" fill="#ff6b35" opacity="0.7"/>
+    <rect x="32" y="50" width="3" height="4" fill="#8b4513" opacity="0.6"/>
+    <rect x="48" y="48" width="5" height="5" fill="#a0522d" opacity="0.8"/>
+  </g>
+  <!-- Central collector (hardware source) -->
+  <circle cx="32" cy="32" r="10" fill="#1a1a1a" stroke="#ff6b35" stroke-width="2.5"/>
+  <!-- Inner chaos -->
+  <path d="M28 30 L32 26 L36 30 L34 34 L30 34 Z" fill="#ff6b35" opacity="0.6"/>
+  <!-- Radiation lines -->
+  <path d="M32 16 L32 20 M32 44 L32 48 M16 32 L20 32 M44 32 L48 32" stroke="#8b4513" stroke-width="2" opacity="0.7"/>
+  <path d="M21 21 L24 24 M40 40 L43 43 M43 21 L40 24 M24 40 L21 43" stroke="#a0522d" stroke-width="1.5" opacity="0.6"/>
+  <!-- Rust -->
+  <circle cx="8" cy="52" r="2.5" fill="#8b4513" opacity="0.5"/>
+</svg>

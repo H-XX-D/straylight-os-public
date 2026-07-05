@@ -1,0 +1,2 @@
+# Each module is registered as a separate DKMS package
+# Handled by the per-module dkms.conf files installed to /usr/src/

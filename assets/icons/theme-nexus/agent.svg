@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Orbital ring -->
+  <ellipse cx="32" cy="32" rx="28" ry="10" fill="none" stroke="url(#purpleGrad)" stroke-width="0.5" opacity="0.6" transform="rotate(-20 32 32)"/>
+  <ellipse cx="32" cy="32" rx="28" ry="10" fill="none" stroke="url(#cyanGrad)" stroke-width="0.5" opacity="0.4" transform="rotate(20 32 32)"/>
+  <!-- Stars -->
+  <circle cx="8" cy="12" r="0.8" fill="#e2e8f0" opacity="0.8"/>
+  <circle cx="56" cy="16" r="0.6" fill="#5eead4" opacity="0.7"/>
+  <circle cx="12" cy="52" r="0.5" fill="#a78bfa" opacity="0.6"/>
+  <!-- AI Core -->
+  <circle cx="32" cy="28" r="12" fill="url(#purpleGrad)" filter="url(#glow)"/>
+  <circle cx="32" cy="28" r="8" fill="#1e1b4b"/>
+  <!-- Neural nodes -->
+  <circle cx="32" cy="24" r="2.5" fill="url(#cyanGrad)"/>
+  <circle cx="26" cy="30" r="2" fill="url(#silverGrad)"/>
+  <circle cx="38" cy="30" r="2" fill="url(#silverGrad)"/>
+  <circle cx="32" cy="32" r="1.5" fill="url(#cyanGrad)"/>
+  <!-- Connections -->
+  <line x1="32" y1="26.5" x2="32" y2="30.5" stroke="url(#cyanGrad)" stroke-width="1"/>
+  <line x1="30.5" y1="25" x2="27.5" y2="29" stroke="url(#silverGrad)" stroke-width="0.8"/>
+  <line x1="33.5" y1="25" x2="36.5" y2="29" stroke="url(#silverGrad)" stroke-width="0.8"/>
+  <!-- Base -->
+  <ellipse cx="32" cy="48" rx="14" ry="4" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <path d="M18 48 Q32 42 46 48" fill="none" stroke="url(#cyanGrad)" stroke-width="1" opacity="0.7"/>
+</svg>

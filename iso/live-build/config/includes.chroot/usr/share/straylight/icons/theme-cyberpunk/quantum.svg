@@ -1,0 +1,39 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Qubit orbital rings -->
+  <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#ff00ff" stroke-width="1.5" filter="url(#glow-pink)" transform="rotate(0 32 32)"/>
+  <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#00ffff" stroke-width="1.5" filter="url(#glow-cyan)" transform="rotate(60 32 32)"/>
+  <ellipse cx="32" cy="32" rx="24" ry="8" fill="none" stroke="#ffff00" stroke-width="1.5" filter="url(#glow-pink)" transform="rotate(120 32 32)"/>
+
+  <!-- Qubit core -->
+  <circle cx="32" cy="32" r="6" fill="#ffff00" filter="url(#glow-pink)"/>
+  <circle cx="32" cy="32" r="3" fill="#ff00ff"/>
+
+  <!-- Superposition state indicators -->
+  <circle cx="32" cy="12" r="2" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <circle cx="32" cy="52" r="2" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <circle cx="12" cy="32" r="2" fill="#ff00ff" filter="url(#glow-pink)"/>
+  <circle cx="52" cy="32" r="2" fill="#ff00ff" filter="url(#glow-pink)"/>
+
+  <!-- Quantum wave function -->
+  <path d="M8 32 Q16 24 24 32 Q32 40 40 32 Q48 24 56 32" fill="none" stroke="#ffff00" stroke-width="1" opacity="0.6"/>
+
+  <!-- Greek psi symbol -->
+  <text x="44" y="48" fill="#00ffff" font-family="serif" font-size="8" filter="url(#glow-cyan)">ψ</text>
+</svg>

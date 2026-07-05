@@ -1,0 +1,28 @@
+Source: straylight-exotic
+Section: science
+Priority: optional
+Maintainer: StrayLight OS Team <dev@straylight.dev>
+Build-Depends: debhelper-compat (= 13),
+               cmake (>= 3.25),
+               pkg-config,
+               libstraylight-common-dev (>= 1.0.0),
+               libeigen3-dev (>= 3.4),
+               libpmem2-dev (>= 1.12),
+               libfuse3-dev (>= 3.14)
+Standards-Version: 4.6.2
+Homepage: https://straylight.dev
+Rules-Requires-Root: no
+
+Package: straylight-exotic
+Architecture: amd64
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         libstraylight-common1 (>= 1.0.0),
+         straylight-core (>= 1.0.0),
+         fuse3 (>= 3.14)
+Recommends: libpmem2-1 (>= 1.12)
+Description: StrayLight OS exotic computing subsystems
+ Exotic hardware subsystems for StrayLight OS. Includes
+ straylight-quantum (gate simulator), straylight-photonics (optical
+ computing), straylight-pmem (persistent memory), straylight-enclave
+ (SGX secure inference), and straylight-fuse (tensor filesystem).

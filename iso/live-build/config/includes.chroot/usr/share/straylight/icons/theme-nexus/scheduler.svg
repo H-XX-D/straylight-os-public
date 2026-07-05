@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- Time orbit -->
+  <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="url(#purpleGrad)" stroke-width="0.5" opacity="0.5" transform="rotate(-10 32 32)"/>
+  <!-- Clock outer -->
+  <circle cx="32" cy="32" r="20" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <!-- Clock face divisions -->
+  <line x1="32" y1="14" x2="32" y2="18" stroke="url(#purpleGrad)" stroke-width="1.5"/>
+  <line x1="32" y1="46" x2="32" y2="50" stroke="url(#purpleGrad)" stroke-width="1.5"/>
+  <line x1="14" y1="32" x2="18" y2="32" stroke="url(#purpleGrad)" stroke-width="1.5"/>
+  <line x1="46" y1="32" x2="50" y2="32" stroke="url(#purpleGrad)" stroke-width="1.5"/>
+  <!-- Clock hands -->
+  <line x1="32" y1="32" x2="32" y2="20" stroke="url(#cyanGrad)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="32" x2="42" y2="38" stroke="url(#purpleGrad)" stroke-width="2" stroke-linecap="round"/>
+  <!-- Center dot -->
+  <circle cx="32" cy="32" r="2.5" fill="url(#cyanGrad)"/>
+  <!-- Task indicators around clock -->
+  <circle cx="22" cy="18" r="2" fill="url(#purpleGrad)"/>
+  <circle cx="46" cy="26" r="2" fill="url(#cyanGrad)"/>
+  <circle cx="18" cy="40" r="2" fill="url(#cyanGrad)"/>
+  <circle cx="44" cy="46" r="2" fill="url(#purpleGrad)"/>
+  <!-- Stars -->
+  <circle cx="8" cy="10" r="0.6" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="56" cy="14" r="0.5" fill="#5eead4" opacity="0.6"/>
+  <circle cx="54" cy="54" r="0.7" fill="#a78bfa" opacity="0.5"/>
+</svg>

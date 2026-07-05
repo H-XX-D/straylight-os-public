@@ -1,0 +1,32 @@
+# StrayLight OS SGX device rules
+# Provides /dev/straylight-sgx and sets permissions for enclave access
+
+# Intel SGX enclave device (in-kernel driver)
+SUBSYSTEM=="sgx", KERNEL=="sgx_enclave", \
+    GROUP="straylight", MODE="0660", \
+    SYMLINK+="straylight/sgx-enclave"
+
+# Intel SGX provision device
+SUBSYSTEM=="sgx", KERNEL=="sgx_provision", \
+    GROUP="sgx", MODE="0660"
+
+# Legacy SGX DCAP driver device nodes
+SUBSYSTEM=="misc", KERNEL=="sgx_enclave", \
+    GROUP="straylight", MODE="0660"
+
+SUBSYSTEM=="misc", KERNEL=="sgx_provision", \
+    GROUP="sgx", MODE="0660"
+
+# StrayLight enclave kernel module device node
+KERNEL=="straylight-sgx", SUBSYSTEM=="misc", \
+    GROUP="straylight", MODE="0660", \
+    SYMLINK+="straylight/sgx"
+
+# EPC memory sections (read-only info for monitoring)
+SUBSYSTEM=="node", KERNEL=="memory[0-9]*", \
+    ATTR{state}=="online", \
+    TAG+="straylight-epc"
+
+# Notify straylight-core when SGX becomes available
+SUBSYSTEM=="sgx", ACTION=="add", \
+    RUN+="/usr/bin/straylight-core --notify sgx-available"

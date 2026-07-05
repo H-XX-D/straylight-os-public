@@ -1,0 +1,43 @@
+#!/bin/bash
+set -e
+
+DISTRIBUTION="${STRAYLIGHT_LB_DISTRIBUTION:-trixie}"
+VERSION="${STRAYLIGHT_VERSION:-1.0.0}"
+ARCH="${STRAYLIGHT_ARCH:-amd64}"
+APT_RECOMMENDS="${STRAYLIGHT_LB_APT_RECOMMENDS:-false}"
+VERSION_ID="${VERSION//[^[:alnum:]]/_}"
+VOLUME_ID="${STRAYLIGHT_ISO_VOLUME:-STRAYLIGHT_${VERSION_ID}}"
+VOLUME_ID="${VOLUME_ID:0:16}"
+
+lb config noauto \
+    --architectures "$ARCH" \
+    --distribution "$DISTRIBUTION" \
+    --distribution-chroot "$DISTRIBUTION" \
+    --distribution-binary "$DISTRIBUTION" \
+    --parent-distribution "$DISTRIBUTION" \
+    --parent-distribution-chroot "$DISTRIBUTION" \
+    --parent-distribution-binary "$DISTRIBUTION" \
+    --parent-debian-installer-distribution "$DISTRIBUTION" \
+    --archive-areas "main contrib non-free non-free-firmware" \
+    --binary-images iso-hybrid \
+    --binary-filesystem ext4 \
+    --debian-installer none \
+    --bootloaders grub-efi \
+    --bootappend-live "boot=live components quiet splash" \
+    --iso-application "StrayLight OS" \
+    --iso-publisher "StrayLight OS Team <dev@straylight.dev>" \
+    --iso-volume "$VOLUME_ID" \
+    --image-name "straylight-os-${VERSION}" \
+    --debootstrap-options "--variant=minbase" \
+    --apt-recommends "$APT_RECOMMENDS" \
+    --security true \
+    --updates true \
+    --backports false \
+    --cache true \
+    --cache-packages true \
+    --firmware-binary true \
+    --firmware-chroot true \
+    --memtest none \
+    --win32-loader false \
+    --checksums sha256 \
+    "${@}"

@@ -1,0 +1,18 @@
+[Unit]
+Description=StrayLight First Boot Configuration
+Documentation=https://straylight.dev/docs/firstboot
+Before=graphical.target
+After=local-fs.target systemd-tmpfiles-setup.service
+ConditionFirstBoot=yes
+ConditionPathExists=!/var/lib/straylight/state
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/straylight/firstboot.sh
+ExecStartPost=/bin/sh -c 'echo oobe > /var/lib/straylight/state'
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

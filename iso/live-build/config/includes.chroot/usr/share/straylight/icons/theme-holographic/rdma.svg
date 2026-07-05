@@ -1,0 +1,28 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g12" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.4"/>
+    </linearGradient>
+  </defs>
+  <!-- AR Connection Frame -->
+  <rect x="4" y="12" width="24" height="40" rx="2" fill="none" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.4"/>
+  <rect x="36" y="12" width="24" height="40" rx="2" fill="none" stroke="#ff00ff" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.4"/>
+  <!-- Memory Nodes -->
+  <rect x="8" y="16" width="16" height="12" rx="1" fill="url(#g12)" stroke="#00d4ff" stroke-width="1" opacity="0.7"/>
+  <rect x="8" y="36" width="16" height="12" rx="1" fill="url(#g12)" stroke="#00d4ff" stroke-width="1" opacity="0.7"/>
+  <rect x="40" y="16" width="16" height="12" rx="1" fill="url(#g12)" stroke="#ff00ff" stroke-width="1" opacity="0.7"/>
+  <rect x="40" y="36" width="16" height="12" rx="1" fill="url(#g12)" stroke="#ff00ff" stroke-width="1" opacity="0.7"/>
+  <!-- Direct Memory Access Lines -->
+  <line x1="24" y1="22" x2="40" y2="22" stroke="#00d4ff" stroke-width="2" opacity="0.8"/>
+  <line x1="24" y1="42" x2="40" y2="42" stroke="#ff00ff" stroke-width="2" opacity="0.8"/>
+  <!-- Bypass CPU Arrow -->
+  <line x1="28" y1="8" x2="36" y2="8" stroke="#ff00ff" stroke-width="1.5" opacity="0.6" stroke-dasharray="2 2"/>
+  <polygon points="34,6 38,8 34,10" fill="#ff00ff" opacity="0.7"/>
+  <text x="32" y="6" text-anchor="middle" fill="#00d4ff" font-size="3" font-family="monospace" opacity="0.7">BYPASS</text>
+  <!-- Data Flow -->
+  <circle cx="28" cy="22" r="2" fill="#ff00ff" opacity="0.9"/>
+  <circle cx="36" cy="22" r="2" fill="#00d4ff" opacity="0.9"/>
+  <circle cx="28" cy="42" r="2" fill="#00d4ff" opacity="0.9"/>
+  <circle cx="36" cy="42" r="2" fill="#ff00ff" opacity="0.9"/>
+</svg>

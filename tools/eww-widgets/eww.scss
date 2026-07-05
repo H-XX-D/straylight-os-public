@@ -1,0 +1,595 @@
+// ============================================================
+// StrayLight OS — Eww Widget Stylesheet
+// Matches the aios.json color palette + glassmorphism aesthetic
+// ============================================================
+
+// ── Design tokens (aios palette) ────────────────────────────
+$bg:            #050A18;
+$surface-0:     #050A18;
+$surface-1:     #080E1E;
+$surface-2:     #0B1225;
+$surface-3:     #0F1629;
+$surface-4:     #141E34;
+$surface-glass: rgba(8, 14, 30, 0.82);
+
+$accent:        #00F0FF;
+$accent-2:      #7B4FFF;
+$accent-3:      #00B4FF;
+$accent-glow:   rgba(0, 240, 255, 0.18);
+$success:       #00FFC2;
+$warning:       #FFB547;
+$danger:        #FF4C6A;
+$info:          #A6AFFF;
+
+$text-primary:  rgba(255, 255, 255, 0.90);
+$text-secondary:rgba(255, 255, 255, 0.72);
+$text-muted:    rgba(255, 255, 255, 0.40);
+$text-accent:   $accent;
+
+$border-default:rgba(255, 255, 255, 0.07);
+$border-glow:   rgba(0, 240, 255, 0.19);
+
+$radius-sm:  8px;
+$radius-md:  12px;
+$radius-lg:  16px;
+$bar-height: 32px;
+
+// ── Reset ────────────────────────────────────────────────────
+* {
+  all: unset;
+  font-family: "JetBrains Mono", "Iosevka", "Fira Mono", monospace;
+  font-size: 11px;
+  color: $text-primary;
+}
+
+// ── System bar ───────────────────────────────────────────────
+.system-bar {
+  background: $surface-glass;
+  border-top: 1px solid $border-default;
+  padding: 0 14px;
+  min-height: $bar-height;
+
+  // Subtle top glow line
+  box-shadow: 0 -1px 0 0 $border-glow, inset 0 1px 0 0 rgba(255,255,255,0.04);
+}
+
+.bar-left,
+.bar-right {
+  padding: 0 4px;
+}
+
+.bar-center {
+  // centered section
+}
+
+.bar-divider {
+  color: $border-default;
+  font-size: 14px;
+}
+
+// ── Metric groups ────────────────────────────────────────────
+.metric-group {
+}
+
+.metric-icon {
+  font-size: 13px;
+  color: $accent;
+  min-width: 16px;
+}
+
+.gpu-icon {
+  color: $accent-2;
+}
+
+.metric-value {
+  font-size: 10.5px;
+  color: $text-primary;
+  letter-spacing: 0.02em;
+}
+
+.metric-temp {
+  font-size: 10px;
+  color: $text-muted;
+}
+
+.uptime-label {
+  font-size: 10px;
+  color: $text-muted;
+  letter-spacing: 0.04em;
+}
+
+// ── Mini progress bars in the bar ────────────────────────────
+scale,
+.mini-bar {
+  min-width:  60px;
+  min-height: 3px;
+
+  trough {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    min-height: 3px;
+  }
+
+  highlight,
+  progress {
+    border-radius: 2px;
+    min-height: 3px;
+  }
+}
+
+.cpu-bar     highlight { background: $accent; }
+.ram-bar     highlight { background: $accent-2; }
+.gpu-bar     highlight { background: $accent-2; }
+.entropy-bar highlight { background: $success; }
+
+// ── Toggle buttons ───────────────────────────────────────────
+.toggle-btn {
+  background: transparent;
+  border: 1px solid $border-default;
+  border-radius: $radius-sm;
+  padding: 3px 8px;
+  color: $text-secondary;
+  font-size: 13px;
+  transition: 200ms;
+
+  &:hover {
+    background: $accent-glow;
+    border-color: $border-glow;
+    color: $accent;
+  }
+
+  &.active {
+    background: $accent-glow;
+    border-color: $accent;
+    color: $accent;
+    box-shadow: 0 0 8px $accent-glow;
+  }
+}
+
+// ── Alert indicator ──────────────────────────────────────────
+.alert-dot {
+  color: $danger;
+  font-size: 8px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.alert-count {
+  color: $danger;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+  50%       { opacity: 0.4; }
+}
+
+// ── Floating panels (shared) ─────────────────────────────────
+.panel {
+  background: $surface-glass;
+  border: 1px solid $border-default;
+  border-radius: $radius-lg;
+  padding: 14px;
+  box-shadow:
+    0 4px 32px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255,255,255,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+
+  // Subtle top accent line
+  border-top-color: rgba(0, 240, 255, 0.25);
+}
+
+.panel-header {
+  margin-bottom: 6px;
+}
+
+.panel-icon {
+  font-size: 16px;
+  color: $accent;
+}
+
+.panel-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-primary;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: $text-muted;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+
+  &:hover {
+    color: $danger;
+    background: rgba(255, 76, 106, 0.12);
+  }
+}
+
+.section-title {
+  font-size: 10px;
+  color: $text-muted;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.divider-line {
+  color: $border-default;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.launch-btn {
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.20);
+  border-radius: $radius-sm;
+  padding: 4px 10px;
+  color: $accent;
+  font-size: 11px;
+  margin-top: 4px;
+  align-self: flex-start;
+
+  &:hover {
+    background: $accent-glow;
+    border-color: $accent;
+    box-shadow: 0 0 8px $accent-glow;
+  }
+}
+
+// ── GPU panel ────────────────────────────────────────────────
+.gpu-panel {
+  border-top-color: rgba(123, 79, 255, 0.40);
+}
+
+.gpu-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $border-default;
+  border-radius: $radius-md;
+  padding: 8px 10px;
+}
+
+.gpu-name {
+  font-size: 10.5px;
+  color: $accent-2;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.gpu-metric {
+  min-width: 60px;
+}
+
+.gauge-label {
+  font-size: 9px;
+  color: $text-muted;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.gauge-value {
+  font-size: 10.5px;
+  color: $text-primary;
+
+  &.accent { color: $accent; }
+}
+
+.gauge-bar {
+  min-width: 56px;
+  min-height: 4px;
+  margin: 1px 0;
+
+  trough {
+    background: rgba(255,255,255,0.06);
+    border-radius: 3px;
+    min-height: 4px;
+  }
+
+  highlight, progress {
+    border-radius: 3px;
+    min-height: 4px;
+  }
+}
+
+.gpu-util-bar highlight { background: $accent-2; }
+.gpu-vram-bar highlight { background: linear-gradient(to right, $accent-2, $accent); }
+.entropy-gauge highlight { background: $success; }
+
+.inference-section,
+.models-section {
+  border-top: 1px solid $border-default;
+  padding-top: 6px;
+  margin-top: 4px;
+}
+
+.model-item {
+  font-size: 10px;
+  color: $text-secondary;
+  padding: 1px 0;
+}
+
+// ── HPC panel ────────────────────────────────────────────────
+.hpc-panel {
+  border-top-color: rgba(0, 255, 194, 0.30);
+}
+
+.node-grid {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid $border-default;
+  border-radius: $radius-sm;
+  padding: 8px;
+}
+
+.node-tile {
+  border-radius: 5px;
+
+  &.node-online {
+    background: rgba(0, 255, 194, 0.15);
+    border: 1px solid rgba(0, 255, 194, 0.35);
+  }
+
+  &.node-offline {
+    background: rgba(255, 76, 106, 0.12);
+    border: 1px solid rgba(255, 76, 106, 0.25);
+  }
+}
+
+.node-label {
+  font-size: 9px;
+  color: $text-secondary;
+}
+
+.job-section {
+  border-top: 1px solid $border-default;
+  padding-top: 6px;
+  margin-top: 4px;
+}
+
+.section-header {
+  margin-bottom: 4px;
+}
+
+.badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 10px;
+  letter-spacing: 0.04em;
+
+  &.running {
+    background: rgba(0, 240, 255, 0.14);
+    color: $accent;
+  }
+
+  &.pending {
+    background: rgba(255, 181, 71, 0.14);
+    color: $warning;
+  }
+}
+
+.job-row {
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.job-state-dot {
+  font-size: 7px;
+
+  &.running { color: $accent;  }
+  &.pending  { color: $warning; }
+}
+
+.job-id {
+  font-size: 9px;
+  color: $text-muted;
+  min-width: 40px;
+}
+
+.job-name {
+  font-size: 10px;
+  color: $text-primary;
+  // Eww truncation via widget property, not CSS
+}
+
+.job-elapsed {
+  font-size: 9px;
+  color: $text-muted;
+}
+
+// ── Research panel ───────────────────────────────────────────
+.research-panel {
+  border-top-color: rgba(166, 175, 255, 0.35);
+}
+
+.research-section {
+  padding: 4px 0;
+}
+
+.snn-stats,
+.quantum-stats {
+}
+
+.stat-block {
+  min-width: 64px;
+}
+
+.stat-label {
+  font-size: 9px;
+  color: $text-muted;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 13px;
+  color: $text-primary;
+  font-weight: 600;
+
+  &.accent { color: $accent; }
+  &.muted  { color: $text-muted; }
+}
+
+.alert-title {
+  color: $danger !important;
+}
+
+.alert-item {
+  font-size: 10px;
+  color: rgba(255, 76, 106, 0.85);
+  padding: 1px 0;
+}
+
+// ── Entropy group in bar ─────────────────────────────────────
+.entropy-group {
+  .entropy-icon {
+    color: $success;
+  }
+  .mini-bar {
+    min-width: 40px;
+  }
+}
+
+// ── Clock ─────────────────────────────────────────────────────
+.clock-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: 0.03em;
+}
+
+.date-label {
+  font-size: 10px;
+  color: $text-muted;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.bar-sep {
+  color: $text-muted;
+  font-size: 10px;
+}
+
+// ── Network widget ────────────────────────────────────────────
+.net-group {
+  .net-icon { color: $accent; font-size: 10px; }
+  .net-ip   { font-size: 9px; color: $text-secondary; }
+  .net-rx   { font-size: 9px; color: $success; }
+  .net-tx   { font-size: 9px; color: $accent-2; }
+}
+
+// ── DND toggle ────────────────────────────────────────────────
+.dnd-btn, .dnd-panel-btn {
+  &.active {
+    background: rgba(255, 76, 106, 0.18);
+    border-color: $danger;
+    color: $danger;
+    box-shadow: 0 0 6px rgba(255, 76, 106, 0.30);
+  }
+}
+
+// ── Notification bell + badge ─────────────────────────────────
+.notif-btn {
+  position: relative;
+}
+
+.notif-badge {
+  font-size: 8px;
+  font-weight: 700;
+  color: $danger;
+  // Positioned via overlay — no absolute needed in Eww
+}
+
+// ── Notification panel ────────────────────────────────────────
+.notify-panel {
+  border-top-color: rgba(255, 181, 71, 0.35);
+}
+
+.notify-empty {
+  font-size: 11px;
+  color: $text-muted;
+  padding: 16px 0;
+  // center horizontally
+}
+
+.notify-list {
+  padding: 2px 0;
+}
+
+.notify-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $border-default;
+  border-radius: $radius-sm;
+  padding: 8px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(0, 240, 255, 0.15);
+  }
+}
+
+.notify-app-badge {
+  font-size: 13px;
+  font-weight: 700;
+  color: $accent;
+  background: rgba(0, 240, 255, 0.10);
+  border: 1px solid rgba(0, 240, 255, 0.20);
+  border-radius: $radius-sm;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0 6px;
+}
+
+.notify-app {
+  font-size: 10px;
+  font-weight: 600;
+  color: $accent;
+  letter-spacing: 0.04em;
+}
+
+.notify-elapsed {
+  font-size: 9px;
+  color: $text-muted;
+}
+
+.notify-summary {
+  font-size: 11px;
+  color: $text-primary;
+  font-weight: 500;
+}
+
+.notify-body {
+  font-size: 10px;
+  color: $text-secondary;
+  line-height: 1.4;
+}
+
+.dismiss-btn {
+  background: transparent;
+  border: none;
+  color: $text-muted;
+  font-size: 13px;
+  padding: 0 2px;
+  min-width: 18px;
+
+  &:hover {
+    color: $danger;
+  }
+}
+
+.clear-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 76, 106, 0.25);
+  border-radius: $radius-sm;
+  color: rgba(255, 76, 106, 0.7);
+  font-size: 11px;
+  padding: 2px 6px;
+  margin-right: 4px;
+
+  &:hover {
+    background: rgba(255, 76, 106, 0.12);
+    color: $danger;
+  }
+}

@@ -1,0 +1,28 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7a7a7a"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#7a7a7a"/>
+    </linearGradient>
+  </defs>
+  <!-- Bypass arrow main -->
+  <path d="M8 32 L48 32 L48 24 L64 34 L48 44 L48 36 L8 36 Z" fill="url(#silver)"/>
+  <!-- Hexagon grid representing packets -->
+  <path d="M12 16 L18 19 L18 25 L12 28 L6 25 L6 19 Z" fill="#c0c0c0" stroke="#7a7a7a"/>
+  <path d="M28 16 L34 19 L34 25 L28 28 L22 25 L22 19 Z" fill="#c0c0c0" stroke="#7a7a7a"/>
+  <path d="M44 16 L50 19 L50 25 L44 28 L38 25 L38 19 Z" fill="#c0c0c0" stroke="#7a7a7a"/>
+  <!-- Bypass indicator line -->
+  <line x1="4" y1="34" x2="20" y2="34" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="2,1"/>
+  <line x1="36" y1="34" x2="52" y2="34" stroke="#e8e8e8" stroke-width="1" stroke-dasharray="2,1"/>
+  <!-- Nano connection points -->
+  <circle cx="12" cy="22" r="2" fill="#7a7a7a"/>
+  <circle cx="28" cy="22" r="2" fill="#7a7a7a"/>
+  <circle cx="44" cy="22" r="2" fill="#7a7a7a"/>
+  <!-- Bottom hex structure -->
+  <path d="M20 48 L28 52 L28 60 L20 64 L12 60 L12 52 Z" fill="#a0a0a0"/>
+  <path d="M44 48 L52 52 L52 60 L44 64 L36 60 L36 52 Z" fill="#a0a0a0"/>
+  <!-- Vertical nano threads -->
+  <line x1="20" y1="28" x2="20" y2="48" stroke="#7a7a7a" stroke-width="0.5"/>
+  <line x1="44" y1="28" x2="44" y2="48" stroke="#7a7a7a" stroke-width="0.5"/>
+</svg>

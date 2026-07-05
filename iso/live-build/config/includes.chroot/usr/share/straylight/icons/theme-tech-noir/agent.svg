@@ -1,0 +1,29 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="concrete" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
+    </linearGradient>
+    <filter id="rust">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise"/>
+      <feBlend in="SourceGraphic" in2="noise" mode="multiply"/>
+    </filter>
+  </defs>
+  <!-- Concrete base -->
+  <rect x="4" y="4" width="56" height="56" rx="2" fill="url(#concrete)" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Cracks -->
+  <path d="M8 48 L12 52 M48 8 L52 12" stroke="#0d0d0d" stroke-width="1.5" opacity="0.6"/>
+  <!-- Agent core -->
+  <circle cx="32" cy="26" r="12" fill="none" stroke="#ff6b35" stroke-width="2.5" opacity="0.9"/>
+  <circle cx="32" cy="26" r="6" fill="#ff6b35" opacity="0.4"/>
+  <!-- Eye -->
+  <rect x="28" y="22" width="8" height="8" fill="#ff6b35"/>
+  <rect x="30" y="24" width="4" height="4" fill="#1a1a1a"/>
+  <!-- Neural connections -->
+  <path d="M32 38 L32 52" stroke="#8b4513" stroke-width="2"/>
+  <path d="M24 44 L40 44" stroke="#8b4513" stroke-width="2"/>
+  <path d="M20 52 L28 44 M36 44 L44 52" stroke="#ff6b35" stroke-width="1.5" opacity="0.7"/>
+  <!-- Rust spots -->
+  <circle cx="12" cy="52" r="3" fill="#a0522d" opacity="0.5"/>
+  <circle cx="50" cy="14" r="2" fill="#8b4513" opacity="0.4"/>
+</svg>

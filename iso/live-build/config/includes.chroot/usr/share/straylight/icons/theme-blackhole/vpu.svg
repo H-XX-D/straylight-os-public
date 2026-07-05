@@ -1,0 +1,27 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bh17" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000"/>
+      <stop offset="55%" stop-color="#1a0a00"/>
+      <stop offset="100%" stop-color="#ff6600"/>
+    </radialGradient>
+    <linearGradient id="gpuGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb700"/>
+      <stop offset="100%" stop-color="#ff6600"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="28" fill="url(#bh17)" stroke="#ff6600" stroke-width="2"/>
+  <rect x="14" y="14" width="36" height="36" rx="3" fill="#000" stroke="url(#gpuGlow)" stroke-width="2"/>
+  <path d="M22 22 L26 22 L26 26 L22 26 Z" fill="#ffb700"/>
+  <path d="M30 22 L34 22 L34 26 L30 26 Z" fill="#ffb700"/>
+  <path d="M38 22 L42 22 L42 26 L38 26 Z" fill="#ffb700"/>
+  <path d="M22 30 L26 30 L26 34 L22 34 Z" fill="#ff6600"/>
+  <path d="M30 30 L34 30 L34 34 L30 34 Z" fill="#ff6600"/>
+  <path d="M38 30 L42 30 L42 34 L38 34 Z" fill="#ff6600"/>
+  <path d="M22 38 L26 38 L26 42 L22 42 Z" fill="#ffb700"/>
+  <path d="M30 38 L34 38 L34 42 L30 42 Z" fill="#ffb700"/>
+  <path d="M38 38 L42 38 L42 42 L38 42 Z" fill="#ffb700"/>
+  <path d="M14 46 L50 46" stroke="#fff" stroke-width="2"/>
+  <path d="M18 50 L22 50" stroke="#ff6600" stroke-width="2" stroke-linecap="round"/>
+  <path d="M42 50 L46 50" stroke="#ff6600" stroke-width="2" stroke-linecap="round"/>
+</svg>

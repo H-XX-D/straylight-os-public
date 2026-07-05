@@ -1,0 +1,35 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="energyGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#bfffdb"/>
+      <stop offset="50%" stop-color="#39ff85"/>
+      <stop offset="100%" stop-color="#1a8f4a"/>
+    </radialGradient>
+  </defs>
+  <!-- Energy core blob -->
+  <ellipse cx="32" cy="32" rx="14" ry="16" fill="url(#energyGrad)" filter="url(#glow)"/>
+  <!-- Power tentacles -->
+  <path d="M18 20c-6-4-10-2-12 2" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M46 20c6-4 10-2 12 2" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M18 44c-6 4-10 2-12-2" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M46 44c6 4 10 2 12-2" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Energy meter bars inside -->
+  <rect x="26" y="24" width="4" height="16" rx="1" fill="#0a1f0a"/>
+  <rect x="34" y="20" width="4" height="24" rx="1" fill="#0a1f0a"/>
+  <!-- Pulse indicators -->
+  <circle cx="28" cy="32" r="1.5" fill="#39ff85">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="36" cy="28" r="1.5" fill="#39ff85">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Outer energy ring -->
+  <ellipse cx="32" cy="32" rx="22" ry="26" fill="none" stroke="#39ff85" stroke-width="1" stroke-dasharray="4,4" opacity="0.5" filter="url(#glow)"/>
+</svg>

@@ -1,0 +1,27 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Arrow worm as fast XDP path -->
+  <path d="M8 32 L48 32" stroke="#00ccff" stroke-width="4" stroke-linecap="round"/>
+  <!-- Arrow head -->
+  <path d="M44 24 L56 32 L44 40 Z" fill="#39ff85"/>
+  <!-- Fast path bypass indicator -->
+  <path d="M16 26 L40 26" stroke="#39ff85" stroke-width="2" opacity="0.7"/>
+  <path d="M16 38 L40 38" stroke="#39ff85" stroke-width="2" opacity="0.7"/>
+  <!-- XDP processing nodes -->
+  <circle cx="20" cy="32" r="3" fill="#00ccff">
+    <animate attributeName="r" values="2;3.5;2" dur="0.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="32" cy="32" r="3" fill="#39ff85">
+    <animate attributeName="r" values="2;3.5;2" dur="0.5s" begin="0.25s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="44" cy="32" r="3" fill="#00ccff">
+    <animate attributeName="r" values="2;3.5;2" dur="0.5s" begin="0.125s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Speed lines -->
+  <line x1="12" y1="20" x2="8" y2="16" stroke="#00ccff" stroke-width="1" opacity="0.5"/>
+  <line x1="16" y1="18" x2="12" y2="12" stroke="#39ff85" stroke-width="1" opacity="0.5"/>
+  <line x1="12" y1="44" x2="8" y2="48" stroke="#00ccff" stroke-width="1" opacity="0.5"/>
+  <line x1="16" y1="46" x2="12" y2="52" stroke="#39ff85" stroke-width="1" opacity="0.5"/>
+  <!-- Bubbles -->
+  <circle cx="6" cy="28" r="2" fill="#39ff85" opacity="0.5"/>
+  <circle cx="58" cy="48" r="2" fill="#00ccff" opacity="0.4"/>
+</svg>

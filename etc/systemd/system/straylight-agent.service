@@ -1,0 +1,15 @@
+[Unit]
+Description=StrayLight ML Agent Daemon
+After=straylight-bus.service straylight-registry.service
+Requires=straylight-bus.service straylight-registry.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-agent
+Restart=on-failure
+RestartSec=2s
+RuntimeDirectory=straylight
+WatchdogSec=60s
+
+[Install]
+WantedBy=multi-user.target

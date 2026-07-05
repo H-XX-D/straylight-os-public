@@ -1,0 +1,33 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g15" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- AR Clock Frame -->
+  <circle cx="32" cy="32" r="26" fill="none" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="4 2" opacity="0.3"/>
+  <!-- Glass Clock Face -->
+  <circle cx="32" cy="32" r="20" fill="url(#g15)" stroke="#ff00ff" stroke-width="1.5" opacity="0.7"/>
+  <!-- Clock Markers -->
+  <line x1="32" y1="14" x2="32" y2="18" stroke="#00d4ff" stroke-width="1.5" opacity="0.8"/>
+  <line x1="32" y1="46" x2="32" y2="50" stroke="#00d4ff" stroke-width="1.5" opacity="0.8"/>
+  <line x1="14" y1="32" x2="18" y2="32" stroke="#ff00ff" stroke-width="1.5" opacity="0.8"/>
+  <line x1="46" y1="32" x2="50" y2="32" stroke="#ff00ff" stroke-width="1.5" opacity="0.8"/>
+  <!-- Clock Hands -->
+  <line x1="32" y1="32" x2="32" y2="20" stroke="#00d4ff" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <line x1="32" y1="32" x2="42" y2="38" stroke="#ff00ff" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+  <!-- Thread Indicators -->
+  <circle cx="24" cy="24" r="3" fill="#00d4ff" opacity="0.7"/>
+  <circle cx="40" cy="24" r="3" fill="#ff00ff" opacity="0.7"/>
+  <circle cx="24" cy="40" r="3" fill="#ff00ff" opacity="0.7"/>
+  <circle cx="40" cy="40" r="3" fill="#00d4ff" opacity="0.7"/>
+  <!-- Center Hub -->
+  <circle cx="32" cy="32" r="4" fill="#ff00ff" opacity="0.5"/>
+  <circle cx="32" cy="32" r="2" fill="#00d4ff" opacity="0.9"/>
+  <!-- AR Corner Marks -->
+  <circle cx="10" cy="10" r="1.5" fill="#00d4ff" opacity="0.6"/>
+  <circle cx="54" cy="10" r="1.5" fill="#ff00ff" opacity="0.6"/>
+  <circle cx="10" cy="54" r="1.5" fill="#ff00ff" opacity="0.6"/>
+  <circle cx="54" cy="54" r="1.5" fill="#00d4ff" opacity="0.6"/>
+</svg>

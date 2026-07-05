@@ -1,0 +1,27 @@
+Source: straylight-ml
+Section: science
+Priority: optional
+Maintainer: StrayLight OS Team <dev@straylight.dev>
+Build-Depends: debhelper-compat (= 13),
+               cmake (>= 3.25),
+               pkg-config,
+               libstraylight-common-dev (>= 1.0.0),
+               libsdbus-c++-dev (>= 2.0)
+Standards-Version: 4.6.2
+Homepage: https://straylight.dev
+Rules-Requires-Root: no
+
+Package: straylight-ml
+Architecture: amd64
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         libstraylight-common1 (>= 1.0.0),
+         straylight-core (>= 1.0.0)
+Recommends: nvidia-cuda-toolkit | rocm-dev
+Suggests: python3-torch, python3-jax
+Description: StrayLight OS machine learning subsystem
+ ML tools for StrayLight OS. Includes straylight-compiler (graph
+ optimization and codegen), straylight-agent (event-driven task
+ distribution), straylight-morph (quantization, pruning, distillation),
+ straylight-snn (spiking neural network simulator), and straylight-rhem
+ (heterogeneous resource management).

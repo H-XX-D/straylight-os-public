@@ -1,0 +1,22 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bh14" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000"/>
+      <stop offset="55%" stop-color="#1a0a00"/>
+      <stop offset="100%" stop-color="#ff6600"/>
+    </radialGradient>
+    <linearGradient id="energyGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#ff6600"/>
+      <stop offset="100%" stop-color="#ffb700"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="28" fill="url(#bh14)" stroke="#ff6600" stroke-width="2"/>
+  <path d="M32 48 L32 24" stroke="#ffb700" stroke-width="3" stroke-linecap="round"/>
+  <path d="M22 44 L22 28" stroke="#ff6600" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M42 44 L42 28" stroke="#ff6600" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M16 40 L16 32" stroke="#ff6600" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M48 40 L48 32" stroke="#ff6600" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M10 36 L54 36" stroke="url(#energyGlow)" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="32" cy="20" r="5" fill="#ffb700"/>
+  <path d="M30 18 L32 14 L34 18" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,7 @@
+usr/bin/straylight-compiler
+usr/bin/straylight-agent
+usr/bin/straylight-morph
+usr/bin/straylight-snn
+usr/bin/straylight-rhem
+etc/straylight/compiler.conf
+etc/straylight/agent.conf

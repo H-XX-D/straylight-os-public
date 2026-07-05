@@ -1,0 +1,26 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Network base -->
+  <rect x="4" y="4" width="56" height="56" rx="2" fill="#252525" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Memory regions -->
+  <rect x="10" y="16" width="16" height="20" rx="1" fill="#1a1a1a" stroke="#ff6b35" stroke-width="1.5"/>
+  <rect x="38" y="16" width="16" height="20" rx="1" fill="#1a1a1a" stroke="#ff6b35" stroke-width="1.5"/>
+  <!-- Direct connection (bypassing CPU) -->
+  <path d="M26 26 L38 26" stroke="#ff6b35" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="34,22 42,26 34,30" fill="#ff6b35"/>
+  <!-- Bypassed/idle CPU in middle -->
+  <rect x="28" y="36" width="8" height="12" rx="1" fill="#2a2a2a" stroke="#8b4513" stroke-width="1" stroke-dasharray="2 2" opacity="0.6"/>
+  <!-- Data packets flowing -->
+  <rect x="20" y="22" width="4" height="3" fill="#ff6b35" opacity="0.9"/>
+  <rect x="24" y="28" width="4" height="3" fill="#a0522d" opacity="0.8"/>
+  <!-- Memory indicators -->
+  <line x1="14" y1="20" x2="22" y2="20" stroke="#8b4513" stroke-width="1"/>
+  <line x1="14" y1="24" x2="22" y2="24" stroke="#8b4513" stroke-width="1"/>
+  <line x1="42" y1="20" x2="50" y2="20" stroke="#8b4513" stroke-width="1"/>
+  <line x1="42" y1="24" x2="50" y2="24" stroke="#8b4513" stroke-width="1"/>
+  <!-- Network fabric lines -->
+  <path d="M10 52 L18 36" stroke="#8b4513" stroke-width="1" opacity="0.5"/>
+  <path d="M54 52 L46 36" stroke="#8b4513" stroke-width="1" opacity="0.5"/>
+  <!-- Rust -->
+  <circle cx="8" cy="50" r="2.5" fill="#a0522d" opacity="0.5"/>
+  <circle cx="56" cy="10" r="2" fill="#8b4513" opacity="0.4"/>
+</svg>

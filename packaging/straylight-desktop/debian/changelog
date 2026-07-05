@@ -1,0 +1,10 @@
+straylight-desktop (1.0.0-1) unstable; urgency=medium
+
+  * Initial release.
+  * Desktop applications and first-run tools for the distro desktop
+  * Built-in apps: terminal, file manager, system monitor, settings
+  * Wizard (personalization) and OOBE (first-login setup)
+  * Themes: default, cyberpunk, minimal
+  * Calamares installer modules for hardware detection
+
+ -- StrayLight OS Team <dev@straylight.dev>  Sun, 16 Mar 2026 00:00:00 +0000

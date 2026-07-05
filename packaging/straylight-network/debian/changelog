@@ -1,0 +1,8 @@
+straylight-network (1.0.0-1) unstable; urgency=medium
+
+  * Initial release.
+  * straylight-xdp: eBPF/AF_XDP loader and manager
+  * straylight-dpdk: DPDK packet processing pipeline
+  * straylight-rdma-bus: RDMA zero-copy tensor transport
+
+ -- StrayLight OS Team <dev@straylight.dev>  Sun, 16 Mar 2026 00:00:00 +0000

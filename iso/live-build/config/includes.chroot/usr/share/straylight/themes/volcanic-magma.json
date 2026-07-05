@@ -1,0 +1,21 @@
+{
+  "name": "Volcanic Magma",
+  "colors": {
+    "bg": "#0a0500",
+    "fg": "#ffaa00",
+    "accent": "#ff4500",
+    "panel": "#2a1510"
+  },
+  "font_size": 16.0,
+  "corner_radius": 2.0,
+  "icon_theme": "theme-magma",
+  "vars": {
+    "surface.hover": "#ff6600",
+    "surface.active": "#ff2200",
+    "border.color": "#1a0a00",
+    "text.dim": "#8b3a0a",
+    "success": "#ffaa00",
+    "warning": "#ff6600",
+    "error": "#ff0000"
+  }
+}

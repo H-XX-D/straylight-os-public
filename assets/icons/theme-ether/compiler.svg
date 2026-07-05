@@ -1,0 +1,43 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="compSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#c0c0c0"/>
+    </linearGradient>
+    <linearGradient id="compGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#b8941f"/>
+    </linearGradient>
+  </defs>
+  <!-- Ethereal scroll/container -->
+  <rect x="16" y="12" width="32" height="40" rx="3" fill="none" stroke="url(#compSilver)" stroke-width="1.5" opacity="0.8"/>
+  <!-- Divine transformation symbols -->
+  <text x="22" y="26" fill="#ffffff" font-family="serif" font-size="8" opacity="0.9">✦</text>
+  <path d="M28 24 L36 24 L32 30 Z" fill="#d4af37" opacity="0.8">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="1.5s" repeatCount="indefinite"/>
+  </path>
+  <text x="38" y="26" fill="#ffffff" font-family="serif" font-size="8" opacity="0.9">✦</text>
+  <!-- Glowing code lines -->
+  <line x1="20" y1="34" x2="44" y2="34" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  <line x1="20" y1="38" x2="40" y2="38" stroke="#d4af37" stroke-width="1" opacity="0.7">
+    <animate attributeName="x2" values="40;44;40" dur="2s" repeatCount="indefinite"/>
+  </line>
+  <line x1="20" y1="42" x2="36" y2="42" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  <!-- Spiritual sparks -->
+  <circle cx="32" cy="48" r="1.5" fill="#d4af37">
+    <animate attributeName="cy" values="48;44;48" dur="1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="28" cy="50" r="1" fill="#ffffff">
+    <animate attributeName="cy" values="50;46;50" dur="1.2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="36" cy="50" r="1" fill="#ffffff">
+    <animate attributeName="cy" values="50;46;50" dur="0.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Mystical aura -->
+  <ellipse cx="32" cy="32" rx="20" ry="26" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.3">
+    <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="20s" repeatCount="indefinite"/>
+  </ellipse>
+</svg>

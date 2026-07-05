@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0
+# StrayLight OS — Hardware Entropy Source
+
+obj-m := straylight-entropy.o
+
+straylight-entropy-y := entropy_main.o entropy_jitter.o entropy_rdrand.o entropy_health.o
+
+ccflags-y := -std=gnu11 -DSTRAYLIGHT_ENTROPY

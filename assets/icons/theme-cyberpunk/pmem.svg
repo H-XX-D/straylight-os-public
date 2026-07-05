@@ -1,0 +1,40 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Memory module outline -->
+  <rect x="8" y="12" width="48" height="40" rx="2" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+
+  <!-- Memory chips -->
+  <rect x="14" y="18" width="12" height="8" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="30" y="18" width="12" height="8" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="14" y="30" width="12" height="8" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="30" y="30" width="12" height="8" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="14" y="42" width="12" height="6" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="30" y="42" width="12" height="6" fill="#ffff00" filter="url(#glow-pink)"/>
+
+  <!-- Persistent indicator (battery/flash) -->
+  <path d="M48 18 H54 V24 H48 Z" fill="#ffff00" filter="url(#glow-pink)"/>
+  <path d="M50 16 V26" stroke="#ff00ff" stroke-width="2"/>
+  <path d="M52 16 V26" stroke="#ff00ff" stroke-width="2"/>
+
+  <!-- Data retention symbol -->
+  <path d="M48 38 L52 32 L56 38 L52 44 Z" fill="#ffff00" filter="url(#glow-cyan)"/>
+
+  <!-- Infinity persistence -->
+  <path d="M46 52 Q50 48 54 52 Q58 56 54 60 Q50 64 46 60 Q42 56 46 52" fill="none" stroke="#00ffff" stroke-width="1.5" filter="url(#glow-cyan)"/>
+</svg>

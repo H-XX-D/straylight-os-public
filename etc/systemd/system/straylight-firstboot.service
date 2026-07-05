@@ -1,0 +1,15 @@
+[Unit]
+Description=StrayLight First Boot Initialization
+ConditionPathExists=/var/lib/straylight/state
+After=local-fs.target systemd-machine-id-commit.service
+Before=graphical.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/straylight/straylight-firstboot
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical.target

@@ -1,0 +1,27 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Virtual GPU - Toxic graphics processing -->
+  <!-- GPU chip -->
+  <rect x="8" y="12" width="48" height="40" rx="3" fill="currentColor" opacity="0.9"/>
+  <rect x="12" y="16" width="40" height="28" rx="2" fill="#000"/>
+  <!-- Display connector -->
+  <rect x="20" y="48" width="24" height="8" rx="1" fill="currentColor"/>
+  <!-- Processing cores with biohazard -->
+  <circle cx="22" cy="24" r="5" fill="currentColor"/>
+  <circle cx="42" cy="24" r="5" fill="currentColor"/>
+  <circle cx="22" cy="38" r="5" fill="currentColor"/>
+  <circle cx="42" cy="38" r="5" fill="currentColor"/>
+  <!-- Core symbols -->
+  <circle cx="22" cy="24" r="3" fill="#000"/>
+  <circle cx="42" cy="24" r="3" fill="#000"/>
+  <circle cx="22" cy="38" r="3" fill="#000"/>
+  <circle cx="42" cy="38" r="3" fill="#000"/>
+  <!-- Biohazard in center -->
+  <circle cx="32" cy="30" r="4" fill="currentColor"/>
+  <path d="M32 28c-1 0-2 0-2 1 0 0 1 0 1 0 0 0 0 1 0 1 0 0-1 0-1-1 0 1 0 1-1 2 1 0 2 0 2 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 1 0 2 0 2 0-1 0-1-1-1-2 0 1 0 1-1 1 0 0 0-1 0-1 0 0 1 0 1 0-1 0-1-1-2-1z" fill="#000"/>
+  <!-- Fan/vent slots -->
+  <path d="M16 8v-4M24 8v-4M32 8v-4M40 8v-4M48 8v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <!-- Radiation output -->
+  <path d="M8 24c-3 0-6 2-6 6s3 6 6 6M56 24c3 0 6 2 6 6s-3 6-6 6" stroke="currentColor" stroke-width="2" fill="none"/>
+  <!-- Toxic pins -->
+  <path d="M12 56v4M20 56v4M28 56v4M36 56v4M44 56v4M52 56v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+</svg>

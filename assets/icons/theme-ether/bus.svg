@@ -1,0 +1,48 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="busGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#d4af37" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="busGlow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Ethereal pathways -->
+  <rect x="8" y="28" width="48" height="2" fill="url(#busGold)" opacity="0.6" rx="1"/>
+  <rect x="8" y="34" width="48" height="2" fill="url(#busGold)" opacity="0.6" rx="1"/>
+  <!-- Spirit nodes -->
+  <circle cx="12" cy="31" r="4" fill="#ffffff" filter="url(#busGlow)" opacity="0.9"/>
+  <circle cx="32" cy="31" r="5" fill="#d4af37" filter="url(#busGlow)" opacity="0.9">
+    <animate attributeName="r" values="5;6;5" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="52" cy="31" r="4" fill="#ffffff" filter="url(#busGlow)" opacity="0.9"/>
+  <!-- Flowing energy -->
+  <circle cx="12" cy="31" r="2" fill="#ffffff">
+    <animate attributeName="cx" values="12;52;12" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="12" cy="31" r="2" fill="#d4af37">
+    <animate attributeName="cx" values="12;52;12" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Divine connections -->
+  <path d="M12 20 Q32 15 52 20" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.4" stroke-dasharray="2,2">
+    <animate attributeName="stroke-dashoffset" values="0;4" dur="1s" repeatCount="indefinite"/>
+  </path>
+  <path d="M12 42 Q32 47 52 42" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.4" stroke-dasharray="2,2">
+    <animate attributeName="stroke-dashoffset" values="0;4" dur="1s" repeatCount="indefinite"/>
+  </path>
+  <!-- Sacred terminals -->
+  <rect x="10" y="18" width="4" height="4" fill="none" stroke="#c0c0c0" stroke-width="0.5" rx="1"/>
+  <rect x="30" y="18" width="4" height="4" fill="none" stroke="#d4af37" stroke-width="0.5" rx="1"/>
+  <rect x="50" y="18" width="4" height="4" fill="none" stroke="#c0c0c0" stroke-width="0.5" rx="1"/>
+  <rect x="10" y="42" width="4" height="4" fill="none" stroke="#c0c0c0" stroke-width="0.5" rx="1"/>
+  <rect x="30" y="42" width="4" height="4" fill="none" stroke="#d4af37" stroke-width="0.5" rx="1"/>
+  <rect x="50" y="42" width="4" height="4" fill="none" stroke="#c0c0c0" stroke-width="0.5" rx="1"/>
+</svg>

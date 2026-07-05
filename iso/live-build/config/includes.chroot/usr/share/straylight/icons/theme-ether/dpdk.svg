@@ -1,0 +1,43 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dpdkLightning" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <!-- Ethereal speed rings -->
+  <ellipse cx="32" cy="32" rx="26" ry="20" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.3">
+    <animateTransform attributeName="transform" type="scale" values="1,1;1.1,1;1,1" dur="1s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="32" cy="32" rx="22" ry="16" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.4">
+    <animateTransform attributeName="transform" type="scale" values="1,1;1.05,1;1,1" dur="0.8s" repeatCount="indefinite"/>
+  </ellipse>
+  <!-- Lightning bypass path -->
+  <path d="M36 10 L28 26 L38 26 L30 46 L42 28 L32 28 Z" fill="url(#dpdkLightning)" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="0.3s" repeatCount="indefinite"/>
+  </path>
+  <!-- Divine bypass arrows -->
+  <path d="M10 32 L22 32 M18 28 L22 32 L18 36" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.8"/>
+  <path d="M54 32 L42 32 M46 28 L42 32 L46 36" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.8"/>
+  <!-- Spirit packets -->
+  <rect x="14" y="24" width="6" height="4" fill="#d4af37" opacity="0.7" rx="1">
+    <animate attributeName="x" values="14;44;14" dur="0.6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.7;0;0.7" dur="0.6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="14" y="36" width="6" height="4" fill="#ffffff" opacity="0.7" rx="1">
+    <animate attributeName="x" values="14;44;14" dur="0.6s" begin="0.3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.7;0;0.7" dur="0.6s" begin="0.3s" repeatCount="indefinite"/>
+  </rect>
+  <!-- Sacred core -->
+  <circle cx="32" cy="32" r="4" fill="#ffffff" opacity="0.9">
+    <animate attributeName="r" values="4;5;4" dur="0.5s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Ether wisps -->
+  <path d="M32 4 Q36 8 32 12 Q28 8 32 4" fill="#d4af37" opacity="0.6">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M32 60 Q36 56 32 52 Q28 56 32 60" fill="#d4af37" opacity="0.6">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="2s" repeatCount="indefinite"/>
+  </path>
+</svg>

@@ -1,0 +1,28 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="slimeGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7fffab"/>
+      <stop offset="100%" stop-color="#39ff85"/>
+    </radialGradient>
+  </defs>
+  <!-- Central blob body -->
+  <path d="M32 8c-8 0-14 6-16 14-2 0-4 2-4 5 0 2 1 4 3 5-1 2-2 5-2 8 0 10 8 18 19 18s19-8 19-18c0-3-1-6-2-8 2-1 3-3 3-5 0-3-2-5-4-5-2-8-8-14-16-14z" fill="url(#slimeGrad)" filter="url(#glow)"/>
+  <!-- Alien eye -->
+  <ellipse cx="32" cy="26" rx="8" ry="5" fill="#0a1f0a"/>
+  <ellipse cx="32" cy="26" rx="4" ry="2.5" fill="#39ff85"/>
+  <!-- Tentacle appendages -->
+  <path d="M18 42c-3 8-6 12-8 14" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M28 46c-1 6-2 10-3 12" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M36 46c1 6 2 10 3 12" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M46 42c3 8 6 12 8 14" stroke="#39ff85" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Pulsing nodes -->
+  <circle cx="24" cy="18" r="2" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="40" cy="18" r="2" fill="#7fffab" filter="url(#glow)"/>
+</svg>

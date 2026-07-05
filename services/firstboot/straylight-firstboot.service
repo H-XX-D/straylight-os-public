@@ -1,0 +1,23 @@
+[Unit]
+Description=StrayLight First Boot Initialization
+Documentation=https://straylight.os/docs/firstboot
+ConditionPathExists=/var/lib/straylight/state
+After=local-fs.target systemd-udev-settle.service systemd-machine-id-commit.service
+After=straylight-hwdetect.service
+Before=graphical.target display-manager.service
+Wants=straylight-hwdetect.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/straylight/straylight-firstboot
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=straylight-firstboot
+# Needs root for modprobe, ssh-keygen, dkms
+User=root
+# Give DKMS and driver loading enough time
+TimeoutStartSec=300
+
+[Install]
+WantedBy=graphical.target

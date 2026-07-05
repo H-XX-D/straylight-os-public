@@ -1,0 +1,46 @@
+{
+  "name": "workstation",
+  "description": "Balanced desktop workstation — all services enabled, standard resource quotas",
+  "autotune_profile": "balanced",
+  "active_services": [
+    "compositor",
+    "whisper",
+    "autotune",
+    "health",
+    "mesh",
+    "quota",
+    "flux",
+    "replay",
+    "alice"
+  ],
+  "disabled_services": [],
+  "service_configs": {},
+  "resource_limits": {
+    "cpu_quota_percent": 100,
+    "memory_limit_mb": 0,
+    "vram_reserve_percent": 50,
+    "io_weight": 100,
+    "nice_level": 0
+  },
+  "thermal": {
+    "cooling_mode": "balanced",
+    "cpu_temp_warn": 80,
+    "cpu_temp_critical": 95,
+    "gpu_temp_warn": 85,
+    "gpu_temp_critical": 100
+  },
+  "compositor": {
+    "mode": "desktop",
+    "max_fps": 60,
+    "vsync": true,
+    "direct_scanout": false,
+    "low_latency_input": false
+  },
+  "mesh_advertise": true,
+  "mesh_capabilities": "desktop",
+  "debug_tools": false,
+  "trace_always_on": false,
+  "replay_recording": false,
+  "health_mode": "standard",
+  "ssh_mode": "standard"
+}

@@ -1,0 +1,32 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="layerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7fffab"/>
+      <stop offset="100%" stop-color="#39ff85"/>
+    </linearGradient>
+  </defs>
+  <!-- Layered slime planes -->
+  <ellipse cx="32" cy="18" rx="20" ry="8" fill="none" stroke="#39ff85" stroke-width="2.5" filter="url(#glow)"/>
+  <ellipse cx="32" cy="28" rx="20" ry="8" fill="none" stroke="#39ff85" stroke-width="2.5" filter="url(#glow)"/>
+  <ellipse cx="32" cy="38" rx="20" ry="8" fill="none" stroke="#39ff85" stroke-width="2.5" filter="url(#glow)"/>
+  <ellipse cx="32" cy="48" rx="20" ry="8" fill="url(#layerGrad)" opacity="0.4" filter="url(#glow)"/>
+  <!-- Connecting tendrils between layers -->
+  <path d="M18 20c-2 6-2 12 0 18" stroke="#39ff85" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M46 20c2 6 2 12 0 18" stroke="#39ff85" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M18 32c-2 6-2 10 0 14" stroke="#39ff85" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M46 32c2 6 2 10 0 14" stroke="#39ff85" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <!-- VMs as blobs on layers -->
+  <circle cx="26" cy="18" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="38" cy="28" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="32" cy="38" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <!-- Hypervisor eye in center -->
+  <ellipse cx="32" cy="48" rx="5" ry="3" fill="#0a1f0a"/>
+  <circle cx="32" cy="48" r="2" fill="#39ff85"/>
+</svg>

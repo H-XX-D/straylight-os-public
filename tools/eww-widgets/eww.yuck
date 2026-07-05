@@ -1,0 +1,475 @@
+; ============================================================
+; StrayLight OS — Eww Widget Configuration
+; ============================================================
+; Polls: probe-system, probe-ml, probe-hpc, probe-research
+; Windows:
+;   system-bar    — thin bottom bar, always visible
+;   gpu-hud       — floating top-right GPU panel (toggle with eww open/close)
+;   hpc-panel     — cluster + job queue overlay (toggle)
+;   research-panel — SNN / quantum / ghost status (toggle)
+; ============================================================
+
+; ── Polled variables ─────────────────────────────────────────
+(defpoll sys  :interval "1s"  "~/.config/eww/straylight/scripts/probe-system")
+(defpoll ml   :interval "2s"  "~/.config/eww/straylight/scripts/probe-ml")
+(defpoll hpc  :interval "4s"  "~/.config/eww/straylight/scripts/probe-hpc")
+(defpoll res  :interval "2s"  "~/.config/eww/straylight/scripts/probe-research")
+(defpoll net  :interval "2s"  "~/.config/eww/straylight/scripts/probe-network")
+(defpoll notif :interval "3s" "~/.config/eww/straylight/scripts/probe-notify")
+
+; ── Toggle state variables ───────────────────────────────────
+(defvar show_gpu      false)
+(defvar show_hpc      false)
+(defvar show_research false)
+(defvar show_notif    false)
+
+; ============================================================
+; SYSTEM BAR — 32px strip anchored to bottom of screen
+; ============================================================
+
+(defwidget system-bar []
+  (centerbox :orientation "h" :class "system-bar"
+    ; ── Left: CPU + RAM + IO ─────────────────────────────────
+    (box :space-evenly false :spacing 12 :class "bar-left"
+      ; CPU
+      (box :space-evenly false :spacing 6 :class "metric-group"
+        (label :class "metric-icon" :text "")
+        (box :orientation "v" :spacing 2
+          (label :class "metric-value"
+            :text "${sys.cpu.avg_pct}%")
+          (scale :class "mini-bar cpu-bar"
+            :min 0 :max 100 :value {sys.cpu.avg_pct}
+            :orientation "h" :draw-value false))
+        (label :class "metric-temp"
+          :text {sys.cpu.temp_c != "" ? "${sys.cpu.temp_c}°" : ""}))
+      ; RAM
+      (box :space-evenly false :spacing 6 :class "metric-group"
+        (label :class "metric-icon" :text "")
+        (box :orientation "v" :spacing 2
+          (label :class "metric-value"
+            :text "${sys.ram.used_mb}M / ${sys.ram.total_mb}M")
+          (scale :class "mini-bar ram-bar"
+            :min 0 :max 100 :value {sys.ram.pct}
+            :orientation "h" :draw-value false)))
+      ; Load avg
+      (box :space-evenly false :spacing 4 :class "metric-group"
+        (label :class "metric-icon" :text "")
+        (label :class "metric-value"
+          :text "${sys.cpu.load['1m']} · ${sys.cpu.load['5m']} · ${sys.cpu.load['15m']}"))
+    )
+
+    ; ── Center: clock / entropy / uptime ────────────────────────────
+    (box :space-evenly false :spacing 16 :class "bar-center"
+      ; Clock
+      (label :class "clock-label" :text {formattime(EWW_TIME, "%H:%M")})
+      ; Date (subtle)
+      (label :class "date-label" :text {formattime(EWW_TIME, "%a %d")})
+      ; Separator dot
+      (label :class "bar-sep" :text "·")
+      ; Entropy pool
+      (box :space-evenly false :spacing 6 :class "metric-group entropy-group"
+        (label :class "metric-icon entropy-icon" :text "")
+        (label :class "metric-value"
+          :text "${sys.entropy.avail} bits")
+        (scale :class "mini-bar entropy-bar"
+          :min 0 :max 100 :value {sys.entropy.pct}
+          :orientation "h" :draw-value false))
+      ; Uptime
+      (label :class "uptime-label" :text "${sys.uptime}")
+    )
+
+    ; ── Right: GPU summary + service toggles ─────────────────
+    (box :space-evenly false :spacing 12 :class "bar-right"
+      ; GPU quick-stat (if GPUs present)
+      (box :space-evenly false :spacing 6 :class "metric-group"
+        :visible {ml.summary.count > 0}
+        (label :class "metric-icon gpu-icon" :text "")
+        (box :orientation "v" :spacing 2
+          (label :class "metric-value"
+            :text "${ml.summary.avg_util_pct}%  ${ml.summary.mem_pct}%vram")
+          (scale :class "mini-bar gpu-bar"
+            :min 0 :max 100 :value {ml.summary.avg_util_pct}
+            :orientation "h" :draw-value false))
+        (label :class "metric-temp"
+          :text "${ml.summary.avg_temp_c}°"))
+
+      ; Divider
+      (label :class "bar-divider" :text "│")
+
+      ; Toggle buttons
+      (button :class "toggle-btn ${show_gpu ? 'active' : ''}"
+        :tooltip "GPU HUD"
+        :onclick "eww ${show_gpu ? 'close' : 'open'} gpu-hud && eww update show_gpu=${!show_gpu}"
+        :visible {ml.summary.count > 0}
+        "")
+      (button :class "toggle-btn ${show_hpc ? 'active' : ''}"
+        :tooltip "HPC Cluster"
+        :onclick "eww ${show_hpc ? 'close' : 'open'} hpc-panel && eww update show_hpc=${!show_hpc}"
+        "")
+      (button :class "toggle-btn ${show_research ? 'active' : ''}"
+        :tooltip "Research / SNN"
+        :onclick "eww ${show_research ? 'close' : 'open'} research-panel && eww update show_research=${!show_research}"
+        "")
+
+      ; Divider
+      (label :class "bar-divider" :text "│")
+
+      ; Network quick-stat
+      (box :space-evenly false :spacing 6 :class "metric-group net-group"
+        :visible {net.online}
+        (label :class "metric-icon net-icon" :text "")
+        (box :orientation "v" :spacing 1
+          (label :class "net-ip"  :text "${net.primary.ip}")
+          (box :space-evenly false :spacing 4
+            (label :class "net-rx" :text "↓${net.primary.rx_kbs}")
+            (label :class "net-tx" :text "↑${net.primary.tx_kbs} kB/s"))))
+
+      ; DND toggle
+      (button :class "toggle-btn dnd-btn ${notif.dnd ? 'active' : ''}"
+        :tooltip {notif.dnd ? "Do-not-disturb ON" : "Do-not-disturb OFF"}
+        :onclick "echo 'DND ${notif.dnd ? 'off' : 'on'}' | socat - UNIX-CONNECT:/run/straylight/notify.sock"
+        "")
+
+      ; Notification bell (badge with active count)
+      (button :class "toggle-btn notif-btn ${show_notif ? 'active' : ''}"
+        :tooltip "Notifications"
+        :onclick "eww ${show_notif ? 'close' : 'open'} notify-popup && eww update show_notif=${!show_notif}"
+        (overlay
+          (label :text "")
+          (label :class "notif-badge"
+            :visible {notif.count > 0}
+            :text "${notif.count}")))
+
+      ; Ghost alert indicator
+      (box :space-evenly false :spacing 4 :class "metric-group"
+        :visible {res.ghost.alert_count > 0}
+        (label :class "alert-dot" :text "")
+        (label :class "alert-count" :text "${res.ghost.alert_count}"))
+    )
+  )
+)
+
+; ============================================================
+; GPU HUD — floating panel, top-right
+; ============================================================
+
+(defwidget gpu-hud-panel []
+  (box :orientation "v" :spacing 8 :class "panel gpu-panel"
+    ; Header
+    (box :space-evenly false :spacing 8 :class "panel-header"
+      (label :class "panel-icon" :text "")
+      (label :class "panel-title" :text "GPU")
+      (box :hexpand true)
+      (button :class "close-btn"
+        :onclick "eww close gpu-hud && eww update show_gpu=false"
+        "✕"))
+
+    ; Per-GPU rows
+    (for gpu in {ml.gpus}
+      (box :orientation "v" :spacing 4 :class "gpu-card"
+        (label :class "gpu-name" :text "${gpu.name} [${gpu.pstate}]")
+        (box :space-evenly false :spacing 12
+          ; Util gauge
+          (box :orientation "v" :spacing 2 :class "gpu-metric"
+            (label :class "gauge-label" :text "Core")
+            (scale :class "gauge-bar gpu-util-bar"
+              :min 0 :max 100 :value {gpu.util_pct}
+              :orientation "h" :draw-value false)
+            (label :class "gauge-value" :text "${gpu.util_pct}%"))
+          ; VRAM gauge
+          (box :orientation "v" :spacing 2 :class "gpu-metric"
+            (label :class "gauge-label" :text "VRAM")
+            (scale :class "gauge-bar gpu-vram-bar"
+              :min 0 :max 100 :value {gpu.mem_pct}
+              :orientation "h" :draw-value false)
+            (label :class "gauge-value" :text "${gpu.mem_used_mb}/${gpu.mem_total_mb}M"))
+          ; Temp + power
+          (box :orientation "v" :spacing 2 :class "gpu-metric"
+            (label :class "gauge-label" :text "Temp")
+            (label :class "gauge-value accent" :text "${gpu.temp_c}°C"))
+          (box :orientation "v" :spacing 2 :class "gpu-metric"
+            (label :class "gauge-label" :text "Pwr")
+            (label :class "gauge-value" :text "${gpu.power_w}W / ${gpu.power_limit_w}W"))
+        )
+      )
+    )
+
+    ; Inference status
+    (box :orientation "v" :spacing 4 :class "inference-section"
+      :visible {ml.inference != ""}
+      (label :class "section-title" :text "Inference (alice)")
+      (label :class "metric-value"
+        :text {ml.inference.status != "" ? "${ml.inference.status}" : "idle"})
+    )
+
+    ; Loaded models
+    (box :orientation "v" :spacing 4 :class "models-section"
+      :visible {arraylength(ml.models) > 0}
+      (label :class "section-title" :text "Models (flux)")
+      (for m in {ml.models}
+        (label :class "model-item" :text "• ${m.name != "" ? m.name : m}"))
+    )
+  )
+)
+
+; ============================================================
+; HPC PANEL — cluster map + job queue
+; ============================================================
+
+(defwidget hpc-panel-widget []
+  (box :orientation "v" :spacing 8 :class "panel hpc-panel"
+    ; Header
+    (box :space-evenly false :spacing 8 :class "panel-header"
+      (label :class "panel-icon" :text "")
+      (label :class "panel-title" :text "HPC Cluster")
+      (box :hexpand true)
+      (label :class "metric-value"
+        :text "${hpc.cluster.online} / ${hpc.cluster.node_count} nodes")
+      (button :class "close-btn"
+        :onclick "eww close hpc-panel && eww update show_hpc=false"
+        "✕"))
+
+    ; Node grid
+    (box :orientation "h" :wrap true :spacing 6 :class "node-grid"
+      (for node in {hpc.cluster.nodes}
+        (box :class "node-tile ${node.state == 'online' || node.state == 'idle' || node.state == 'alloc' || node.state == 'mix' ? 'node-online' : 'node-offline'}"
+          :tooltip "${node.hostname} — ${node.state}"
+          :width 28 :height 28
+          (label :class "node-label"
+            :text {substring(node.hostname, 0, 2)})
+        )
+      )
+    )
+
+    ; Job queue
+    (box :orientation "v" :spacing 4 :class "job-section"
+      (box :space-evenly false :spacing 8 :class "section-header"
+        (label :class "section-title" :text "Jobs")
+        (label :class "badge running" :text "${hpc.jobs.running_count} running")
+        (label :class "badge pending" :text "${hpc.jobs.pending_count} pending"))
+
+      (for job in {hpc.jobs.list}
+        (box :space-evenly false :spacing 8 :class "job-row"
+          (label :class "job-state-dot ${job.state == 'R' || job.state == 'running' ? 'running' : 'pending'}" :text "●")
+          (label :class "job-id"   :text "${job.id}")
+          (label :class "job-name" :text "${job.name}" :truncate-multiline true :wrap false)
+          (box :hexpand true)
+          (label :class "job-elapsed" :text "${job.elapsed}")
+        )
+      )
+    )
+  )
+)
+
+; ============================================================
+; RESEARCH PANEL — SNN, quantum, ghost, alice
+; ============================================================
+
+(defwidget research-panel-widget []
+  (box :orientation "v" :spacing 8 :class "panel research-panel"
+    ; Header
+    (box :space-evenly false :spacing 8 :class "panel-header"
+      (label :class "panel-icon" :text "")
+      (label :class "panel-title" :text "Research")
+      (box :hexpand true)
+      (button :class "close-btn"
+        :onclick "eww close research-panel && eww update show_research=false"
+        "✕"))
+
+    ; SNN section
+    (box :orientation "v" :spacing 4 :class "research-section"
+      (label :class "section-title" :text "SNN  Spiking Neural Network")
+      (box :space-evenly false :spacing 12 :class "snn-stats"
+        (box :orientation "v" :spacing 2 :class "stat-block"
+          (label :class "stat-label" :text "State")
+          (label :class "stat-value ${res.snn.health == 'ok' ? 'accent' : 'muted'}"
+            :text "${res.snn.state}"))
+        (box :orientation "v" :spacing 2 :class "stat-block"
+          (label :class "stat-label" :text "Neurons")
+          (label :class "stat-value" :text "${res.snn.neurons}"))
+        (box :orientation "v" :spacing 2 :class "stat-block"
+          (label :class "stat-label" :text "Layers")
+          (label :class "stat-value" :text "${res.snn.layers}"))
+        (box :orientation "v" :spacing 2 :class "stat-block"
+          (label :class "stat-label" :text "Spikes/s")
+          (label :class "stat-value accent" :text "${res.snn.spikes_hz}"))
+      )
+      (button :class "launch-btn"
+        :onclick "straylight-widget-launcher --widget snn_visualizer &"
+        " Open Spike Raster"))
+
+    (label :class "divider-line" :text "──────────────────")
+
+    ; Quantum section
+    (box :orientation "v" :spacing 4 :class "research-section"
+      (label :class "section-title" :text "⬡ Quantum Circuit")
+      (box :space-evenly false :spacing 12 :class "quantum-stats"
+        (box :orientation "v" :spacing 2 :class "stat-block"
+          (label :class "stat-label" :text "State")
+          (label :class "stat-value ${res.quantum.state == 'offline' ? 'muted' : 'accent'}"
+            :text "${res.quantum.state}"))
+        (box :orientation "v" :spacing 2 :class "stat-block"
+          (label :class "stat-label" :text "Qubits")
+          (label :class "stat-value" :text "${res.quantum.qubits}"))
+        (box :orientation "v" :spacing 2 :class "stat-block"
+          (label :class "stat-label" :text "Depth")
+          (label :class "stat-value" :text "${res.quantum.depth}"))
+        (box :orientation "v" :spacing 2 :class "stat-block"
+          (label :class "stat-label" :text "Fidelity")
+          (label :class "stat-value" :text "${res.quantum.fidelity}"))
+      )
+      (button :class "launch-btn"
+        :onclick "straylight-widget-launcher --widget quantum_circuit &"
+        "⬡ Open Circuit View"))
+
+    (label :class "divider-line" :text "──────────────────")
+
+    ; Entropy section
+    (box :orientation "v" :spacing 4 :class "research-section"
+      (label :class "section-title" :text " Entropy Pool")
+      (box :space-evenly false :spacing 8
+        (scale :class "gauge-bar entropy-gauge"
+          :min 0 :max 100 :value {res.entropy.pct}
+          :orientation "h" :draw-value false)
+        (label :class "stat-value accent"
+          :text "${res.entropy.avail} / ${res.entropy.poolsize} bits")))
+
+    (label :class "divider-line" :text "──────────────────")
+
+    ; Ghost alerts
+    (box :orientation "v" :spacing 4 :class "research-section"
+      :visible {res.ghost.alert_count > 0}
+      (label :class "section-title alert-title" :text " Ghost Alerts")
+      (for alert in {res.ghost.recent}
+        (label :class "alert-item"
+          :text "• ${alert}")))
+  )
+)
+
+; ============================================================
+; WINDOW DEFINITIONS
+; ============================================================
+
+(defwindow system-bar
+  :monitor 0
+  :geometry (geometry
+    :x "0px"
+    :y "0px"
+    :width  "100%"
+    :height "32px"
+    :anchor "bottom center")
+  :layer     "top"
+  :exclusive true
+  :focusable false
+  :namespace "straylight-bar"
+  (system-bar))
+
+(defwindow gpu-hud
+  :monitor 0
+  :geometry (geometry
+    :x "12px"
+    :y "44px"
+    :width  "320px"
+    :anchor "top right")
+  :layer     "overlay"
+  :exclusive false
+  :focusable false
+  :namespace "straylight-gpu"
+  (gpu-hud-panel))
+
+(defwindow hpc-panel
+  :monitor 0
+  :geometry (geometry
+    :x "12px"
+    :y "44px"
+    :width  "480px"
+    :anchor "top right")
+  :layer     "overlay"
+  :exclusive false
+  :focusable true
+  :namespace "straylight-hpc"
+  (hpc-panel-widget))
+
+(defwindow research-panel
+  :monitor 0
+  :geometry (geometry
+    :x "12px"
+    :y "44px"
+    :width  "380px"
+    :anchor "top right")
+  :layer     "overlay"
+  :exclusive false
+  :focusable true
+  :namespace "straylight-research"
+  (research-panel-widget))
+
+; ============================================================
+; NOTIFICATION POPUP — active notifications list + DND toggle
+; ============================================================
+
+(defwidget notify-popup-widget []
+  (box :orientation "v" :spacing 6 :class "panel notify-panel"
+    ; Header
+    (box :space-evenly false :spacing 8 :class "panel-header"
+      (label :class "panel-icon" :text "")
+      (label :class "panel-title" :text "Notifications")
+      (box :hexpand true)
+      ; DND toggle inside panel
+      (button :class "toggle-btn dnd-panel-btn ${notif.dnd ? 'active' : ''}"
+        :tooltip {notif.dnd ? "DND on — click to disable" : "DND off — click to enable"}
+        :onclick "echo 'DND ${notif.dnd ? 'off' : 'on'}' | socat - UNIX-CONNECT:/run/straylight/notify.sock"
+        "${notif.dnd ? ' DND' : ' DND'}")
+      ; Clear all
+      (button :class "clear-btn"
+        :tooltip "Clear all"
+        :onclick "echo 'CLEAR' | socat - UNIX-CONNECT:/run/straylight/notify.sock"
+        :visible {notif.count > 0}
+        "")
+      (button :class "close-btn"
+        :onclick "eww close notify-popup && eww update show_notif=false"
+        "✕"))
+
+    ; Empty state
+    (label :class "notify-empty"
+      :visible {notif.count == 0}
+      :text "No active notifications")
+
+    ; Notification cards
+    (scroll :hscroll false :vscroll true :height 320
+      (box :orientation "v" :spacing 4 :class "notify-list"
+        (for n in {notif.active}
+          (box :orientation "h" :spacing 8 :class "notify-card"
+            ; App icon / name badge
+            (label :class "notify-app-badge" :text {substring(n.app, 0, 1)})
+            ; Content
+            (box :orientation "v" :spacing 2 :hexpand true
+              (box :space-evenly false :spacing 6
+                (label :class "notify-app"     :text "${n.app}" :truncate-multiline true :wrap false)
+                (box :hexpand true)
+                (label :class "notify-elapsed" :text {formattime(n.ts, "%H:%M")}))
+              (label :class "notify-summary" :text "${n.summary}" :wrap true)
+              (label :class "notify-body"
+                :visible {n.body != ""}
+                :text "${n.body}" :wrap true :truncate-multiline true))
+            ; Dismiss button
+            (button :class "dismiss-btn"
+              :tooltip "Dismiss"
+              :onclick "echo 'DISMISS ${n.id}' | socat - UNIX-CONNECT:/run/straylight/notify.sock"
+              "×")))
+      )
+    )
+  )
+)
+
+(defwindow notify-popup
+  :monitor 0
+  :geometry (geometry
+    :x "12px"
+    :y "44px"
+    :width  "360px"
+    :anchor "top right")
+  :layer     "overlay"
+  :exclusive false
+  :focusable true
+  :namespace "straylight-notify"
+  (notify-popup-widget))

@@ -1,0 +1,39 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#7a7a7a"/>
+    </linearGradient>
+  </defs>
+  <!-- Neural network nodes as hexagons -->
+  <!-- Input layer -->
+  <path d="M8 12 L14 15 L14 21 L8 24 L2 21 L2 15 Z" fill="#a0a0a0"/>
+  <path d="M8 28 L14 31 L14 37 L8 40 L2 37 L2 31 Z" fill="#a0a0a0"/>
+  <path d="M8 44 L14 47 L14 53 L8 56 L2 53 L2 47 Z" fill="#a0a0a0"/>
+  <!-- Hidden layer -->
+  <path d="M26 8 L32 11 L32 17 L26 20 L20 17 L20 11 Z" fill="#c0c0c0"/>
+  <path d="M26 24 L32 27 L32 33 L26 36 L20 33 L20 27 Z" fill="url(#silver)"/>
+  <path d="M26 40 L32 43 L32 49 L26 52 L20 49 L20 43 Z" fill="#c0c0c0"/>
+  <!-- Output layer -->
+  <path d="M44 16 L50 19 L50 25 L44 28 L38 25 L38 19 Z" fill="#a0a0a0"/>
+  <path d="M44 32 L50 35 L50 41 L44 44 L38 41 L38 35 Z" fill="#c0c0c0"/>
+  <!-- Final output -->
+  <path d="M56 24 L62 27 L62 33 L56 36 L50 33 L50 27 Z" fill="#7a7a7a"/>
+  <!-- Neural connections -->
+  <line x1="14" y1="18" x2="20" y2="14" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="14" y1="18" x2="20" y2="30" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="14" y1="34" x2="20" y2="22" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="14" y1="34" x2="20" y2="30" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="14" y1="34" x2="20" y2="46" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="14" y1="50" x2="20" y2="38" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="14" y1="50" x2="20" y2="46" stroke="#7a7a7a" stroke-width="0.8"/>
+  <!-- Hidden to output connections -->
+  <line x1="32" y1="30" x2="38" y2="22" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="32" y1="30" x2="38" y2="38" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="32" y1="14" x2="38" y2="22" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="32" y1="46" x2="38" y2="38" stroke="#7a7a7a" stroke-width="0.8"/>
+  <!-- Output to final -->
+  <line x1="50" y1="22" x2="50" y2="28" stroke="#7a7a7a" stroke-width="0.8"/>
+  <line x1="50" y1="38" x2="50" y2="32" stroke="#7a7a7a" stroke-width="0.8"/>
+</svg>

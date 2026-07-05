@@ -1,0 +1,27 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g10" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.35"/>
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.25"/>
+    </linearGradient>
+  </defs>
+  <!-- AR Frame -->
+  <rect x="6" y="6" width="52" height="52" rx="2" fill="none" stroke="#00d4ff" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.3"/>
+  <!-- Memory Module -->
+  <rect x="12" y="14" width="40" height="36" rx="2" fill="url(#g10)" stroke="#ff00ff" stroke-width="1.5" opacity="0.85"/>
+  <!-- Memory Cells -->
+  <rect x="16" y="18" width="8" height="6" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <rect x="28" y="18" width="8" height="6" rx="1" fill="#ff00ff" opacity="0.5"/>
+  <rect x="40" y="18" width="8" height="6" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <rect x="16" y="28" width="8" height="6" rx="1" fill="#ff00ff" opacity="0.5"/>
+  <rect x="28" y="28" width="8" height="6" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <rect x="40" y="28" width="8" height="6" rx="1" fill="#ff00ff" opacity="0.5"/>
+  <rect x="16" y="38" width="8" height="8" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <rect x="28" y="38" width="8" height="8" rx="1" fill="#ff00ff" opacity="0.5"/>
+  <rect x="40" y="38" width="8" height="8" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <!-- Persistent Indicator -->
+  <path d="M14 52 L18 58 L22 52" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.8"/>
+  <path d="M42 52 L46 58 L50 52" fill="none" stroke="#ff00ff" stroke-width="1.5" opacity="0.8"/>
+  <!-- Lightning Bolt (Persistent) -->
+  <polygon points="30,8 34,16 30,16 34,24 26,18 30,18 26,10" fill="#ff00ff" opacity="0.8"/>
+</svg>

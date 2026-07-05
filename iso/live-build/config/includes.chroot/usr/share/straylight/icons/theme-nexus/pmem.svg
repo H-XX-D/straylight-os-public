@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- Persistent orbit ring -->
+  <ellipse cx="32" cy="32" rx="28" ry="10" fill="none" stroke="url(#purpleGrad)" stroke-width="0.5" opacity="0.5" transform="rotate(-15 32 32)"/>
+  <!-- Memory chip -->
+  <rect x="12" y="16" width="40" height="32" rx="3" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <!-- Memory cells (persistent) -->
+  <rect x="16" y="22" width="6" height="6" rx="1" fill="url(#purpleGrad)"/>
+  <rect x="24" y="22" width="6" height="6" rx="1" fill="url(#cyanGrad)"/>
+  <rect x="32" y="22" width="6" height="6" rx="1" fill="url(#purpleGrad)"/>
+  <rect x="40" y="22" width="6" height="6" rx="1" fill="url(#cyanGrad)"/>
+  <rect x="16" y="30" width="6" height="6" rx="1" fill="url(#cyanGrad)"/>
+  <rect x="24" y="30" width="6" height="6" rx="1" fill="url(#purpleGrad)"/>
+  <rect x="32" y="30" width="6" height="6" rx="1" fill="url(#cyanGrad)"/>
+  <rect x="40" y="30" width="6" height="6" rx="1" fill="url(#purpleGrad)"/>
+  <!-- Infinity/persistent symbol -->
+  <path d="M26 46 Q32 40 38 46 Q32 52 26 46" fill="none" stroke="url(#cyanGrad)" stroke-width="1.5"/>
+  <circle cx="29" cy="46" r="1.5" fill="#00d4aa"/>
+  <circle cx="35" cy="46" r="1.5" fill="#00d4aa"/>
+  <!-- Pins -->
+  <line x1="18" y1="48" x2="18" y2="52" stroke="url(#silverGrad)" stroke-width="1"/>
+  <line x1="26" y1="48" x2="26" y2="52" stroke="url(#silverGrad)" stroke-width="1"/>
+  <line x1="38" y1="48" x2="38" y2="52" stroke="url(#silverGrad)" stroke-width="1"/>
+  <line x1="46" y1="48" x2="46" y2="52" stroke="url(#silverGrad)" stroke-width="1"/>
+  <!-- Stars -->
+  <circle cx="8" cy="10" r="0.6" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="56" cy="14" r="0.5" fill="#5eead4" opacity="0.6"/>
+  <circle cx="54" cy="54" r="0.7" fill="#a78bfa" opacity="0.5"/>
+</svg>

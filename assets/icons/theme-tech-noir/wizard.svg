@@ -1,0 +1,27 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Industrial terminal base -->
+  <rect x="6" y="8" width="52" height="48" rx="2" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Screen -->
+  <rect x="12" y="14" width="40" height="28" rx="1" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="1"/>
+  <!-- Progress bars on screen -->
+  <rect x="16" y="20" width="20" height="3" fill="#ff6b35" opacity="0.9"/>
+  <rect x="16" y="26" width="14" height="3" fill="#ff6b35" opacity="0.7"/>
+  <rect x="16" y="32" width="8" height="3" fill="#8b4513" opacity="0.6"/>
+  <!-- Cursor/blink -->
+  <rect x="38" y="32" width="3" height="3" fill="#ff6b35" opacity="0.8"/>
+  <!-- Wand/staff -->
+  <line x1="46" y1="18" x2="38" y2="30" stroke="#8b4513" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="46" cy="18" r="3" fill="#ff6b35"/>
+  <!-- Sparkles/magic -->
+  <path d="M48 14 L49 16 L51 16 L49 18 L50 20 L48 19 L46 20 L47 18 L45 16 L47 16 Z" fill="#ff6b35" opacity="0.8"/>
+  <!-- Control buttons (one broken) -->
+  <circle cx="18" cy="48" r="3" fill="#ff6b35" opacity="0.8"/>
+  <circle cx="28" cy="48" r="3" fill="#ff6b35" opacity="0.6"/>
+  <circle cx="38" cy="48" r="2" fill="#8b4513" opacity="0.5"/>
+  <!-- Keyboard hint -->
+  <rect x="46" y="46" width="8" height="4" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="1"/>
+  <line x1="48" y1="48" x2="52" y2="48" stroke="#ff6b35" stroke-width="1"/>
+  <!-- Rust -->
+  <circle cx="10" cy="52" r="2.5" fill="#a0522d" opacity="0.5"/>
+  <circle cx="54" cy="12" r="2" fill="#8b4513" opacity="0.4"/>
+</svg>

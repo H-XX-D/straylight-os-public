@@ -1,0 +1,50 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rdmaSpeed" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#d4af37" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <!-- Ethereal direct memory path -->
+  <rect x="10" y="16" width="12" height="32" rx="2" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+  <rect x="42" y="16" width="12" height="32" rx="2" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+  <!-- Divine direct connection -->
+  <line x1="22" y1="24" x2="42" y2="24" stroke="#d4af37" stroke-width="2" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <line x1="22" y1="32" x2="42" y2="32" stroke="#d4af37" stroke-width="2" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="0.6s" repeatCount="indefinite"/>
+  </line>
+  <line x1="22" y1="40" x2="42" y2="40" stroke="#d4af37" stroke-width="2" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="0.7s" repeatCount="indefinite"/>
+  </line>
+  <!-- Speed arrows -->
+  <path d="M30 24 L34 24 M32 22 L34 24 L32 26" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.8">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 4,0; 0,0" dur="0.3s" repeatCount="indefinite"/>
+  </path>
+  <path d="M30 32 L34 32 M32 30 L34 32 L32 34" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.8">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 4,0; 0,0" dur="0.3s" begin="0.1s" repeatCount="indefinite"/>
+  </path>
+  <path d="M30 40 L34 40 M32 38 L34 40 L32 42" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.8">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 4,0; 0,0" dur="0.3s" begin="0.2s" repeatCount="indefinite"/>
+  </path>
+  <!-- Memory nodes -->
+  <circle cx="16" cy="24" r="2" fill="#ffffff" opacity="0.9"/>
+  <circle cx="16" cy="32" r="2" fill="#d4af37" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="16" cy="40" r="2" fill="#ffffff" opacity="0.9"/>
+  <circle cx="48" cy="24" r="2" fill="#ffffff" opacity="0.9"/>
+  <circle cx="48" cy="32" r="2" fill="#d4af37" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="48" cy="40" r="2" fill="#ffffff" opacity="0.9"/>
+  <!-- Spiritual bypass indicator -->
+  <text x="28" y="10" fill="#d4af37" font-family="serif" font-size="6" opacity="0.8">✦</text>
+  <text x="28" y="58" fill="#d4af37" font-family="serif" font-size="6" opacity="0.8">✦</text>
+  <!-- Speed rings -->
+  <ellipse cx="32" cy="32" rx="28" ry="20" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.2">
+    <animateTransform attributeName="transform" type="scale" values="1,1;1.1,1;1,1" dur="1s" repeatCount="indefinite"/>
+  </ellipse>
+</svg>

@@ -1,0 +1,99 @@
+{
+    "name": "aios",
+    "colors": {
+        "bg": "#050A18",
+        "fg": "#E8EEF8",
+        "accent": "#00F0FF",
+        "panel": "#080E1E"
+    },
+    "vars": {
+        "surface.0": "#050A18",
+        "surface.1": "#080E1E",
+        "surface.2": "#0B1225",
+        "surface.3": "#0F1629",
+        "surface.4": "#141E34",
+        "surface.glass": "#080E1EB8",
+        "surface.glass.strong": "#080E1ECC",
+        "surface.glass.subtle": "#080E1E66",
+
+        "accent.primary": "#00F0FF",
+        "accent.secondary": "#7B4FFF",
+        "accent.tertiary": "#00B4FF",
+        "accent.glow": "#00F0FF30",
+        "accent.success": "#00FFC2",
+        "accent.warning": "#FFB547",
+        "accent.error": "#FF4C6A",
+        "accent.info": "#A6AFFF",
+
+        "text.primary": "#FFFFFF E6",
+        "text.secondary": "#FFFFFFB8",
+        "text.muted": "#FFFFFF66",
+        "text.accent": "#00F0FF",
+
+        "border.default": "#FFFFFF12",
+        "border.glow": "#00F0FF30",
+        "border.subtle": "#FFFFFF0D",
+
+        "gauge.cpu": "#00F0FF",
+        "gauge.ram": "#7B4FFF",
+        "gauge.gpu": "#00F0FF",
+        "gauge.disk.1": "#FFB547",
+        "gauge.disk.2": "#FFB547",
+        "gauge.disk.3": "#FFB547",
+
+        "chart.line.1": "#00F0FF",
+        "chart.line.2": "#7B4FFF",
+        "chart.line.3": "#FFB547",
+        "chart.grid": "#FFFFFF10",
+
+        "status.active": "#00F0FF",
+        "status.inactive": "#FFFFFF40",
+        "status.running": "#00F0FF",
+        "status.badge": "#FF4C6A",
+
+        "spacing.xs": "2",
+        "spacing.sm": "4",
+        "spacing.md": "8",
+        "spacing.lg": "16",
+        "spacing.xl": "24",
+
+        "radius.sm": "8",
+        "radius.md": "12",
+        "radius.lg": "16",
+        "radius.xl": "20",
+        "radius.dock": "28",
+        "radius.pill": "999",
+
+        "panel.opacity": "0.72",
+        "glass.blur": "24",
+        "glass.opacity": "0.72",
+        "glass.border.opacity": "0.07",
+        "glass.shadow": "0 8px 32px rgba(0,0,0,0.4)",
+        "glass.shadow.inner": "inset 0 1px 1px rgba(255,255,255,0.05)",
+
+        "dock.height": "96",
+        "dock.icon.size": "50",
+        "dock.icon.radius": "16",
+        "dock.icon.spacing": "14",
+        "dock.label.size": "10",
+
+        "topbar.height": "40",
+        "topbar.opacity": "0.80",
+
+        "sidebar.width": "88",
+        "sidebar.icon.size": "22",
+        "sidebar.active.glow": "0 0 10px #00F0FF",
+
+        "widget.header.size": "15",
+        "widget.body.size": "13",
+        "widget.padding": "16",
+        "widget.gap": "24",
+
+        "glow.cyan": "0 0 15px rgba(0,240,255,0.2)",
+        "glow.violet": "0 0 15px rgba(123,79,255,0.2)",
+        "glow.amber": "0 0 15px rgba(255,181,71,0.2)"
+    },
+    "font_size": 14.0,
+    "corner_radius": 12.0,
+    "icon_theme": "straylight-icons-aios"
+}

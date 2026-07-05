@@ -1,0 +1,94 @@
+/* bin/enclave/enclave_def/enclave.edl
+ * SGX Enclave Definition Language file for StrayLight secure inference.
+ *
+ * Defines the trusted/untrusted boundary:
+ * - ECALLs: functions the untrusted app can call into the enclave
+ * - OCALLs: functions the enclave can call out to the untrusted app
+ */
+
+enclave {
+    from "sgx_tstdc.edl" import *;
+
+    trusted {
+        /* Load a sealed model into enclave memory.
+         * [in] sealed_data: encrypted model bytes
+         * [in] sealed_size: size of sealed data
+         * Returns 0 on success, negative on error. */
+        public int ecall_load_model(
+            [in, size=sealed_size] const uint8_t* sealed_data,
+            size_t sealed_size
+        );
+
+        /* Run inference on input tensor.
+         * [in]  input:      input float array
+         * [in]  input_len:  number of input floats
+         * [out] output:     output float array (caller allocated)
+         * [in]  output_len: max output floats
+         * Returns number of output elements, or negative on error. */
+        public int ecall_infer(
+            [in, count=input_len]   const float* input,
+            size_t input_len,
+            [out, count=output_len] float* output,
+            size_t output_len
+        );
+
+        /* Generate an attestation report.
+         * [in]  user_data:      optional user data to include in report
+         * [in]  user_data_size: size of user data (max 64 bytes)
+         * [out] report:         SGX report structure
+         * [in]  report_size:    size of report buffer
+         * Returns 0 on success. */
+        public int ecall_create_report(
+            [in, size=user_data_size] const uint8_t* user_data,
+            size_t user_data_size,
+            [out, size=report_size] uint8_t* report,
+            size_t report_size
+        );
+
+        /* Seal data using enclave key.
+         * [in]  plaintext:      data to seal
+         * [in]  plain_size:     size of plaintext
+         * [out] sealed:         sealed output buffer
+         * [in]  sealed_buf_size: max sealed buffer size
+         * [out] sealed_size:    actual sealed size
+         * Returns 0 on success. */
+        public int ecall_seal(
+            [in, size=plain_size]       const uint8_t* plaintext,
+            size_t plain_size,
+            [out, size=sealed_buf_size] uint8_t* sealed,
+            size_t sealed_buf_size,
+            [out] size_t* sealed_size
+        );
+
+        /* Unseal previously sealed data.
+         * [in]  sealed:         sealed data
+         * [in]  sealed_size:    size of sealed data
+         * [out] plaintext:      decrypted output buffer
+         * [in]  plain_buf_size: max output buffer size
+         * [out] plain_size:     actual plaintext size
+         * Returns 0 on success. */
+        public int ecall_unseal(
+            [in, size=sealed_size]       const uint8_t* sealed,
+            size_t sealed_size,
+            [out, size=plain_buf_size]   uint8_t* plaintext,
+            size_t plain_buf_size,
+            [out] size_t* plain_size
+        );
+    };
+
+    untrusted {
+        /* Log a message from inside the enclave (for debugging). */
+        void ocall_log(
+            [in, string] const char* message
+        );
+
+        /* Read a file from the untrusted filesystem.
+         * Returns bytes read, or negative on error. */
+        int ocall_read_file(
+            [in, string]          const char* path,
+            [out, size=buf_size]  uint8_t* buffer,
+            size_t buf_size,
+            [out] size_t* bytes_read
+        );
+    };
+};

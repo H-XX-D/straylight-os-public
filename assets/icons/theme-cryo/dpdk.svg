@@ -1,0 +1,27 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f7ff"/>
+      <stop offset="100%" style="stop-color:#4fc3f7"/>
+    </linearGradient>
+    <linearGradient id="speedGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4fc3f7;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#4fc3f7"/>
+      <stop offset="100%" style="stop-color:#e0f7ff;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  <!-- Network bypass arrows -->
+  <path d="M8 32 L24 20 L24 28 L48 28 L48 20 L64 32 L48 44 L48 36 L24 36 L24 44 Z" fill="url(#iceGrad)" opacity="0.3"/>
+  <path d="M12 32 L26 22 L26 28 L46 28 L46 22 L60 32 L46 42 L46 36 L26 36 L26 42 Z" fill="none" stroke="url(#iceGrad)" stroke-width="2"/>
+  <!-- Speed lines/frost trails -->
+  <line x1="4" y1="26" x2="20" y2="26" stroke="url(#speedGrad)" stroke-width="2"/>
+  <line x1="4" y1="32" x2="16" y2="32" stroke="url(#speedGrad)" stroke-width="2"/>
+  <line x1="4" y1="38" x2="20" y2="38" stroke="url(#speedGrad)" stroke-width="2"/>
+  <!-- Ice crystal center -->
+  <polygon points="32,24 36,28 36,36 32,40 28,36 28,28" fill="#e0f7ff" opacity="0.6"/>
+  <!-- Snowflake accents -->
+  <g stroke="#4fc3f7" stroke-width="1">
+    <line x1="32" y1="18" x2="32" y2="22"/>
+    <line x1="30" y1="20" x2="34" y2="20"/>
+  </g>
+</svg>

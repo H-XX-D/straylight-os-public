@@ -1,0 +1,25 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Persistent memory module (damaged) -->
+  <rect x="12" y="8" width="40" height="48" rx="2" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Memory chips -->
+  <rect x="18" y="16" width="12" height="8" rx="1" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="1"/>
+  <rect x="34" y="16" width="12" height="8" rx="1" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="1"/>
+  <rect x="18" y="28" width="12" height="8" rx="1" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="1"/>
+  <rect x="34" y="28" width="12" height="8" rx="1" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="1"/>
+  <rect x="18" y="40" width="12" height="8" rx="1" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="1"/>
+  <!-- Battery/persistence indicator (one broken) -->
+  <circle cx="40" cy="44" r="4" fill="#ff6b35" opacity="0.8"/>
+  <path d="M38 44 L42 44 M40 42 L40 46" stroke="#1a1a1a" stroke-width="1.5"/>
+  <!-- Broken chip corner -->
+  <path d="M46 28 L50 32 L46 36" fill="#2a2a2a" stroke="#1a1a1a"/>
+  <!-- Data persistence lines -->
+  <path d="M22 20 L26 20 M22 32 L26 32 M22 44 L26 44" stroke="#ff6b35" stroke-width="1.5" opacity="0.7"/>
+  <path d="M38 20 L42 20 M38 32 L40 32" stroke="#ff6b35" stroke-width="1.5" opacity="0.7"/>
+  <!-- Connector pins (damaged) -->
+  <rect x="16" y="56" width="4" height="4" fill="#8b4513"/>
+  <rect x="28" y="56" width="4" height="4" fill="#8b4513"/>
+  <rect x="40" y="56" width="4" height="2" fill="#8b4513" opacity="0.5"/>
+  <!-- Rust -->
+  <circle cx="14" cy="12" r="2" fill="#a0522d" opacity="0.5"/>
+  <circle cx="50" cy="50" r="2.5" fill="#8b4513" opacity="0.4"/>
+</svg>

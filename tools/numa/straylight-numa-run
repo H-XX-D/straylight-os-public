@@ -1,0 +1,58 @@
+#!/usr/bin/env sh
+set -eu
+
+CONFIG="${STRAYLIGHT_NUMA_CONFIG:-/etc/straylight/numa.conf}"
+
+usage() {
+    cat >&2 <<'USAGE'
+Usage: straylight-numa-run PROFILE COMMAND [ARGS...]
+
+Profiles are read from /etc/straylight/numa.conf.  The runner applies CPU
+affinity with taskset and exports STRAYLIGHT_NUMA_* placement variables for
+VPU, garden, scheduler, and other StrayLight components.
+USAGE
+}
+
+if [ "$#" -lt 2 ]; then
+    usage
+    exit 2
+fi
+
+PROFILE="$1"
+shift
+
+if [ -r "$CONFIG" ]; then
+    # shellcheck disable=SC1090
+    . "$CONFIG"
+fi
+
+upper_profile=$(printf '%s' "$PROFILE" | tr '[:lower:]-' '[:upper:]_')
+eval "cpus=\${STRAYLIGHT_NUMA_PROFILE_${upper_profile}_CPUS:-}"
+eval "mems=\${STRAYLIGHT_NUMA_PROFILE_${upper_profile}_MEMS:-}"
+eval "policy=\${STRAYLIGHT_NUMA_PROFILE_${upper_profile}_POLICY:-preferred}"
+
+if [ -z "${cpus:-}" ]; then
+    echo "straylight-numa-run: unknown or unpinned profile '$PROFILE'" >&2
+    exit 2
+fi
+
+export STRAYLIGHT_NUMA_PROFILE="$PROFILE"
+export STRAYLIGHT_NUMA_CPUS="$cpus"
+export STRAYLIGHT_NUMA_MEMS="${mems:-}"
+export STRAYLIGHT_NUMA_POLICY="$policy"
+
+if command -v numactl >/dev/null 2>&1 && [ -n "${mems:-}" ]; then
+    case "$policy" in
+        bind)
+            exec numactl --physcpubind="$cpus" --membind="$mems" "$@"
+            ;;
+        interleave)
+            exec numactl --physcpubind="$cpus" --interleave="$mems" "$@"
+            ;;
+        preferred|*)
+            exec numactl --physcpubind="$cpus" --preferred="$mems" "$@"
+            ;;
+    esac
+fi
+
+exec taskset -c "$cpus" "$@"

@@ -1,0 +1,83 @@
+# StrayLight OS packages
+straylight-os
+
+# Base system
+linux-image-amd64
+grub-efi-amd64
+systemd
+systemd-sysv
+dbus
+polkitd
+pkexec
+
+# Live environment
+live-boot
+live-config
+live-config-systemd
+user-setup
+sudo
+
+# Installer
+calamares
+
+# Firmware
+firmware-linux-free
+firmware-linux-nonfree
+firmware-iwlwifi
+firmware-realtek
+firmware-atheros
+firmware-misc-nonfree
+
+# Hardware support
+dkms
+linux-headers-amd64
+pciutils
+usbutils
+lshw
+smartmontools
+nvme-cli
+
+# Networking
+network-manager
+wpasupplicant
+isc-dhcp-client
+wireless-tools
+
+# Desktop dependencies
+gdm3
+gnome-shell
+gnome-session
+gnome-settings-daemon
+gnome-control-center
+gnome-terminal
+nautilus
+network-manager-gnome
+xwayland
+mesa-utils
+libgl1-mesa-dri
+libglx-mesa0
+libegl-mesa0
+pipewire
+xdg-desktop-portal
+xdg-desktop-portal-gnome
+adwaita-icon-theme
+wireplumber
+pipewire-pulse
+pipewire-alsa
+
+# Fonts
+fonts-noto
+fonts-noto-color-emoji
+fonts-liberation2
+fonts-dejavu-core
+
+# Utilities
+bash-completion
+less
+nano
+wget
+curl
+ca-certificates
+gnupg
+zstd
+htop

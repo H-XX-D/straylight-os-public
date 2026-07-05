@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+
+  <defs>
+    <!-- Sunset gradient -->
+    <linearGradient id="sunset" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b35"/>
+      <stop offset="50%" style="stop-color:#f7931e"/>
+      <stop offset="100%" style="stop-color:#ff00a0"/>
+    </linearGradient>
+    <!-- Cyan glow -->
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff"/>
+      <stop offset="100%" style="stop-color:#0080ff"/>
+    </linearGradient>
+    <!-- Chrome gradient -->
+    <linearGradient id="chrome" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff00a0"/>
+      <stop offset="50%" style="stop-color:#00ffff"/>
+      <stop offset="100%" style="stop-color:#ff6b35"/>
+    </linearGradient>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#ff00a0" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+    <!-- Pink glow filter -->
+    <filter id="pinkGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Cyan glow filter -->
+    <filter id="cyanGlowFilter" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background with grid -->
+  <rect width="64" height="64" fill="#1a0b2e" rx="4"/>
+  <rect width="64" height="64" fill="url(#grid)" rx="4"/>
+
+  <!-- RDMA Bus Icon -->
+  <rect x="8" y="16" width="14" height="20" rx="1" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#cyanGlowFilter)"/>
+  <line x1="10" y1="22" x2="20" y2="22" stroke="#00ffff" stroke-width="1"/>
+  <line x1="10" y1="28" x2="18" y2="28" stroke="#00ffff" stroke-width="1"/>
+  <rect x="42" y="16" width="14" height="20" rx="1" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#cyanGlowFilter)"/>
+  <line x1="44" y1="22" x2="54" y2="22" stroke="#00ffff" stroke-width="1"/>
+  <line x1="44" y1="28" x2="52" y2="28" stroke="#00ffff" stroke-width="1"/>
+  <line x1="22" y1="22" x2="40" y2="22" stroke="url(#chrome)" stroke-width="2" filter="url(#pinkGlow)"/>
+  <line x1="22" y1="30" x2="40" y2="30" stroke="url(#chrome)" stroke-width="2" filter="url(#pinkGlow)"/>
+  <path d="M 31 8 L 31 14" stroke="#ff00a0" stroke-width="2"/>
+  <path d="M 28 12 L 31 8 L 34 12" fill="none" stroke="#ff00a0" stroke-width="2"/>
+  <text x="25" y="42" font-family="monospace" font-size="5" fill="#f7931e">RDMA</text>
+
+</svg>

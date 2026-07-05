@@ -1,0 +1,30 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#7a7a7a"/>
+    </linearGradient>
+  </defs>
+  <!-- Wizard hat as stacked hexagons -->
+  <path d="M32 4 L40 8 L40 16 L32 20 L24 16 L24 8 Z" fill="#c0c0c0"/>
+  <path d="M28 16 L36 20 L36 28 L28 32 L20 28 L20 20 Z" fill="#a0a0a0"/>
+  <path d="M24 28 L40 36 L40 48 L24 56 L8 48 L8 36 Z" fill="url(#silver)"/>
+  <!-- Magic wand/staff -->
+  <line x1="48" y1="16" x2="56" y2="4" stroke="#c0c0c0" stroke-width="3" stroke-linecap="round"/>
+  <path d="M54 6 L58 4 L60 8 L56 10 Z" fill="#e8e8e8"/>
+  <!-- Sparkles/magic particles as hexagons -->
+  <path d="M50 24 L53 26 L53 29 L50 31 L47 29 L47 26 Z" fill="#c0c0c0"/>
+  <path d="M56 32 L59 34 L59 37 L56 39 L53 37 L53 34 Z" fill="#a0a0a0"/>
+  <path d="M52 44 L55 46 L55 49 L52 51 L49 49 L49 46 Z" fill="#c0c0c0"/>
+  <!-- Nano magic trails -->
+  <line x1="40" y1="36" x2="50" y2="28" stroke="#7a7a7a" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <line x1="44" y1="42" x2="54" y2="38" stroke="#7a7a7a" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <line x1="42" y1="50" x2="50" y2="48" stroke="#7a7a7a" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <!-- Base stars -->
+  <polygon points="16,58 17,61 20,61 18,63 19,66 16,64 13,66 14,63 12,61 15,61" fill="#a0a0a0"/>
+  <polygon points="48,58 49,61 52,61 50,63 51,66 48,64 45,66 46,63 44,61 47,61" fill="#a0a0a0"/>
+  <!-- Setup gears -->
+  <circle cx="32" cy="40" r="4" fill="#7a7a7a"/>
+  <circle cx="32" cy="40" r="2" fill="#c0c0c0"/>
+</svg>

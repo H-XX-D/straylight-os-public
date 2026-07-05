@@ -1,0 +1,15 @@
+[Unit]
+Description=StrayLight Configuration Registry
+After=straylight-bus.service
+Requires=straylight-bus.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-registry
+Restart=on-failure
+RestartSec=2s
+StateDirectory=straylight
+WatchdogSec=30s
+
+[Install]
+WantedBy=multi-user.target

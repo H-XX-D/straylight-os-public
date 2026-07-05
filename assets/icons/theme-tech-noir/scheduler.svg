@@ -1,0 +1,27 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Control panel base -->
+  <rect x="4" y="4" width="56" height="56" rx="2" fill="#252525" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Timeline/track -->
+  <rect x="10" y="42" width="44" height="8" rx="1" fill="#1a1a1a" stroke="#4a4a4a" stroke-width="1"/>
+  <!-- Thread slots -->
+  <rect x="14" y="44" width="8" height="4" fill="#ff6b35" opacity="0.9"/>
+  <rect x="26" y="44" width="8" height="4" fill="#ff6b35" opacity="0.7"/>
+  <rect x="38" y="44" width="8" height="4" fill="#8b4513" opacity="0.6"/>
+  <!-- Scheduler wheel -->
+  <circle cx="32" cy="24" r="14" fill="#1a1a1a" stroke="#ff6b35" stroke-width="2"/>
+  <!-- Time slices -->
+  <line x1="32" y1="10" x2="32" y2="14" stroke="#ff6b35" stroke-width="2"/>
+  <line x1="32" y1="34" x2="32" y2="38" stroke="#8b4513" stroke-width="2"/>
+  <line x1="18" y1="24" x2="22" y2="24" stroke="#8b4513" stroke-width="2"/>
+  <line x1="42" y1="24" x2="46" y2="24" stroke="#a0522d" stroke-width="1.5" opacity="0.7"/>
+  <!-- Hand/pointer -->
+  <line x1="32" y1="24" x2="32" y2="14" stroke="#ff6b35" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="32" cy="24" r="3" fill="#ff6b35"/>
+  <!-- Priority indicators -->
+  <rect x="10" y="10" width="4" height="4" fill="#ff6b35"/>
+  <rect x="16" y="10" width="4" height="4" fill="#a0522d"/>
+  <rect x="22" y="10" width="4" height="3" fill="#8b4513" opacity="0.6"/>
+  <!-- Rust -->
+  <circle cx="52" cy="52" r="2.5" fill="#a0522d" opacity="0.5"/>
+  <circle cx="10" cy="52" r="2" fill="#8b4513" opacity="0.4"/>
+</svg>

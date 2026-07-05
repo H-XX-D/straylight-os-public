@@ -1,0 +1,37 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="vpuGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7fffab"/>
+      <stop offset="100%" stop-color="#39ff85"/>
+    </radialGradient>
+  </defs>
+  <!-- GPU chip blob -->
+  <rect x="14" y="14" width="36" height="36" rx="6" fill="url(#vpuGrad)" filter="url(#glow)"/>
+  <!-- Processing cores -->
+  <circle cx="22" cy="22" r="4" fill="#0a1f0a" opacity="0.4"/>
+  <circle cx="32" cy="22" r="4" fill="#0a1f0a" opacity="0.4"/>
+  <circle cx="42" cy="22" r="4" fill="#0a1f0a" opacity="0.4"/>
+  <circle cx="22" cy="32" r="4" fill="#0a1f0a" opacity="0.4"/>
+  <circle cx="42" cy="32" r="4" fill="#0a1f0a" opacity="0.4"/>
+  <circle cx="22" cy="42" r="4" fill="#0a1f0a" opacity="0.4"/>
+  <circle cx="32" cy="42" r="4" fill="#0a1f0a" opacity="0.4"/>
+  <circle cx="42" cy="42" r="4" fill="#0a1f0a" opacity="0.4"/>
+  <!-- Central V eye -->
+  <ellipse cx="32" cy="32" rx="5" ry="4" fill="#0a1f0a"/>
+  <path d="M29 30l3 4 3-4" stroke="#39ff85" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Video output tentacles -->
+  <path d="M14 22c-4 0-8 2-10 6" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M14 42c-4 0-8-2-10-6" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M50 22c4 0 8 2 10 6" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M50 42c4 0 8-2 10-6" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- VRAM slime trails -->
+  <path d="M8 28c-2 2-4 4-4 8" stroke="#7fffab" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M56 28c2 2 4 4 4 8" stroke="#7fffab" stroke-width="1.5" fill="none" opacity="0.6"/>
+</svg>

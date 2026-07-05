@@ -1,0 +1,29 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="metal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3d3d3d"/>
+      <stop offset="50%" style="stop-color:#2a2a2a"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
+    </linearGradient>
+  </defs>
+  <!-- Base plate -->
+  <rect x="2" y="16" width="60" height="32" rx="1" fill="url(#metal)" stroke="#4a4a4a" stroke-width="2"/>
+  <!-- Main bus line -->
+  <rect x="8" y="28" width="48" height="8" fill="#1a1a1a" stroke="#ff6b35" stroke-width="1.5"/>
+  <!-- Connection points -->
+  <rect x="12" y="24" width="6" height="16" fill="#ff6b35" opacity="0.8"/>
+  <rect x="26" y="24" width="6" height="16" fill="#ff6b35" opacity="0.8"/>
+  <rect x="40" y="24" width="6" height="16" fill="#ff6b35" opacity="0.8"/>
+  <!-- Data flow indicators -->
+  <rect x="14" y="30" width="2" height="4" fill="#1a1a1a"/>
+  <rect x="28" y="30" width="2" height="4" fill="#1a1a1a"/>
+  <rect x="42" y="30" width="2" height="4" fill="#1a1a1a"/>
+  <!-- Broken/corrupted sections -->
+  <path d="M54 28 L58 32 L54 36" fill="none" stroke="#8b4513" stroke-width="2" opacity="0.7"/>
+  <path d="M6 32 L10 28 L10 36 Z" fill="#a0522d" opacity="0.5"/>
+  <!-- Rust streaks -->
+  <path d="M4 44 L8 48" stroke="#8b4513" stroke-width="2" opacity="0.6"/>
+  <path d="M56 20 L60 24" stroke="#a0522d" stroke-width="1.5" opacity="0.5"/>
+  <!-- Wires hanging -->
+  <path d="M18 40 L18 46 M46 40 L46 44" stroke="#ff6b35" stroke-width="1" opacity="0.6"/>
+</svg>

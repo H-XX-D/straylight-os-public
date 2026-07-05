@@ -1,0 +1,32 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="qubitGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#bfffdb"/>
+      <stop offset="100%" stop-color="#39ff85"/>
+    </radialGradient>
+  </defs>
+  <!-- Quantum orbital rings -->
+  <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#39ff85" stroke-width="1.5" transform="rotate(0 32 32)" filter="url(#glow)"/>
+  <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#39ff85" stroke-width="1.5" transform="rotate(60 32 32)" filter="url(#glow)"/>
+  <ellipse cx="32" cy="32" rx="24" ry="10" fill="none" stroke="#39ff85" stroke-width="1.5" transform="rotate(120 32 32)" filter="url(#glow)"/>
+  <!-- Central quantum blob -->
+  <circle cx="32" cy="32" r="10" fill="url(#qubitGrad)" filter="url(#glow)"/>
+  <!-- Superposition eye -->
+  <ellipse cx="32" cy="32" rx="4" ry="4" fill="#0a1f0a"/>
+  <circle cx="32" cy="32" r="2" fill="#39ff85"/>
+  <!-- Orbital qubit nodes -->
+  <circle cx="32" cy="12" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="52" cy="42" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="12" cy="42" r="3" fill="#7fffab" filter="url(#glow)"/>
+  <!-- Entanglement connections -->
+  <path d="M32 12c0 10 0 10 0 10" stroke="#39ff85" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+  <path d="M52 42c-10 5-10 5-10 5" stroke="#39ff85" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+  <path d="M12 42c10 5 10 5 10 5" stroke="#39ff85" stroke-width="1" stroke-dasharray="2,2" opacity="0.5"/>
+</svg>

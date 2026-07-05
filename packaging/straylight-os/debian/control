@@ -1,0 +1,50 @@
+Source: straylight-os
+Section: metapackages
+Priority: optional
+Maintainer: StrayLight OS Team <dev@straylight.dev>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://straylight.dev
+Rules-Requires-Root: no
+
+Package: straylight-os
+Architecture: amd64
+Depends: ${misc:Depends},
+         libstraylight-common1 (>= 1.0.0),
+         straylight-core (>= 1.0.0),
+         straylight-desktop (>= 1.0.0),
+         straylight-ml (>= 1.0.0),
+         straylight-network (>= 1.0.0),
+         straylight-exotic (>= 1.0.0),
+         straylight-kernel (>= 1.0.0)
+Recommends: linux-image-amd64,
+            grub-efi-amd64,
+            task-gnome-desktop | task-desktop,
+            gdm3,
+            network-manager,
+            pipewire,
+            wireplumber,
+            bluez,
+            cups,
+            avahi-daemon,
+            systemd-timesyncd
+Suggests: nvidia-driver,
+          firmware-amd-graphics,
+          firmware-iwlwifi,
+          firmware-realtek
+Description: StrayLight OS - complete operating system
+ Meta-package that installs the complete StrayLight OS distribution.
+ StrayLight is a Debian-based Linux distribution designed for machine
+ learning workloads. It uses the distribution-provided desktop and window
+ management stack with StrayLight application GUIs by default, with ML-aware
+ scheduling, zero-copy tensor IPC, and exotic computing subsystems
+ (quantum simulation, photonics, persistent memory, SGX enclaves).
+ .
+ Installing this package pulls in all StrayLight components:
+  - libstraylight-common1: shared libraries
+  - straylight-core: daemon backbone (bus, registry, scheduler, entropy)
+  - straylight-desktop: desktop app GUIs and first-run tools for the distro desktop
+  - straylight-ml: compiler, agent, morph, snn, rhem
+  - straylight-network: xdp, dpdk, rdma-bus
+  - straylight-exotic: quantum, photonics, pmem, enclave, fuse
+  - straylight-kernel: DKMS kernel modules

@@ -1,0 +1,23 @@
+[Unit]
+Description=StrayLight Core Orchestrator
+Documentation=https://straylight.dev/docs/core
+After=straylight-bus.service straylight-registry.service straylight-scheduler.service
+Requires=straylight-bus.service straylight-registry.service
+Wants=straylight-scheduler.service straylight-entropy.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-core
+Restart=on-failure
+RestartSec=5s
+User=root
+LimitNOFILE=65536
+WatchdogSec=60s
+ProtectSystem=strict
+ReadWritePaths=/var/lib/straylight /run/straylight
+PrivateTmp=yes
+NoNewPrivileges=yes
+StateDirectory=straylight
+
+[Install]
+WantedBy=multi-user.target

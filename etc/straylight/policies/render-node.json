@@ -1,0 +1,55 @@
+{
+  "name": "render-node",
+  "description": "GPU render node — performance autotune, 90% VRAM reserved, aggressive cooling, minimal compositor",
+  "autotune_profile": "performance",
+  "active_services": [
+    "autotune",
+    "health",
+    "mesh",
+    "quota",
+    "whisper"
+  ],
+  "disabled_services": [
+    "alice",
+    "flux",
+    "replay"
+  ],
+  "service_configs": {
+    "health": {
+      "tick_interval_seconds": 30,
+      "mode": "aggressive"
+    },
+    "mesh": {
+      "advertise_gpu": true,
+      "pool_enabled": true
+    }
+  },
+  "resource_limits": {
+    "cpu_quota_percent": 100,
+    "memory_limit_mb": 0,
+    "vram_reserve_percent": 90,
+    "io_weight": 500,
+    "nice_level": -5
+  },
+  "thermal": {
+    "cooling_mode": "aggressive",
+    "cpu_temp_warn": 85,
+    "cpu_temp_critical": 100,
+    "gpu_temp_warn": 90,
+    "gpu_temp_critical": 105
+  },
+  "compositor": {
+    "mode": "minimal",
+    "max_fps": 30,
+    "vsync": false,
+    "direct_scanout": true,
+    "low_latency_input": false
+  },
+  "mesh_advertise": true,
+  "mesh_capabilities": "gpu,vpu,render",
+  "debug_tools": false,
+  "trace_always_on": false,
+  "replay_recording": false,
+  "health_mode": "aggressive",
+  "ssh_mode": "standard"
+}

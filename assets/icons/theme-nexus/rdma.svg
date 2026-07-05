@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- Direct memory path orbit -->
+  <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="url(#purpleGrad)" stroke-width="0.5" opacity="0.4" transform="rotate(-10 32 32)"/>
+  <!-- Memory block left -->
+  <rect x="6" y="22" width="18" height="20" rx="2" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <rect x="8" y="26" width="14" height="3" rx="1" fill="url(#purpleGrad)" opacity="0.6"/>
+  <rect x="8" y="31" width="10" height="3" rx="1" fill="url(#cyanGrad)" opacity="0.6"/>
+  <rect x="8" y="36" width="12" height="3" rx="1" fill="url(#purpleGrad)" opacity="0.6"/>
+  <!-- Memory block right -->
+  <rect x="40" y="22" width="18" height="20" rx="2" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <rect x="42" y="26" width="14" height="3" rx="1" fill="url(#cyanGrad)" opacity="0.6"/>
+  <rect x="42" y="31" width="10" height="3" rx="1" fill="url(#purpleGrad)" opacity="0.6"/>
+  <rect x="42" y="36" width="12" height="3" rx="1" fill="url(#cyanGrad)" opacity="0.6"/>
+  <!-- Direct connection (bypassing CPU) -->
+  <path d="M24 32 L40 32" fill="none" stroke="url(#cyanGrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <polygon points="36,28 42,32 36,36" fill="url(#cyanGrad)"/>
+  <!-- Bypass indicator -->
+  <text x="29" y="18" font-family="monospace" font-size="5" fill="url(#purpleGrad)" font-weight="bold">R</text>
+  <text x="35" y="18" font-family="monospace" font-size="5" fill="url(#cyanGrad)" font-weight="bold">D</text>
+  <text x="41" y="18" font-family="monospace" font-size="5" fill="url(#silverGrad)" font-weight="bold">M</text>
+  <text x="47" y="18" font-family="monospace" font-size="5" fill="url(#purpleGrad)" font-weight="bold">A</text>
+  <!-- Stars -->
+  <circle cx="8" cy="10" r="0.6" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="56" cy="12" r="0.5" fill="#5eead4" opacity="0.6"/>
+  <circle cx="54" cy="54" r="0.7" fill="#a78bfa" opacity="0.5"/>
+</svg>

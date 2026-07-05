@@ -1,0 +1,31 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g17" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.35"/>
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.25"/>
+    </linearGradient>
+  </defs>
+  <!-- AR Chip Frame -->
+  <rect x="8" y="8" width="48" height="48" rx="3" fill="none" stroke="#ff00ff" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.4"/>
+  <!-- Glass GPU Core -->
+  <rect x="14" y="14" width="36" height="36" rx="2" fill="url(#g17)" stroke="#00d4ff" stroke-width="1.5" opacity="0.8"/>
+  <!-- Processing Units -->
+  <rect x="18" y="18" width="8" height="8" rx="1" fill="#ff00ff" opacity="0.5"/>
+  <rect x="30" y="18" width="8" height="8" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <rect x="42" y="18" width="4" height="8" rx="1" fill="#ff00ff" opacity="0.5"/>
+  <rect x="18" y="30" width="8" height="8" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <rect x="30" y="30" width="8" height="8" rx="1" fill="#ff00ff" opacity="0.5"/>
+  <rect x="42" y="30" width="4" height="8" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <rect x="18" y="42" width="8" height="4" rx="1" fill="#ff00ff" opacity="0.5"/>
+  <rect x="30" y="42" width="8" height="4" rx="1" fill="#00d4ff" opacity="0.5"/>
+  <rect x="42" y="42" width="4" height="4" rx="1" fill="#ff00ff" opacity="0.5"/>
+  <!-- VRAM Lines -->
+  <line x1="8" y1="20" x2="14" y2="20" stroke="#00d4ff" stroke-width="1" opacity="0.6"/>
+  <line x1="8" y1="32" x2="14" y2="32" stroke="#ff00ff" stroke-width="1" opacity="0.6"/>
+  <line x1="8" y1="44" x2="14" y2="44" stroke="#00d4ff" stroke-width="1" opacity="0.6"/>
+  <line x1="50" y1="20" x2="56" y2="20" stroke="#ff00ff" stroke-width="1" opacity="0.6"/>
+  <line x1="50" y1="32" x2="56" y2="32" stroke="#00d4ff" stroke-width="1" opacity="0.6"/>
+  <line x1="50" y1="44" x2="56" y2="44" stroke="#ff00ff" stroke-width="1" opacity="0.6"/>
+  <!-- Center V -->
+  <text x="32" y="36" text-anchor="middle" fill="#00d4ff" font-size="10" font-family="monospace" font-weight="bold" opacity="0.9">V</text>
+</svg>

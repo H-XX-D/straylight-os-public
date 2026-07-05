@@ -1,0 +1,33 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#7a7a7a"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a5a5a"/>
+      <stop offset="100%" stop-color="#3a3a3a"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer protective hexagon shell -->
+  <path d="M32 4 L56 16 L56 40 L32 52 L8 40 L8 16 Z" fill="none" stroke="#c0c0c0" stroke-width="3"/>
+  <!-- Middle hexagon layer -->
+  <path d="M32 10 L50 19 L50 37 L32 46 L14 37 L14 19 Z" fill="none" stroke="#a0a0a0" stroke-width="2"/>
+  <!-- Inner secure core -->
+  <path d="M32 18 L42 23 L42 33 L32 38 L22 33 L22 23 Z" fill="url(#dark)" stroke="#c0c0c0" stroke-width="1"/>
+  <!-- Lock symbol -->
+  <rect x="28" y="26" width="8" height="6" fill="#c0c0c0"/>
+  <path d="M30 26 L30 24 Q30 22 32 22 Q34 22 34 24 L34 26" fill="none" stroke="#c0c0c0" stroke-width="1.5"/>
+  <circle cx="32" cy="29" r="1" fill="#7a7a7a"/>
+  <!-- Hexagonal molecular bonds -->
+  <line x1="8" y1="16" x2="4" y2="12" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="56" y1="16" x2="60" y2="12" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="8" y1="40" x2="4" y2="44" stroke="#7a7a7a" stroke-width="1"/>
+  <line x1="56" y1="40" x2="60" y2="44" stroke="#7a7a7a" stroke-width="1"/>
+  <!-- Corner hexagons -->
+  <path d="M2 10 L6 12 L6 16 L2 18 L-2 16 L-2 12 Z" fill="#a0a0a0"/>
+  <path d="M62 10 L66 12 L66 16 L62 18 L58 16 L58 12 Z" fill="#a0a0a0"/>
+  <path d="M2 42 L6 44 L6 48 L2 50 L-2 48 L-2 44 Z" fill="#a0a0a0"/>
+  <path d="M62 42 L66 44 L66 48 L62 50 L58 48 L58 44 Z" fill="#a0a0a0"/>
+</svg>

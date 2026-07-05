@@ -1,0 +1,35 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="xdpGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#39ff85"/>
+      <stop offset="100%" stop-color="#00cc44"/>
+    </linearGradient>
+  </defs>
+  <!-- Network packet layer -->
+  <path d="M8 24h48" stroke="#39ff85" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M8 40h48" stroke="#39ff85" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- XDP processing blob (in the middle) -->
+  <ellipse cx="32" cy="32" rx="10" ry="12" fill="url(#xdpGrad)" filter="url(#glow)"/>
+  <!-- Fast path arrows -->
+  <path d="M18 24l-6-4v8z" fill="#7fffab"/>
+  <path d="M46 24l-6-4v8z" fill="#7fffab"/>
+  <path d="M18 40l-6-4v8z" fill="#7fffab"/>
+  <path d="M46 40l-6-4v8z" fill="#7fffab"/>
+  <!-- X eye marking -->
+  <path d="M28 28l8 8M36 28l-8 8" stroke="#0a1f0a" stroke-width="2" stroke-linecap="round"/>
+  <!-- Kernel bypass tentacles -->
+  <path d="M8 32c-3 0-5-2-5-4" stroke="#7fffab" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M8 32c-3 0-5 2-5 4" stroke="#7fffab" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M56 32c3 0 5-2 5-4" stroke="#7fffab" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M56 32c3 0 5 2 5 4" stroke="#7fffab" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Packet drops/passes -->
+  <circle cx="14" cy="20" r="2" fill="#bfffdb" filter="url(#glow)"/>
+  <circle cx="50" cy="44" r="2" fill="#bfffdb" filter="url(#glow)"/>
+</svg>

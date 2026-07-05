@@ -1,0 +1,31 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="morphGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#bfffdb"/>
+      <stop offset="50%" stop-color="#39ff85"/>
+      <stop offset="100%" stop-color="#1a8f4a"/>
+    </radialGradient>
+  </defs>
+  <!-- Morphing blob shape 1 -->
+  <path d="M20 16c6-4 14-2 18 4 6-2 12 2 12 10 0 8-6 14-14 14-8 0-16-6-18-14-2-6 0-12 2-14z" fill="url(#morphGrad)" opacity="0.6" filter="url(#glow)"/>
+  <!-- Morphing blob shape 2 (offset) -->
+  <path d="M24 22c4-3 10-1 14 3 5-1 10 2 10 8 0 6-5 11-11 11-7 0-13-5-15-11-1-5 0-9 2-11z" fill="#39ff85" opacity="0.8" filter="url(#glow)"/>
+  <!-- Transformation arrows -->
+  <path d="M10 32c4-2 6-6 6-10" stroke="#7fffab" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M54 32c-4 2-6 6-6 10" stroke="#7fffab" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Morph nodes -->
+  <circle cx="16" cy="26" r="2" fill="#bfffdb" filter="url(#glow)"/>
+  <circle cx="48" cy="38" r="2" fill="#bfffdb" filter="url(#glow)"/>
+  <!-- Fluid connection lines -->
+  <path d="M32 10c0-3 2-5 4-6" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M32 54c0 3-2 5-4 6" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="38" cy="4" r="2" fill="#39ff85" opacity="0.7"/>
+  <circle cx="26" cy="60" r="2" fill="#39ff85" opacity="0.7"/>
+</svg>

@@ -1,0 +1,22 @@
+[Unit]
+Description=StrayLight CPU/GPU Scheduler
+Documentation=https://straylight.dev/docs/scheduler
+After=straylight-registry.service
+Requires=straylight-registry.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-scheduler
+Restart=on-failure
+RestartSec=2s
+User=root
+AmbientCapabilities=CAP_SYS_NICE CAP_SYS_ADMIN
+LimitNOFILE=65536
+WatchdogSec=30s
+ProtectSystem=strict
+ReadWritePaths=/proc/straylight /sys/fs/cgroup /run/straylight
+PrivateTmp=yes
+NoNewPrivileges=no
+
+[Install]
+WantedBy=multi-user.target

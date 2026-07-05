@@ -1,0 +1,25 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Optical bench base -->
+  <rect x="4" y="44" width="56" height="12" rx="1" fill="#2a2a2a" stroke="#3d3d3d" stroke-width="2"/>
+  <!-- Fiber optic cable -->
+  <path d="M8 50 Q20 30 32 30 Q44 30 56 50" fill="none" stroke="#ff6b35" stroke-width="3" opacity="0.8"/>
+  <!-- Light source (laser) -->
+  <rect x="6" y="38" width="8" height="10" fill="#1a1a1a" stroke="#ff6b35" stroke-width="1.5"/>
+  <circle cx="10" cy="38" r="2" fill="#ff6b35"/>
+  <!-- Optical detector -->
+  <rect x="50" y="38" width="8" height="10" fill="#1a1a1a" stroke="#ff6b35" stroke-width="1.5"/>
+  <circle cx="54" cy="38" r="2" fill="#ff6b35"/>
+  <!-- Light beam -->
+  <path d="M14 36 L28 20" stroke="#ff6b35" stroke-width="2" opacity="0.6" stroke-dasharray="3 2"/>
+  <path d="M36 20 L50 36" stroke="#ff6b35" stroke-width="2" opacity="0.6" stroke-dasharray="3 2"/>
+  <!-- Prism/mirror -->
+  <path d="M28 20 L32 12 L36 20 Z" fill="#8b4513" opacity="0.7"/>
+  <!-- Photon particles -->
+  <circle cx="20" cy="28" r="1.5" fill="#ff6b35" opacity="0.9"/>
+  <circle cx="26" cy="22" r="1.5" fill="#ff6b35" opacity="0.9"/>
+  <circle cx="38" cy="22" r="1.5" fill="#ff6b35" opacity="0.9"/>
+  <circle cx="44" cy="28" r="1.5" fill="#ff6b35" opacity="0.9"/>
+  <!-- Rust on bench -->
+  <circle cx="12" cy="54" r="2" fill="#a0522d" opacity="0.5"/>
+  <circle cx="52" cy="54" r="2" fill="#8b4513" opacity="0.4"/>
+</svg>

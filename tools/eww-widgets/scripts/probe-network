@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+# probe-network — emit JSON with per-interface stats for eww network widget
+# Output shape:
+# {
+#   "primary": { "iface":"eth0","ip":"192.0.2.249","rx_kbs":12.3,"tx_kbs":4.1 },
+#   "interfaces": [{ "iface":"eth0","ip":"...","state":"up","rx_bytes":N,"tx_bytes":N }],
+#   "online": true
+# }
+set -euo pipefail
+
+fallback() {
+    printf '{"primary":{"iface":"","ip":"","rx_kbs":0,"tx_kbs":0},"interfaces":[],"online":false}\n'
+    exit 0
+}
+
+# Read /proc/net/dev for byte counters
+dev_file="/proc/net/dev"
+[ -r "$dev_file" ] || fallback
+
+# Snapshot 1
+declare -A rx1 tx1
+while IFS=: read -r iface rest; do
+    iface="${iface// /}"
+    [[ -z "$iface" || "$iface" == *"|"* || "$iface" == "Inter"* || "$iface" == "face"* ]] && continue
+    read -r r1 _ _ _ _ _ _ _ t1 _ <<< "$rest"
+    rx1["$iface"]="${r1:-0}"
+    tx1["$iface"]="${t1:-0}"
+done < "$dev_file"
+
+sleep 0.4
+
+# Snapshot 2
+declare -A rx2 tx2
+while IFS=: read -r iface rest; do
+    iface="${iface// /}"
+    [[ -z "$iface" || "$iface" == *"|"* || "$iface" == "Inter"* || "$iface" == "face"* ]] && continue
+    read -r r2 _ _ _ _ _ _ _ t2 _ <<< "$rest"
+    rx2["$iface"]="${r2:-0}"
+    tx2["$iface"]="${t2:-0}"
+done < "$dev_file"
+
+# Get IP addresses via ip command
+declare -A iface_ip iface_state
+if command -v ip >/dev/null 2>&1; then
+    while IFS= read -r line; do
+        if [[ "$line" =~ ^[0-9]+:\ ([^:]+): ]]; then
+            cur_iface="${BASH_REMATCH[1]}"
+            [[ "$line" =~ "state UP" ]] && iface_state["$cur_iface"]="up" || iface_state["$cur_iface"]="down"
+        elif [[ "$line" =~ inet\ ([0-9.]+)/ ]]; then
+            [[ -n "${cur_iface:-}" ]] && iface_ip["$cur_iface"]="${BASH_REMATCH[1]}"
+        fi
+    done < <(ip addr 2>/dev/null)
+fi
+
+# Build output — skip loopback and virtual interfaces with no traffic
+ifaces_json="["
+primary_iface=""
+primary_ip=""
+primary_rx=0
+primary_tx=0
+count=0
+
+for iface in "${!rx1[@]}"; do
+    [[ "$iface" == "lo" ]] && continue
+    [[ "$iface" == "docker"* || "$iface" == "br-"* || "$iface" == "veth"* ]] && continue
+
+    r1="${rx1[$iface]:-0}"
+    t1="${tx1[$iface]:-0}"
+    r2="${rx2[$iface]:-0}"
+    t2="${tx2[$iface]:-0}"
+
+    rx_diff=$(( r2 - r1 ))
+    tx_diff=$(( t2 - t1 ))
+    [[ $rx_diff -lt 0 ]] && rx_diff=0
+    [[ $tx_diff -lt 0 ]] && tx_diff=0
+
+    # kB/s over 0.4s window
+    rx_kbs=$(awk "BEGIN{printf \"%.1f\", $rx_diff/1024/0.4}")
+    tx_kbs=$(awk "BEGIN{printf \"%.1f\", $tx_diff/1024/0.4}")
+
+    ip="${iface_ip[$iface]:-}"
+    state="${iface_state[$iface]:-down}"
+
+    [[ $count -gt 0 ]] && ifaces_json+=","
+    ifaces_json+="{\"iface\":\"${iface}\",\"ip\":\"${ip}\",\"state\":\"${state}\","
+    ifaces_json+="\"rx_bytes\":${r2},\"tx_bytes\":${t2},"
+    ifaces_json+="\"rx_kbs\":${rx_kbs},\"tx_kbs\":${tx_kbs}}"
+    (( count++ )) || true
+
+    # Pick primary = first up interface with an IP
+    if [[ -z "$primary_iface" && "$state" == "up" && -n "$ip" ]]; then
+        primary_iface="$iface"
+        primary_ip="$ip"
+        primary_rx="$rx_kbs"
+        primary_tx="$tx_kbs"
+    fi
+done
+
+ifaces_json+="]"
+
+online=false
+[[ -n "$primary_iface" ]] && online=true
+
+printf '{"primary":{"iface":"%s","ip":"%s","rx_kbs":%s,"tx_kbs":%s},"interfaces":%s,"online":%s}\n' \
+    "$primary_iface" "$primary_ip" "$primary_rx" "$primary_tx" \
+    "$ifaces_json" "$online"

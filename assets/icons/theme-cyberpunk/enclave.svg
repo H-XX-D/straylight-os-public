@@ -1,0 +1,33 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer shield -->
+  <path d="M32 4 L56 16 V36 Q56 52 32 60 Q8 52 8 36 V16 Z" fill="none" stroke="#ff00ff" stroke-width="2.5" filter="url(#glow-pink)"/>
+
+  <!-- Inner shield -->
+  <path d="M32 12 L48 20 V34 Q48 46 32 52 Q16 46 16 34 V20 Z" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#glow-cyan)"/>
+
+  <!-- Lock core -->
+  <rect x="26" y="28" width="12" height="10" rx="2" fill="#ffff00" filter="url(#glow-pink)"/>
+  <circle cx="32" cy="33" r="2" fill="#ff00ff"/>
+  <path d="M32 28 V24 Q32 20 36 20 Q40 20 40 24" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#glow-cyan)"/>
+
+  <!-- Security grid -->
+  <path d="M12 24 H20 M44 24 H52" stroke="#ffff00" stroke-width="1" opacity="0.6"/>
+  <path d="M12 40 H20 M44 40 H52" stroke="#ffff00" stroke-width="1" opacity="0.6"/>
+</svg>

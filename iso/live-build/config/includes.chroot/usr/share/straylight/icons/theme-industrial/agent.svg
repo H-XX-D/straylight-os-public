@@ -1,0 +1,57 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="steel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a6a6a"/>
+      <stop offset="50%" style="stop-color:#8a8a8a"/>
+      <stop offset="100%" style="stop-color:#4a4a4a"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#daa520"/>
+      <stop offset="50%" style="stop-color:#cd7f32"/>
+      <stop offset="100%" style="stop-color:#b87333"/>
+    </linearGradient>
+    <linearGradient id="rust" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#cd853f"/>
+      <stop offset="50%" style="stop-color:#a0522d"/>
+      <stop offset="100%" style="stop-color:#8b4513"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main gear housing -->
+  <circle cx="32" cy="32" r="26" fill="none" stroke="url(#steel)" stroke-width="3"/>
+
+  <!-- Gear teeth -->
+  <g stroke="url(#steel)" stroke-width="4" stroke-linecap="round">
+    <line x1="32" y1="2" x2="32" y2="8"/>
+    <line x1="32" y1="56" x2="32" y2="62"/>
+    <line x1="2" y1="32" x2="8" y2="32"/>
+    <line x1="56" y1="32" x2="62" y2="32"/>
+    <line x1="10.8" y1="10.8" x2="15" y2="15"/>
+    <line x1="49" y1="49" x2="53.2" y2="53.2"/>
+    <line x1="53.2" y1="10.8" x2="49" y2="15"/>
+    <line x1="15" y1="49" x2="10.8" y2="53.2"/>
+  </g>
+
+  <!-- Inner brass ring -->
+  <circle cx="32" cy="32" r="18" fill="none" stroke="url(#brass)" stroke-width="2"/>
+
+  <!-- AI symbol - neural network nodes -->
+  <circle cx="32" cy="24" r="4" fill="url(#rust)"/>
+  <circle cx="24" cy="36" r="4" fill="url(#rust)"/>
+  <circle cx="40" cy="36" r="4" fill="url(#rust)"/>
+
+  <!-- Connections -->
+  <line x1="32" y1="28" x2="26" y2="33" stroke="url(#brass)" stroke-width="2"/>
+  <line x1="32" y1="28" x2="38" y2="33" stroke="url(#brass)" stroke-width="2"/>
+  <line x1="28" y1="36" x2="36" y2="36" stroke="url(#brass)" stroke-width="2"/>
+
+  <!-- Center rivet -->
+  <circle cx="32" cy="32" r="3" fill="url(#brass)"/>
+  <circle cx="32" cy="32" r="1.5" fill="#4a4a4a"/>
+
+  <!-- Corner rivets -->
+  <circle cx="12" cy="12" r="2" fill="url(#brass)"/>
+  <circle cx="52" cy="12" r="2" fill="url(#brass)"/>
+  <circle cx="12" cy="52" r="2" fill="url(#brass)"/>
+  <circle cx="52" cy="52" r="2" fill="url(#brass)"/>
+</svg>

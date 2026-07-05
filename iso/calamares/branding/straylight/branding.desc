@@ -1,0 +1,36 @@
+# StrayLight OS Calamares Branding
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+componentName: straylight
+
+welcomeStyleCalamares: false
+welcomeExpandingLogo: true
+
+strings:
+    productName: "StrayLight OS"
+    shortProductName: "StrayLight"
+    version: "1.0.0"
+    shortVersion: "1.0"
+    versionedName: "StrayLight OS 1.0.0"
+    shortVersionedName: "StrayLight 1.0"
+    bootloaderEntryName: "StrayLight OS"
+    productUrl: "https://straylight.dev"
+    supportUrl: "https://straylight.dev/support"
+    knownIssuesUrl: "https://straylight.dev/known-issues"
+    releaseNotesUrl: "https://straylight.dev/release-notes/1.0.0"
+    donateUrl: "https://straylight.dev/donate"
+
+images:
+    productLogo: "logo.png"
+    productIcon: "icon.png"
+    productWelcome: "welcome.png"
+
+slideshow: "show.qml"
+
+slideshowAPI: 2
+
+style:
+    sidebarBackground: "#0d1117"
+    sidebarText: "#e6edf3"
+    sidebarTextSelect: "#58a6ff"
+    sidebarTextHighlight: "#1f6feb"

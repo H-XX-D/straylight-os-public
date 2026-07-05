@@ -1,0 +1,29 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g19" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.4"/>
+    </linearGradient>
+  </defs>
+  <!-- AR Network Frame -->
+  <rect x="6" y="6" width="52" height="52" rx="2" fill="none" stroke="#00d4ff" stroke-width="0.6" stroke-dasharray="4 2" opacity="0.3"/>
+  <!-- Network Interface -->
+  <rect x="10" y="22" width="44" height="20" rx="2" fill="url(#g19)" stroke="#ff00ff" stroke-width="1.2" opacity="0.7"/>
+  <!-- XDP Fast Path -->
+  <line x1="8" y1="26" x2="56" y2="26" stroke="#00d4ff" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <line x1="8" y1="38" x2="56" y2="38" stroke="#ff00ff" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  <!-- Packet Indicators -->
+  <rect x="14" y="24" width="6" height="4" rx="1" fill="#ff00ff" opacity="0.8"/>
+  <rect x="26" y="24" width="6" height="4" rx="1" fill="#00d4ff" opacity="0.8"/>
+  <rect x="38" y="24" width="6" height="4" rx="1" fill="#ff00ff" opacity="0.8"/>
+  <rect x="14" y="36" width="6" height="4" rx="1" fill="#00d4ff" opacity="0.8"/>
+  <rect x="26" y="36" width="6" height="4" rx="1" fill="#ff00ff" opacity="0.8"/>
+  <rect x="38" y="36" width="6" height="4" rx="1" fill="#00d4ff" opacity="0.8"/>
+  <!-- Bypass Arrow -->
+  <polygon points="52,28 58,32 52,36" fill="#00d4ff" opacity="0.8"/>
+  <!-- Kernel Skip Indicator -->
+  <line x1="20" y1="12" x2="44" y2="12" stroke="#ff00ff" stroke-width="1" opacity="0.5" stroke-dasharray="2 2"/>
+  <text x="32" y="10" text-anchor="middle" fill="#00d4ff" font-size="4" font-family="monospace" opacity="0.7">DRIVER</text>
+  <line x1="20" y1="52" x2="44" y2="52" stroke="#00d4ff" stroke-width="1" opacity="0.5" stroke-dasharray="2 2"/>
+  <text x="32" y="58" text-anchor="middle" fill="#ff00ff" font-size="4" font-family="monospace" opacity="0.7">USERSPACE</text>
+</svg>

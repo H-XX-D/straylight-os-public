@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+
+  <defs>
+    <!-- Sunset gradient -->
+    <linearGradient id="sunset" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff6b35"/>
+      <stop offset="50%" style="stop-color:#f7931e"/>
+      <stop offset="100%" style="stop-color:#ff00a0"/>
+    </linearGradient>
+    <!-- Cyan glow -->
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff"/>
+      <stop offset="100%" style="stop-color:#0080ff"/>
+    </linearGradient>
+    <!-- Chrome gradient -->
+    <linearGradient id="chrome" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff00a0"/>
+      <stop offset="50%" style="stop-color:#00ffff"/>
+      <stop offset="100%" style="stop-color:#ff6b35"/>
+    </linearGradient>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#ff00a0" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+    <!-- Pink glow filter -->
+    <filter id="pinkGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Cyan glow filter -->
+    <filter id="cyanGlowFilter" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background with grid -->
+  <rect width="64" height="64" fill="#1a0b2e" rx="4"/>
+  <rect width="64" height="64" fill="url(#grid)" rx="4"/>
+
+  <!-- AI Agent Icon -->
+  <circle cx="32" cy="24" r="10" fill="none" stroke="url(#chrome)" stroke-width="2" filter="url(#pinkGlow)"/>
+  <path d="M 22 36 Q 32 30 42 36 L 42 50 Q 32 54 22 50 Z" fill="none" stroke="url(#cyanGlow)" stroke-width="2" filter="url(#cyanGlowFilter)"/>
+  <rect x="27" y="22" width="4" height="4" fill="#00ffff" filter="url(#cyanGlowFilter)"/>
+  <rect x="33" y="22" width="4" height="4" fill="#00ffff" filter="url(#cyanGlowFilter)"/>
+  <line x1="32" y1="34" x2="32" y2="40" stroke="#ff00a0" stroke-width="1"/>
+  <line x1="28" y1="44" x2="28" y2="48" stroke="#ff00a0" stroke-width="1"/>
+  <line x1="36" y1="44" x2="36" y2="48" stroke="#ff00a0" stroke-width="1"/>
+
+</svg>

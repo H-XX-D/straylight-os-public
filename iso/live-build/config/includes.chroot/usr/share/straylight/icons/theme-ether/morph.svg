@@ -1,0 +1,56 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="morphGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#c0c0c0"/>
+    </linearGradient>
+  </defs>
+  <!-- Ethereal morphing shape -->
+  <path fill="none" stroke="url(#morphGrad)" stroke-width="1.5" opacity="0.9">
+    <animate attributeName="d"
+      values="
+        M32 12 Q44 12 48 24 Q52 36 44 46 Q36 56 24 52 Q12 48 12 34 Q12 20 22 14 Q28 10 32 12;
+        M32 10 Q46 14 50 28 Q52 42 42 50 Q32 56 20 50 Q10 44 10 30 Q10 16 22 12 Q28 8 32 10;
+        M32 14 Q42 10 50 22 Q54 34 46 44 Q38 54 26 50 Q14 46 14 32 Q14 18 24 14 Q30 12 32 14;
+        M32 12 Q44 12 48 24 Q52 36 44 46 Q36 56 24 52 Q12 48 12 34 Q12 20 22 14 Q28 10 32 12
+      "
+      dur="4s" repeatCount="indefinite"/>
+  </path>
+  <!-- Inner morphing form -->
+  <path fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6">
+    <animate attributeName="d"
+      values="
+        M32 20 Q38 20 40 28 Q42 36 36 42 Q30 48 24 44 Q18 40 18 30 Q18 22 24 20 Q28 18 32 20;
+        M32 18 Q40 22 42 30 Q44 38 36 44 Q28 50 20 44 Q14 38 16 28 Q18 20 26 18 Q30 16 32 18;
+        M32 22 Q36 18 42 26 Q46 34 38 42 Q30 48 22 42 Q16 36 20 26 Q24 20 30 20 Q32 20 32 22;
+        M32 20 Q38 20 40 28 Q42 36 36 42 Q30 48 24 44 Q18 40 18 30 Q18 22 24 20 Q28 18 32 20
+      "
+      dur="3s" repeatCount="indefinite"/>
+  </path>
+  <!-- Morphing nodes -->
+  <circle r="3" fill="#d4af37" opacity="0.9">
+    <animate attributeName="cx" values="32;40;32;24;32" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="12;24;48;24;12" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="2.5" fill="#ffffff" opacity="0.8">
+    <animate attributeName="cx" values="48;32;16;32;48" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="24;48;24;12;24" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="2" fill="#c0c0c0" opacity="0.8">
+    <animate attributeName="cx" values="16;32;48;32;16" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="24;12;24;48;24" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Spiritual center -->
+  <circle cx="32" cy="32" r="4" fill="#ffffff" opacity="0.9">
+    <animate attributeName="r" values="4;5;4" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Ether wisps -->
+  <path d="M32 4 Q34 6 32 8 Q30 6 32 4" fill="#d4af37" opacity="0.5">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 2,0; 0,0; -2,0; 0,0" dur="3s" repeatCount="indefinite"/>
+  </path>
+  <path d="M32 60 Q34 58 32 56 Q30 58 32 60" fill="#d4af37" opacity="0.5">
+    <animateTransform attributeName="transform" type="translate" values="0,0; -2,0; 0,0; 2,0; 0,0" dur="3s" repeatCount="indefinite"/>
+  </path>
+</svg>

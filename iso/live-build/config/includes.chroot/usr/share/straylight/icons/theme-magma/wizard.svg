@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Magma gradient - flowing lava -->
+    <linearGradient id="magmaGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff4500;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ff6600;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb700;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Intense fire gradient -->
+    <linearGradient id="fireGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b0000;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#ff4500;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#ff6600;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffb700;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Ember glow -->
+    <radialGradient id="emberGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ffb700;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#ff6600;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#ff4500;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Heat haze -->
+    <filter id="heatGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Intense fire blur -->
+    <filter id="fireBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background - volcanic rock -->
+  <circle cx="32" cy="32" r="30" fill="#1a0a05" stroke="#ff4500" stroke-width="2"/>
+
+
+  <!-- Setup Wizard - Magician with fire -->
+  <!-- Wizard hat -->
+  <path d="M24 46 L28 28 L20 28 L32 12 L44 28 L36 28 L40 46 Z" fill="url(#fireGrad)" filter="url(#heatGlow)"/>
+  <!-- Star/spark on hat -->
+  <path d="M32 18 L33 21 L36 21 L34 23 L35 26 L32 24 L29 26 L30 23 L28 21 L31 21 Z" fill="#ffb700" filter="url(#fireBlur)"/>
+  <!-- Wand -->
+  <line x1="42" y1="38" x2="50" y2="26" stroke="#ff6600" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="50" cy="26" r="2" fill="#ffb700" filter="url(#fireBlur)"/>
+
+</svg>

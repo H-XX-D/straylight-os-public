@@ -1,0 +1,17 @@
+#!/bin/bash
+# straylight-wizard-check — ExecStartPre guard for wizard service
+# Exits 0 if state is "wizard" (allow wizard to run), exits 1 otherwise.
+set -euo pipefail
+
+STATE_FILE="${STATE_FILE:-/var/lib/straylight/state}"
+
+if [ ! -f "${STATE_FILE}" ]; then
+    exit 1
+fi
+
+STATE=$(cat "${STATE_FILE}")
+if [ "${STATE}" = "wizard" ]; then
+    exit 0
+else
+    exit 1
+fi

@@ -1,0 +1,101 @@
+#!/bin/bash
+# straylight-firstboot — first-boot initialization script (no UI)
+# Installed to /usr/lib/straylight/straylight-firstboot
+set -euo pipefail
+
+STATE_FILE="${STATE_FILE:-/var/lib/straylight/state}"
+LOG_TAG="straylight-firstboot"
+
+log() {
+    echo "${LOG_TAG}: $*" | systemd-cat -t "${LOG_TAG}" 2>/dev/null || echo "${LOG_TAG}: $*"
+}
+
+# Read current state
+if [ ! -f "${STATE_FILE}" ]; then
+    log "State file not found, exiting"
+    exit 0
+fi
+
+STATE=$(cat "${STATE_FILE}")
+if [ "${STATE}" != "firstboot" ]; then
+    log "State is '${STATE}', not 'firstboot' — nothing to do"
+    exit 0
+fi
+
+log "Starting first-boot initialization"
+
+# Step 1: Commit machine ID
+log "Step 1: systemd-machine-id-setup --commit"
+systemd-machine-id-setup --commit 2>/dev/null || true
+
+# Step 2: Generate SSH host keys
+log "Step 2: Generating SSH host keys"
+ssh-keygen -A 2>/dev/null || true
+
+# Step 3: Install StrayLight udev rules and reload
+log "Step 3: Reloading udev rules"
+udevadm control --reload-rules 2>/dev/null || true
+udevadm trigger --type=subsystems 2>/dev/null || true
+udevadm settle --timeout=30 2>/dev/null || true
+
+# Step 4: Hardware detection and driver activation
+# straylight-hwdetect scans all PCI/USB devices, resolves kernel modules via
+# modalias, calls modprobe for anything not yet loaded, validates firmware
+# blobs, and writes /var/lib/straylight/hwdetect.json for OOBE to display.
+log "Step 4: Running hardware detection"
+if [ -x /usr/lib/straylight/straylight-hwdetect ]; then
+    /usr/lib/straylight/straylight-hwdetect || \
+        log "hwdetect exited with errors (non-fatal — see json report)"
+    log "Hardware detection complete"
+else
+    log "straylight-hwdetect not found — skipping (install may be incomplete)"
+fi
+
+# Step 5: Rebuild DKMS modules (after hwdetect has run so we know what's needed)
+log "Step 5: DKMS autoinstall"
+dkms autoinstall 2>/dev/null || true
+
+# Step 6: Apply sysctl settings
+log "Step 6: Applying sysctl settings"
+sysctl --system 2>/dev/null || true
+
+# Step 7: Pre-load critical drivers that modal detection may have missed
+# These are always correct to load on a StrayLight machine.
+log "Step 7: Pre-loading known drivers"
+for mod in \
+    drm drm_kms_helper \
+    i2c_core \
+    evdev uinput \
+    snd_hda_intel snd_hda_codec snd_pcm \
+    rfkill cfg80211 \
+    nvme nvme_core \
+    xhci_hcd ehci_pci uhci_hcd \
+    thunderbolt \
+    mei mei_me \
+    tpm tpm_tis tpm_crb \
+    intel_rapl_common intel_rapl_msr \
+; do
+    modprobe "${mod}" 2>/dev/null || true
+done
+
+# Step 8: Refresh hwdetect report after DKMS and pre-load
+if [ -x /usr/lib/straylight/straylight-hwdetect ]; then
+    log "Step 8: Refreshing hardware report after driver activation"
+    /usr/lib/straylight/straylight-hwdetect || true
+fi
+
+# Step 9: Transition state to 'oobe'
+log "Step 9: Transitioning state to 'oobe'"
+TMPFILE="${STATE_FILE}.tmp"
+echo -n "oobe" > "${TMPFILE}"
+sync "${TMPFILE}"
+mv "${TMPFILE}" "${STATE_FILE}"
+
+log "First-boot initialization complete — state is now 'oobe'"
+
+# Step 10: Reboot to apply all hardware drivers, firmware, and kernel state
+# A clean reboot ensures all loaded modules are stable and the session
+# manager starts fresh with the full hardware profile.
+log "Step 10: Rebooting to initialize full hardware profile"
+sleep 2
+systemctl reboot

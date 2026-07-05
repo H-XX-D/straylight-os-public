@@ -1,0 +1,17 @@
+[Unit]
+Description=StrayLight Core Orchestrator
+Documentation=https://straylight.dev/docs/core
+After=straylight-bus.service straylight-registry.service straylight-scheduler.service
+Requires=straylight-bus.service straylight-registry.service
+
+[Service]
+Type=notify
+NotifyAccess=main
+ExecStart=/usr/bin/straylight-core
+Restart=on-failure
+RestartSec=3s
+AmbientCapabilities=CAP_KILL CAP_SYS_ADMIN
+WatchdogSec=60s
+
+[Install]
+WantedBy=multi-user.target

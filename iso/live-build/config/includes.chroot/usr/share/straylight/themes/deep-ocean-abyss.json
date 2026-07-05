@@ -1,0 +1,21 @@
+{
+  "name": "Deep Ocean Abyss",
+  "colors": {
+    "bg": "#000510",
+    "fg": "#00ffff",
+    "accent": "#00ccff",
+    "panel": "#002840"
+  },
+  "font_size": 16.0,
+  "corner_radius": 4.0,
+  "icon_theme": "theme-abyss",
+  "vars": {
+    "surface.hover": "#00ffff",
+    "surface.active": "#0066cc",
+    "border.color": "#004060",
+    "text.dim": "#005070",
+    "success": "#39ff85",
+    "warning": "#0066cc",
+    "error": "#00ccff"
+  }
+}

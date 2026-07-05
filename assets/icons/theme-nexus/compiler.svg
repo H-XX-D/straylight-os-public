@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- Orbital rings -->
+  <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="url(#purpleGrad)" stroke-width="0.5" opacity="0.4" transform="rotate(-25 32 32)"/>
+  <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="url(#cyanGrad)" stroke-width="0.5" opacity="0.4" transform="rotate(25 32 32)"/>
+  <!-- Stars -->
+  <circle cx="10" cy="10" r="0.6" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="54" cy="12" r="0.5" fill="#5eead4" opacity="0.6"/>
+  <circle cx="56" cy="52" r="0.7" fill="#a78bfa" opacity="0.5"/>
+  <!-- Code brackets -->
+  <path d="M20 22 L12 32 L20 42" fill="none" stroke="url(#purpleGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M44 22 L52 32 L44 42" fill="none" stroke="url(#purpleGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Lightning/compile symbol -->
+  <path d="M30 18 L26 30 L32 30 L28 46 L38 32 L32 32 L36 18 Z" fill="url(#cyanGrad)" stroke="url(#silverGrad)" stroke-width="0.5"/>
+  <!-- Particles -->
+  <circle cx="16" cy="48" r="1" fill="#00d4aa" opacity="0.8"/>
+  <circle cx="48" cy="50" r="0.8" fill="#8b5cf6" opacity="0.7"/>
+  <circle cx="32" cy="8" r="0.9" fill="#e2e8f0" opacity="0.6"/>
+</svg>

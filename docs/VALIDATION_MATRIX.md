@@ -2,7 +2,7 @@
 
 This matrix maps public StrayLight OS claims to their current evidence state and
 next validation gate. It is intended to keep public documentation precise while
-the repository remains a source-only alpha starter.
+the repository remains a source-only alpha tree.
 
 ## Status Levels
 
@@ -17,13 +17,14 @@ the repository remains a source-only alpha starter.
 
 | Claim | Current status | Public evidence | Next gate |
 |-------|----------------|-----------------|-----------|
-| Public starter repository exists | Verified | README, public release, source manifest, snapshot verifier | Keep `scripts/verify_public_snapshot.sh .` green |
+| Public source repository exists | Verified | README, public release, source manifest, snapshot verifier | Keep `scripts/verify_public_snapshot.sh .` green |
 | MIT-licensed source snapshot | Verified | `LICENSE`, README license section | Keep license file present before accepting source contributions |
 | Source-only alpha release | Verified | `CHANGELOG.md`, `docs/RELEASE_PROCESS.md`, `v0.1.0-alpha` release | Do not attach artifacts until artifact policy and validation gates pass |
 | Package groups built in private/source handoff | Verified for handoff | README current verified state, `docs/STRAYLIGHT_CURRENT_STATUS.md` | Publish complete public source tree and clean-clone package checks |
-| Public package build from fresh clone | Gated | `packaging/STRAYLIGHT_PACKAGE_SPLIT.md`, `docs/PACKAGE_PAYLOAD_INVENTORY.md`, `docs/CLEAN_CLONE_PACKAGE_CHECK.md`, `docs/PACKAGE_BUILD_WRAPPER.md`, `scripts/check_package_dependencies.sh`, `scripts/build-packages.sh`, roadmap milestone | Complete `v0.2.0-alpha` milestone issues |
+| Public package source payload from fresh clone | Verified | `docs/PACKAGE_PAYLOAD_INVENTORY.md`, package source tree, `scripts/check_package_dependencies.sh --source-only .` | Keep source payload check green |
+| Public package build from fresh clone | Gated | `packaging/STRAYLIGHT_PACKAGE_SPLIT.md`, `docs/CLEAN_CLONE_PACKAGE_CHECK.md`, `docs/PACKAGE_BUILD_WRAPPER.md`, `scripts/check_package_dependencies.sh`, `scripts/build-packages.sh`, roadmap milestone | Run package build on a prepared Debian build host |
 | Public/private implementation boundary | Documented | `docs/PUBLIC_SOURCE_MANIFEST.md`, `docs/EXCLUDED_IMPLEMENTATION_AREAS.md`, `SECURITY.md` | Keep excluded areas generic and promote only through roadmap gates |
-| ISO build requirements documented | Documented | `docs/BUILD_ISO.md`, `docs/LIVE_BUILD_REQUIREMENTS.md`, `docs/RELEASE_PROCESS.md`, `scripts/check_iso_candidate_requirements.sh` | Add complete public source and live-build configuration |
+| ISO build requirements documented | Documented | `docs/BUILD_ISO.md`, `docs/LIVE_BUILD_REQUIREMENTS.md`, `docs/RELEASE_PROCESS.md`, `scripts/check_iso_candidate_requirements.sh`, `iso/live-build/`, `iso/calamares/` | Build packages and generate package repository before ISO candidate build |
 | Package repository generation | Documented | `docs/PACKAGE_REPOSITORY.md`, `scripts/generate_package_repo.sh`, `.gitignore`, `.gitattributes` | Generate `Packages.gz` from public package outputs before ISO candidate builds |
 | ISO candidate checksum and release notes | Documented | `docs/ISO_CANDIDATE_RELEASE.md`, `docs/RELEASE_NOTES_TEMPLATE.md`, `scripts/generate_iso_checksum.sh` | Generate and verify checksum before attaching ISO candidate artifacts |
 | VM boot validation flow | Documented | `docs/VM_BOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, `docs/RELEASE_NOTES_TEMPLATE.md` | Run VM boot validation on an ISO candidate |
@@ -36,11 +37,11 @@ the repository remains a source-only alpha starter.
 
 | Claim | Current status | Public evidence | Next gate |
 |-------|----------------|-----------------|-----------|
-| Layered control-plane architecture | Documented | README architecture section, `docs/STRAYLIGHT_SURFACE_MAP.md` | Publish implementation source for each layer |
-| Kernel module surfaces exist in source handoff | Verified for handoff | README kernel and datapath table | Publish public module source and build checks |
-| XDP/eBPF stand-up exists in source handoff | Verified for handoff | README XDP notes, `docs/straylight-network.md` | Publish policy-safe XDP examples and runtime validation |
-| Daemons consume kernel and datapath surfaces | Verified for handoff | README service/app propagation notes | Publish daemon source and post-install health checks |
-| CLI and app surfaces are documented | Documented | `docs/straylight-app-clis.md`, README CLI examples | Publish implementation source and runnable smoke checks |
+| Layered control-plane architecture | Documented | README architecture section, `docs/STRAYLIGHT_SURFACE_MAP.md`, public source tree | Add runnable smoke checks for each layer |
+| Kernel module surfaces exist in source | Verified | `kernel/`, README kernel and datapath table | Run DKMS/module package build on a prepared Debian build host |
+| XDP/eBPF stand-up exists in source | Verified | `kernel/xdp/`, `bin/xdp/`, README XDP notes, `docs/straylight-network.md` | Publish runtime validation from an installed VM |
+| Daemons consume kernel and datapath surfaces | Verified | `services/`, README service/app propagation notes | Run post-install health checks on an installed VM |
+| CLI and app surfaces are present in source | Verified | `tools/`, `apps/`, `docs/straylight-app-clis.md`, README CLI examples | Add runnable smoke checks |
 | Hardware-specific accelerator paths | Gated | README limitations, roadmap research tracks | Define hardware validation gates and sanitized probes |
 
 ## Distribution Claims

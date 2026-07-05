@@ -1,0 +1,12 @@
+{
+    "name": "default",
+    "colors": {
+        "bg": "#1E1E2E",
+        "fg": "#CDD6F4",
+        "accent": "#B4BEFE",
+        "panel": "#313244"
+    },
+    "font_size": 16.0,
+    "corner_radius": 4.0,
+    "icon_theme": "straylight-icons"
+}

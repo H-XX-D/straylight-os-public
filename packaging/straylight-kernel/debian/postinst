@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+
+MODULES="vpu hypervisor scheduler entropy enclave"
+VERSION="1.0.0"
+
+for mod in $MODULES; do
+    DKMS_NAME="straylight-${mod}"
+    if dkms status "${DKMS_NAME}/${VERSION}" 2>/dev/null | grep -q "installed"; then
+        echo "${DKMS_NAME}/${VERSION} already installed, skipping"
+        continue
+    fi
+    echo "Adding and building ${DKMS_NAME}/${VERSION}..."
+    dkms add -m "${DKMS_NAME}" -v "${VERSION}" 2>/dev/null || true
+    dkms build -m "${DKMS_NAME}" -v "${VERSION}"
+    dkms install -m "${DKMS_NAME}" -v "${VERSION}"
+done
+
+XDP_NAME="straylight-xdp"
+
+# XDP programs are eBPF objects, not kernel modules. DKMS is used here only
+# to validate that the source still builds against the installed headers.
+# Runtime BPF objects are shipped by straylight-network in /usr/lib/straylight/bpf.
+if dkms status "${XDP_NAME}/${VERSION}" 2>/dev/null | grep -q ": built"; then
+    echo "${XDP_NAME}/${VERSION} already built, skipping"
+else
+    echo "Adding and building ${XDP_NAME}/${VERSION}..."
+    dkms add -m "${XDP_NAME}" -v "${VERSION}" 2>/dev/null || true
+    dkms build -m "${XDP_NAME}" -v "${VERSION}"
+fi
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,45 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Memory regions -->
+  <rect x="4" y="8" width="20" height="20" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+  <rect x="40" y="36" width="20" height="20" fill="none" stroke="#ff00ff" stroke-width="2" filter="url(#glow-pink)"/>
+
+  <!-- Memory cells -->
+  <rect x="8" y="12" width="4" height="4" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="14" y="12" width="4" height="4" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="8" y="18" width="4" height="4" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="14" y="18" width="4" height="4" fill="#00ffff" filter="url(#glow-cyan)"/>
+
+  <rect x="44" y="40" width="4" height="4" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="50" y="40" width="4" height="4" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="44" y="46" width="4" height="4" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <rect x="50" y="46" width="4" height="4" fill="#00ffff" filter="url(#glow-cyan)"/>
+
+  <!-- Direct transfer arrow -->
+  <path d="M26 20 L38 20" stroke="#ffff00" stroke-width="3" filter="url(#glow-pink)"/>
+  <polygon points="36,16 42,20 36,24" fill="#ffff00" filter="url(#glow-pink)"/>
+
+  <!-- Bypass CPU indicator -->
+  <path d="M28 28 H36 V36 H28 Z" fill="none" stroke="#ffff00" stroke-width="1.5" opacity="0.5"/>
+  <path d="M30 32 H34" stroke="#ff00ff" stroke-width="2"/>
+  <path d="M28 32 L24 32 M40 32 L36 32" stroke="#00ffff" stroke-width="1" stroke-dasharray="2 2"/>
+
+  <!-- RDMA label hint -->
+  <text x="20" y="56" fill="#ff00ff" font-family="monospace" font-size="5" filter="url(#glow-pink)">RDMA</text>
+</svg>

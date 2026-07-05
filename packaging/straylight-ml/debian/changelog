@@ -1,0 +1,10 @@
+straylight-ml (1.0.0-1) unstable; urgency=medium
+
+  * Initial release.
+  * straylight-compiler: graph optimization + CUDA/ROCm/CPU codegen
+  * straylight-agent: event-driven task distribution daemon
+  * straylight-morph: quantization, pruning, distillation, adaptation
+  * straylight-snn: spiking neural network simulator
+  * straylight-rhem: heterogeneous device management + migration
+
+ -- StrayLight OS Team <dev@straylight.dev>  Sun, 16 Mar 2026 00:00:00 +0000

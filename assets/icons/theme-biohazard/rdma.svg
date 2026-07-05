@@ -1,0 +1,25 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- RDMA Bus - Direct memory contamination -->
+  <!-- Memory block -->
+  <rect x="8" y="20" width="20" height="24" rx="2" fill="currentColor" opacity="0.9"/>
+  <rect x="12" y="24" width="12" height="16" rx="1" fill="#000"/>
+  <!-- Target block -->
+  <rect x="36" y="20" width="20" height="24" rx="2" fill="currentColor" opacity="0.9"/>
+  <rect x="40" y="24" width="12" height="16" rx="1" fill="#000"/>
+  <!-- Direct connection arrow -->
+  <path d="M28 32h8" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  <path d="M32 26l6 6-6 6" fill="currentColor"/>
+  <!-- Bypass CPU (ghosted) -->
+  <rect x="24" y="8" width="16" height="10" rx="2" fill="currentColor" opacity="0.3"/>
+  <text x="32" y="15" text-anchor="middle" font-size="6" fill="#000" opacity="0.5">CPU</text>
+  <!-- Toxic data flow -->
+  <path d="M18 28c2 0 4 2 4 4s-2 4-4 4" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M46 28c-2 0-4 2-4 4s2 4 4 4" stroke="currentColor" stroke-width="2" fill="none"/>
+  <!-- Biohazard nodes -->
+  <circle cx="18" cy="32" r="3" fill="currentColor"/>
+  <circle cx="46" cy="32" r="3" fill="currentColor"/>
+  <!-- Contamination spread -->
+  <circle cx="4" cy="32" r="2" fill="currentColor" opacity="0.6"/>
+  <circle cx="60" cy="32" r="2" fill="currentColor" opacity="0.6"/>
+  <circle cx="32" cy="56" r="3" fill="currentColor" opacity="0.5"/>
+</svg>

@@ -1,0 +1,7 @@
+usr/bin/straylight-quantum
+usr/bin/straylight-photonics
+usr/bin/straylight-pmem
+usr/bin/straylight-enclave
+usr/bin/straylight-fuse
+etc/straylight/quantum.conf
+etc/straylight/fuse.conf

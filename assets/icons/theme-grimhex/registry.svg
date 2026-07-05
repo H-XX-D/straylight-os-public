@@ -1,0 +1,28 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon frame -->
+  <path d="M32 4 L56 16 L56 44 L32 56 L8 44 L8 16 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Stacked model layers -->
+  <path d="M32 12 L50 20 L50 26 L32 34 L14 26 L14 20 Z" fill="currentColor" opacity="0.1"/>
+  <path d="M32 12 L50 20 L50 26 L32 34 L14 26 L14 20 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+
+  <path d="M32 20 L50 28 L50 34 L32 42 L14 34 L14 28 Z" fill="currentColor" opacity="0.15"/>
+  <path d="M32 20 L50 28 L50 34 L32 42 L14 34 L14 28 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+
+  <path d="M32 28 L50 36 L50 42 L32 50 L14 42 L14 36 Z" fill="currentColor" opacity="0.2"/>
+  <path d="M32 28 L50 36 L50 42 L32 50 L14 42 L14 36 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+
+  <!-- Registry index markers -->
+  <rect x="20" y="22" width="6" height="3" fill="currentColor" opacity="0.7"/>
+  <rect x="20" y="30" width="8" height="3" fill="currentColor" opacity="0.7"/>
+  <rect x="20" y="38" width="5" height="3" fill="currentColor" opacity="0.7"/>
+
+  <!-- Version tags -->
+  <circle cx="40" cy="24" r="1.5" fill="currentColor" opacity="0.6"/>
+  <circle cx="42" cy="32" r="1.5" fill="currentColor" opacity="0.6"/>
+  <circle cx="38" cy="40" r="1.5" fill="currentColor" opacity="0.6"/>
+
+  <!-- Catalog lines -->
+  <line x1="16" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+  <line x1="48" y1="16" x2="52" y2="12" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+</svg>

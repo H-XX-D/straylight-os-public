@@ -1,0 +1,32 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#39ff85" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00ccff" stop-opacity="0.2"/>
+    </radialGradient>
+    <filter id="biolum">
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Deep ocean background circle -->
+  <circle cx="32" cy="32" r="28" fill="#001a2e" stroke="#00ccff" stroke-width="1" opacity="0.6"/>
+  <!-- Jellyfish AI Agent body -->
+  <ellipse cx="32" cy="26" rx="12" ry="10" fill="url(#glow)" filter="url(#biolum)"/>
+  <!-- Tentacles as neural connections -->
+  <path d="M26 34 Q24 42 22 48" stroke="#39ff85" stroke-width="1.5" fill="none" opacity="0.8"/>
+  <path d="M32 36 Q32 44 32 50" stroke="#00ccff" stroke-width="1.5" fill="none" opacity="0.8"/>
+  <path d="M38 34 Q40 42 42 48" stroke="#39ff85" stroke-width="1.5" fill="none" opacity="0.8"/>
+  <path d="M28 35 Q26 40 28 46" stroke="#00ccff" stroke-width="1" fill="none" opacity="0.6"/>
+  <path d="M36 35 Q38 40 36 46" stroke="#00ccff" stroke-width="1" fill="none" opacity="0.6"/>
+  <!-- Eye/core -->
+  <circle cx="32" cy="26" r="4" fill="#39ff85" filter="url(#biolum)"/>
+  <circle cx="32" cy="26" r="2" fill="#001a2e"/>
+  <!-- Bubbles -->
+  <circle cx="16" cy="20" r="2" fill="#00ccff" opacity="0.5"/>
+  <circle cx="48" cy="18" r="1.5" fill="#39ff85" opacity="0.4"/>
+  <circle cx="52" cy="45" r="2.5" fill="#00ccff" opacity="0.3"/>
+</svg>

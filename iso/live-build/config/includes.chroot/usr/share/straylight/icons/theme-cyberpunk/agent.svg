@@ -1,0 +1,40 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="chrome" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff00ff"/>
+      <stop offset="50%" stop-color="#00ffff"/>
+      <stop offset="100%" stop-color="#ffff00"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Grid background -->
+  <path d="M0 16 H64 M0 32 H64 M0 48 H64" stroke="#ff00ff" stroke-width="0.5" opacity="0.3"/>
+  <path d="M16 0 V64 M32 0 V64 M48 0 V64" stroke="#ff00ff" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- AI Core -->
+  <circle cx="32" cy="32" r="12" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#glow-cyan)"/>
+  <circle cx="32" cy="32" r="8" fill="none" stroke="#ff00ff" stroke-width="1.5" filter="url(#glow-pink)"/>
+
+  <!-- Neural pathways -->
+  <path d="M32 8 L32 20 M32 44 L32 56 M8 32 L20 32 M44 32 L56 32" stroke="#ffff00" stroke-width="2" filter="url(#glow-pink)"/>
+  <path d="M16 16 L22 22 M48 16 L42 22 M16 48 L22 42 M48 48 L42 42" stroke="#00ffff" stroke-width="1.5" filter="url(#glow-cyan)"/>
+
+  <!-- Central processor -->
+  <rect x="28" y="28" width="8" height="8" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="30" y="30" width="4" height="4" fill="#ff00ff"/>
+</svg>

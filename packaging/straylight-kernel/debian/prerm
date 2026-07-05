@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+MODULES="vpu hypervisor scheduler xdp entropy enclave"
+VERSION="1.0.0"
+
+for mod in $MODULES; do
+    DKMS_NAME="straylight-${mod}"
+    echo "Removing ${DKMS_NAME}/${VERSION}..."
+    dkms remove -m "${DKMS_NAME}" -v "${VERSION}" --all 2>/dev/null || true
+done
+
+# Runtime XDP BPF objects are owned by straylight-network.
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,27 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f7ff"/>
+      <stop offset="50%" style="stop-color:#4fc3f7"/>
+      <stop offset="100%" style="stop-color:#81d4fa"/>
+    </linearGradient>
+    <filter id="frost">
+      <feGaussianBlur stdDeviation="0.5"/>
+    </filter>
+  </defs>
+  <!-- Hexagon ice crystal base -->
+  <polygon points="32,4 56,18 56,46 32,60 8,46 8,18" fill="none" stroke="url(#iceGrad)" stroke-width="2"/>
+  <!-- Inner AI face -->
+  <circle cx="22" cy="26" r="4" fill="#4fc3f7"/>
+  <circle cx="42" cy="26" r="4" fill="#4fc3f7"/>
+  <path d="M24 36 Q32 44 40 36" fill="none" stroke="#e0f7ff" stroke-width="2" stroke-linecap="round"/>
+  <!-- Snowflake core -->
+  <circle cx="32" cy="32" r="8" fill="url(#iceGrad)" opacity="0.3"/>
+  <!-- Crystal spikes -->
+  <line x1="32" y1="10" x2="32" y2="18" stroke="#4fc3f7" stroke-width="1.5"/>
+  <line x1="32" y1="46" x2="32" y2="54" stroke="#4fc3f7" stroke-width="1.5"/>
+  <line x1="14" y1="22" x2="20" y2="26" stroke="#4fc3f7" stroke-width="1.5"/>
+  <line x1="44" y1="26" x2="50" y2="22" stroke="#4fc3f7" stroke-width="1.5"/>
+  <line x1="14" y1="42" x2="20" y2="38" stroke="#4fc3f7" stroke-width="1.5"/>
+  <line x1="44" y1="38" x2="50" y2="42" stroke="#4fc3f7" stroke-width="1.5"/>
+</svg>

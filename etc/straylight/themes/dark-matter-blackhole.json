@@ -1,0 +1,21 @@
+{
+  "name": "Dark Matter Blackhole",
+  "colors": {
+    "bg": "#000000",
+    "fg": "#ffffff",
+    "accent": "#ff6600",
+    "panel": "#0a0a10"
+  },
+  "font_size": 16.0,
+  "corner_radius": 4.0,
+  "icon_theme": "theme-blackhole",
+  "vars": {
+    "surface.hover": "#ffb700",
+    "surface.active": "#ff3300",
+    "border.color": "#1a0f05",
+    "text.dim": "#808080",
+    "success": "#ffb700",
+    "warning": "#ff6600",
+    "error": "#ff3300"
+  }
+}

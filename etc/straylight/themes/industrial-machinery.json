@@ -1,0 +1,21 @@
+{
+  "name": "Industrial Machinery",
+  "colors": {
+    "bg": "#0a0a0c",
+    "fg": "#b0b0b8",
+    "accent": "#ff6600",
+    "panel": "#1e1e22"
+  },
+  "font_size": 16.0,
+  "corner_radius": 2.0,
+  "icon_theme": "theme-industrial",
+  "vars": {
+    "surface.hover": "#c9a227",
+    "surface.active": "#b87333",
+    "border.color": "#2a2a30",
+    "text.dim": "#606068",
+    "success": "#c9a227",
+    "warning": "#ff6600",
+    "error": "#dc2626"
+  }
+}

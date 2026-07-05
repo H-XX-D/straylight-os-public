@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat >&2 <<'USAGE'
+Usage:
+  straylight-debian-launch --native <command> [args...]
+  straylight-debian-launch --wayland <command> [args...]
+
+Runs StrayLight GUI tools under the active Debian desktop session.
+--native  executes the command directly; use for GLFW/GTK/X11-ready tools.
+--wayland executes directly in a Wayland session, or under Debian Weston nested
+          in the current X11 session when GNOME owns an Xorg desktop.
+USAGE
+}
+
+if [[ $# -lt 2 ]]; then
+  usage
+  exit 64
+fi
+
+mode="$1"
+shift
+case "$mode" in
+  --native|--wayland) ;;
+  *) usage; exit 64 ;;
+esac
+
+if [[ $# -lt 1 ]]; then
+  usage
+  exit 64
+fi
+
+cmd=("$@")
+cmd_name="$(basename "${cmd[0]}")"
+
+if [[ -z "${XDG_RUNTIME_DIR:-}" ]]; then
+  export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+fi
+
+log_dir="${XDG_CACHE_HOME:-$HOME/.cache}/straylight/debian-gui"
+mkdir -p "$log_dir"
+
+if [[ "$mode" == "--native" ]]; then
+  exec "${cmd[@]}"
+fi
+
+if [[ -n "${WAYLAND_DISPLAY:-}" && -S "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" ]]; then
+  exec "${cmd[@]}"
+fi
+
+if [[ -z "${DISPLAY:-}" ]]; then
+  echo "straylight-debian-launch: no WAYLAND_DISPLAY or DISPLAY is available" >&2
+  exit 69
+fi
+
+if ! command -v weston >/dev/null 2>&1; then
+  echo "straylight-debian-launch: weston is required for Xorg compatibility" >&2
+  exit 69
+fi
+
+safe_name="$(printf '%s' "$cmd_name" | tr -c 'A-Za-z0-9_.-' '-')"
+socket="straylight-${safe_name}-$$"
+weston_log="$log_dir/${safe_name}-weston-$$.log"
+
+cleanup() {
+  if [[ -n "${weston_pid:-}" ]]; then
+    kill "$weston_pid" >/dev/null 2>&1 || true
+    wait "$weston_pid" >/dev/null 2>&1 || true
+  fi
+}
+trap cleanup EXIT INT TERM
+
+weston \
+  --backend=x11-backend.so \
+  --socket="$socket" \
+  --idle-time=0 \
+  --width="${STRAYLIGHT_DEBIAN_GUI_WIDTH:-1400}" \
+  --height="${STRAYLIGHT_DEBIAN_GUI_HEIGHT:-900}" \
+  --log="$weston_log" \
+  >/dev/null 2>&1 &
+weston_pid=$!
+
+for _ in $(seq 1 80); do
+  if [[ -S "$XDG_RUNTIME_DIR/$socket" ]]; then
+    break
+  fi
+  if ! kill -0 "$weston_pid" >/dev/null 2>&1; then
+    echo "straylight-debian-launch: weston exited before creating $socket" >&2
+    sed -n '1,120p' "$weston_log" >&2 || true
+    exit 69
+  fi
+  sleep 0.1
+done
+
+if [[ ! -S "$XDG_RUNTIME_DIR/$socket" ]]; then
+  echo "straylight-debian-launch: timed out waiting for nested Wayland socket $socket" >&2
+  sed -n '1,160p' "$weston_log" >&2 || true
+  exit 69
+fi
+
+WAYLAND_DISPLAY="$socket" "${cmd[@]}"

@@ -1,0 +1,47 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wizStaff" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8b6914"/>
+    </linearGradient>
+  </defs>
+  <!-- Ethereal wizard hat -->
+  <path d="M20 48 L32 12 L44 48 Z" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
+  <path d="M24 42 L32 18 L40 42" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.5"/>
+  <!-- Divine hat brim -->
+  <ellipse cx="32" cy="48" rx="16" ry="4" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+  <ellipse cx="32" cy="48" rx="12" ry="3" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.5"/>
+  <!-- Magical staff -->
+  <line x1="48" y1="52" x2="48" y2="24" stroke="url(#wizStaff)" stroke-width="2" opacity="0.9"/>
+  <circle cx="48" cy="22" r="4" fill="#d4af37" opacity="0.9">
+    <animate attributeName="r" values="4;5;4" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Sparkles from staff -->
+  <circle cx="44" cy="18" r="1" fill="#ffffff" opacity="0">
+    <animate attributeName="cy" values="18;10;18" dur="1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="52" cy="16" r="1" fill="#ffffff" opacity="0">
+    <animate attributeName="cy" values="16;8;16" dur="0.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;0" dur="0.8s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Mystical stars -->
+  <text x="28" y="8" fill="#d4af37" font-family="serif" font-size="6" opacity="0.8">✦</text>
+  <text x="36" y="10" fill="#ffffff" font-family="serif" font-size="4" opacity="0.6">✦</text>
+  <text x="16" y="28" fill="#d4af37" font-family="serif" font-size="5" opacity="0.5">✦</text>
+  <text x="52" y="36" fill="#ffffff" font-family="serif" font-size="4" opacity="0.5">✦</text>
+  <!-- Setup sparkles -->
+  <circle cx="24" cy="56" r="1" fill="#d4af37" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="0.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="40" cy="54" r="1" fill="#ffffff" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="0.7s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Wizard face suggestion -->
+  <circle cx="28" cy="38" r="1.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="36" cy="38" r="1.5" fill="#ffffff" opacity="0.6"/>
+  <path d="M30 42 Q32 44 34 42" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.5"/>
+  <!-- Sacred beard suggestion -->
+  <path d="M28 46 Q32 52 36 46" fill="none" stroke="#c0c0c0" stroke-width="0.5" opacity="0.4"/>
+</svg>

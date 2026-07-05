@@ -1,0 +1,32 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="chaosGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#bfffdb"/>
+      <stop offset="50%" stop-color="#39ff85"/>
+      <stop offset="100%" stop-color="#0a8f3a"/>
+    </radialGradient>
+  </defs>
+  <!-- Chaotic organic core -->
+  <path d="M32 12c8 0 12 4 14 10 6 2 8 8 6 14 2 6 0 12-6 14-2 6-8 8-14 6-6 2-12 0-14-6-6-2-8-8-6-14-2-6 0-12 6-14 2-6 8-8 14-6z" fill="url(#chaosGrad)" filter="url(#glow)"/>
+  <!-- Random particles -->
+  <circle cx="24" cy="24" r="3" fill="#0a1f0a" opacity="0.6"/>
+  <circle cx="40" cy="28" r="2" fill="#0a1f0a" opacity="0.6"/>
+  <circle cx="28" cy="40" r="2.5" fill="#0a1f0a" opacity="0.6"/>
+  <circle cx="38" cy="42" r="1.5" fill="#0a1f0a" opacity="0.6"/>
+  <circle cx="32" cy="20" r="1.5" fill="#0a1f0a" opacity="0.6"/>
+  <!-- Chaotic tentacles emanating -->
+  <path d="M18 18c-6-4-10-2-12 2" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M46 18c6-4 10-2 12 2" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M14 46c-4 4-6 8-4 12" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M50 46c4 4 6 8 4 12" stroke="#39ff85" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Noise waves -->
+  <path d="M8 32c2-2 4-2 6 0s4 2 6 0" stroke="#7fffab" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <path d="M44 32c2-2 4-2 6 0s4 2 6 0" stroke="#7fffab" stroke-width="1.5" fill="none" opacity="0.7"/>
+</svg>

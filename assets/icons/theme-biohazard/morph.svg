@@ -1,0 +1,20 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dynamic Morphing - Mutating organic form -->
+  <!-- Morphing blob shape -->
+  <path d="M32 4c-8 0-16 4-20 12-4 6-4 16 0 22 2 4 6 8 10 10 4 2 6 8 6 12 0 2 2 4 4 4s4-2 4-4c0-4 2-10 6-12 4-2 8-6 10-10 4-6 4-16 0-22C48 8 40 4 32 4z" fill="currentColor" opacity="0.9"/>
+  <!-- Inner mutation core -->
+  <path d="M32 16c-6 0-10 4-10 10 0 4 2 7 5 9-2 2-3 5-3 9 0 2 2 4 4 4h8c2 0 4-2 4-4 0-4-1-7-3-9 3-2 5-5 5-9 0-6-4-10-10-10z" fill="#000"/>
+  <!-- Morphing arrows -->
+  <path d="M28 28c2 2 4 2 6 0" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M26 34c2-1 4-1 6 0s4 1 6 0" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Transformation nodes -->
+  <circle cx="18" cy="20" r="2" fill="currentColor"/>
+  <circle cx="46" cy="20" r="2" fill="currentColor"/>
+  <circle cx="14" cy="36" r="2" fill="currentColor"/>
+  <circle cx="50" cy="36" r="2" fill="currentColor"/>
+  <!-- Radioactive mutation indicators -->
+  <path d="M8 12l3 3M56 12l-3 3M8 52l3-3M56 52l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <!-- Slime trails -->
+  <path d="M6 28c2 0 4 2 4 4s-2 4-4 4" stroke="currentColor" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M58 28c-2 0-4 2-4 4s2 4 4 4" stroke="currentColor" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>

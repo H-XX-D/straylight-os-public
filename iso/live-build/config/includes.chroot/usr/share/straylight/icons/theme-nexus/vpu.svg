@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- GPU orbit -->
+  <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="url(#purpleGrad)" stroke-width="0.5" opacity="0.5" transform="rotate(-10 32 32)"/>
+  <!-- GPU chip outline -->
+  <rect x="10" y="14" width="44" height="36" rx="4" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <!-- GPU core -->
+  <rect x="22" y="22" width="20" height="20" rx="2" fill="none" stroke="url(#purpleGrad)" stroke-width="1.5"/>
+  <!-- Processing units grid -->
+  <rect x="24" y="24" width="4" height="4" rx="1" fill="url(#cyanGrad)" opacity="0.8"/>
+  <rect x="30" y="24" width="4" height="4" rx="1" fill="url(#cyanGrad)" opacity="0.8"/>
+  <rect x="36" y="24" width="4" height="4" rx="1" fill="url(#cyanGrad)" opacity="0.8"/>
+  <rect x="24" y="30" width="4" height="4" rx="1" fill="url(#cyanGrad)" opacity="0.8"/>
+  <rect x="30" y="30" width="4" height="4" rx="1" fill="url(#purpleGrad)" opacity="0.8"/>
+  <rect x="36" y="30" width="4" height="4" rx="1" fill="url(#cyanGrad)" opacity="0.8"/>
+  <rect x="24" y="36" width="4" height="4" rx="1" fill="url(#cyanGrad)" opacity="0.8"/>
+  <rect x="30" y="36" width="4" height="4" rx="1" fill="url(#cyanGrad)" opacity="0.8"/>
+  <rect x="36" y="36" width="4" height="4" rx="1" fill="url(#cyanGrad)" opacity="0.8"/>
+  <!-- V indicator -->
+  <text x="28" y="18" font-family="monospace" font-size="4" fill="url(#cyanGrad)" font-weight="bold">V</text>
+  <!-- Connector pins -->
+  <line x1="14" y1="50" x2="14" y2="54" stroke="url(#silverGrad)" stroke-width="1"/>
+  <line x1="20" y1="50" x2="20" y2="54" stroke="url(#silverGrad)" stroke-width="1"/>
+  <line x1="44" y1="50" x2="44" y2="54" stroke="url(#silverGrad)" stroke-width="1"/>
+  <line x1="50" y1="50" x2="50" y2="54" stroke="url(#silverGrad)" stroke-width="1"/>
+  <!-- Stars -->
+  <circle cx="8" cy="10" r="0.6" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="56" cy="14" r="0.5" fill="#5eead4" opacity="0.6"/>
+  <circle cx="54" cy="54" r="0.7" fill="#a78bfa" opacity="0.5"/>
+</svg>

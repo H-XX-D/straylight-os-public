@@ -1,0 +1,39 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fiber optic cable -->
+  <path d="M4 32 Q20 32 32 20 Q44 8 60 8" fill="none" stroke="#00ffff" stroke-width="3" filter="url(#glow-cyan)"/>
+  <path d="M4 36 Q20 36 32 48 Q44 60 60 60" fill="none" stroke="#ff00ff" stroke-width="3" filter="url(#glow-pink)"/>
+
+  <!-- Light pulses -->
+  <circle cx="20" cy="32" r="3" fill="#ffff00" filter="url(#glow-pink)"/>
+  <circle cx="36" cy="20" r="3" fill="#ffff00" filter="url(#glow-pink)"/>
+  <circle cx="24" cy="36" r="2.5" fill="#ffff00" filter="url(#glow-cyan)"/>
+  <circle cx="40" cy="48" r="2.5" fill="#ffff00" filter="url(#glow-cyan)"/>
+
+  <!-- Optical connector -->
+  <rect x="52" y="4" width="8" height="8" fill="#ffff00" filter="url(#glow-pink)"/>
+  <rect x="52" y="56" width="8" height="8" fill="#ffff00" filter="url(#glow-cyan)"/>
+
+  <!-- Light waves -->
+  <path d="M8 24 Q12 20 16 24 Q20 28 24 24" fill="none" stroke="#ff00ff" stroke-width="1" opacity="0.7"/>
+  <path d="M8 44 Q12 48 16 44 Q20 40 24 44" fill="none" stroke="#00ffff" stroke-width="1" opacity="0.7"/>
+
+  <!-- Wavelength indicator -->
+  <text x="36" y="38" fill="#ffff00" font-family="monospace" font-size="6" filter="url(#glow-pink)">λ</text>
+</svg>

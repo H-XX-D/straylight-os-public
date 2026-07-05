@@ -1,0 +1,35 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#7a7a7a"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c0c0c0" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#e8e8e8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#c0c0c0" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Optical fiber hexagon structure -->
+  <path d="M32 8 L44 14 L44 26 L32 32 L20 26 L20 14 Z" fill="url(#silver)"/>
+  <!-- Light beam center -->
+  <ellipse cx="32" cy="20" rx="4" ry="8" fill="#e8e8e8"/>
+  <!-- Photonic wave lines -->
+  <path d="M32 4 Q36 10 32 16 Q28 22 32 28 Q36 34 32 40" fill="none" stroke="#c0c0c0" stroke-width="1.5" opacity="0.8"/>
+  <path d="M28 6 Q32 12 28 18 Q24 24 28 30 Q32 36 28 42" fill="none" stroke="#a0a0a0" stroke-width="1" opacity="0.6"/>
+  <path d="M36 6 Q40 12 36 18 Q32 24 36 30 Q40 36 36 42" fill="none" stroke="#a0a0a0" stroke-width="1" opacity="0.6"/>
+  <!-- Output hexagons -->
+  <path d="M12 36 L20 40 L20 48 L12 52 L4 48 L4 40 Z" fill="#7a7a7a"/>
+  <path d="M28 38 L36 42 L36 50 L28 54 L20 50 L20 42 Z" fill="#a0a0a0"/>
+  <path d="M44 36 L52 40 L52 48 L44 52 L36 48 L36 40 Z" fill="#c0c0c0"/>
+  <path d="M56 40 L60 42 L60 46 L56 48 L52 46 L52 42 Z" fill="#7a7a7a"/>
+  <!-- Light rays -->
+  <line x1="32" y1="32" x2="16" y2="40" stroke="#e8e8e8" stroke-width="1" opacity="0.7"/>
+  <line x1="32" y1="32" x2="32" y2="42" stroke="#e8e8e8" stroke-width="1" opacity="0.7"/>
+  <line x1="32" y1="32" x2="48" y2="40" stroke="#e8e8e8" stroke-width="1" opacity="0.7"/>
+  <!-- Nano prisms -->
+  <polygon points="32,44 34,50 32,56 30,50" fill="#c0c0c0"/>
+  <polygon points="16,52 18,58 16,64 14,58" fill="#a0a0a0"/>
+  <polygon points="48,52 50,58 48,64 46,58" fill="#7a7a7a"/>
+</svg>

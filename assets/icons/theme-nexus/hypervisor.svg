@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- Orbital layer rings -->
+  <ellipse cx="32" cy="32" rx="28" ry="10" fill="none" stroke="url(#purpleGrad)" stroke-width="0.5" opacity="0.4" transform="rotate(-15 32 32)"/>
+  <ellipse cx="32" cy="32" rx="28" ry="10" fill="none" stroke="url(#cyanGrad)" stroke-width="0.5" opacity="0.4" transform="rotate(15 32 32)"/>
+  <!-- Layered boxes representing virtualization -->
+  <!-- Bottom layer -->
+  <rect x="12" y="40" width="40" height="10" rx="2" fill="none" stroke="url(#purpleGrad)" stroke-width="1.5"/>
+  <line x1="16" y1="45" x2="48" y2="45" stroke="url(#purpleGrad)" stroke-width="1"/>
+  <!-- Middle layer -->
+  <rect x="14" y="28" width="36" height="10" rx="2" fill="none" stroke="url(#cyanGrad)" stroke-width="1.5"/>
+  <line x1="18" y1="33" x2="46" y2="33" stroke="url(#cyanGrad)" stroke-width="1"/>
+  <!-- Top layer -->
+  <rect x="16" y="16" width="32" height="10" rx="2" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <line x1="20" y1="21" x2="44" y2="21" stroke="url(#silverGrad)" stroke-width="1"/>
+  <!-- H symbol -->
+  <text x="28" y="24" font-family="monospace" font-size="6" fill="url(#purpleGrad)" font-weight="bold">H</text>
+  <!-- Connection lines -->
+  <line x1="20" y1="26" x2="18" y2="28" stroke="url(#silverGrad)" stroke-width="0.8" opacity="0.6"/>
+  <line x1="44" y1="26" x2="46" y2="28" stroke="url(#silverGrad)" stroke-width="0.8" opacity="0.6"/>
+  <line x1="18" y1="38" x2="16" y2="40" stroke="url(#cyanGrad)" stroke-width="0.8" opacity="0.6"/>
+  <line x1="46" y1="38" x2="48" y2="40" stroke="url(#cyanGrad)" stroke-width="0.8" opacity="0.6"/>
+  <!-- Stars -->
+  <circle cx="8" cy="10" r="0.6" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="56" cy="14" r="0.5" fill="#5eead4" opacity="0.6"/>
+  <circle cx="54" cy="54" r="0.7" fill="#a78bfa" opacity="0.5"/>
+</svg>

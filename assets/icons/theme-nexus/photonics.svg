@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- Light orbit -->
+  <ellipse cx="32" cy="32" rx="28" ry="8" fill="none" stroke="url(#cyanGrad)" stroke-width="0.8" opacity="0.6" transform="rotate(-10 32 32)"/>
+  <!-- Fiber optic cable -->
+  <path d="M8 32 Q20 20 32 32 Q44 44 56 32" fill="none" stroke="url(#silverGrad)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M8 32 Q20 20 32 32 Q44 44 56 32" fill="none" stroke="url(#cyanGrad)" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Light pulses -->
+  <circle cx="20" cy="26" r="2.5" fill="url(#cyanGrad)" opacity="0.9"/>
+  <circle cx="32" cy="32" r="2.5" fill="#ffffff" opacity="0.9"/>
+  <circle cx="44" cy="38" r="2.5" fill="url(#cyanGrad)" opacity="0.9"/>
+  <!-- Light emitter -->
+  <rect x="4" y="28" width="6" height="8" rx="1" fill="url(#purpleGrad)"/>
+  <!-- Light receiver -->
+  <rect x="54" y="28" width="6" height="8" rx="1" fill="url(#purpleGrad)"/>
+  <!-- Light rays -->
+  <line x1="6" y1="22" x2="6" y2="18" stroke="url(#cyanGrad)" stroke-width="1" opacity="0.8"/>
+  <line x1="10" y1="22" x2="12" y2="16" stroke="url(#cyanGrad)" stroke-width="1" opacity="0.6"/>
+  <line x1="2" y1="22" x2="0" y2="16" stroke="url(#cyanGrad)" stroke-width="1" opacity="0.6"/>
+  <!-- Stars -->
+  <circle cx="14" cy="10" r="0.6" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="50" cy="12" r="0.5" fill="#5eead4" opacity="0.6"/>
+  <circle cx="58" cy="50" r="0.7" fill="#a78bfa" opacity="0.5"/>
+  <circle cx="8" cy="52" r="0.5" fill="#e2e8f0" opacity="0.6"/>
+</svg>

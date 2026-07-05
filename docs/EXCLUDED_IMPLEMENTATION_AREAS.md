@@ -1,7 +1,7 @@
 # Excluded Implementation Areas
 
 This document defines the public/private boundary for implementation areas that
-are not included in the current public starter snapshot.
+are not included in the current public source snapshot.
 
 The goal is to be explicit without exposing private lab details. Exclusions are
 named by generic implementation class, not by private host, path, node,
@@ -9,18 +9,20 @@ interface, key, address, or operator workflow.
 
 ## Current Boundary
 
-The current repository is a source-only public alpha starter. It contains public
+The current repository is a source-only public alpha tree. It contains public
 documentation, sanitized examples, package layout guidance, package preflight
-checks, release hygiene scripts, and community process files.
+checks, release hygiene scripts, community process files, and the package source
+payloads listed in `docs/PACKAGE_PAYLOAD_INVENTORY.md`.
 
-It does not yet contain the complete implementation tree required to build all
-package groups or an installable ISO from a fresh clone.
+It does not contain generated package artifacts, generated ISO artifacts,
+private lab state, local experiment caches, raw operational traces, or
+hardware-specific deployment state.
 
 ## Excluded Areas
 
 | Area | Public-safe reason for exclusion | Gate before inclusion |
 |------|----------------------------------|-----------------------|
-| Full package implementation payloads | Source paths still need packaging review, dependency checks, and privacy review before public release. | `v0.2.0-alpha: Complete Public Source Tree` |
+| Private-only implementation remnants | Local-only helpers, abandoned experiments, and unpublished work that are not part of the current release profile need separate source, dependency, and privacy review. | Add to the package inventory and pass release audit before inclusion. |
 | Private lab host inventory and deployment state | Hostnames, interface names, addresses, serials, machine IDs, and local topology can identify private infrastructure. | Replace with sanitized examples and pass release audit. |
 | Generated package and ISO artifacts | `.deb`, package indexes, ISO images, VM disks, logs, and live-build working trees are build outputs, not source. | Attach only under the artifact policy after checksum and validation gates. |
 | Build caches and transient working directories | Caches, traces, temporary outputs, and live-build chroots are not reproducible source inputs. | Keep ignored; regenerate from documented commands. |

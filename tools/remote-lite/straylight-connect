@@ -1,0 +1,850 @@
+#!/usr/bin/env python3
+"""
+StrayLight Remote Connect — Lightweight remote system control.
+Drop this on any machine and control it from anywhere.
+
+Usage:
+  # On the remote machine:
+    ./straylight-connect serve [--port 7700] [--password SECRET]
+
+  # From your local machine:
+    ./straylight-connect exec <host> <command>
+    ./straylight-connect shell <host>
+    ./straylight-connect sysinfo <host>
+    ./straylight-connect upload <host> <local_file> <remote_path>
+    ./straylight-connect download <host> <remote_path> <local_file>
+    ./straylight-connect services <host> [list|start|stop|restart] [unit]
+    ./straylight-connect logs <host> [unit] [--follow] [--lines N]
+    ./straylight-connect top <host>
+    ./straylight-connect gpus <host>
+    ./straylight-connect install <host>  — Install server on remote via SSH
+"""
+
+import argparse
+import base64
+import hashlib
+import hmac
+import json
+import os
+import select
+import signal
+import socket
+import ssl
+import struct
+import subprocess
+import sys
+import termios
+import threading
+import time
+import tty
+from pathlib import Path
+
+VERSION = "1.0.0"
+DEFAULT_PORT = 7700
+CHUNK_SIZE = 65536
+AUTH_TIMEOUT = 10
+HEARTBEAT_INTERVAL = 30
+
+
+# Protocol: length-prefixed JSON messages over TLS
+
+def send_msg(sock, data: dict):
+    payload = json.dumps(data).encode("utf-8")
+    sock.sendall(struct.pack("!I", len(payload)) + payload)
+
+
+def recv_msg(sock, timeout=60) -> dict:
+    sock.settimeout(timeout)
+    raw_len = _recv_exact(sock, 4)
+    if not raw_len:
+        raise ConnectionError("Connection closed")
+    msg_len = struct.unpack("!I", raw_len)[0]
+    if msg_len > 50 * 1024 * 1024:
+        raise ValueError(f"Message too large: {msg_len}")
+    payload = _recv_exact(sock, msg_len)
+    return json.loads(payload.decode("utf-8"))
+
+
+def _recv_exact(sock, n):
+    data = b""
+    while len(data) < n:
+        chunk = sock.recv(n - len(data))
+        if not chunk:
+            return None
+        data += chunk
+    return data
+
+
+# ═══════════════════════════════════════════════════════════════
+# Server Mode — runs on the remote machine
+# ═══════════════════════════════════════════════════════════════
+
+class RemoteServer:
+    def __init__(self, port=DEFAULT_PORT, password=None, cert_dir=None):
+        self.port = port
+        self.password = password or os.environ.get("SL_REMOTE_PASSWORD", "straylight")
+        self.cert_dir = Path(cert_dir or "/etc/straylight/remote")
+        self.running = True
+        self.connections = 0
+        signal.signal(signal.SIGTERM, lambda *_: self._shutdown())
+        signal.signal(signal.SIGINT, lambda *_: self._shutdown())
+
+    def _shutdown(self):
+        self.running = False
+
+    def serve(self):
+        ctx = self._make_tls_context()
+        sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        sock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
+        sock.bind(("::", self.port))
+        sock.listen(8)
+        sock.settimeout(1.0)
+
+        print(f"[straylight-connect] Listening on port {self.port}")
+        print(f"[straylight-connect] TLS: {'enabled' if ctx else 'disabled'}")
+
+        while self.running:
+            try:
+                conn, addr = sock.accept()
+            except socket.timeout:
+                continue
+            except OSError:
+                break
+
+            if ctx:
+                try:
+                    conn = ctx.wrap_socket(conn, server_side=True)
+                except ssl.SSLError as e:
+                    print(f"[TLS error] {addr}: {e}")
+                    conn.close()
+                    continue
+
+            t = threading.Thread(target=self._handle_client, args=(conn, addr), daemon=True)
+            t.start()
+
+        sock.close()
+        print("[straylight-connect] Server stopped")
+
+    def _make_tls_context(self):
+        cert_path = self.cert_dir / "server.crt"
+        key_path = self.cert_dir / "server.key"
+
+        if not cert_path.exists():
+            self.cert_dir.mkdir(parents=True, exist_ok=True)
+            print("[straylight-connect] Generating self-signed TLS certificate...")
+            subprocess.run([
+                "openssl", "req", "-x509", "-newkey", "ed25519",
+                "-keyout", str(key_path), "-out", str(cert_path),
+                "-days", "3650", "-nodes",
+                "-subj", "/CN=straylight-remote/O=StrayLight"
+            ], check=True, capture_output=True)
+            os.chmod(str(key_path), 0o600)
+
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        ctx.minimum_version = ssl.TLSVersion.TLSv1_2
+        ctx.load_cert_chain(str(cert_path), str(key_path))
+        return ctx
+
+    def _handle_client(self, conn, addr):
+        self.connections += 1
+        client_id = f"{addr[0]}:{addr[1]}"
+        print(f"[+] Client connected: {client_id}")
+
+        try:
+            # HMAC-based authentication
+            auth_msg = recv_msg(conn, timeout=AUTH_TIMEOUT)
+            if auth_msg.get("method") != "auth":
+                send_msg(conn, {"error": "Expected auth"})
+                return
+
+            nonce = os.urandom(32)
+            send_msg(conn, {"nonce": base64.b64encode(nonce).decode()})
+            response = recv_msg(conn, timeout=AUTH_TIMEOUT)
+
+            expected = hmac.new(self.password.encode(), nonce, hashlib.sha256).hexdigest()
+            if not hmac.compare_digest(response.get("hmac", ""), expected):
+                send_msg(conn, {"error": "Authentication failed"})
+                return
+
+            send_msg(conn, {"result": "authenticated", "version": VERSION})
+
+            # Command loop
+            while self.running:
+                try:
+                    msg = recv_msg(conn, timeout=300)
+                except (socket.timeout, ConnectionError):
+                    break
+
+                method = msg.get("method", "")
+                params = msg.get("params", {})
+
+                try:
+                    if method == "exec":
+                        result = self._cmd_exec(params)
+                    elif method == "exec_stream":
+                        self._cmd_exec_stream(conn, params)
+                        continue
+                    elif method == "sysinfo":
+                        result = self._cmd_sysinfo()
+                    elif method == "services":
+                        result = self._cmd_services(params)
+                    elif method == "logs":
+                        if params.get("follow"):
+                            self._cmd_logs_follow(conn, params)
+                            continue
+                        result = self._cmd_logs(params)
+                    elif method == "processes":
+                        result = self._cmd_processes(params)
+                    elif method == "gpus":
+                        result = self._cmd_gpus()
+                    elif method == "upload":
+                        result = self._cmd_upload(params)
+                    elif method == "download":
+                        result = self._cmd_download(params)
+                    elif method == "fs":
+                        result = self._cmd_fs(params)
+                    elif method == "ping":
+                        result = {"pong": True, "time": time.time()}
+                    elif method == "disconnect":
+                        break
+                    else:
+                        result = {"error": f"Unknown method: {method}"}
+                    send_msg(conn, {"result": result})
+                except Exception as e:
+                    send_msg(conn, {"error": str(e)})
+
+        except Exception as e:
+            print(f"[!] Error with {client_id}: {e}")
+        finally:
+            self.connections -= 1
+            conn.close()
+
+    def _cmd_exec(self, params):
+        cmd = params.get("cmd", "")
+        timeout = params.get("timeout", 60)
+        if not cmd:
+            return {"error": "No command specified"}
+        try:
+            proc = subprocess.run(
+                ["/bin/sh", "-c", cmd], capture_output=True, text=True, timeout=timeout
+            )
+            return {"stdout": proc.stdout, "stderr": proc.stderr, "exit_code": proc.returncode}
+        except subprocess.TimeoutExpired:
+            return {"error": f"Command timed out after {timeout}s"}
+
+    def _cmd_exec_stream(self, conn, params):
+        import pty as pty_mod
+        cmd = params.get("cmd", "/bin/bash")
+        master_fd, slave_fd = pty_mod.openpty()
+        proc = subprocess.Popen(
+            ["/bin/sh", "-c", cmd],
+            stdin=slave_fd, stdout=slave_fd, stderr=slave_fd,
+            preexec_fn=os.setsid
+        )
+        os.close(slave_fd)
+        send_msg(conn, {"result": {"status": "streaming", "pid": proc.pid}})
+
+        stop_event = threading.Event()
+
+        def reader():
+            while not stop_event.is_set():
+                try:
+                    r, _, _ = select.select([master_fd], [], [], 0.1)
+                    if r:
+                        data = os.read(master_fd, 4096)
+                        if not data:
+                            break
+                        send_msg(conn, {"stream": base64.b64encode(data).decode()})
+                except OSError:
+                    break
+            send_msg(conn, {"stream_end": True, "exit_code": proc.wait()})
+
+        rt = threading.Thread(target=reader, daemon=True)
+        rt.start()
+
+        while not stop_event.is_set():
+            try:
+                msg = recv_msg(conn, timeout=300)
+                if msg.get("method") == "input":
+                    os.write(master_fd, base64.b64decode(msg["data"]))
+                elif msg.get("method") == "resize":
+                    import fcntl
+                    winsize = struct.pack("HHHH", msg["rows"], msg["cols"], 0, 0)
+                    fcntl.ioctl(master_fd, termios.TIOCSWINSZ, winsize)
+                elif msg.get("method") == "disconnect":
+                    break
+            except (ConnectionError, socket.timeout):
+                break
+
+        stop_event.set()
+        proc.terminate()
+        try:
+            proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        os.close(master_fd)
+
+    def _cmd_sysinfo(self):
+        info = {}
+        info["hostname"] = socket.gethostname()
+        try:
+            with open("/etc/os-release") as f:
+                for line in f:
+                    if line.startswith("PRETTY_NAME="):
+                        info["os"] = line.split("=", 1)[1].strip().strip('"')
+        except FileNotFoundError:
+            info["os"] = "Unknown"
+
+        info["kernel"] = subprocess.run(["uname", "-r"], capture_output=True, text=True).stdout.strip()
+
+        try:
+            with open("/proc/uptime") as f:
+                secs = float(f.read().split()[0])
+                info["uptime"] = f"{int(secs // 86400)}d {int((secs % 86400) // 3600)}h"
+        except FileNotFoundError:
+            info["uptime"] = "N/A"
+
+        try:
+            with open("/proc/cpuinfo") as f:
+                cpuinfo = f.read()
+            model, cores = "", 0
+            for line in cpuinfo.split("\n"):
+                if line.startswith("model name") and not model:
+                    model = line.split(":", 1)[1].strip()
+                if line.startswith("processor"):
+                    cores += 1
+            info["cpu"] = {"model": model, "cores": cores}
+            with open("/proc/loadavg") as f:
+                parts = f.read().split()
+                info["cpu"]["load"] = [float(parts[0]), float(parts[1]), float(parts[2])]
+        except FileNotFoundError:
+            info["cpu"] = {"model": "N/A", "cores": 0}
+
+        try:
+            with open("/proc/meminfo") as f:
+                meminfo = {}
+                for line in f:
+                    parts = line.split(":")
+                    if len(parts) == 2:
+                        meminfo[parts[0].strip()] = int(parts[1].strip().split()[0])
+            total = meminfo.get("MemTotal", 0) // 1024
+            avail = meminfo.get("MemAvailable", 0) // 1024
+            info["memory"] = {
+                "total_mb": total, "used_mb": total - avail, "available_mb": avail,
+                "swap_total_mb": meminfo.get("SwapTotal", 0) // 1024,
+                "swap_used_mb": (meminfo.get("SwapTotal", 0) - meminfo.get("SwapFree", 0)) // 1024,
+            }
+        except FileNotFoundError:
+            info["memory"] = {}
+
+        info["disks"] = subprocess.run(
+            ["df", "-h", "--output=source,size,used,avail,pcent,target", "-x", "tmpfs", "-x", "devtmpfs"],
+            capture_output=True, text=True
+        ).stdout
+
+        try:
+            interfaces = {}
+            for iface in sorted(Path("/sys/class/net").iterdir()):
+                if iface.name == "lo":
+                    continue
+                state = (iface / "operstate").read_text().strip() if (iface / "operstate").exists() else "?"
+                mac = (iface / "address").read_text().strip() if (iface / "address").exists() else ""
+                ip_out = subprocess.run(
+                    ["ip", "-4", "addr", "show", iface.name], capture_output=True, text=True
+                ).stdout
+                ip_line = [l for l in ip_out.split("\n") if "inet" in l]
+                ip = ip_line[0].strip().split()[1] if ip_line else "none"
+                interfaces[iface.name] = {"state": state, "mac": mac, "ip": ip}
+            info["network"] = interfaces
+        except Exception:
+            info["network"] = {}
+
+        info["gpus"] = self._cmd_gpus()
+        return info
+
+    def _cmd_gpus(self):
+        gpus = []
+        try:
+            out = subprocess.run(
+                ["nvidia-smi", "--query-gpu=index,name,temperature.gpu,utilization.gpu,"
+                 "memory.total,memory.used,memory.free,power.draw,power.limit",
+                 "--format=csv,noheader,nounits"],
+                capture_output=True, text=True, timeout=10
+            ).stdout
+            for line in out.strip().split("\n"):
+                if not line.strip():
+                    continue
+                p = [x.strip() for x in line.split(",")]
+                if len(p) >= 9:
+                    gpus.append({
+                        "index": int(p[0]), "name": p[1], "vendor": "nvidia",
+                        "temp_c": int(p[2]) if p[2] != "N/A" else -1,
+                        "util_pct": int(p[3]) if p[3] != "N/A" else -1,
+                        "vram_total_mb": int(p[4]) if p[4] != "N/A" else 0,
+                        "vram_used_mb": int(p[5]) if p[5] != "N/A" else 0,
+                        "vram_free_mb": int(p[6]) if p[6] != "N/A" else 0,
+                        "power_w": float(p[7]) if p[7] != "N/A" else -1,
+                        "power_limit_w": float(p[8]) if p[8] != "N/A" else -1,
+                    })
+        except Exception:
+            pass
+
+        if not gpus:
+            drm = Path("/sys/class/drm")
+            if drm.exists():
+                for card in sorted(drm.iterdir()):
+                    if card.name.startswith("card") and card.name[4:].isdigit():
+                        vf = card / "device" / "vendor"
+                        if vf.exists():
+                            v = vf.read_text().strip()
+                            gpus.append({
+                                "index": int(card.name[4:]),
+                                "name": f"GPU {card.name}",
+                                "vendor": {"0x10de": "nvidia", "0x1002": "amd", "0x8086": "intel"}.get(v, v),
+                            })
+        return gpus
+
+    def _cmd_services(self, params):
+        action = params.get("action", "list")
+        unit = params.get("unit", "")
+        if action == "list":
+            out = subprocess.run(
+                ["systemctl", "list-units", "--type=service", "--no-pager", "--plain"],
+                capture_output=True, text=True
+            ).stdout
+            return {"services": out}
+        elif action in ("start", "stop", "restart", "status"):
+            if not unit:
+                return {"error": "No unit specified"}
+            out = subprocess.run(["systemctl", action, unit], capture_output=True, text=True)
+            return {"output": out.stdout + out.stderr, "action": action, "unit": unit}
+        return {"error": f"Unknown action: {action}"}
+
+    def _cmd_logs(self, params):
+        unit = params.get("unit", "")
+        lines = params.get("lines", 50)
+        cmd = ["journalctl", "--no-pager", "-n", str(lines)]
+        if unit:
+            cmd.extend(["-u", unit])
+        return {"logs": subprocess.run(cmd, capture_output=True, text=True).stdout}
+
+    def _cmd_logs_follow(self, conn, params):
+        unit = params.get("unit", "")
+        cmd = ["journalctl", "--no-pager", "-f"]
+        if unit:
+            cmd.extend(["-u", unit])
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        send_msg(conn, {"result": {"status": "streaming"}})
+        try:
+            while self.running:
+                line = proc.stdout.readline()
+                if not line:
+                    break
+                send_msg(conn, {"stream": line.rstrip("\n")})
+        except (BrokenPipeError, ConnectionError):
+            pass
+        finally:
+            proc.terminate()
+            proc.wait(timeout=5)
+
+    def _cmd_processes(self, params):
+        action = params.get("action", "list")
+        if action == "list":
+            return {"processes": subprocess.run(
+                ["ps", "aux", "--sort=-%mem"], capture_output=True, text=True
+            ).stdout.split("\n")[:30]}
+        elif action == "kill":
+            pid = params.get("pid")
+            sig = params.get("signal", 15)
+            if not pid:
+                return {"error": "No PID"}
+            try:
+                os.kill(int(pid), int(sig))
+                return {"killed": pid}
+            except ProcessLookupError:
+                return {"error": f"No such process: {pid}"}
+            except PermissionError:
+                return {"error": f"Permission denied: {pid}"}
+        return {"error": f"Unknown action: {action}"}
+
+    def _cmd_upload(self, params):
+        path = params.get("path", "")
+        data = params.get("data", "")
+        offset = params.get("offset", 0)
+        if not path:
+            return {"error": "No path"}
+        real_path = os.path.realpath(path)
+        try:
+            os.makedirs(os.path.dirname(real_path), exist_ok=True)
+            mode = "r+b" if offset > 0 and os.path.exists(real_path) else "wb"
+            with open(real_path, mode) as f:
+                if offset > 0:
+                    f.seek(offset)
+                raw = base64.b64decode(data)
+                f.write(raw)
+            return {"written": len(raw), "path": real_path}
+        except Exception as e:
+            return {"error": str(e)}
+
+    def _cmd_download(self, params):
+        path = params.get("path", "")
+        offset = params.get("offset", 0)
+        length = params.get("length", CHUNK_SIZE)
+        if not path or not os.path.exists(path):
+            return {"error": f"Not found: {path}"}
+        total = os.path.getsize(path)
+        with open(path, "rb") as f:
+            f.seek(offset)
+            data = f.read(length)
+        return {"data": base64.b64encode(data).decode(), "offset": offset, "length": len(data), "total": total}
+
+    def _cmd_fs(self, params):
+        action = params.get("action", "ls")
+        path = params.get("path", ".")
+        if action == "ls":
+            entries = []
+            try:
+                for entry in sorted(Path(path).iterdir()):
+                    s = entry.stat()
+                    entries.append({"name": entry.name, "type": "dir" if entry.is_dir() else "file",
+                                    "size": s.st_size, "modified": s.st_mtime})
+            except Exception as e:
+                return {"error": str(e)}
+            return {"entries": entries, "path": str(Path(path).resolve())}
+        elif action == "stat":
+            try:
+                s = Path(path).stat()
+                return {"path": str(Path(path).resolve()), "size": s.st_size,
+                        "is_dir": Path(path).is_dir(), "permissions": oct(s.st_mode)}
+            except Exception as e:
+                return {"error": str(e)}
+        elif action == "mkdir":
+            try:
+                Path(path).mkdir(parents=True, exist_ok=True)
+                return {"created": str(Path(path).resolve())}
+            except Exception as e:
+                return {"error": str(e)}
+        return {"error": f"Unknown fs action: {action}"}
+
+
+# ═══════════════════════════════════════════════════════════════
+# Client Mode
+# ═══════════════════════════════════════════════════════════════
+
+class RemoteClient:
+    def __init__(self, host, port=DEFAULT_PORT, password=None):
+        self.host = host
+        self.port = port
+        self.password = password or os.environ.get("SL_REMOTE_PASSWORD", "straylight")
+        self.sock = None
+
+    def connect(self):
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        ctx.minimum_version = ssl.TLSVersion.TLSv1_2
+        raw = socket.create_connection((self.host, self.port), timeout=10)
+        self.sock = ctx.wrap_socket(raw, server_hostname=self.host)
+
+        send_msg(self.sock, {"method": "auth"})
+        nonce_msg = recv_msg(self.sock)
+        nonce = base64.b64decode(nonce_msg["nonce"])
+        send_msg(self.sock, {"hmac": hmac.new(self.password.encode(), nonce, hashlib.sha256).hexdigest()})
+        result = recv_msg(self.sock)
+        if "error" in result:
+            raise RuntimeError(f"Auth failed: {result['error']}")
+        return result
+
+    def call(self, method, params=None):
+        send_msg(self.sock, {"method": method, "params": params or {}})
+        response = recv_msg(self.sock)
+        if "error" in response:
+            raise RuntimeError(response["error"])
+        return response.get("result", response)
+
+    def close(self):
+        if self.sock:
+            try:
+                send_msg(self.sock, {"method": "disconnect"})
+            except Exception:
+                pass
+            self.sock.close()
+
+    def interactive_shell(self):
+        send_msg(self.sock, {"method": "exec_stream", "params": {"cmd": "/bin/bash"}})
+        result = recv_msg(self.sock)
+        if "error" in result:
+            print(f"Error: {result['error']}")
+            return
+
+        print("[straylight-connect] Shell opened (Ctrl+] to exit)")
+        old_settings = termios.tcgetattr(sys.stdin)
+        stop = threading.Event()
+
+        def reader():
+            while not stop.is_set():
+                try:
+                    msg = recv_msg(self.sock, timeout=1)
+                    if "stream" in msg:
+                        sys.stdout.buffer.write(base64.b64decode(msg["stream"]))
+                        sys.stdout.buffer.flush()
+                    elif "stream_end" in msg:
+                        stop.set()
+                        break
+                except socket.timeout:
+                    continue
+                except Exception:
+                    stop.set()
+                    break
+
+        try:
+            tty.setraw(sys.stdin.fileno())
+            rt = threading.Thread(target=reader, daemon=True)
+            rt.start()
+
+            rows, cols = os.get_terminal_size()
+            send_msg(self.sock, {"method": "resize", "rows": rows, "cols": cols})
+
+            while not stop.is_set():
+                r, _, _ = select.select([sys.stdin], [], [], 0.1)
+                if r:
+                    ch = sys.stdin.buffer.read(1)
+                    if ch == b"\x1d":  # Ctrl+]
+                        send_msg(self.sock, {"method": "disconnect"})
+                        break
+                    send_msg(self.sock, {"method": "input", "data": base64.b64encode(ch).decode()})
+        finally:
+            termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
+            stop.set()
+
+    def upload_file(self, local_path, remote_path):
+        file_size = os.path.getsize(local_path)
+        sent = 0
+        with open(local_path, "rb") as f:
+            while sent < file_size:
+                chunk = f.read(CHUNK_SIZE)
+                if not chunk:
+                    break
+                self.call("upload", {"path": remote_path, "data": base64.b64encode(chunk).decode(), "offset": sent})
+                sent += len(chunk)
+                print(f"\r  Uploading: {sent/file_size*100:.1f}%", end="", flush=True)
+        print(f"\n  Uploaded {local_path} -> {remote_path} ({file_size} bytes)")
+
+    def download_file(self, remote_path, local_path):
+        first = self.call("download", {"path": remote_path, "offset": 0, "length": CHUNK_SIZE})
+        total = first["total"]
+        received = 0
+        with open(local_path, "wb") as f:
+            data = base64.b64decode(first["data"])
+            f.write(data)
+            received += len(data)
+            while received < total:
+                chunk = self.call("download", {"path": remote_path, "offset": received, "length": CHUNK_SIZE})
+                data = base64.b64decode(chunk["data"])
+                f.write(data)
+                received += len(data)
+                print(f"\r  Downloading: {received/total*100:.1f}%", end="", flush=True)
+        print(f"\n  Downloaded {remote_path} -> {local_path} ({total} bytes)")
+
+
+def format_sysinfo(info):
+    print(f"\n  {'=' * 40}")
+    print(f"  {info.get('hostname', '?'):^40s}")
+    print(f"  {'=' * 40}")
+    print(f"  OS:      {info.get('os', 'N/A')}")
+    print(f"  Kernel:  {info.get('kernel', 'N/A')}")
+    print(f"  Uptime:  {info.get('uptime', 'N/A')}")
+
+    cpu = info.get("cpu", {})
+    if cpu:
+        load = cpu.get("load", [0, 0, 0])
+        print(f"\n  CPU:     {cpu.get('model', 'N/A')}")
+        print(f"  Cores:   {cpu.get('cores', 'N/A')}")
+        print(f"  Load:    {load[0]:.2f} / {load[1]:.2f} / {load[2]:.2f}")
+
+    mem = info.get("memory", {})
+    if mem:
+        total = mem.get("total_mb", 0)
+        used = mem.get("used_mb", 0)
+        pct = (used / total * 100) if total else 0
+        filled = int(30 * pct / 100)
+        bar = "#" * filled + "-" * (30 - filled)
+        print(f"\n  Memory:  [{bar}] {pct:.0f}%")
+        print(f"           {used} MB / {total} MB")
+
+    gpus = info.get("gpus", [])
+    if gpus:
+        print(f"\n  GPUs:")
+        for g in gpus:
+            parts = [f"[{g.get('index', '?')}] {g.get('name', '?')}"]
+            if g.get("temp_c", -1) >= 0:
+                parts.append(f"{g['temp_c']}C")
+            if g.get("util_pct", -1) >= 0:
+                parts.append(f"{g['util_pct']}%")
+            if g.get("vram_total_mb", 0) > 0:
+                parts.append(f"{g['vram_used_mb']}/{g['vram_total_mb']}MB")
+            print(f"    {'  '.join(parts)}")
+
+    net = info.get("network", {})
+    if net and isinstance(net, dict):
+        print(f"\n  Network:")
+        for name, iface in net.items():
+            state = iface.get("state", "?")
+            ip = iface.get("ip", "none")
+            print(f"    {name}: {ip} ({state})")
+
+    if info.get("disks"):
+        print(f"\n  Disks:\n  {info['disks']}")
+    print()
+
+
+def install_on_remote(host, ssh_port=22):
+    script_path = os.path.abspath(__file__)
+    print(f"[straylight-connect] Installing on {host}...")
+
+    subprocess.run(["scp", "-P", str(ssh_port), script_path, f"{host}:/tmp/straylight-connect"], check=True)
+
+    setup_cmds = [
+        "sudo mv /tmp/straylight-connect /usr/local/bin/straylight-connect",
+        "sudo chmod +x /usr/local/bin/straylight-connect",
+        "sudo mkdir -p /etc/straylight/remote",
+    ]
+    for cmd_str in setup_cmds:
+        subprocess.run(["ssh", "-p", str(ssh_port), host] + cmd_str.split(), check=True)
+
+    # Create systemd service
+    service = """[Unit]
+Description=StrayLight Remote Control Agent
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/straylight-connect serve
+Restart=always
+RestartSec=5
+Environment=SL_REMOTE_PASSWORD=straylight
+
+[Install]
+WantedBy=multi-user.target
+"""
+    subprocess.run(
+        ["ssh", "-p", str(ssh_port), host,
+         f"echo '{service}' | sudo tee /etc/systemd/system/straylight-remote.service > /dev/null"],
+        check=True
+    )
+
+    final_cmds = ["sudo systemctl daemon-reload", "sudo systemctl enable straylight-remote", "sudo systemctl start straylight-remote"]
+    for cmd_str in final_cmds:
+        subprocess.run(["ssh", "-p", str(ssh_port), host] + cmd_str.split(), check=True)
+
+    print(f"[straylight-connect] Installed and running on {host}")
+    print(f"[straylight-connect] Connect: straylight-connect sysinfo {host}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="StrayLight Remote Control")
+    sub = parser.add_subparsers(dest="command")
+
+    p = sub.add_parser("serve")
+    p.add_argument("--port", type=int, default=DEFAULT_PORT)
+    p.add_argument("--password", default=None)
+    p.add_argument("--cert-dir", default=None)
+
+    for name in ["exec", "shell", "sysinfo", "top", "gpus"]:
+        p = sub.add_parser(name)
+        p.add_argument("host")
+        if name == "exec":
+            p.add_argument("cmd", nargs="+")
+        p.add_argument("--port", type=int, default=DEFAULT_PORT)
+        p.add_argument("--password", default=None)
+
+    p = sub.add_parser("upload")
+    p.add_argument("host"); p.add_argument("local"); p.add_argument("remote")
+    p.add_argument("--port", type=int, default=DEFAULT_PORT); p.add_argument("--password", default=None)
+
+    p = sub.add_parser("download")
+    p.add_argument("host"); p.add_argument("remote"); p.add_argument("local")
+    p.add_argument("--port", type=int, default=DEFAULT_PORT); p.add_argument("--password", default=None)
+
+    p = sub.add_parser("services")
+    p.add_argument("host")
+    p.add_argument("action", nargs="?", default="list", choices=["list", "start", "stop", "restart", "status"])
+    p.add_argument("unit", nargs="?", default="")
+    p.add_argument("--port", type=int, default=DEFAULT_PORT); p.add_argument("--password", default=None)
+
+    p = sub.add_parser("logs")
+    p.add_argument("host"); p.add_argument("unit", nargs="?", default="")
+    p.add_argument("--follow", "-f", action="store_true"); p.add_argument("--lines", "-n", type=int, default=50)
+    p.add_argument("--port", type=int, default=DEFAULT_PORT); p.add_argument("--password", default=None)
+
+    p = sub.add_parser("install")
+    p.add_argument("host"); p.add_argument("--ssh-port", type=int, default=22)
+
+    args = parser.parse_args()
+    if not args.command:
+        parser.print_help()
+        return
+
+    if args.command == "serve":
+        RemoteServer(port=args.port, password=args.password, cert_dir=args.cert_dir).serve()
+        return
+    if args.command == "install":
+        install_on_remote(args.host, args.ssh_port)
+        return
+
+    client = RemoteClient(args.host, port=args.port, password=getattr(args, "password", None))
+    try:
+        client.connect()
+        if args.command == "exec":
+            r = client.call("exec", {"cmd": " ".join(args.cmd)})
+            if r.get("stdout"): print(r["stdout"], end="")
+            if r.get("stderr"): print(r["stderr"], end="", file=sys.stderr)
+            sys.exit(r.get("exit_code", 0))
+        elif args.command == "shell":
+            client.interactive_shell()
+        elif args.command == "sysinfo":
+            format_sysinfo(client.call("sysinfo"))
+        elif args.command == "upload":
+            client.upload_file(args.local, args.remote)
+        elif args.command == "download":
+            client.download_file(args.remote, args.local)
+        elif args.command == "services":
+            r = client.call("services", {"action": args.action, "unit": args.unit})
+            print(r.get("services", r.get("output", json.dumps(r, indent=2))))
+        elif args.command == "logs":
+            if args.follow:
+                send_msg(client.sock, {"method": "logs", "params": {"unit": args.unit, "follow": True}})
+                recv_msg(client.sock)
+                try:
+                    while True:
+                        msg = recv_msg(client.sock, timeout=60)
+                        if "stream" in msg: print(msg["stream"])
+                        elif "stream_end" in msg: break
+                except KeyboardInterrupt:
+                    pass
+            else:
+                print(client.call("logs", {"unit": args.unit, "lines": args.lines}).get("logs", ""))
+        elif args.command == "top":
+            r = client.call("processes", {"action": "list"})
+            procs = r.get("processes", "")
+            print(procs if isinstance(procs, str) else "\n".join(procs))
+        elif args.command == "gpus":
+            for g in client.call("gpus") or []:
+                parts = [f"[{g.get('index','?')}] {g.get('name','?')}"]
+                if g.get("temp_c", -1) >= 0: parts.append(f"{g['temp_c']}C")
+                if g.get("vram_total_mb", 0) > 0: parts.append(f"{g['vram_used_mb']}/{g['vram_total_mb']}MB")
+                print(f"  {'  '.join(parts)}")
+    except ConnectionRefusedError:
+        print(f"Error: Can't connect to {args.host}:{args.port}")
+        print(f"Install with: straylight-connect install {args.host}")
+        sys.exit(1)
+    except RuntimeError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+    finally:
+        client.close()
+
+
+if __name__ == "__main__":
+    main()

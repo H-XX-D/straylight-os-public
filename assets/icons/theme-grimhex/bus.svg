@@ -1,0 +1,29 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon frame -->
+  <path d="M32 4 L56 16 L56 44 L32 56 L8 44 L8 16 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Main bus lines -->
+  <line x1="12" y1="24" x2="52" y2="24" stroke="currentColor" stroke-width="2"/>
+  <line x1="12" y1="32" x2="52" y2="32" stroke="currentColor" stroke-width="2"/>
+  <line x1="12" y1="40" x2="52" y2="40" stroke="currentColor" stroke-width="2"/>
+
+  <!-- Data packet hexagons -->
+  <path d="M18 20 L22 22 L22 26 L18 28 L14 26 L14 22 Z" fill="currentColor" opacity="0.8"/>
+  <path d="M30 28 L34 30 L34 34 L30 36 L26 34 L26 30 Z" fill="currentColor" opacity="0.6"/>
+  <path d="M42 36 L46 38 L46 42 L42 44 L38 42 L38 38 Z" fill="currentColor" opacity="0.8"/>
+
+  <!-- Connection nodes -->
+  <rect x="10" y="22" width="4" height="4" fill="currentColor"/>
+  <rect x="10" y="30" width="4" height="4" fill="currentColor"/>
+  <rect x="10" y="38" width="4" height="4" fill="currentColor"/>
+
+  <rect x="50" y="22" width="4" height="4" fill="currentColor"/>
+  <rect x="50" y="30" width="4" height="4" fill="currentColor"/>
+  <rect x="50" y="38" width="4" height="4" fill="currentColor"/>
+
+  <!-- Signal indicators -->
+  <line x1="16" y1="18" x2="16" y2="14" stroke="currentColor" stroke-width="1"/>
+  <circle cx="16" cy="12" r="1.5" fill="currentColor" opacity="0.5"/>
+  <line x1="48" y1="18" x2="48" y2="14" stroke="currentColor" stroke-width="1"/>
+  <circle cx="48" cy="12" r="1.5" fill="currentColor" opacity="0.5"/>
+</svg>

@@ -1,0 +1,29 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="coralgrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#39ff85"/>
+      <stop offset="100%" stop-color="#00ccff"/>
+    </linearGradient>
+  </defs>
+  <!-- Sea anemone as model registry -->
+  <ellipse cx="32" cy="48" rx="14" ry="6" fill="#001a2e" stroke="#00ccff" stroke-width="1.5"/>
+  <!-- Tentacle entries -->
+  <path d="M20 46 Q18 36 20 28 Q22 20 18 14" fill="none" stroke="#39ff85" stroke-width="2" stroke-linecap="round"/>
+  <path d="M26 46 Q24 34 28 26 Q30 18 26 12" fill="none" stroke="#00ccff" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 46 Q32 32 32 22 Q32 14 32 8" fill="none" stroke="url(#coralgrad)" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M38 46 Q40 34 36 26 Q34 18 38 12" fill="none" stroke="#00ccff" stroke-width="2" stroke-linecap="round"/>
+  <path d="M44 46 Q46 36 44 28 Q42 20 46 14" fill="none" stroke="#39ff85" stroke-width="2" stroke-linecap="round"/>
+  <!-- Model nodes on tentacles -->
+  <circle cx="18" cy="14" r="3" fill="#39ff85"/>
+  <circle cx="26" cy="12" r="2.5" fill="#00ccff"/>
+  <circle cx="32" cy="8" r="3.5" fill="#39ff85"/>
+  <circle cx="38" cy="12" r="2.5" fill="#00ccff"/>
+  <circle cx="46" cy="14" r="3" fill="#39ff85"/>
+  <!-- Registry base glow -->
+  <ellipse cx="32" cy="48" rx="10" ry="4" fill="#00ccff" opacity="0.3">
+    <animate attributeName="opacity" values="0.2;0.5;0.2" dur="2s" repeatCount="indefinite"/>
+  </ellipse>
+  <!-- Bubbles -->
+  <circle cx="12" cy="30" r="2" fill="#00ccff" opacity="0.4"/>
+  <circle cx="52" cy="34" r="2" fill="#39ff85" opacity="0.4"/>
+</svg>

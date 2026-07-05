@@ -1,0 +1,42 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="agGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#d4af37" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="agSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#808080"/>
+    </linearGradient>
+  </defs>
+  <!-- Ethereal halo -->
+  <circle cx="32" cy="32" r="28" fill="url(#agGlow)" opacity="0.6">
+    <animate attributeName="r" values="28;30;28" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.6;0.8;0.6" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Divine core -->
+  <circle cx="32" cy="32" r="12" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.9">
+    <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="8s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Inner light -->
+  <circle cx="32" cy="32" r="8" fill="#ffffff" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Orbital spirits -->
+  <circle cx="32" cy="8" r="3" fill="url(#agSilver)">
+    <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="32" cy="56" r="3" fill="url(#agSilver)">
+    <animateTransform attributeName="transform" type="rotate" from="180 32 32" to="540 32 32" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="8" cy="32" r="2.5" fill="#d4af37">
+    <animateTransform attributeName="transform" type="rotate" from="90 32 32" to="450 32 32" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="56" cy="32" r="2.5" fill="#d4af37">
+    <animateTransform attributeName="transform" type="rotate" from="270 32 32" to="630 32 32" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Spiritual rays -->
+  <path d="M32 2 L32 6 M32 58 L32 62 M2 32 L6 32 M58 32 L62 32" stroke="#ffffff" stroke-width="1" opacity="0.5" stroke-linecap="round"/>
+</svg>

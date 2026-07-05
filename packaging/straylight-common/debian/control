@@ -1,0 +1,36 @@
+Source: straylight-common
+Section: libs
+Priority: optional
+Maintainer: StrayLight OS Team <dev@straylight.dev>
+Build-Depends: debhelper-compat (= 13),
+               cmake (>= 3.25),
+               pkg-config,
+               nlohmann-json3-dev (>= 3.11),
+               libspdlog-dev (>= 1.13),
+               libsdbus-c++-dev (>= 2.0),
+               libeigen3-dev (>= 3.4),
+               libpmem2-dev (>= 1.12)
+Standards-Version: 4.6.2
+Homepage: https://straylight.dev
+Rules-Requires-Root: no
+
+Package: libstraylight-common1
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: StrayLight OS shared libraries
+ Core shared libraries for StrayLight OS subsystems.
+ Includes libstraylight-common, libstraylight-ml,
+ libstraylight-net, and libstraylight-hw.
+
+Package: libstraylight-common-dev
+Architecture: amd64
+Section: libdevel
+Depends: libstraylight-common1 (= ${binary:Version}),
+         ${misc:Depends},
+         nlohmann-json3-dev (>= 3.11),
+         libspdlog-dev (>= 1.13),
+         libsdbus-c++-dev (>= 2.0)
+Description: StrayLight OS shared libraries - development files
+ Headers and CMake config files for building against
+ libstraylight-common, libstraylight-ml, libstraylight-net,
+ and libstraylight-hw.

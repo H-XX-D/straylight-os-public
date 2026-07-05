@@ -77,8 +77,6 @@ artifacts/
 .env.*
 *.local
 *.secret
-*secret*
-*secrets*
 *.key
 *.pem
 *.p12
@@ -90,6 +88,10 @@ known_hosts
 .ssh/
 .gnupg/
 .netrc
+secrets.env
+secrets.local
+credentials.*
+tokens.*
 config/private/
 ops/private/
 ops/local/

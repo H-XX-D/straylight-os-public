@@ -1,0 +1,33 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Grid -->
+  <path d="M8 8 H56 V56 H8 Z" fill="none" stroke="#ff00ff" stroke-width="0.5" opacity="0.3"/>
+  <path d="M8 20 H56 M8 32 H56 M8 44 H56" stroke="#ff00ff" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Code brackets -->
+  <path d="M20 16 L12 32 L20 48" fill="none" stroke="#00ffff" stroke-width="3" filter="url(#glow-cyan)"/>
+  <path d="M44 16 L52 32 L44 48" fill="none" stroke="#00ffff" stroke-width="3" filter="url(#glow-cyan)"/>
+
+  <!-- JIT lightning bolt -->
+  <path d="M30 20 L26 30 H32 L28 44 L36 32 H30 L34 20 Z" fill="#ffff00" filter="url(#glow-pink)"/>
+
+  <!-- Binary decoration -->
+  <text x="10" y="14" fill="#ff00ff" font-family="monospace" font-size="6" filter="url(#glow-pink)">01</text>
+  <text x="46" y="56" fill="#00ffff" font-family="monospace" font-size="6" filter="url(#glow-cyan)">10</text>
+</svg>

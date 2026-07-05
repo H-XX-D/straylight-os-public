@@ -1,0 +1,29 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon frame -->
+  <path d="M32 4 L56 16 L56 44 L32 56 L8 44 L8 16 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Fiber optic cable -->
+  <path d="M16 48 C20 40 16 32 20 24 C24 16 28 20 32 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Light pulses traveling -->
+  <circle cx="19" cy="42" r="2" fill="currentColor" opacity="0.9"/>
+  <circle cx="18" cy="34" r="2.5" fill="currentColor" opacity="0.7"/>
+  <circle cx="22" cy="26" r="2" fill="currentColor" opacity="0.9"/>
+  <circle cx="28" cy="18" r="1.5" fill="currentColor" opacity="0.8"/>
+
+  <!-- Light emitter -->
+  <path d="M30 12 L34 8 L38 12 L34 16 Z" fill="currentColor" opacity="0.3"/>
+  <circle cx="34" cy="12" r="3" fill="currentColor"/>
+
+  <!-- Light rays -->
+  <line x1="38" y1="8" x2="42" y2="4" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+  <line x1="40" y1="12" x2="46" y2="10" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+  <line x1="38" y1="16" x2="44" y2="18" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+
+  <!-- Wavelength indicator -->
+  <path d="M44 30 Q48 26 52 30 T60 30" fill="none" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+
+  <!-- Optical connector -->
+  <rect x="12" y="44" width="8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1"/>
+  <line x1="16" y1="44" x2="16" y2="50" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+</svg>

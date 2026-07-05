@@ -1,0 +1,32 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f7ff"/>
+      <stop offset="50%" style="stop-color:#4fc3f7"/>
+      <stop offset="100%" style="stop-color:#81d4fa"/>
+    </linearGradient>
+    <linearGradient id="morphGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#4fc3f7;stop-opacity:0.2"/>
+    </linearGradient>
+  </defs>
+  <!-- Morphing ice shapes -->
+  <path d="M32 8 Q48 8 52 24 Q56 40 40 48 Q24 56 16 44 Q8 32 16 20 Q24 8 32 8"
+        fill="url(#morphGrad)" stroke="url(#iceGrad)" stroke-width="2"/>
+  <!-- Inner morphing lines -->
+  <path d="M32 16 Q42 16 44 26 Q46 36 36 40 Q26 44 22 36 Q18 28 24 22 Q30 16 32 16"
+        fill="none" stroke="#4fc3f7" stroke-width="1.5" opacity="0.7"/>
+  <!-- Transform arrows -->
+  <g stroke="#e0f7ff" stroke-width="1.5" fill="none" stroke-linecap="round">
+    <path d="M12 20 Q8 16 12 12"/>
+    <path d="M52 20 Q56 16 52 12"/>
+    <path d="M12 44 Q8 48 12 52"/>
+    <path d="M52 44 Q56 48 52 52"/>
+  </g>
+  <!-- Crystal sparkles -->
+  <g fill="#e0f7ff">
+    <circle cx="24" cy="28" r="1.5"/>
+    <circle cx="40" cy="28" r="1.5"/>
+    <circle cx="32" cy="52" r="1.5"/>
+  </g>
+</svg>

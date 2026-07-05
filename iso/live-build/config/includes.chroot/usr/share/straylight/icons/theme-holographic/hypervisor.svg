@@ -1,0 +1,28 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g7" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0.2"/>
+    </linearGradient>
+  </defs>
+  <!-- AR Base Frame -->
+  <polygon points="32,8 56,20 56,48 32,60 8,48 8,20" fill="none" stroke="#00d4ff" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.4"/>
+  <!-- Layer 1: Hardware -->
+  <polygon points="32,16 48,24 48,36 32,44 16,36 16,24" fill="url(#g7)" stroke="#ff00ff" stroke-width="1" opacity="0.6"/>
+  <!-- Layer 2: Hypervisor -->
+  <polygon points="32,20 44,26 44,34 32,40 20,34 20,26" fill="#00d4ff" opacity="0.25" stroke="#00d4ff" stroke-width="1.2"/>
+  <!-- Layer 3: VMs -->
+  <polygon points="32,24 40,28 40,32 32,36 24,32 24,28" fill="#ff00ff" opacity="0.3" stroke="#ff00ff" stroke-width="1"/>
+  <!-- VM Instances -->
+  <rect x="26" y="26" width="3" height="3" fill="#00d4ff" opacity="0.8"/>
+  <rect x="31" y="27" width="3" height="3" fill="#ff00ff" opacity="0.8"/>
+  <rect x="29" y="30" width="3" height="3" fill="#00d4ff" opacity="0.8"/>
+  <!-- Connection Lines -->
+  <line x1="32" y1="8" x2="32" y2="16" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+  <line x1="32" y1="44" x2="32" y2="60" stroke="#ff00ff" stroke-width="1" opacity="0.5"/>
+  <!-- AR Markers -->
+  <circle cx="8" cy="20" r="1.5" fill="#ff00ff" opacity="0.7"/>
+  <circle cx="56" cy="20" r="1.5" fill="#00d4ff" opacity="0.7"/>
+  <circle cx="8" cy="48" r="1.5" fill="#00d4ff" opacity="0.7"/>
+  <circle cx="56" cy="48" r="1.5" fill="#ff00ff" opacity="0.7"/>
+</svg>

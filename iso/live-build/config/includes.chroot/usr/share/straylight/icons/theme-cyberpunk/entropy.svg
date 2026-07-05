@@ -1,0 +1,40 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-pink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Chaos field background -->
+  <rect x="8" y="8" width="48" height="48" fill="none" stroke="#ff00ff" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Random noise pattern -->
+  <circle cx="16" cy="16" r="2" fill="#ffff00" filter="url(#glow-pink)"/>
+  <circle cx="48" cy="20" r="2" fill="#00ffff" filter="url(#glow-cyan)"/>
+  <circle cx="20" cy="48" r="2" fill="#ff00ff" filter="url(#glow-pink)"/>
+  <circle cx="52" cy="44" r="2" fill="#ffff00" filter="url(#glow-cyan)"/>
+  <circle cx="36" cy="12" r="1.5" fill="#00ffff" filter="url(#glow-pink)"/>
+  <circle cx="12" cy="36" r="1.5" fill="#ffff00" filter="url(#glow-cyan)"/>
+
+  <!-- Entropy core -->
+  <path d="M32 20 L38 28 L34 38 L26 38 L22 28 Z" fill="none" stroke="#00ffff" stroke-width="2" filter="url(#glow-cyan)"/>
+  <circle cx="32" cy="30" r="4" fill="#ff00ff" filter="url(#glow-pink)"/>
+
+  <!-- Random lines -->
+  <path d="M8 8 L16 16 M56 8 L48 16 M8 56 L16 48 M56 56 L48 48" stroke="#ffff00" stroke-width="1" opacity="0.7"/>
+
+  <!-- Binary stream -->
+  <text x="42" y="54" fill="#00ffff" font-family="monospace" font-size="5" filter="url(#glow-cyan)">01</text>
+  <text x="10" y="14" fill="#ff00ff" font-family="monospace" font-size="5" filter="url(#glow-pink)">10</text>
+</svg>

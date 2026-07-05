@@ -1,0 +1,31 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#7a7a7a"/>
+    </linearGradient>
+  </defs>
+  <!-- Central qubit hexagon -->
+  <path d="M32 20 L40 24 L40 32 L32 36 L24 32 L24 24 Z" fill="url(#silver)"/>
+  <!-- Qubit state sphere -->
+  <circle cx="32" cy="28" r="4" fill="#e8e8e8"/>
+  <circle cx="32" cy="28" r="2" fill="#7a7a7a"/>
+  <!-- Quantum orbital paths -->
+  <ellipse cx="32" cy="28" rx="20" ry="8" fill="none" stroke="#a0a0a0" stroke-width="1" transform="rotate(60 32 28)"/>
+  <ellipse cx="32" cy="28" rx="20" ry="8" fill="none" stroke="#7a7a7a" stroke-width="1" transform="rotate(-60 32 28)"/>
+  <ellipse cx="32" cy="28" rx="20" ry="8" fill="none" stroke="#c0c0c0" stroke-width="1"/>
+  <!-- Quantum particles on orbits -->
+  <circle cx="46" cy="22" r="2" fill="#c0c0c0"/>
+  <circle cx="18" cy="34" r="2" fill="#a0a0a0"/>
+  <circle cx="38" cy="42" r="2" fill="#7a7a7a"/>
+  <!-- Entanglement connections -->
+  <line x1="46" y1="22" x2="52" y2="12" stroke="#7a7a7a" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <line x1="18" y1="34" x2="10" y2="46" stroke="#7a7a7a" stroke-width="0.5" stroke-dasharray="2,2"/>
+  <!-- Outer hexagons -->
+  <path d="M52 8 L58 11 L58 17 L52 20 L46 17 L46 11 Z" fill="#c0c0c0"/>
+  <path d="M6 44 L12 47 L12 53 L6 56 L0 53 L0 47 Z" fill="#a0a0a0"/>
+  <path d="M46 48 L52 51 L52 57 L46 60 L40 57 L40 51 Z" fill="#7a7a7a"/>
+  <!-- Superposition indicator -->
+  <text x="32" y="30" text-anchor="middle" font-size="5" fill="#5a5a5a">|ψ⟩</text>
+</svg>

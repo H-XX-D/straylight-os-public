@@ -1,0 +1,65 @@
+{
+  "name": "dev-station",
+  "description": "Developer workstation — all debug tools enabled, trace always-on, replay recording active",
+  "base_role": "workstation",
+  "autotune_profile": "balanced",
+  "active_services": [
+    "compositor",
+    "whisper",
+    "autotune",
+    "health",
+    "mesh",
+    "quota",
+    "flux",
+    "replay",
+    "alice",
+    "hotpatch",
+    "lens"
+  ],
+  "disabled_services": [],
+  "service_configs": {
+    "lens": {
+      "always_on": true,
+      "retention": {
+        "max_traces": 500,
+        "max_age_hours": 720
+      }
+    },
+    "replay": {
+      "recording": true,
+      "buffer_size_mb": 512
+    },
+    "health": {
+      "tick_interval_seconds": 60,
+      "mode": "standard"
+    }
+  },
+  "resource_limits": {
+    "cpu_quota_percent": 100,
+    "memory_limit_mb": 0,
+    "vram_reserve_percent": 50,
+    "io_weight": 100,
+    "nice_level": 0
+  },
+  "thermal": {
+    "cooling_mode": "balanced",
+    "cpu_temp_warn": 80,
+    "cpu_temp_critical": 95,
+    "gpu_temp_warn": 85,
+    "gpu_temp_critical": 100
+  },
+  "compositor": {
+    "mode": "desktop",
+    "max_fps": 60,
+    "vsync": true,
+    "direct_scanout": false,
+    "low_latency_input": true
+  },
+  "mesh_advertise": true,
+  "mesh_capabilities": "desktop,dev",
+  "debug_tools": true,
+  "trace_always_on": true,
+  "replay_recording": true,
+  "health_mode": "standard",
+  "ssh_mode": "standard"
+}

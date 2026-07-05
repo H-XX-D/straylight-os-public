@@ -1,0 +1,118 @@
+{
+  "name": "Nexus",
+  "colors": {
+    "bg":     "#0A0E17",
+    "fg":     "#E2E8F0",
+    "accent": "#00D4AA",
+    "panel":  "#131A2B"
+  },
+  "font_size": 15.0,
+  "corner_radius": 8.0,
+  "icon_theme": "theme-nexus",
+  "vars": {
+    "surface.0":        "#0A0E17",
+    "surface.1":        "#0F1525",
+    "surface.2":        "#131A2B",
+    "surface.3":        "#1A2338",
+    "surface.4":        "#212D45",
+    "surface.raised":   "#1E2740",
+    "surface.overlay":  "#0F1525E6",
+    "surface.hover":    "#1E2740",
+    "surface.active":   "#00D4AA33",
+    "surface.selected": "#00D4AA1A",
+
+    "accent.primary":   "#00D4AA",
+    "accent.secondary": "#6366F1",
+    "accent.tertiary":  "#818CF8",
+    "accent.dim":       "#00D4AA66",
+    "accent.glow":      "#00D4AA26",
+    "accent.gradient.start": "#00D4AA",
+    "accent.gradient.end":   "#6366F1",
+
+    "text.primary":     "#E2E8F0",
+    "text.secondary":   "#94A3B8",
+    "text.tertiary":    "#64748B",
+    "text.dim":         "#475569",
+    "text.accent":      "#00D4AA",
+    "text.inverse":     "#0A0E17",
+
+    "border.color":     "#1E293B",
+    "border.subtle":    "#1E293B80",
+    "border.accent":    "#00D4AA40",
+    "border.focus":     "#00D4AA",
+
+    "success":          "#10B981",
+    "success.bg":       "#10B98120",
+    "warning":          "#F59E0B",
+    "warning.bg":       "#F59E0B20",
+    "error":            "#EF4444",
+    "error.bg":         "#EF444420",
+    "info":             "#6366F1",
+    "info.bg":          "#6366F120",
+
+    "scrollbar.bg":     "#0A0E1700",
+    "scrollbar.thumb":  "#1E293B",
+    "scrollbar.hover":  "#334155",
+
+    "separator":        "#1E293B",
+
+    "tab.inactive":     "#0F1525",
+    "tab.active":       "#131A2B",
+    "tab.indicator":    "#00D4AA",
+
+    "titlebar.bg":      "#0A0E17",
+    "titlebar.active":  "#131A2B",
+    "titlebar.text":    "#94A3B8",
+
+    "button.primary.bg":    "#00D4AA",
+    "button.primary.hover": "#00E4B8",
+    "button.primary.text":  "#0A0E17",
+    "button.ghost.hover":   "#1E274040",
+    "button.danger.bg":     "#EF4444",
+    "button.danger.hover":  "#F87171",
+
+    "input.bg":         "#0F1525",
+    "input.border":     "#1E293B",
+    "input.focus":      "#00D4AA40",
+    "input.placeholder":"#475569",
+
+    "tooltip.bg":       "#1A2338F0",
+    "tooltip.border":   "#1E293B",
+
+    "shadow.sm":        "#00000040",
+    "shadow.md":        "#00000060",
+    "shadow.lg":        "#00000080",
+    "shadow.accent":    "#00D4AA15",
+
+    "spacing.xs":       "2",
+    "spacing.sm":       "4",
+    "spacing.md":       "8",
+    "spacing.lg":       "12",
+    "spacing.xl":       "16",
+    "spacing.2xl":      "24",
+
+    "radius.sm":        "4",
+    "radius.md":        "8",
+    "radius.lg":        "12",
+    "radius.xl":        "16",
+    "radius.full":      "9999",
+
+    "panel.top_bar.height":   "36",
+    "panel.top_bar.bg":       "#0A0E17E6",
+    "panel.dock.bg":          "#0F1525E6",
+    "panel.sidebar.bg":       "#0F1525",
+
+    "notification.bg":        "#1A2338F0",
+    "notification.border":    "#1E293B",
+    "notification.success":   "#10B981",
+    "notification.warning":   "#F59E0B",
+    "notification.error":     "#EF4444",
+    "notification.info":      "#6366F1",
+
+    "greeter.bg.start":       "#0A0E17",
+    "greeter.bg.end":         "#131A2B",
+    "greeter.card.bg":        "#0F1525E6",
+    "greeter.card.border":    "#00D4AA30",
+    "greeter.glow":           "#00D4AA10"
+  }
+}

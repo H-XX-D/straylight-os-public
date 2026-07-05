@@ -1,0 +1,14 @@
+[Unit]
+Description=StrayLight Out-of-Box Experience
+ConditionFileNotEmpty=/var/lib/straylight/state
+After=display-manager.service graphical.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/lib/straylight/straylight-oobe-check
+ExecStart=/usr/bin/straylight-oobe
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical.target

@@ -1,0 +1,21 @@
+{
+  "name": "Green Radioactive",
+  "colors": {
+    "bg": "#020802",
+    "fg": "#a8d5a8",
+    "accent": "#39ff14",
+    "panel": "#0a1a0a"
+  },
+  "font_size": 16.0,
+  "corner_radius": 2.0,
+  "icon_theme": "theme-biohazard",
+  "vars": {
+    "surface.hover": "#00ff41",
+    "surface.active": "#76ff03",
+    "border.color": "#1a3a1a",
+    "text.dim": "#5a8a5a",
+    "success": "#00ff41",
+    "warning": "#ffea00",
+    "error": "#ff3d00"
+  }
+}

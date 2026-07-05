@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0
+# StrayLight OS — ML-aware Scheduler
+
+obj-m := straylight-sched.o
+
+straylight-sched-y := sched_main.o sched_ml.o sched_topology.o
+
+ccflags-y := -std=gnu11 -DSTRAYLIGHT_SCHED

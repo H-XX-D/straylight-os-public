@@ -1,0 +1,101 @@
+#!/bin/bash
+# StrayLight OS live environment customization hook
+set -e
+
+echo "StrayLight OS: Configuring live environment..."
+
+# Create straylight state directory
+mkdir -p /var/lib/straylight
+echo "live" > /var/lib/straylight/state
+
+# Create live user autostart for Calamares
+mkdir -p /etc/skel/.config/autostart
+cat > /etc/skel/.config/autostart/straylight-installer.desktop <<'DESKTOP'
+[Desktop Entry]
+Type=Application
+Name=Install StrayLight OS
+Comment=Install StrayLight OS to disk
+Exec=pkexec calamares
+Icon=calamares
+Terminal=false
+Categories=System;
+DESKTOP
+
+# Create desktop shortcut for installer
+mkdir -p /usr/share/applications
+cat > /usr/share/applications/straylight-installer.desktop <<'DESKTOP'
+[Desktop Entry]
+Type=Application
+Name=Install StrayLight OS
+Comment=Install StrayLight OS to your hard drive
+Exec=pkexec calamares
+Icon=calamares
+Terminal=false
+Categories=System;
+StartupNotify=true
+DESKTOP
+
+# Configure auto-login for the distro-provided live desktop session.
+if [ -d /etc/gdm3 ]; then
+    mkdir -p /etc/gdm3
+    cat > /etc/gdm3/daemon.conf <<'CONF'
+[daemon]
+AutomaticLoginEnable=true
+AutomaticLogin=user
+WaylandEnable=true
+CONF
+fi
+
+# Set live session default theme
+mkdir -p /etc/skel/.config/straylight
+cat > /etc/skel/.config/straylight/shell.conf <<'JSON'
+{
+    "theme": "cyberpunk",
+    "panels": {
+        "top_bar": true,
+        "left_dock": true,
+        "bottom_dock": false
+    }
+}
+JSON
+
+# Enable StrayLight services for live boot
+systemctl enable straylight-bus.service || true
+systemctl enable straylight-entropy.service || true
+systemctl enable straylight-registry.service || true
+systemctl enable straylight-scheduler.service || true
+systemctl enable straylight-core.service || true
+systemctl enable straylight-agent.service || true
+systemctl enable straylight-fuse.service || true
+systemctl enable gdm3.service || true
+
+# Kernel parameters for live environment
+cat > /etc/sysctl.d/99-straylight.conf <<'SYSCTL'
+# StrayLight OS kernel tuning
+vm.swappiness=10
+vm.dirty_ratio=20
+vm.dirty_background_ratio=5
+net.core.rmem_max=16777216
+net.core.wmem_max=16777216
+net.core.rmem_default=1048576
+net.core.wmem_default=1048576
+net.core.optmem_max=65536
+net.core.somaxconn=8192
+net.core.netdev_max_backlog=16384
+kernel.sched_autogroup_enabled=0
+kernel.numa_balancing=1
+SYSCTL
+
+# Disable unnecessary services in live env
+disable_if_present() {
+    unit="$1"
+    if systemctl list-unit-files --no-legend "$unit" 2>/dev/null | grep -q "^${unit}[[:space:]]"; then
+        systemctl disable "$unit" || true
+    fi
+}
+
+disable_if_present apt-daily.timer
+disable_if_present apt-daily-upgrade.timer
+disable_if_present e2scrub_all.timer
+
+echo "StrayLight OS: Live environment configuration complete."

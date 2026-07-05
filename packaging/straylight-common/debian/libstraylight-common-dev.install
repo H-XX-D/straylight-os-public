@@ -1,0 +1,6 @@
+usr/lib/x86_64-linux-gnu/libstraylight-common.so
+usr/lib/x86_64-linux-gnu/libstraylight-ml.so
+usr/lib/x86_64-linux-gnu/libstraylight-net.so
+usr/lib/x86_64-linux-gnu/libstraylight-hw.so
+usr/include/straylight/
+usr/lib/x86_64-linux-gnu/cmake/straylight/

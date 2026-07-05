@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# probe-notify — poll straylight-notify via IPC socket and emit JSON
+# Output shape:
+# {
+#   "active": [{ "id":N, "app":"...", "summary":"...", "body":"...", "ts":N }],
+#   "count": N,
+#   "dnd": false
+# }
+set -euo pipefail
+
+SOCK="/run/straylight/notify.sock"
+TIMEOUT=0.5
+
+fallback() {
+    printf '{"active":[],"count":0,"dnd":false}\n'
+    exit 0
+}
+
+# Require socat
+command -v socat >/dev/null 2>&1 || fallback
+[ -S "$SOCK" ] || fallback
+
+# Query active notifications (HISTORY returns all; we filter active)
+raw=$(printf 'HISTORY\n' | timeout "$TIMEOUT" socat -t1 stdio "UNIX-CONNECT:$SOCK" 2>/dev/null) || fallback
+
+# Query DND status
+dnd_raw=$(printf 'DND status\n' | timeout "$TIMEOUT" socat -t1 stdio "UNIX-CONNECT:$SOCK" 2>/dev/null) || true
+dnd=false
+[[ "$dnd_raw" == *"DND on"* ]] && dnd=true
+
+# Parse tab-separated response into JSON array
+# Format: id\tapp_name\tsummary\tbody\tepoch\tstatus\n
+active_json="["
+count=0
+
+if [[ -n "$raw" && "$raw" != "EMPTY" ]]; then
+    while IFS=$'\t' read -r id app summary body ts status; do
+        [[ -z "$id" ]] && continue
+        [[ "$status" != "active" ]] && continue
+
+        # Escape JSON special chars in strings
+        app=$(    printf '%s' "$app"     | sed 's/\\/\\\\/g;s/"/\\"/g;s/$//' | tr -d '\n')
+        summary=$(printf '%s' "$summary" | sed 's/\\/\\\\/g;s/"/\\"/g;s/$//' | tr -d '\n')
+        body=$(   printf '%s' "$body"    | sed 's/\\/\\\\/g;s/"/\\"/g;s/$//' | tr -d '\n')
+
+        [[ $count -gt 0 ]] && active_json+=","
+        active_json+="{\"id\":${id},\"app\":\"${app}\",\"summary\":\"${summary}\",\"body\":\"${body}\",\"ts\":${ts}}"
+        (( count++ )) || true
+    done <<< "$raw"
+fi
+
+active_json+="]"
+
+printf '{"active":%s,"count":%d,"dnd":%s}\n' \
+    "$active_json" "$count" "$dnd"

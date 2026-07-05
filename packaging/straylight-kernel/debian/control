@@ -1,0 +1,23 @@
+Source: straylight-kernel
+Section: kernel
+Priority: optional
+Maintainer: StrayLight OS Team <dev@straylight.dev>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+Homepage: https://straylight.dev
+Rules-Requires-Root: no
+
+Package: straylight-kernel
+Architecture: amd64
+Depends: ${misc:Depends},
+         dkms,
+         clang,
+         llvm,
+         libbpf-dev,
+         linux-headers-amd64 | linux-headers-generic
+Description: StrayLight OS kernel modules (DKMS)
+ Loadable kernel modules for StrayLight OS, built via DKMS.
+ Includes straylight-vpu (GPU memory management), straylight-hypervisor
+ (KVM extensions), straylight-scheduler (ML-aware sched_class),
+ straylight-xdp (eBPF programs), straylight-entropy (hardware entropy),
+ and straylight-enclave (SGX extensions).

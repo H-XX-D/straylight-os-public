@@ -1,0 +1,272 @@
+#!/usr/bin/env python3
+# probe-system — outputs JSON snapshot of CPU, RAM, IO, entropy, scheduler
+# Polls /proc directly; tries StrayLight service sockets for richer data.
+# Used as an eww defpoll script.
+
+import json, os, socket, struct, time, re
+from pathlib import Path
+
+# ── /proc helpers ────────────────────────────────────────────────────
+
+def read_cpu_stats():
+    """Return list of (user, nice, system, idle, iowait, irq, softirq) per-cpu."""
+    lines = Path("/proc/stat").read_text().splitlines()
+    cpus = []
+    for l in lines:
+        if not l.startswith("cpu"):
+            break
+        parts = l.split()
+        if parts[0] == "cpu":
+            continue  # aggregate line – skip
+        vals = [int(x) for x in parts[1:8]]
+        cpus.append(vals)
+    return cpus
+
+_prev_cpu = None
+def cpu_utilization():
+    """Return list of utilization % per logical CPU."""
+    global _prev_cpu
+    cur = read_cpu_stats()
+    if _prev_cpu is None:
+        _prev_cpu = cur
+        time.sleep(0.1)
+        cur = read_cpu_stats()
+    result = []
+    for prev, now in zip(_prev_cpu, cur):
+        total = sum(now) - sum(prev)
+        idle  = now[3] - prev[3]
+        util  = max(0.0, min(100.0, (1.0 - idle / max(total, 1)) * 100.0))
+        result.append(round(util, 1))
+    _prev_cpu = cur
+    return result
+
+def cpu_freq():
+    """Return list of current frequency in MHz per logical CPU."""
+    try:
+        freqs = []
+        p = Path("/sys/devices/system/cpu")
+        for cpu_dir in sorted(p.glob("cpu[0-9]*")):
+            freq_file = cpu_dir / "cpufreq" / "scaling_cur_freq"
+            if freq_file.exists():
+                freqs.append(round(int(freq_file.read_text()) / 1000, 1))
+        return freqs
+    except Exception:
+        return []
+
+def cpu_temp():
+    """Return package0 temperature in °C if available."""
+    try:
+        for thermal in Path("/sys/class/thermal").glob("thermal_zone*"):
+            ttype = (thermal / "type").read_text().strip()
+            if "package" in ttype.lower() or "x86_package" in ttype.lower() or "cpu" in ttype.lower():
+                return round(int((thermal / "temp").read_text()) / 1000, 1)
+    except Exception:
+        pass
+    # Try hwmon
+    try:
+        for hwmon in Path("/sys/class/hwmon").glob("hwmon*"):
+            name_file = hwmon / "name"
+            if name_file.exists() and "coretemp" in name_file.read_text():
+                t = (hwmon / "temp1_input")
+                if t.exists():
+                    return round(int(t.read_text()) / 1000, 1)
+    except Exception:
+        pass
+    return None
+
+def memory():
+    """Return dict with total_mb, used_mb, avail_mb, pct."""
+    d = {}
+    for line in Path("/proc/meminfo").read_text().splitlines():
+        k, _, v = line.partition(":")
+        d[k.strip()] = int(v.strip().split()[0])  # kB
+    total = d.get("MemTotal", 1)
+    avail = d.get("MemAvailable", 0)
+    used  = total - avail
+    return {
+        "total_mb": round(total / 1024, 1),
+        "used_mb":  round(used  / 1024, 1),
+        "avail_mb": round(avail / 1024, 1),
+        "pct":      round(used / max(total, 1) * 100, 1),
+    }
+
+def swap():
+    d = {}
+    for line in Path("/proc/meminfo").read_text().splitlines():
+        k, _, v = line.partition(":")
+        d[k.strip()] = int(v.strip().split()[0])
+    total  = d.get("SwapTotal", 0)
+    free   = d.get("SwapFree",  0)
+    used   = total - free
+    return {
+        "total_mb": round(total / 1024, 1),
+        "used_mb":  round(used  / 1024, 1),
+        "pct":      round(used / max(total, 1) * 100, 1),
+    }
+
+def entropy():
+    """Return /proc/sys/kernel/random entropy_avail (bits)."""
+    try:
+        return int(Path("/proc/sys/kernel/random/entropy_avail").read_text())
+    except Exception:
+        return 0
+
+def entropy_poolsize():
+    try:
+        return int(Path("/proc/sys/kernel/random/poolsize").read_text())
+    except Exception:
+        return 256
+
+def loadavg():
+    parts = Path("/proc/loadavg").read_text().split()
+    return {"1m": float(parts[0]), "5m": float(parts[1]), "15m": float(parts[2])}
+
+def io_stats():
+    """Return aggregated disk read/write MB/s (delta against prior run is not
+    tracked; we return raw bytes/s from /proc/diskstats sector counts)."""
+    try:
+        lines = Path("/proc/diskstats").read_text().splitlines()
+        rd = wr = 0
+        for l in lines:
+            p = l.split()
+            if len(p) < 14:
+                continue
+            name = p[2]
+            # Skip partitions, loop, dm
+            if re.match(r'^(loop|dm-|ram|zram)', name):
+                continue
+            rd += int(p[5])   # sectors read
+            wr += int(p[9])   # sectors written
+        # Sectors are 512 bytes
+        return {
+            "read_mb":  round(rd * 512 / 1024 / 1024, 2),
+            "write_mb": round(wr * 512 / 1024 / 1024, 2),
+        }
+    except Exception:
+        return {"read_mb": 0.0, "write_mb": 0.0}
+
+def uptime_str():
+    try:
+        secs = float(Path("/proc/uptime").read_text().split()[0])
+        h = int(secs // 3600)
+        m = int((secs % 3600) // 60)
+        return f"{h}h {m:02d}m"
+    except Exception:
+        return "?"
+
+def scheduler_info():
+    """Try to talk to straylight-health service for scheduler telemetry.
+    Falls back to /proc/schedstat summary."""
+    try:
+        sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        sock.settimeout(0.3)
+        sock.connect("/run/straylight/health.sock")
+        req = json.dumps({"method": "scheduler_stats"}) + "\n"
+        sock.sendall(req.encode())
+        data = b""
+        while True:
+            chunk = sock.recv(4096)
+            if not chunk:
+                break
+            data += chunk
+            if b"\n" in data:
+                break
+        sock.close()
+        return json.loads(data.decode().strip())
+    except Exception:
+        pass
+    # Fallback: count runnable tasks from /proc
+    try:
+        stat = Path("/proc/stat").read_text()
+        for line in stat.splitlines():
+            if line.startswith("procs_running"):
+                return {"runnable": int(line.split()[1])}
+    except Exception:
+        pass
+    return {"runnable": 0}
+
+def ipc_call_framed(sock_path, method, timeout=0.4):
+    """Send a length-prefixed JSON-RPC request to a StrayLight framed socket.
+    Wire format: 4-byte LE uint32 length + UTF-8 JSON payload."""
+    try:
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.settimeout(timeout)
+        s.connect(sock_path)
+        payload = json.dumps({"method": method}).encode()
+        s.sendall(struct.pack("<I", len(payload)) + payload)
+        hdr = s.recv(4, socket.MSG_WAITALL)
+        if len(hdr) < 4:
+            return None
+        (resp_len,) = struct.unpack("<I", hdr)
+        if resp_len == 0 or resp_len > 4 * 1024 * 1024:
+            return None
+        data = b""
+        while len(data) < resp_len:
+            chunk = s.recv(resp_len - len(data))
+            if not chunk:
+                break
+            data += chunk
+        s.close()
+        msg = json.loads(data.decode())
+        return msg.get("payload", msg)
+    except Exception:
+        return None
+
+def bus_info():
+    """Get service registry summary from straylight-bus."""
+    result = ipc_call_framed("/run/straylight/bus.sock", "status")
+    if result:
+        return {
+            "service_count":   result.get("service_count", 0),
+            "messages_routed": result.get("messages_routed", 0),
+        }
+    return {"service_count": 0, "messages_routed": 0}
+
+# ── Assemble payload ─────────────────────────────────────────────────
+
+def main():
+    utils = cpu_utilization()
+    avg_util = round(sum(utils) / max(len(utils), 1), 1) if utils else 0.0
+    freqs = cpu_freq()
+    avg_freq = round(sum(freqs) / max(len(freqs), 1), 1) if freqs else 0.0
+
+    out = {
+        "cpu": {
+            "avg_pct":   avg_util,
+            "per_core":  utils,
+            "avg_mhz":   avg_freq,
+            "temp_c":    cpu_temp(),
+            "load":      loadavg(),
+        },
+        "ram":     memory(),
+        "swap":    swap(),
+        "entropy": {
+            "avail":    entropy(),
+            "poolsize": entropy_poolsize(),
+            "pct":      round(entropy() / max(entropy_poolsize(), 1) * 100, 1),
+        },
+        "io":      io_stats(),
+        "sched":   scheduler_info(),
+        "bus":     bus_info(),
+        "uptime":  uptime_str(),
+    }
+    print(json.dumps(out))
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        # Safe fallback — always emit valid JSON so eww doesn't crash
+        import json as _json
+        _json.dump({
+            "cpu":     {"avg_pct": 0.0, "per_core": [], "avg_mhz": 0.0, "temp_c": None, "load": {"1m": 0.0, "5m": 0.0, "15m": 0.0}},
+            "ram":     {"total_mb": 0.0, "used_mb": 0.0, "avail_mb": 0.0, "pct": 0.0},
+            "swap":    {"total_mb": 0.0, "used_mb": 0.0, "pct": 0.0},
+            "entropy": {"avail": 0, "poolsize": 256, "pct": 0.0},
+            "io":      {"read_mb": 0.0, "write_mb": 0.0},
+            "sched":   {"runnable": 0},
+            "bus":     {"service_count": 0, "messages_routed": 0},
+            "uptime":  "?",
+            "_error":  str(e),
+        }, __import__('sys').stdout)
+        print()

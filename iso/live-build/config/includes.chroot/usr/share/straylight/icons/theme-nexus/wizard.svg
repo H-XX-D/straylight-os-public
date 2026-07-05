@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5eead4"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2e8f0"/>
+      <stop offset="100%" style="stop-color:#94a3b8"/>
+    </linearGradient>
+  </defs>
+  <!-- Magic orbit -->
+  <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="url(#purpleGrad)" stroke-width="0.5" opacity="0.5" transform="rotate(-20 32 32)"/>
+  <ellipse cx="32" cy="32" rx="26" ry="10" fill="none" stroke="url(#cyanGrad)" stroke-width="0.5" opacity="0.4" transform="rotate(20 32 32)"/>
+  <!-- Wizard hat -->
+  <path d="M20 44 L32 12 L44 44 Z" fill="url(#purpleGrad)" stroke="url(#silverGrad)" stroke-width="1"/>
+  <!-- Hat brim -->
+  <ellipse cx="32" cy="44" rx="14" ry="4" fill="none" stroke="url(#silverGrad)" stroke-width="1.5"/>
+  <!-- Star on hat -->
+  <path d="M32 22 L33.5 26 L38 26 L34.5 29 L36 33 L32 30.5 L28 33 L29.5 29 L26 26 L30.5 26 Z" fill="url(#cyanGrad)"/>
+  <!-- Magic wand -->
+  <line x1="44" y1="20" x2="52" y2="12" stroke="url(#silverGrad)" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="52" cy="12" r="2.5" fill="url(#cyanGrad)"/>
+  <!-- Sparkles -->
+  <path d="M50 18 L51 20 L53 20 L51.5 21.5 L52 23.5 L50 22.5 L48 23.5 L48.5 21.5 L47 20 L49 20 Z" fill="url(#purpleGrad)"/>
+  <path d="M16 28 L16.8 29.5 L18.5 29.5 L17 30.5 L17.5 32 L16 31.2 L14.5 32 L15 30.5 L13.5 29.5 L15.2 29.5 Z" fill="url(#cyanGrad)"/>
+  <!-- Stars background -->
+  <circle cx="8" cy="10" r="0.6" fill="#e2e8f0" opacity="0.7"/>
+  <circle cx="56" cy="14" r="0.5" fill="#5eead4" opacity="0.6"/>
+  <circle cx="54" cy="54" r="0.7" fill="#a78bfa" opacity="0.5"/>
+  <circle cx="10" cy="52" r="0.5" fill="#e2e8f0" opacity="0.6"/>
+</svg>

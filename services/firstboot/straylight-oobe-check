@@ -1,0 +1,17 @@
+#!/bin/bash
+# straylight-oobe-check — ExecStartPre guard for OOBE service
+# Exits 0 if state is "oobe" (allow OOBE to run), exits 1 otherwise (skip).
+set -euo pipefail
+
+STATE_FILE="${STATE_FILE:-/var/lib/straylight/state}"
+
+if [ ! -f "${STATE_FILE}" ]; then
+    exit 1
+fi
+
+STATE=$(cat "${STATE_FILE}")
+if [ "${STATE}" = "oobe" ]; then
+    exit 0
+else
+    exit 1
+fi

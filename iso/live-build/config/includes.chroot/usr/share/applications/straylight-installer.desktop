@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Install StrayLight OS
+GenericName=Installer
+Comment=Install StrayLight OS to your hard drive
+Exec=pkexec calamares
+Icon=calamares
+Terminal=false
+Categories=System;
+StartupNotify=true
+Keywords=install;installer;setup;

@@ -1,0 +1,37 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e0f7ff"/>
+      <stop offset="100%" style="stop-color:#4fc3f7"/>
+    </linearGradient>
+    <linearGradient id="directGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4fc3f7"/>
+      <stop offset="100%" style="stop-color:#e0f7ff"/>
+    </linearGradient>
+  </defs>
+  <!-- Memory blocks -->
+  <g fill="none" stroke="url(#iceGrad)" stroke-width="2">
+    <rect x="4" y="16" width="20" height="32" rx="2"/>
+    <rect x="40" y="16" width="20" height="32" rx="2"/>
+  </g>
+  <!-- Direct connection (bypass CPU) -->
+  <path d="M24 32 L40 32" stroke="url(#directGrad)" stroke-width="4" stroke-linecap="round"/>
+  <!-- Snowflake data packets -->
+  <g transform="translate(32,32)">
+    <circle r="5" fill="#e0f7ff" opacity="0.8"/>
+    <g stroke="#4fc3f7" stroke-width="1">
+      <line x1="0" y1="-4" x2="0" y2="4"/>
+      <line x1="-3.5" y1="-2" x2="3.5" y2="2"/>
+      <line x1="-3.5" y1="2" x2="3.5" y2="-2"/>
+    </g>
+  </g>
+  <!-- Ice crystal accents -->
+  <g stroke="#4fc3f7" stroke-width="1" opacity="0.6">
+    <line x1="14" y1="12" x2="14" y2="8"/>
+    <line x1="10" y1="10" x2="18" y2="10"/>
+    <line x1="50" y1="12" x2="50" y2="8"/>
+    <line x1="46" y1="10" x2="54" y2="10"/>
+  </g>
+  <!-- Speed indicators -->
+  <path d="M28 28 L36 28 M28 36 L36 36" stroke="#e0f7ff" stroke-width="1" opacity="0.5"/>
+</svg>

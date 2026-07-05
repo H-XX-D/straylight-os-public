@@ -1,0 +1,21 @@
+{
+  "name": "Alien Bioluminescent",
+  "colors": {
+    "bg": "#020805",
+    "fg": "#aaffcc",
+    "accent": "#39ff85",
+    "panel": "#0a1f18"
+  },
+  "font_size": 16.0,
+  "corner_radius": 4.0,
+  "icon_theme": "theme-alien",
+  "vars": {
+    "surface.hover": "#00ff88",
+    "surface.active": "#00cc66",
+    "border.color": "#1a3a2d",
+    "text.dim": "#5a8a70",
+    "success": "#00ff88",
+    "warning": "#c77dff",
+    "error": "#9d4edd"
+  }
+}

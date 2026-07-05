@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0
+# StrayLight OS — VPU GPU Memory Slab Allocator
+
+obj-m := straylight-vpu.o
+
+straylight-vpu-y := vpu_main.o vpu_slab.o vpu_ioctl.o vpu_dma.o vpu_sysfs.o vpu_mgpu.o
+
+ccflags-y := -std=gnu11 -DSTRAYLIGHT_VPU

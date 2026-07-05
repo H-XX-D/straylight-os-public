@@ -1,0 +1,29 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon frame -->
+  <path d="M32 4 L56 16 L56 44 L32 56 L8 44 L8 16 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- GPU chip base -->
+  <path d="M20 16 L44 16 L48 20 L48 40 L44 44 L20 44 L16 40 L16 20 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+
+  <!-- Processing cores - hexagonal grid -->
+  <path d="M24 22 L27 23.5 L27 26.5 L24 28 L21 26.5 L21 23.5 Z" fill="currentColor" opacity="0.8"/>
+  <path d="M32 22 L35 23.5 L35 26.5 L32 28 L29 26.5 L29 23.5 Z" fill="currentColor" opacity="0.8"/>
+  <path d="M40 22 L43 23.5 L43 26.5 L40 28 L37 26.5 L37 23.5 Z" fill="currentColor" opacity="0.8"/>
+
+  <path d="M24 32 L27 33.5 L27 36.5 L24 38 L21 36.5 L21 33.5 Z" fill="currentColor" opacity="0.8"/>
+  <path d="M32 32 L35 33.5 L35 36.5 L32 38 L29 36.5 L29 33.5 Z" fill="currentColor" opacity="0.8"/>
+  <path d="M40 32 L43 33.5 L43 36.5 L40 38 L37 36.5 L37 33.5 Z" fill="currentColor" opacity="0.8"/>
+
+  <!-- Video output symbol -->
+  <rect x="28" y="12" width="8" height="4" rx="1" fill="currentColor" opacity="0.6"/>
+  <line x1="32" y1="12" x2="32" y2="10" stroke="currentColor" stroke-width="1"/>
+
+  <!-- PCIe lanes -->
+  <line x1="18" y1="46" x2="18" y2="50" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="26" y1="46" x2="26" y2="50" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="38" y1="46" x2="38" y2="50" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="46" y1="46" x2="46" y2="50" stroke="currentColor" stroke-width="1.5"/>
+
+  <!-- Virtual overlay -->
+  <path d="M14 14 L16 12 M48 12 L50 14" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+</svg>

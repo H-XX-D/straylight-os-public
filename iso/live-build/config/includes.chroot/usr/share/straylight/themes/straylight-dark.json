@@ -1,0 +1,21 @@
+{
+  "name": "StrayLight Dark",
+  "colors": {
+    "bg": "#1E1E2E",
+    "fg": "#CDD6F4",
+    "accent": "#B4BEFE",
+    "panel": "#313244"
+  },
+  "font_size": 16.0,
+  "corner_radius": 6.0,
+  "icon_theme": "theme-nexus",
+  "vars": {
+    "surface.hover": "#CBA6F7",
+    "surface.active": "#89B4FA",
+    "border.color": "#45475A",
+    "text.dim": "#6C7086",
+    "success": "#A6E3A1",
+    "warning": "#FAB387",
+    "error": "#F38BA8"
+  }
+}

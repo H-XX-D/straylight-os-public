@@ -1,0 +1,6 @@
+straylight-os (1.0.0-1) unstable; urgency=medium
+
+  * Initial release.
+  * Metapackage pulling in all StrayLight OS components.
+
+ -- StrayLight OS Team <dev@straylight.dev>  Sun, 16 Mar 2026 00:00:00 +0000

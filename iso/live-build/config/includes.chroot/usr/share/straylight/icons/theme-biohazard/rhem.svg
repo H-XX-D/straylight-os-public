@@ -1,0 +1,24 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Energy Management - Radioactive power cell -->
+  <!-- Battery/containment vessel -->
+  <rect x="16" y="8" width="32" height="48" rx="4" fill="currentColor" opacity="0.8"/>
+  <rect x="20" y="12" width="24" height="40" rx="2" fill="#000"/>
+  <!-- Power terminal -->
+  <rect x="26" y="4" width="12" height="6" rx="1" fill="currentColor"/>
+  <!-- Energy levels with biohazard fill -->
+  <rect x="24" y="42" width="16" height="6" rx="1" fill="currentColor" opacity="0.4"/>
+  <rect x="24" y="34" width="16" height="6" rx="1" fill="currentColor" opacity="0.6"/>
+  <rect x="24" y="26" width="16" height="6" rx="1" fill="currentColor" opacity="0.8"/>
+  <rect x="24" y="18" width="16" height="6" rx="1" fill="currentColor"/>
+  <!-- Radiation warning -->
+  <circle cx="32" cy="30" r="4" fill="#000"/>
+  <path d="M32 27c-1 0-2 0-2 1 0 0 1 0 1 0 0 0 0 1 0 1 0 0-1 0-1-1 0 1 0 1-1 2 1 1 2 1 2 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 1 1 2 1 2 0-1 0-1-1-1-2 0 1 0 1-1 1 0 0 0-1 0-1 0 0 1 0 1 0-1-1-1-1-2-1z" fill="currentColor"/>
+  <!-- Power output arcs -->
+  <path d="M16 16c-4 0-8 4-8 8M16 48c-4 0-8-4-8-8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M48 16c4 0 8 4 8 8M48 48c4 0 8-4 8-8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Energy particles -->
+  <circle cx="6" cy="24" r="2" fill="currentColor"/>
+  <circle cx="6" cy="40" r="2" fill="currentColor"/>
+  <circle cx="58" cy="24" r="2" fill="currentColor"/>
+  <circle cx="58" cy="40" r="2" fill="currentColor"/>
+</svg>

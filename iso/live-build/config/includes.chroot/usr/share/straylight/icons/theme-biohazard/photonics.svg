@@ -1,0 +1,23 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Optical Photonics - Glowing toxic light beams -->
+  <!-- Light source core -->
+  <circle cx="32" cy="32" r="10" fill="currentColor"/>
+  <circle cx="32" cy="32" r="6" fill="#000"/>
+  <!-- Optical fiber/laser structure -->
+  <path d="M32 16v-8M32 56v-8M16 32H8M56 32h-8" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+  <!-- Biohazard light emission -->
+  <path d="M20 20l-6-6M44 20l6-6M20 44l-6 6M44 44l6 6" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  <!-- Photon particles -->
+  <circle cx="32" cy="6" r="3" fill="currentColor"/>
+  <circle cx="32" cy="58" r="3" fill="currentColor"/>
+  <circle cx="6" cy="32" r="3" fill="currentColor"/>
+  <circle cx="58" cy="32" r="3" fill="currentColor"/>
+  <circle cx="12" cy="12" r="2" fill="currentColor" opacity="0.8"/>
+  <circle cx="52" cy="12" r="2" fill="currentColor" opacity="0.8"/>
+  <circle cx="12" cy="52" r="2" fill="currentColor" opacity="0.8"/>
+  <circle cx="52" cy="52" r="2" fill="currentColor" opacity="0.8"/>
+  <!-- Central biohazard symbol -->
+  <path d="M32 28c-2 0-4 1-5 3 1 0 2 0 3 0-1 1-1 3-1 4-2-1-3-2-3-4 0 2-2 4-4 4 2 2 5 2 7 0 0-1 1-1 0-2 1 1 3 1 4 0 1 0 1 1 0 2 2 2 5 2 7 0-2 0-4-2-4-4 0 2-1 3-3 4 0-1 0-3-1-4 1 0 2 0 3 0-1-2-3-3-5-3z" fill="currentColor"/>
+  <!-- Wave interference pattern -->
+  <path d="M24 32c0 0 2-4 8-4s8 4 8 4" stroke="currentColor" stroke-width="1" fill="none" opacity="0.5"/>
+</svg>

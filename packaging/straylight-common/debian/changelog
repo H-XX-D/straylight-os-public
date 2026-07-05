@@ -1,0 +1,9 @@
+straylight-common (1.0.0-1) unstable; urgency=medium
+
+  * Initial release.
+  * libstraylight-common.so.1: Result<T,E>, config, IPC, logging, types
+  * libstraylight-ml.so.1: tensor, graph IR, framework bridge, KV cache
+  * libstraylight-net.so.1: socket abstraction, transport, protocol
+  * libstraylight-hw.so.1: GPU slab, entropy, pmem, SGX
+
+ -- StrayLight OS Team <dev@straylight.dev>  Sun, 16 Mar 2026 00:00:00 +0000

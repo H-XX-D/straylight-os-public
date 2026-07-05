@@ -1,0 +1,14 @@
+[Unit]
+Description=StrayLight XDP datapath on %i
+Documentation=man:straylight-xdp(1)
+After=network-pre.target
+Wants=network-pre.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/straylight-xdp attach --bpf /usr/lib/straylight/bpf/xdp_stats.bpf.o --prog straylight_xdp_stats --iface %i --skb
+ExecStop=/usr/bin/straylight-xdp detach --iface %i --skb
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0
+# StrayLight OS — KVM Extensions / Hypervisor
+
+obj-m := straylight-hv.o
+
+straylight-hv-y := hv_main.o hv_vmcs.o hv_memory.o hv_intercept.o hv_profiler.o
+
+ccflags-y := -std=gnu11 -DSTRAYLIGHT_HV

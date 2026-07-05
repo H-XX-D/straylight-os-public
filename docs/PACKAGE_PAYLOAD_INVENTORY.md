@@ -4,16 +4,16 @@ This inventory maps every public package group to the source payload paths an
 outside clean clone must contain before the package build can be considered
 publicly reproducible.
 
-The current repository is a source-only public alpha starter. It documents the
-package layout and release gates, but it does not yet include the implementation
-payloads listed below. Paths marked "required" are the target public source
-surface for the `v0.2.0-alpha` complete-source-tree gate.
+The current repository is a source-only public alpha tree. It includes the
+implementation payload paths needed to begin package builds from a fresh public
+clone. Generated packages, ISO images, live-build working trees, model caches,
+logs, and private lab state remain excluded.
 
 ## Status Legend
 
 | Status | Meaning |
 |--------|---------|
-| Present | The public starter repository contains this path now. |
+| Present | The public repository contains this path now. |
 | Required | The path is needed for a clean-clone build, but is not present yet. |
 | Excluded | The path or artifact must not be committed to the public source tree. |
 | Generated | The path is produced by a build and must remain ignored. |
@@ -22,7 +22,10 @@ surface for the `v0.2.0-alpha` complete-source-tree gate.
 
 | Area | Current public paths |
 |------|----------------------|
-| Package map | `packaging/STRAYLIGHT_PACKAGE_SPLIT.md` |
+| Package map | `packaging/STRAYLIGHT_PACKAGE_SPLIT.md`, `packaging/straylight-package-profiles.json` |
+| Source tree | `CMakeLists.txt`, `CMakePresets.json`, `cmake/`, `lib/`, `bin/`, `services/`, `kernel/`, `apps/`, `tools/`, `assets/`, `config/`, `etc/`, `protocols/`, `tests/` |
+| Debian packaging | `packaging/straylight-common/`, `packaging/straylight-core/`, `packaging/straylight-kernel/`, `packaging/straylight-ml/`, `packaging/straylight-network/`, `packaging/straylight-exotic/`, `packaging/straylight-desktop/`, `packaging/straylight-os/` |
+| ISO profile source | `iso/live-build/auto/`, `iso/live-build/config/`, `iso/calamares/` |
 | Build requirements | `docs/BUILD_ISO.md`, `docs/PACKAGE_BUILD_WRAPPER.md`, `examples/iso-build.env`, `examples/package-profile.json` |
 | Release gates | `docs/ROADMAP.md`, `docs/VALIDATION_MATRIX.md`, `docs/RELEASE_PROCESS.md` |
 | Sanitized examples | `examples/hardware-fabric.yaml`, `examples/xdp.conf` |
@@ -32,15 +35,15 @@ surface for the `v0.2.0-alpha` complete-source-tree gate.
 
 | Package group | Required source payload paths | Current public status |
 |---------------|-------------------------------|-----------------------|
-| `libstraylight-common1` | `src/common/`, `include/straylight/`, `cmake/`, `packaging/libstraylight-common/debian/` | Required |
-| `libstraylight-common-dev` | `include/straylight/`, `cmake/StrayLight*.cmake`, development metadata under `packaging/libstraylight-common/debian/` | Required |
-| `straylight-core` | `src/core/`, `src/daemons/`, `src/cli/`, `systemd/`, `dbus/`, `udev/`, `packaging/straylight-core/debian/` | Required |
-| `straylight-kernel` | `kernel/`, `kernel/dkms/`, `kernel/modules/`, `modprobe.d/`, `modules-load.d/`, `packaging/straylight-kernel/debian/` | Required |
-| `straylight-ml` | `src/ml/`, `src/predict/`, `src/quantum/`, `src/photonics/`, `src/snn/`, `packaging/straylight-ml/debian/` | Required |
-| `straylight-network` | `src/network/`, `src/bpf/`, `src/xdp/`, `src/bridge/`, `src/swarm/`, `src/transport/`, `systemd/straylight-xdp@.service`, `packaging/straylight-network/debian/` | Required |
-| `straylight-exotic` | `src/enclave/`, `src/pmem/`, `src/fuse/`, `src/sandbox/`, `src/rhem/`, `packaging/straylight-exotic/debian/` | Required |
-| `straylight-desktop` | `apps/`, `desktop/`, `widgets/`, `oobe/`, `wizard/`, `firstboot/`, `src/app-cli/`, `packaging/straylight-desktop/debian/` | Required |
-| `straylight-os` | `profiles/straylight-os/`, `iso/live-build/`, `iso/calamares/`, `packaging/straylight-os/debian/`, package-list and metapackage dependency metadata | Required |
+| `libstraylight-common1` | `lib/common/src/`, `lib/common/include/straylight/`, `cmake/`, `packaging/straylight-common/debian/` | Present |
+| `libstraylight-common-dev` | `lib/common/include/straylight/`, `cmake/Straylight*.cmake`, development metadata under `packaging/straylight-common/debian/` | Present |
+| `straylight-core` | `bin/core/`, `services/`, `tools/`, `etc/systemd/`, `services/dbus/`, `services/udev/`, `packaging/straylight-core/debian/` | Present |
+| `straylight-kernel` | `kernel/`, `kernel/dkms/`, `kernel/xdp/`, `packaging/straylight-kernel/debian/` | Present |
+| `straylight-ml` | `lib/ml/`, `services/predict/`, `bin/quantum/`, `bin/photonics/`, `bin/snn/`, `packaging/straylight-ml/debian/` | Present |
+| `straylight-network` | `lib/net/`, `kernel/xdp/`, `bin/xdp/`, `services/bridge/`, `services/swarm/`, `services/mesh/`, `etc/systemd/system/straylight-xdp@.service`, `packaging/straylight-network/debian/` | Present |
+| `straylight-exotic` | `bin/enclave/`, `bin/pmem/`, `bin/fuse/`, `tools/sandbox/`, `bin/rhem/`, `packaging/straylight-exotic/debian/` | Present |
+| `straylight-desktop` | `apps/`, `assets/`, `apps/widgets/`, `apps/oobe/`, `apps/wizard/`, `services/firstboot/`, `apps/app-cli/`, `packaging/straylight-desktop/debian/` | Present |
+| `straylight-os` | `config/`, `iso/live-build/auto/`, `iso/live-build/config/`, `iso/calamares/`, `packaging/straylight-os/debian/`, package-list and metapackage dependency metadata | Present |
 
 ## Intentionally Excluded Payloads
 
@@ -64,13 +67,15 @@ The broader public/private implementation boundary is documented in
 
 ## Clean-Clone Build Gate
 
-The `v0.2.0-alpha` source-tree gate is not complete until:
+The source payload gate is complete when:
 
 - Every package group has the required source payload paths listed above.
 - Each package group has public Debian packaging metadata.
 - Build commands can fail fast with documented missing dependency messages.
-- `scripts/check_package_dependencies.sh .` reports host dependency and source
-  payload gaps using public, repository-relative paths.
+- `scripts/check_package_dependencies.sh --source-only .` passes from a clean
+  public clone.
+- `scripts/check_package_dependencies.sh .` either passes on a prepared Debian
+  build host or reports only host package gaps using public package names.
 - `scripts/build-packages.sh --check-deps --no-sign` is runnable from the
   repository root.
 - Generated output remains ignored and absent from the source tree.

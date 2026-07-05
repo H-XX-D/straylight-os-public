@@ -1,0 +1,24 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Seahorse pair as RDMA endpoints -->
+  <path d="M18 48 Q14 40 18 32 Q22 24 18 16 Q14 12 18 16" fill="none" stroke="#00ccff" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="18" cy="14" r="3" fill="#39ff85"/>
+  <!-- Direct memory path -->
+  <path d="M21 32 L43 32" stroke="#39ff85" stroke-width="3" stroke-dasharray="4,2"/>
+  <path d="M18 16 L46 16" stroke="#00ccff" stroke-width="2" opacity="0.5"/>
+  <path d="M18 48 L46 48" stroke="#00ccff" stroke-width="2" opacity="0.5"/>
+  <!-- Second seahorse -->
+  <path d="M46 48 Q50 40 46 32 Q42 24 46 16 Q50 12 46 16" fill="none" stroke="#00ccff" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="46" cy="14" r="3" fill="#39ff85"/>
+  <!-- RDMA bypass (skipping the center) -->
+  <path d="M24 32 L28 28 L32 32 L36 28 L40 32" fill="none" stroke="#39ff85" stroke-width="1.5"/>
+  <!-- Data packets -->
+  <circle cx="26" cy="32" r="2" fill="#00ccff">
+    <animate attributeName="cx" values="26;40;26" dur="1s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="34" cy="32" r="2" fill="#39ff85">
+    <animate attributeName="cx" values="34;26;34" dur="1s" begin="0.5s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Bubbles -->
+  <circle cx="10" cy="38" r="2" fill="#39ff85" opacity="0.5"/>
+  <circle cx="54" cy="24" r="2" fill="#00ccff" opacity="0.4"/>
+</svg>

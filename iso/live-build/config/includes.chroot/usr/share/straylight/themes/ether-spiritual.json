@@ -1,0 +1,21 @@
+{
+  "name": "Ether Spiritual",
+  "colors": {
+    "bg": "#050507",
+    "fg": "#f0f0f5",
+    "accent": "#d4af37",
+    "panel": "#10101a"
+  },
+  "font_size": 16.0,
+  "corner_radius": 6.0,
+  "icon_theme": "theme-ether",
+  "vars": {
+    "surface.hover": "#f4c430",
+    "surface.active": "#ffd700",
+    "border.color": "#1e1e2e",
+    "text.dim": "#606070",
+    "success": "#b0c4de",
+    "warning": "#f4c430",
+    "error": "#e6e6fa"
+  }
+}

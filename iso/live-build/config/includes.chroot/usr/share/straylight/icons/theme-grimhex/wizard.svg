@@ -1,0 +1,29 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Hexagon frame -->
+  <path d="M32 4 L56 16 L56 44 L32 56 L8 44 L8 16 Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- Wizard hat - geometric -->
+  <path d="M32 10 L42 26 L22 26 Z" fill="currentColor" opacity="0.2"/>
+  <path d="M32 10 L42 26 L22 26 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <line x1="18" y1="26" x2="46" y2="26" stroke="currentColor" stroke-width="2"/>
+
+  <!-- Robe/body -->
+  <path d="M22 28 L42 28 L40 44 L24 44 Z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+
+  <!-- Magic wand -->
+  <line x1="40" y1="32" x2="52" y2="16" stroke="currentColor" stroke-width="2"/>
+  <path d="M50 14 L54 12 L56 16 L52 18 Z" fill="currentColor"/>
+
+  <!-- Sparkles/stars -->
+  <path d="M52 12 L53 14 L55 14 L53.5 15.5 L54 17.5 L52 16.5 L50 17.5 L50.5 15.5 L49 14 L51 14 Z" fill="currentColor" opacity="0.9"/>
+
+  <!-- Configuration gears -->
+  <circle cx="26" cy="36" r="2" fill="currentColor" opacity="0.6"/>
+  <circle cx="38" cy="36" r="2" fill="currentColor" opacity="0.6"/>
+  <line x1="26" y1="36" x2="38" y2="36" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+
+  <!-- Stars at base -->
+  <circle cx="16" cy="48" r="1" fill="currentColor" opacity="0.5"/>
+  <circle cx="48" cy="50" r="1" fill="currentColor" opacity="0.5"/>
+  <circle cx="32" cy="52" r="1" fill="currentColor" opacity="0.5"/>
+</svg>

@@ -1,0 +1,21 @@
+[Unit]
+Description=StrayLight Tensor Compression FUSE Filesystem
+Documentation=https://straylight.dev/docs/fuse
+After=straylight-bus.service local-fs.target
+Requires=straylight-bus.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/straylight-fuse
+ExecStop=/bin/fusermount3 -u /var/lib/straylight/tensors
+Restart=on-failure
+RestartSec=5s
+User=root
+CapabilityBoundingSet=CAP_SYS_ADMIN
+AmbientCapabilities=CAP_SYS_ADMIN
+PrivateTmp=true
+LimitNOFILE=65536
+WatchdogSec=60s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,37 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="silver" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#7a7a7a"/>
+    </linearGradient>
+  </defs>
+  <!-- Morphing hexagon - left state -->
+  <path d="M16 16 L26 21 L26 31 L16 36 L6 31 L6 21 Z" fill="#a0a0a0" opacity="0.6"/>
+  <!-- Morphing hexagon - right state -->
+  <path d="M48 20 L58 25 L58 35 L48 40 L38 35 L38 25 Z" fill="#c0c0c0" opacity="0.6"/>
+  <!-- Morph transition arrows -->
+  <path d="M28 24 L34 24 L32 22 M34 24 L32 26" fill="none" stroke="#7a7a7a" stroke-width="1.5"/>
+  <path d="M36 32 L30 32 L32 30 M30 32 L32 34" fill="none" stroke="#7a7a7a" stroke-width="1.5"/>
+  <!-- Central morphing blob -->
+  <path d="M28 28 Q32 22 36 28 Q40 32 36 36 Q32 42 28 36 Q24 32 28 28" fill="url(#silver)"/>
+  <!-- Nano particles in transition -->
+  <circle cx="30" cy="24" r="1.5" fill="#c0c0c0">
+    <animate attributeName="cx" values="30;34;30" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="34" cy="36" r="1.5" fill="#7a7a7a">
+    <animate attributeName="cx" values="34;30;34" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <!-- Hexagonal grid fragments -->
+  <path d="M8 48 L12 50 L12 54 L8 56 L4 54 L4 50 Z" fill="#a0a0a0"/>
+  <path d="M16 52 L20 54 L20 58 L16 60 L12 58 L12 54 Z" fill="#c0c0c0"/>
+  <path d="M24 48 L28 50 L28 54 L24 56 L20 54 L20 50 Z" fill="#7a7a7a"/>
+  <path d="M40 48 L44 50 L44 54 L40 56 L36 54 L36 50 Z" fill="#a0a0a0"/>
+  <path d="M48 52 L52 54 L52 58 L48 60 L44 58 L44 54 Z" fill="#7a7a7a"/>
+  <path d="M56 48 L60 50 L60 54 L56 56 L52 54 L52 50 Z" fill="#c0c0c0"/>
+  <!-- Connection threads -->
+  <line x1="8" y1="48" x2="16" y2="52" stroke="#7a7a7a" stroke-width="0.5"/>
+  <line x1="16" y1="52" x2="24" y2="48" stroke="#7a7a7a" stroke-width="0.5"/>
+  <line x1="40" y1="48" x2="48" y2="52" stroke="#7a7a7a" stroke-width="0.5"/>
+  <line x1="48" y1="52" x2="56" y2="48" stroke="#7a7a7a" stroke-width="0.5"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#00ff41" stroke-width="1.5">
+  <!-- Network packet -->
+  <rect x="16" y="20" width="32" height="24" rx="2"/>
+  <!-- XDP bypass arrow (skips kernel) -->
+  <path d="M16 32c-4 0-4-12 4-12h24c8 0 8 12 4 12" fill="none"/>
+  <polyline points="44,22 52,32 44,42"/>
+  <!-- Kernel bypass indicator -->
+  <rect x="20" y="24" width="24" height="16" fill="#00ff41" fill-opacity="0.1"/>
+  <line x1="20" y1="28" x2="44" y2="28"/>
+  <line x1="20" y1="36" x2="44" y2="36"/>
+  <!-- Fast path indicators -->
+  <polygon points="26,30 30,32 26,34" fill="#00ff41" stroke="none"/>
+  <polygon points="38,30 42,32 38,34" fill="#00ff41" stroke="none" opacity="0.5"/>
+  <!-- Ethernet frame bits -->
+  <g opacity="0.5">
+    <text x="18" y="56" font-family="monospace" font-size="4" fill="#00ff41" stroke="none">ETH</text>
+    <text x="40" y="56" font-family="monospace" font-size="4" fill="#00ff41" stroke="none">010</text>
+  </g>
+  <!-- Speed lines -->
+  <line x1="8" y1="24" x2="12" y2="24" stroke-dasharray="2 1"/>
+  <line x1="8" y1="32" x2="12" y2="32"/>
+  <line x1="8" y1="40" x2="12" y2="40" stroke-dasharray="2 1"/>
+  <circle cx="8" cy="24" r="1" fill="#00ff41" stroke="none"/>
+  <circle cx="8" cy="32" r="1.5" fill="#00ff41" stroke="none"/>
+  <circle cx="8" cy="40" r="1" fill="#00ff41" stroke="none"/>
+  <!-- XDP label -->
+  <text x="26" y="16" font-family="monospace" font-size="4" fill="#00ff41" stroke="none">XDP</text>
+</svg>

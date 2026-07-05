@@ -1,0 +1,227 @@
+#!/usr/bin/env python3
+# probe-hpc — HPC cluster, job queue, fabric, and power telemetry
+# Primary sources: straylight-mesh, straylight-fabric, straylight-nerve sockets
+# Fallback: local /proc, squeue (SLURM) if available
+
+import json, os, socket, struct, subprocess, re
+from pathlib import Path
+
+
+def ipc_call(sock_path, method, timeout=0.4):
+    """Send a newline-delimited JSON-RPC request to a StrayLight Unix socket."""
+    try:
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.settimeout(timeout)
+        s.connect(sock_path)
+        req = json.dumps({"method": method}) + "\n"
+        s.sendall(req.encode())
+        data = b""
+        while True:
+            chunk = s.recv(8192)
+            if not chunk:
+                break
+            data += chunk
+            if b"\n" in data:
+                break
+        s.close()
+        return json.loads(data.decode().strip())
+    except Exception:
+        return None
+
+
+def ipc_call_framed(sock_path, method, timeout=0.4):
+    """Send a length-prefixed JSON-RPC request to a StrayLight framed socket.
+    Wire format: 4-byte LE uint32 length + UTF-8 JSON payload."""
+    try:
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.settimeout(timeout)
+        s.connect(sock_path)
+        payload = json.dumps({"method": method}).encode()
+        s.sendall(struct.pack("<I", len(payload)) + payload)
+        hdr = s.recv(4, socket.MSG_WAITALL)
+        if len(hdr) < 4:
+            return None
+        (resp_len,) = struct.unpack("<I", hdr)
+        if resp_len == 0 or resp_len > 4 * 1024 * 1024:
+            return None
+        data = b""
+        while len(data) < resp_len:
+            chunk = s.recv(resp_len - len(data))
+            if not chunk:
+                break
+            data += chunk
+        s.close()
+        msg = json.loads(data.decode())
+        return msg.get("payload", msg)
+    except Exception:
+        return None
+
+
+# ── Cluster nodes (straylight-mesh) ──────────────────────────────────
+
+def query_cluster():
+    # Try framed mesh socket first (straylight-mesh exposes /run/straylight/mesh.sock)
+    for path in ["/run/straylight/mesh.sock", "/var/run/straylight/mesh.sock"]:
+        result = ipc_call_framed(path, "node_list")
+        if result:
+            return result.get("nodes", [])
+
+    result = ipc_call("/run/straylight/mesh/pause_jobs", "node_list")
+    if result:
+        return result.get("nodes", [])
+
+    # Fallback: if SLURM is present
+    try:
+        r = subprocess.run(
+            ["sinfo", "--noheader", "--format=%n %t %C %G"],
+            capture_output=True, text=True, timeout=2
+        )
+        nodes = []
+        for line in r.stdout.strip().splitlines():
+            parts = line.split()
+            if len(parts) < 3:
+                continue
+            nodes.append({
+                "hostname": parts[0],
+                "state":    parts[1],
+                "cpus":     parts[2] if len(parts) > 2 else "0/0/0/0",
+                "gpus":     parts[3] if len(parts) > 3 else "",
+            })
+        return nodes
+    except Exception:
+        pass
+    return []
+
+
+# ── Job queue (straylight-nerve / SLURM squeue) ──────────────────────
+
+def query_jobs():
+    result = ipc_call("/run/straylight/nerve.sock", "job_list")
+    if result:
+        return result.get("jobs", [])[:20]
+
+    # SLURM fallback
+    try:
+        r = subprocess.run(
+            ["squeue", "--noheader",
+             "--format=%i %j %u %t %M %l %C %b %P"],
+            capture_output=True, text=True, timeout=2
+        )
+        jobs = []
+        for line in r.stdout.strip().splitlines():
+            parts = line.split()
+            if len(parts) < 5:
+                continue
+            jobs.append({
+                "id":      parts[0],
+                "name":    parts[1],
+                "user":    parts[2],
+                "state":   parts[3],
+                "elapsed": parts[4] if len(parts) > 4 else "0:00",
+                "time_limit": parts[5] if len(parts) > 5 else "N/A",
+                "cpus":    parts[6] if len(parts) > 6 else "1",
+                "gpus":    parts[7] if len(parts) > 7 else "0",
+                "partition": parts[8] if len(parts) > 8 else "default",
+            })
+        return jobs[:20]
+    except Exception:
+        pass
+    return []
+
+
+# ── Fabric / network topology (straylight-fabric) ────────────────────
+
+def query_fabric():
+    # Try framed socket first (straylight-fabric exposes /var/run/straylight/fabric.sock)
+    for path in ["/run/straylight/fabric.sock", "/var/run/straylight/fabric.sock"]:
+        result = ipc_call_framed(path, "status")
+        if result:
+            return result
+
+    # fabric uses a command/response file pair, not a Unix domain socket
+    try:
+        cmd_path  = "/run/straylight/bridge/command"
+        resp_path = "/run/straylight/bridge/response"
+        with open(cmd_path, "w") as f:
+            f.write(json.dumps({"method": "fabric_stats"}) + "\n")
+        import time; time.sleep(0.05)
+        with open(resp_path) as f:
+            return json.loads(f.read().strip())
+    except Exception:
+        pass
+    return {}
+
+
+# ── Power (straylight-power / RAPL) ──────────────────────────────────
+
+def query_power():
+    # Try PDU / rack-level from straylight services
+    result = ipc_call("/run/straylight/health.sock", "power_stats")
+    if result:
+        return result
+
+    # RAPL via powercap
+    rapl = {}
+    try:
+        base = Path("/sys/class/powercap")
+        for zone in sorted(base.glob("intel-rapl:*")):
+            name_file = zone / "name"
+            energy_file = zone / "energy_uj"
+            if name_file.exists() and energy_file.exists():
+                name = name_file.read_text().strip()
+                uj   = int(energy_file.read_text().strip())
+                rapl[name] = {"energy_uj": uj}
+    except Exception:
+        pass
+    return {"rapl": rapl} if rapl else {}
+
+
+# ── Weave (workload scheduler) ────────────────────────────────────────
+
+def query_weave():
+    result = ipc_call("/run/straylight/weave.sock", "queue_stats")
+    if result:
+        return result
+    return {}
+
+
+# ── Assemble ─────────────────────────────────────────────────────────
+
+def main():
+    nodes  = query_cluster()
+    jobs   = query_jobs()
+    fabric = query_fabric()
+    power  = query_power()
+    weave  = query_weave()
+
+    online  = sum(1 for n in nodes if isinstance(n, dict) and n.get("state") in ("online", "idle", "alloc", "mix"))
+    running = sum(1 for j in jobs  if isinstance(j, dict) and j.get("state") in ("R", "running"))
+    pending = sum(1 for j in jobs  if isinstance(j, dict) and j.get("state") in ("PD", "pending", "queued"))
+
+    out = {
+        "cluster": {
+            "nodes":       nodes,
+            "node_count":  len(nodes),
+            "online":      online,
+            "offline":     len(nodes) - online,
+        },
+        "jobs": {
+            "list":          jobs,
+            "running_count": running,
+            "pending_count": pending,
+            "total":         len(jobs),
+        },
+        "fabric": fabric,
+        "power":  power,
+        "weave":  weave,
+    }
+    print(json.dumps(out))
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        import json as _j, sys as _s
+        _j.dump({"cluster": {"nodes": [], "node_count": 0, "online": 0, "offline": 0}, "jobs": {"list": [], "running_count": 0, "pending_count": 0, "total": 0}, "fabric": {}, "power": {}, "weave": {}, "_error": str(e)}, _s.stdout)
+        print()

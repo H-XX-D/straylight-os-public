@@ -1,0 +1,65 @@
+{
+  "name": "ai-training",
+  "description": "AI/ML training node — all GPU reserved, mesh pool enabled, aggressive thermal management",
+  "autotune_profile": "ml-training",
+  "active_services": [
+    "autotune",
+    "health",
+    "mesh",
+    "quota",
+    "whisper"
+  ],
+  "disabled_services": [
+    "compositor",
+    "alice",
+    "flux",
+    "replay",
+    "fuse",
+    "hotpatch"
+  ],
+  "service_configs": {
+    "health": {
+      "tick_interval_seconds": 10,
+      "mode": "aggressive",
+      "gpu_monitor": true
+    },
+    "mesh": {
+      "advertise_gpu": true,
+      "pool_enabled": true,
+      "pool_share_vram": true
+    },
+    "autotune": {
+      "gpu_mode": "max_performance",
+      "power_limit_watts": 0,
+      "gpu_clock_offset": 0
+    }
+  },
+  "resource_limits": {
+    "cpu_quota_percent": 100,
+    "memory_limit_mb": 0,
+    "vram_reserve_percent": 100,
+    "io_weight": 1000,
+    "nice_level": -20
+  },
+  "thermal": {
+    "cooling_mode": "aggressive",
+    "cpu_temp_warn": 90,
+    "cpu_temp_critical": 105,
+    "gpu_temp_warn": 90,
+    "gpu_temp_critical": 110
+  },
+  "compositor": {
+    "mode": "disabled",
+    "max_fps": 0,
+    "vsync": false,
+    "direct_scanout": false,
+    "low_latency_input": false
+  },
+  "mesh_advertise": true,
+  "mesh_capabilities": "gpu,vpu,ml,training",
+  "debug_tools": false,
+  "trace_always_on": false,
+  "replay_recording": false,
+  "health_mode": "aggressive",
+  "ssh_mode": "hardened"
+}

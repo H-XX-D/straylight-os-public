@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DSTRAYLIGHT_BUILD_CORE_ONLY=ON \
+		-DSTRAYLIGHT_VERSION=$(DEB_VERSION_UPSTREAM)
+
+override_dh_auto_build:
+	dh_auto_build -- -j$(shell nproc) \
+		straylight-core straylight-bus straylight-registry \
+		straylight-scheduler straylight-entropy
+
+override_dh_auto_test:
+	dh_auto_test -- ARGS="--output-on-failure -L core"
+
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp
+
+override_dh_installsystemd:
+	dh_installsystemd --name=straylight-bus
+	dh_installsystemd --name=straylight-entropy
+	dh_installsystemd --name=straylight-registry
+	dh_installsystemd --name=straylight-scheduler
+	dh_installsystemd --name=straylight-core
+
+override_dh_shlibdeps:
+	dh_shlibdeps -l/usr/lib/x86_64-linux-gnu

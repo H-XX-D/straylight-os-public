@@ -1,0 +1,180 @@
+{
+  "schema_version": "straylight.package_profiles.v1",
+  "release_gate": {
+    "command": "scripts/straylight_release_audit.sh .",
+    "required_for": [
+      "package-build",
+      "iso-build"
+    ]
+  },
+  "profiles": [
+    {
+      "name": "base",
+      "default": true,
+      "packages": [
+        "straylight-base",
+        "straylight-firstboot",
+        "straylight-core",
+        "straylight-observe"
+      ]
+    },
+    {
+      "name": "desktop",
+      "default": true,
+      "packages": [
+        "straylight-base",
+        "straylight-firstboot",
+        "straylight-core",
+        "straylight-observe",
+        "straylight-ui"
+      ]
+    },
+    {
+      "name": "admin",
+      "default": false,
+      "packages": [
+        "straylight-base",
+        "straylight-firstboot",
+        "straylight-core",
+        "straylight-observe",
+        "straylight-ops"
+      ]
+    },
+    {
+      "name": "ml",
+      "default": false,
+      "packages": [
+        "straylight-base",
+        "straylight-firstboot",
+        "straylight-core",
+        "straylight-observe",
+        "straylight-ui",
+        "straylight-ml"
+      ]
+    },
+    {
+      "name": "hardware",
+      "default": false,
+      "packages": [
+        "straylight-base",
+        "straylight-firstboot",
+        "straylight-core",
+        "straylight-observe",
+        "straylight-hardware"
+      ]
+    },
+    {
+      "name": "full",
+      "default": false,
+      "packages": [
+        "straylight-all"
+      ]
+    }
+  ],
+  "target_packages": [
+    {
+      "name": "straylight-base",
+      "purpose": "Shared filesystem layout, install-safe defaults, base policy, and common runtime data.",
+      "status": "planned"
+    },
+    {
+      "name": "straylight-firstboot",
+      "purpose": "Hardware discovery, driver activation, first-run checks, and installer handoff.",
+      "status": "planned"
+    },
+    {
+      "name": "straylight-core",
+      "purpose": "Core daemons and non-graphical control-plane services.",
+      "status": "exists"
+    },
+    {
+      "name": "straylight-observe",
+      "purpose": "Health, telemetry, status, diagnostics, and report commands.",
+      "status": "planned"
+    },
+    {
+      "name": "straylight-ops",
+      "purpose": "Backup, migration, remote control, scheduling, and administrative tools.",
+      "status": "planned"
+    },
+    {
+      "name": "straylight-hardware",
+      "purpose": "Kernel modules, accelerator helpers, firmware policy, and hardware-specific integration.",
+      "status": "planned"
+    },
+    {
+      "name": "straylight-ml",
+      "purpose": "ML, prediction, vector, and model-management runtime pieces.",
+      "status": "exists"
+    },
+    {
+      "name": "straylight-ui",
+      "purpose": "Desktop app GUIs, first-run GUI tools, themes, icons, and integration with the distro desktop/window manager.",
+      "status": "planned"
+    },
+    {
+      "name": "straylight-exotic",
+      "purpose": "Experimental and uncommon subsystems outside the default install.",
+      "status": "exists"
+    },
+    {
+      "name": "straylight-all",
+      "purpose": "Meta package for a complete workstation image.",
+      "status": "planned"
+    }
+  ],
+  "current_mapping": [
+    {
+      "current": "straylight-common",
+      "target": [
+        "straylight-base"
+      ]
+    },
+    {
+      "current": "straylight-core",
+      "target": [
+        "straylight-core",
+        "straylight-observe"
+      ]
+    },
+    {
+      "current": "straylight-desktop",
+      "target": [
+        "straylight-ui",
+        "straylight-firstboot"
+      ]
+    },
+    {
+      "current": "straylight-kernel",
+      "target": [
+        "straylight-hardware"
+      ]
+    },
+    {
+      "current": "straylight-ml",
+      "target": [
+        "straylight-ml"
+      ]
+    },
+    {
+      "current": "straylight-network",
+      "target": [
+        "straylight-core",
+        "straylight-ops",
+        "straylight-observe"
+      ]
+    },
+    {
+      "current": "straylight-exotic",
+      "target": [
+        "straylight-exotic"
+      ]
+    },
+    {
+      "current": "straylight-os",
+      "target": [
+        "straylight-all"
+      ]
+    }
+  ]
+}

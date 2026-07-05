@@ -1,0 +1,33 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="shieldGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7fffab"/>
+      <stop offset="70%" stop-color="#39ff85"/>
+      <stop offset="100%" stop-color="#1a8f4a"/>
+    </radialGradient>
+  </defs>
+  <!-- Protective membrane shell -->
+  <path d="M32 6c-12 2-20 10-22 22 0 14 10 26 22 30 12-4 22-16 22-30-2-12-10-20-22-22z" fill="none" stroke="#39ff85" stroke-width="3" filter="url(#glow)"/>
+  <!-- Inner membrane layer -->
+  <path d="M32 12c-9 2-15 8-17 16 0 10 8 20 17 24 9-4 17-14 17-24-2-8-8-14-17-16z" fill="url(#shieldGrad)" opacity="0.3" filter="url(#glow)"/>
+  <!-- Secure core blob -->
+  <ellipse cx="32" cy="32" rx="10" ry="12" fill="#39ff85" filter="url(#glow)"/>
+  <!-- Lock eye -->
+  <ellipse cx="32" cy="30" rx="4" ry="3" fill="#0a1f0a"/>
+  <circle cx="32" cy="30" r="1.5" fill="#39ff85"/>
+  <!-- Tentacle lock strands -->
+  <path d="M28 40c-2 4-4 6-6 6" stroke="#0a1f0a" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M36 40c2 4 4 6 6 6" stroke="#0a1f0a" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Security nodes -->
+  <circle cx="22" cy="20" r="2" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="42" cy="20" r="2" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="18" cy="32" r="2" fill="#7fffab" filter="url(#glow)"/>
+  <circle cx="46" cy="32" r="2" fill="#7fffab" filter="url(#glow)"/>
+</svg>

@@ -1,0 +1,21 @@
+{
+  "name": "Matrix Cybernetic",
+  "colors": {
+    "bg": "#000000",
+    "fg": "#aaffaa",
+    "accent": "#00ff41",
+    "panel": "#002200"
+  },
+  "font_size": 16.0,
+  "corner_radius": 0.0,
+  "icon_theme": "theme-matrix",
+  "vars": {
+    "surface.hover": "#00ff66",
+    "surface.active": "#00cc00",
+    "border.color": "#004400",
+    "text.dim": "#55aa55",
+    "success": "#00ff41",
+    "warning": "#80ff80",
+    "error": "#008800"
+  }
+}
