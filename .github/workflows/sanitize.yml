@@ -9,9 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run public release audit
-        run: scripts/straylight_release_audit.sh .
-      - name: Check Markdown links
-        run: python3 scripts/check_markdown_links.py .
-      - name: Check shell syntax
-        run: scripts/check_shell_syntax.sh .
+      - name: Verify public snapshot
+        run: scripts/verify_public_snapshot.sh .

@@ -440,6 +440,7 @@ Current boundaries:
 - [App CLI reference](docs/straylight-app-clis.md)
 - [Privacy and sanitization](docs/PRIVACY_AND_SANITIZATION.md)
 - [Publication checklist](docs/PUBLICATION_CHECKLIST.md)
+- [Public source manifest](docs/PUBLIC_SOURCE_MANIFEST.md)
 - [Package split](packaging/STRAYLIGHT_PACKAGE_SPLIT.md)
 - [Changelog](CHANGELOG.md)
 - [Release process](docs/RELEASE_PROCESS.md)

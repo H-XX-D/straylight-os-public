@@ -32,10 +32,7 @@ Avoid submitting:
 Run the same checks used by CI:
 
 ```bash
-scripts/straylight_release_audit.sh .
-python3 scripts/check_markdown_links.py .
-scripts/check_shell_syntax.sh .
-git status --short
+scripts/verify_public_snapshot.sh .
 ```
 
 For documentation-only changes, these checks are usually enough. For source or

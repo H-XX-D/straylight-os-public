@@ -1,0 +1,21 @@
+* text=auto
+
+*.md text eol=lf
+*.txt text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+LICENSE text eol=lf
+
+*.iso binary
+*.img binary
+*.qcow2 binary
+*.raw binary
+*.deb binary
+*.ko binary
+
+.gitignore export-ignore
+.github/ISSUE_TEMPLATE/ export-ignore
+.github/PULL_REQUEST_TEMPLATE.md export-ignore

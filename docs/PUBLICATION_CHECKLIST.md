@@ -6,10 +6,7 @@ snapshot.
 ## Required Checks
 
 ```bash
-scripts/straylight_release_audit.sh .
-python3 scripts/check_markdown_links.py .
-scripts/check_shell_syntax.sh .
-git status --short
+scripts/verify_public_snapshot.sh .
 ```
 
 ## Confirm
@@ -21,6 +18,7 @@ git status --short
   present.
 - Repository-local Markdown links and anchors resolve.
 - Shipped shell scripts pass `bash -n`.
+- Public snapshot verification passes from a clean working tree.
 - Build and ISO commands are documented separately from verified release status.
 - License text is present before accepting contributions or distributing source
   code beyond documentation/examples.

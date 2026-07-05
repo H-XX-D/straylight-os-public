@@ -35,16 +35,14 @@ installation gates.
 Run these checks from the repository root:
 
 ```bash
-scripts/straylight_release_audit.sh .
-python3 scripts/check_markdown_links.py .
-scripts/check_shell_syntax.sh .
-git status --short
+scripts/verify_public_snapshot.sh .
 ```
 
 Confirm:
 
 - README and docs describe alpha/gated work accurately.
 - `CHANGELOG.md` names the release and current boundaries.
+- `docs/PUBLIC_SOURCE_MANIFEST.md` matches the files being published.
 - No personal paths, private hostnames, local IP addresses, MAC addresses,
   serials, machine IDs, credentials, or generated artifacts are present.
 - GitHub Actions passes on the commit to be tagged.
