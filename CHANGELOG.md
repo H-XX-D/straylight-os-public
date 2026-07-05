@@ -21,6 +21,8 @@ package artifact.
   `packaging/straylight-common` directory.
 - Package builds now stage repository-root build trees for Debian packaging and
   collect generated `.deb` artifacts under `output/debs` for ISO input.
+- `straylight-kernel` DKMS post-install builds now target installed kernel
+  header trees explicitly instead of the live-build host kernel.
 - Release hygiene now treats `output/` as the generated artifact boundary during
   package and ISO build workflows.
 - `straylight-core` packaging now installs the `straylight-numa-run` helper
