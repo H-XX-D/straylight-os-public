@@ -4,9 +4,9 @@
 > systems automation, kernel-surface observability, high-performance networking,
 > and recovery-focused workstation workflows.
 
-StrayLight is package-first, not compositor-first. It installs kernel modules,
+StrayLight is to AI research and development as Kali is to cybersecurity. It installs kernel modules,
 eBPF datapaths, daemons, CLIs, GUI applications, packaging metadata, and
-operator documentation on top of a normal Linux desktop or server stack. The
+operator documentation on top of a bare-bones Linux desktop or server stack. The
 current release profile uses distribution-provided GNOME/GDM/Mutter rather than
 shipping a custom StrayLight compositor or window manager.
 
