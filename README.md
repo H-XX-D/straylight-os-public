@@ -314,6 +314,7 @@ Run the release audit and dependency check before building the package set:
 
 ```bash
 scripts/straylight_release_audit.sh .
+scripts/check_package_dependencies.sh .
 scripts/build-packages.sh --check-deps --no-sign
 ```
 
@@ -435,6 +436,7 @@ Current boundaries:
 - [Glossary](docs/GLOSSARY.md)
 - [Build the ISO](docs/BUILD_ISO.md)
 - [Clean-clone package check](docs/CLEAN_CLONE_PACKAGE_CHECK.md)
+- [Package build wrapper](docs/PACKAGE_BUILD_WRAPPER.md)
 - [Examples](examples/README.md)
 - [Current release condition](docs/STRAYLIGHT_CURRENT_STATUS.md)
 - [Validation matrix](docs/VALIDATION_MATRIX.md)

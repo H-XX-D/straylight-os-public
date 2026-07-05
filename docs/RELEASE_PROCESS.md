@@ -44,6 +44,8 @@ Confirm:
 - `CHANGELOG.md` names the release and current boundaries.
 - `docs/PUBLIC_SOURCE_MANIFEST.md` matches the files being published.
 - `docs/RELEASE_NOTES_TEMPLATE.md` matches the release type.
+- Package build commands use `scripts/build-packages.sh` or document why the
+  package-build gate remains blocked.
 - No personal paths, private hostnames, local IP addresses, MAC addresses,
   serials, machine IDs, credentials, or generated artifacts are present.
 - GitHub Actions passes on the commit to be tagged.

@@ -94,3 +94,6 @@ scripts/check_package_dependencies.sh .
 scripts/build-packages.sh --check-deps --no-sign
 scripts/build-packages.sh --clean --no-sign
 ```
+
+See `docs/PACKAGE_BUILD_WRAPPER.md` for the public package build entrypoint and
+its build-blocked failure class.

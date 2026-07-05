@@ -95,6 +95,11 @@ Build all package groups:
 scripts/build-packages.sh --clean --no-sign
 ```
 
+The public wrapper is documented in `docs/PACKAGE_BUILD_WRAPPER.md`. On the
+source-only starter, it fails before build execution with public-safe missing
+payload messages. Once the complete source tree is present, it invokes
+`dpkg-buildpackage` for package groups in dependency order.
+
 Expected package output:
 
 - runtime `.deb` files under `output/debs/`

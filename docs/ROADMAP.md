@@ -32,7 +32,7 @@ Required outcomes:
 - Clean-clone package dependency preflight is documented and runnable.
 - Intentionally excluded implementation areas are documented with inclusion
   gates.
-- Build scripts present and runnable from a clean Debian-compatible host.
+- Public package build wrapper is present and runnable from the repository root.
 - Generated output remains ignored and absent from source.
 - Package build order is reproducible.
 - Release hygiene checks remain green.

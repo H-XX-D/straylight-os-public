@@ -23,10 +23,10 @@ surface for the `v0.2.0-alpha` complete-source-tree gate.
 | Area | Current public paths |
 |------|----------------------|
 | Package map | `packaging/STRAYLIGHT_PACKAGE_SPLIT.md` |
-| Build requirements | `docs/BUILD_ISO.md`, `examples/iso-build.env`, `examples/package-profile.json` |
+| Build requirements | `docs/BUILD_ISO.md`, `docs/PACKAGE_BUILD_WRAPPER.md`, `examples/iso-build.env`, `examples/package-profile.json` |
 | Release gates | `docs/ROADMAP.md`, `docs/VALIDATION_MATRIX.md`, `docs/RELEASE_PROCESS.md` |
 | Sanitized examples | `examples/hardware-fabric.yaml`, `examples/xdp.conf` |
-| Release hygiene | `scripts/verify_public_snapshot.sh`, `scripts/straylight_release_audit.sh`, `scripts/check_markdown_links.py`, `scripts/check_shell_syntax.sh` |
+| Release hygiene | `scripts/verify_public_snapshot.sh`, `scripts/straylight_release_audit.sh`, `scripts/check_package_dependencies.sh`, `scripts/build-packages.sh`, `scripts/check_markdown_links.py`, `scripts/check_shell_syntax.sh` |
 
 ## Package Group Inventory
 
@@ -71,6 +71,8 @@ The `v0.2.0-alpha` source-tree gate is not complete until:
 - Build commands can fail fast with documented missing dependency messages.
 - `scripts/check_package_dependencies.sh .` reports host dependency and source
   payload gaps using public, repository-relative paths.
+- `scripts/build-packages.sh --check-deps --no-sign` is runnable from the
+  repository root.
 - Generated output remains ignored and absent from the source tree.
 - `scripts/verify_public_snapshot.sh .` passes from a clean checkout.
 
