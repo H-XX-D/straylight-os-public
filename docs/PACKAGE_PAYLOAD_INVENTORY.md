@@ -59,6 +59,9 @@ after the package source tree is complete:
 - Large model weights, private traces, raw packet captures, and local experiment
   caches.
 
+The broader public/private implementation boundary is documented in
+`docs/EXCLUDED_IMPLEMENTATION_AREAS.md`.
+
 ## Clean-Clone Build Gate
 
 The `v0.2.0-alpha` source-tree gate is not complete until:

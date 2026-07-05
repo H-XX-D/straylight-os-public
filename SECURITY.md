@@ -16,6 +16,8 @@ Security review is appropriate for:
 
 Security reports about private lab infrastructure, unpublished source trees, or
 local machine state cannot be handled through this public repository.
+See `docs/EXCLUDED_IMPLEMENTATION_AREAS.md` for the public/private
+implementation boundary.
 
 ## Reporting A Vulnerability
 

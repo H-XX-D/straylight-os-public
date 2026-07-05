@@ -30,6 +30,8 @@ Required outcomes:
 - Public implementations for package payloads named in the package split.
 - Package payload inventory maps each group to required source paths.
 - Clean-clone package dependency preflight is documented and runnable.
+- Intentionally excluded implementation areas are documented with inclusion
+  gates.
 - Build scripts present and runnable from a clean Debian-compatible host.
 - Generated output remains ignored and absent from source.
 - Package build order is reproducible.
@@ -42,6 +44,8 @@ Exit criteria:
   requirements.
 - Documentation states any intentionally excluded implementation areas.
 - `docs/PACKAGE_PAYLOAD_INVENTORY.md` has no unresolved package groups.
+- `docs/EXCLUDED_IMPLEMENTATION_AREAS.md` has no unresolved source-boundary
+  entries for included package payloads.
 
 ## Next Gate: Reproducible ISO Candidate
 

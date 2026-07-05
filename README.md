@@ -443,6 +443,7 @@ Current boundaries:
 - [Network and XDP notes](docs/straylight-network.md)
 - [App CLI reference](docs/straylight-app-clis.md)
 - [Privacy and sanitization](docs/PRIVACY_AND_SANITIZATION.md)
+- [Excluded implementation areas](docs/EXCLUDED_IMPLEMENTATION_AREAS.md)
 - [Publication checklist](docs/PUBLICATION_CHECKLIST.md)
 - [Public source manifest](docs/PUBLIC_SOURCE_MANIFEST.md)
 - [Package split](packaging/STRAYLIGHT_PACKAGE_SPLIT.md)

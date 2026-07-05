@@ -22,6 +22,7 @@ the repository remains a source-only alpha starter.
 | Source-only alpha release | Verified | `CHANGELOG.md`, `docs/RELEASE_PROCESS.md`, `v0.1.0-alpha` release | Do not attach artifacts until artifact policy and validation gates pass |
 | Package groups built in private/source handoff | Verified for handoff | README current verified state, `docs/STRAYLIGHT_CURRENT_STATUS.md` | Publish complete public source tree and clean-clone package checks |
 | Public package build from fresh clone | Gated | `packaging/STRAYLIGHT_PACKAGE_SPLIT.md`, `docs/PACKAGE_PAYLOAD_INVENTORY.md`, `docs/CLEAN_CLONE_PACKAGE_CHECK.md`, `scripts/check_package_dependencies.sh`, roadmap milestone | Complete `v0.2.0-alpha` milestone issues |
+| Public/private implementation boundary | Documented | `docs/PUBLIC_SOURCE_MANIFEST.md`, `docs/EXCLUDED_IMPLEMENTATION_AREAS.md`, `SECURITY.md` | Keep excluded areas generic and promote only through roadmap gates |
 | ISO build requirements documented | Documented | `docs/BUILD_ISO.md`, `docs/RELEASE_PROCESS.md` | Add complete public source and live-build configuration |
 | ISO artifact is publicly verified | Gated | README marks ISO as alpha test media, `docs/ARTIFACT_POLICY.md` defines attachment requirements | Build reproducible ISO candidate and pass VM boot/install gates |
 | Public source snapshot hygiene | Verified | `.gitattributes`, `docs/PUBLIC_SOURCE_MANIFEST.md`, verifier script | Keep CI and local verifier passing |

@@ -26,7 +26,7 @@ clone.
 | `MAINTAINERS.md` | Current public maintainer listing |
 | `CODE_OF_CONDUCT.md` | Collaboration expectations |
 | `.github/` | GitHub workflow, ownership, issue, and pull request metadata |
-| `docs/` | Onboarding, validation, ADRs, artifact policy, package payload inventory, clean-clone checks, build, release, roadmap, privacy, status, surface, network, and CLI docs |
+| `docs/` | Onboarding, validation, ADRs, artifact policy, package payload inventory, excluded-area boundaries, clean-clone checks, build, release, roadmap, privacy, status, surface, network, and CLI docs |
 | `examples/` | Sanitized starter manifests and configuration examples |
 | `packaging/` | Package split and package-layout guidance |
 | `scripts/` | Public release hygiene and snapshot verification scripts |
@@ -43,6 +43,10 @@ Do not include:
 - Logs or reports from private lab systems unless converted into sanitized,
   generic examples.
 - Unreviewed implementation files that embed private machine assumptions.
+
+See `docs/EXCLUDED_IMPLEMENTATION_AREAS.md` for the generic implementation
+classes that remain outside the public starter and the gates required before
+they can be included.
 
 ## Required Public Checks
 
