@@ -24,6 +24,7 @@ e2fsprogs
 btrfs-progs
 xfsprogs
 squashfs-tools
+rsync
 cracklib-runtime
 wamerican
 
