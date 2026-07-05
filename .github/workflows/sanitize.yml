@@ -1,0 +1,13 @@
+name: sanitize
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  sanitize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run public release audit
+        run: scripts/straylight_release_audit.sh .
