@@ -438,6 +438,7 @@ Current boundaries:
 - [Live-build requirements](docs/LIVE_BUILD_REQUIREMENTS.md)
 - [ISO candidate release flow](docs/ISO_CANDIDATE_RELEASE.md)
 - [VM boot validation](docs/VM_BOOT_VALIDATION.md)
+- [Installer and firstboot validation](docs/INSTALLER_FIRSTBOOT_VALIDATION.md)
 - [Package repository generation](docs/PACKAGE_REPOSITORY.md)
 - [Clean-clone package check](docs/CLEAN_CLONE_PACKAGE_CHECK.md)
 - [Package build wrapper](docs/PACKAGE_BUILD_WRAPPER.md)

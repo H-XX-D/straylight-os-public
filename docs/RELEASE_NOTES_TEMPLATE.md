@@ -85,14 +85,20 @@ For ISO candidates, include the ISO and checksum file:
 
 ### Installer
 
+- Runtime class:
+- Disk class:
 - Path:
 - Result:
-- Notes:
+- Failure class:
+- Public summary:
 
 ### Firstboot
 
+- Boot source:
+- Target:
 - Result:
-- Notes:
+- Failure class:
+- Public summary:
 
 ### Post-Install Health
 

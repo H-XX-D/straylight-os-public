@@ -12,9 +12,13 @@ Verified in the source handoff:
 
 Still required before public distribution:
 
-- VM boot validation.
-- Installer validation.
-- Firstboot validation.
+- VM boot validation run.
+- Installer validation run.
+- Firstboot validation run.
 - Post-install health checks.
 - A full source snapshot that excludes generated output and private machine
   state.
+
+The public documentation now separates validation procedures from completed
+validation results. A procedure being documented does not mean the gate has
+passed for an ISO artifact.

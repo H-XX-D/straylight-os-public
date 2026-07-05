@@ -74,8 +74,9 @@ machine.
 Required outcomes:
 
 - Boot path is documented in `docs/VM_BOOT_VALIDATION.md`.
-- Installer path is documented.
-- Firstboot behavior is documented.
+- Installer path is documented in `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`.
+- Firstboot behavior is documented in
+  `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`.
 - Post-install health checks are documented.
 
 Exit criteria:

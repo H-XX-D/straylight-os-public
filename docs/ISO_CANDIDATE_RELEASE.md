@@ -35,6 +35,16 @@ the VM starts from the ISO, the boot loader and kernel path complete, and the
 documented live target is reached. Keep installer, firstboot, and post-install
 health results separate from this boot-only gate.
 
+## Installer And Firstboot Validation
+
+After VM boot validation, use `docs/INSTALLER_FIRSTBOOT_VALIDATION.md` to test
+a clean-disk install and firstboot from the installed virtual disk.
+
+Release notes may mark installer and firstboot as `passed` only when the
+installer completes against the blank test disk, the ISO is detached, and the
+installed system reaches the documented firstboot target. Known alpha
+limitations must be separated from release blockers.
+
 ## Checksum Requirements
 
 The checksum command writes:

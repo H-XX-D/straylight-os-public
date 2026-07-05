@@ -182,8 +182,10 @@ The ISO candidate release-note and checksum flow is documented in
 
 ## Smoke Test
 
-The build script prints a QEMU command after a successful ISO build. The public
-VM boot validation procedure is documented in `docs/VM_BOOT_VALIDATION.md`.
+The build script prints a QEMU command after a successful ISO build. Public VM
+boot validation is documented in `docs/VM_BOOT_VALIDATION.md`; installer and
+firstboot validation is documented in
+`docs/INSTALLER_FIRSTBOOT_VALIDATION.md`.
 
 A typical BIOS-compatible smoke test uses:
 
@@ -203,8 +205,9 @@ Before treating an ISO as distributable, verify:
 
 - VM boot reaches the documented live target and is summarized according to
   `docs/VM_BOOT_VALIDATION.md`.
-- Calamares launches and completes an install.
-- Firstboot services complete.
+- Calamares launches and completes an install according to
+  `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`.
+- Firstboot reaches the documented target with the ISO detached.
 - Post-install health checks pass.
 - Kernel and XDP surfaces behave according to the target hardware policy.
 
