@@ -28,6 +28,7 @@ fresh clone.
 Required outcomes:
 
 - Public implementations for package payloads named in the package split.
+- Package payload inventory maps each group to required source paths.
 - Build scripts present and runnable from a clean Debian-compatible host.
 - Generated output remains ignored and absent from source.
 - Package build order is reproducible.
@@ -39,6 +40,7 @@ Exit criteria:
 - Package builds either complete or fail with documented missing-host
   requirements.
 - Documentation states any intentionally excluded implementation areas.
+- `docs/PACKAGE_PAYLOAD_INVENTORY.md` has no unresolved package groups.
 
 ## Next Gate: Reproducible ISO Candidate
 

@@ -445,6 +445,7 @@ Current boundaries:
 - [Publication checklist](docs/PUBLICATION_CHECKLIST.md)
 - [Public source manifest](docs/PUBLIC_SOURCE_MANIFEST.md)
 - [Package split](packaging/STRAYLIGHT_PACKAGE_SPLIT.md)
+- [Package payload inventory](docs/PACKAGE_PAYLOAD_INVENTORY.md)
 - [Changelog](CHANGELOG.md)
 - [Release process](docs/RELEASE_PROCESS.md)
 - [Release notes template](docs/RELEASE_NOTES_TEMPLATE.md)

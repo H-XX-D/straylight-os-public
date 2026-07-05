@@ -26,7 +26,7 @@ clone.
 | `MAINTAINERS.md` | Current public maintainer listing |
 | `CODE_OF_CONDUCT.md` | Collaboration expectations |
 | `.github/` | GitHub workflow, ownership, issue, and pull request metadata |
-| `docs/` | Onboarding, validation, ADRs, artifact policy, build, release, roadmap, privacy, status, surface, network, and CLI docs |
+| `docs/` | Onboarding, validation, ADRs, artifact policy, package payload inventory, build, release, roadmap, privacy, status, surface, network, and CLI docs |
 | `examples/` | Sanitized starter manifests and configuration examples |
 | `packaging/` | Package split and package-layout guidance |
 | `scripts/` | Public release hygiene and snapshot verification scripts |
@@ -68,4 +68,5 @@ A future public release can move beyond source-only starter status only when the
 repository includes the complete source paths, package build commands, ISO build
 commands, checksums, boot/install validation, firstboot validation, and
 post-install health validation described in `docs/ROADMAP.md` and
-`docs/RELEASE_PROCESS.md`.
+`docs/RELEASE_PROCESS.md`. The package source paths required for the first
+promotion gate are tracked in `docs/PACKAGE_PAYLOAD_INVENTORY.md`.

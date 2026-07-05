@@ -1,5 +1,10 @@
 # StrayLight Package Split
 
+This file lists the public binary package groups. See
+[`docs/PACKAGE_PAYLOAD_INVENTORY.md`](../docs/PACKAGE_PAYLOAD_INVENTORY.md) for
+the source payload paths required before each group can be built from a clean
+public clone.
+
 | Package | Purpose |
 |---------|---------|
 | `libstraylight-common1` | Shared runtime library |
