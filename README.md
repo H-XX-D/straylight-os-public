@@ -29,7 +29,7 @@ plane, then translating that state back into concise operator-readable output.
 | ISO artifact | `output/straylight-os-1.0.0-amd64.iso` |
 | Verified package build | 8 package groups succeeded, 0 failed |
 | Public source payload | Package source paths are present; generated build artifacts are excluded |
-| Public distribution gate | VM boot, install, firstboot, and post-install health validation still required |
+| Public distribution gate | Installer, firstboot, and post-install health validation still required |
 
 ## Contents
 
@@ -84,10 +84,9 @@ straylight-intent "<question or request>"
 
 ## Current Verified State
 
-The public source tree now carries the package implementation payload needed to
-begin clean-clone package builds. The private handoff has completed package and
-ISO build preparation for an alpha test image; public package and ISO builds
-still need to be rerun from the sanitized repository.
+The public source tree now carries the package implementation payload, generated
+package repository, ISO candidate, checksum, and VM boot validation evidence
+needed for the next installation gates.
 
 | Area | Verified state |
 |------|----------------|
@@ -96,10 +95,11 @@ still need to be rerun from the sanitized repository.
 | ISO artifact | `output/straylight-os-1.0.0-amd64.iso` |
 | ISO checksum | `output/straylight-os-1.0.0-amd64.iso.sha256` |
 | ISO label | `STRAYLIGHT_1_0_0` |
+| VM boot | Passed in a generic UEFI amd64 QEMU/KVM VM and reached the GNOME live session |
 | Release audit | Clean after package and ISO builds |
 | Desktop profile | Distro GNOME/GDM/Mutter with StrayLight apps and app CLI |
 
-The ISO is alpha test media. Treat it as distribution-prep output until VM boot,
+The ISO is alpha test media. Treat it as distribution-prep output until the
 installer, firstboot, and post-install health gates pass.
 
 ## Public Release Model

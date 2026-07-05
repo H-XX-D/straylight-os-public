@@ -4,7 +4,7 @@ This roadmap is gate-based. It describes the work needed to move from a public
 alpha source snapshot toward a complete, reproducible public StrayLight OS
 release.
 
-## Current Stage: Public Alpha Source Snapshot
+## Current Stage: ISO Candidate With VM Boot Passed
 
 Status: active.
 
@@ -14,6 +14,8 @@ The public repository currently provides:
 - MIT license.
 - Sanitized examples.
 - ISO build requirements and source layout expectations.
+- A public ISO candidate with verified checksum.
+- UEFI amd64 VM boot validation reaching the GNOME live session.
 - Release hygiene scripts and GitHub Actions.
 - Community, support, security, issue, and pull request templates.
 - Source-only pre-release tag `v0.1.0-alpha`.
@@ -22,9 +24,10 @@ The public repository currently provides:
 - Public ISO source paths that pass
   `scripts/check_iso_candidate_requirements.sh --source-only .`.
 
-Boundary: this does not yet ship verified package or ISO artifacts.
+Boundary: this does not yet ship a verified installation release. Installer,
+firstboot, and post-install health validation remain open.
 
-## Next Gate: Public Package Build Validation
+## Completed Gate: Public Package Build Validation
 
 Goal: prove that outside users can build package groups from a fresh clone on a
 prepared Debian-compatible build host.
@@ -52,7 +55,7 @@ Exit criteria:
 - `docs/EXCLUDED_IMPLEMENTATION_AREAS.md` has no unresolved source-boundary
   entries for included package payloads.
 
-## Next Gate: Reproducible ISO Candidate
+## Completed Gate: Reproducible ISO Candidate
 
 Goal: produce an ISO candidate from a clean public source tree.
 
@@ -71,10 +74,11 @@ Exit criteria:
 - Release notes include host profile, commands, checksum, and known limitations.
 - The artifact is marked as an ISO candidate, not a verified release.
 
-## Next Gate: VM Boot And Installer Validation
+## Current Gate: Installer And Firstboot Validation
 
-Goal: prove that the ISO candidate boots and installs in a clean virtual
-machine.
+Goal: prove that the ISO candidate installs in a clean virtual machine and that
+the installed disk reaches firstboot. VM boot for the live ISO has passed in a
+generic UEFI amd64 QEMU/KVM VM.
 
 Required outcomes:
 
@@ -87,7 +91,7 @@ Required outcomes:
 
 Exit criteria:
 
-- VM boot log and installer result are summarized without private host details.
+- Installer result is summarized without private host details.
 - Firstboot completes.
 - Post-install StrayLight health commands run successfully or failures are
   documented as release blockers.

@@ -22,16 +22,16 @@ the repository remains an alpha source tree.
 | Source-only alpha release | Verified | `CHANGELOG.md`, `docs/RELEASE_PROCESS.md`, `v0.1.0-alpha` release | Do not attach artifacts until artifact policy and validation gates pass |
 | Package groups built in private/source handoff | Verified for handoff | README current verified state, `docs/STRAYLIGHT_CURRENT_STATUS.md` | Re-run package build from clean public clone |
 | Public package source payload from fresh clone | Verified | `docs/PACKAGE_PAYLOAD_INVENTORY.md`, package source tree, `scripts/check_package_dependencies.sh --source-only .` | Keep source payload check green |
-| Public package build from fresh clone | Gated | `packaging/STRAYLIGHT_PACKAGE_SPLIT.md`, `docs/CLEAN_CLONE_PACKAGE_CHECK.md`, `docs/PACKAGE_BUILD_WRAPPER.md`, `scripts/check_package_dependencies.sh`, `scripts/build-packages.sh`, roadmap milestone | Run package build on a prepared Debian build host |
+| Public package build from fresh clone | Verified | `scripts/build-packages.sh --clean --no-sign`, `output/debs/Packages.gz`, `docs/PACKAGE_BUILD_WRAPPER.md` | Keep package build validation green on a prepared Debian build host |
 | Public/private implementation boundary | Documented | `docs/PUBLIC_SOURCE_MANIFEST.md`, `docs/EXCLUDED_IMPLEMENTATION_AREAS.md`, `SECURITY.md` | Keep excluded areas generic and promote only through roadmap gates |
 | ISO source payload from fresh clone | Verified | `scripts/check_iso_candidate_requirements.sh --source-only .`, `scripts/build-iso.sh`, `iso/live-build/`, `iso/calamares/` | Keep ISO source payload check green |
-| ISO build requirements documented | Documented | `docs/BUILD_ISO.md`, `docs/LIVE_BUILD_REQUIREMENTS.md`, `docs/RELEASE_PROCESS.md`, `scripts/check_iso_candidate_requirements.sh`, `iso/live-build/`, `iso/calamares/` | Build packages and generate package repository before ISO candidate build |
-| Package repository generation | Documented | `docs/PACKAGE_REPOSITORY.md`, `scripts/generate_package_repo.sh`, `.gitignore`, `.gitattributes` | Generate `Packages.gz` from public package outputs before ISO candidate builds |
-| ISO candidate checksum and release notes | Documented | `docs/ISO_CANDIDATE_RELEASE.md`, `docs/RELEASE_NOTES_TEMPLATE.md`, `scripts/generate_iso_checksum.sh` | Generate and verify checksum before attaching ISO candidate artifacts |
-| VM boot validation flow | Documented | `docs/VM_BOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, `docs/RELEASE_NOTES_TEMPLATE.md` | Run VM boot validation on an ISO candidate |
+| ISO build requirements documented | Verified | `docs/BUILD_ISO.md`, `docs/LIVE_BUILD_REQUIREMENTS.md`, `scripts/check_iso_candidate_requirements.sh`, `scripts/build-iso.sh`, generated ISO candidate | Keep ISO build validation green after package repository generation |
+| Package repository generation | Verified | `docs/PACKAGE_REPOSITORY.md`, `scripts/generate_package_repo.sh`, `output/debs/Packages.gz`, `.gitignore`, `.gitattributes` | Keep generated repository output under `output/debs/` |
+| ISO candidate checksum and release notes | Verified | `docs/ISO_CANDIDATE_RELEASE.md`, `docs/RELEASE_NOTES_TEMPLATE.md`, `scripts/generate_iso_checksum.sh`, checksum sidecar | Keep checksum verification green before attaching ISO candidate artifacts |
+| VM boot validation flow | Verified | `docs/VM_BOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, UEFI amd64 QEMU/KVM boot reached the GNOME live session | Run installer and firstboot validation on the ISO candidate |
 | Installer and firstboot validation flow | Documented | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, `docs/RELEASE_NOTES_TEMPLATE.md` | Run installer and firstboot validation on an ISO candidate |
 | Post-install health checklist | Documented | `docs/POST_INSTALL_HEALTH_CHECKLIST.md`, `docs/STRAYLIGHT_SURFACE_MAP.md`, `docs/straylight-app-clis.md`, README installed-system verification | Run post-install health validation on an installed VM disk |
-| ISO artifact is publicly verified | Gated | README marks ISO as alpha test media, `docs/ARTIFACT_POLICY.md` defines attachment requirements | Build reproducible ISO candidate and pass VM boot/install gates |
+| ISO artifact is publicly verified | Gated | README marks ISO as alpha test media, `docs/ARTIFACT_POLICY.md` defines attachment requirements, VM boot passed | Pass installer, firstboot, and post-install health gates |
 | Public source snapshot hygiene | Verified | `.gitattributes`, `docs/PUBLIC_SOURCE_MANIFEST.md`, verifier script | Keep CI and local verifier passing |
 
 ## Runtime And Surface Claims
@@ -49,9 +49,9 @@ the repository remains an alpha source tree.
 
 | Claim | Current status | Public evidence | Next gate |
 |-------|----------------|-----------------|-----------|
-| Debian/Trixie-compatible target | Documented | README status table, build docs | Validate package and ISO flow on a clean public build host |
-| Distro GNOME/GDM/Mutter desktop profile | Documented | README desktop profile notes | Validate installed desktop behavior from public ISO candidate |
-| VM boot path | Documented | `docs/VM_BOOT_VALIDATION.md`, release notes template | Run VM boot validation on an ISO candidate |
+| Debian/Trixie-compatible target | Verified for ISO candidate | README status table, build docs, package and ISO build validation | Validate installed system behavior |
+| Distro GNOME/GDM/Mutter desktop profile | Verified for live ISO boot | README desktop profile notes, UEFI VM boot reached GNOME live session | Validate installed desktop behavior from public ISO candidate |
+| VM boot path | Verified | `docs/VM_BOOT_VALIDATION.md`, UEFI amd64 QEMU/KVM boot reached GNOME live session | Run installer validation on an ISO candidate |
 | Installer path | Documented | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, release notes template | Run VM installer validation on an ISO candidate |
 | Firstboot path | Documented | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, release notes template | Run firstboot validation on an installed VM disk |
 | Post-install health | Documented | `docs/POST_INSTALL_HEALTH_CHECKLIST.md`, release notes template | Run post-install health validation on an installed VM disk |

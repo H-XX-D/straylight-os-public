@@ -33,11 +33,14 @@ package artifact.
   and timestamp reports emitted by completed ISO builds.
 - Public snapshot Markdown and shell checks now skip generated live-build
   worktrees so post-build validation stays scoped to repository source.
+- UEFI amd64 VM boot validation now reaches the GNOME live session for the
+  generated ISO candidate.
 - ISO live-build SGX udev includes now match the packaged source rule emitted
   during config-only staging.
-- Status, roadmap, FAQ, and build docs now reflect that package and ISO
-  source-only checks pass on the public tree; package builds, package
-  repository generation, ISO builds, and VM/install validation remain gated.
+- Status, roadmap, FAQ, and build docs now reflect that package builds,
+  package repository generation, ISO builds, checksum verification, and UEFI VM
+  boot validation have passed; installer, firstboot, and post-install health
+  validation remain gated.
 
 ## v0.4.0-alpha - 2026-07-05
 
