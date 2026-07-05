@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+
+if /usr/sbin/grub-install "$@"; then
+    exit 0
+fi
+
+status=$?
+case " $* " in
+    *" --efi-directory="*)
+        echo "straylight-grub-install: grub-install failed with status ${status}; retrying EFI install with --no-nvram" >&2
+        exec /usr/sbin/grub-install --no-nvram "$@"
+        ;;
+esac
+
+exit "$status"
