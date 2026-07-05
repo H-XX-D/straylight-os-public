@@ -19,6 +19,8 @@ sudo
 
 # Installer
 calamares
+cracklib-runtime
+wamerican
 
 # Firmware
 firmware-linux-free
