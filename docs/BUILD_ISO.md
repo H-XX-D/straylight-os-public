@@ -96,6 +96,7 @@ Build all package groups:
 
 ```bash
 scripts/build-packages.sh --clean --no-sign
+scripts/generate_package_repo.sh
 ```
 
 The public wrapper is documented in `docs/PACKAGE_BUILD_WRAPPER.md`. On the
@@ -113,6 +114,9 @@ Expected package output:
 The ISO builder injects runtime `.deb` files from `output/debs/` into
 `iso/live-build/config/packages.chroot/`. It skips debug symbol and development
 packages when staging runtime payloads.
+
+The package repository generation flow is documented in
+`docs/PACKAGE_REPOSITORY.md`.
 
 ## Live ISO Package Payload
 

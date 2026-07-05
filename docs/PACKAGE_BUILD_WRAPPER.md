@@ -28,6 +28,12 @@ Build one package group:
 scripts/build-packages.sh --no-sign straylight-desktop
 ```
 
+Generate only the local package repository index from existing `.deb` files:
+
+```bash
+scripts/build-packages.sh --repo-only
+```
+
 List package groups:
 
 ```bash
@@ -56,6 +62,7 @@ The wrapper uses this build order:
 | `[MISSING_SOURCE_PATH]` | The public clone lacks a source payload path required by the package inventory. |
 | `[BUILD_BLOCKED]` | The wrapper stopped before build execution because the source tree or host is incomplete. |
 | `[BUILD_PACKAGE]` | The wrapper is invoking `dpkg-buildpackage` for the named package group. |
+| `[PACKAGE_REPO_OUTPUT]` | The wrapper wrote `Packages` or `Packages.gz`. |
 
 The wrapper must not read private host paths, local network state, interface
 identifiers, generated artifacts, or private lab files. It uses the release

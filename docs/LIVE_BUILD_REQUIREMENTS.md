@@ -93,6 +93,8 @@ Use sanitized examples and repository-relative paths only.
 The `v0.3.0-alpha` ISO candidate gate is not complete until:
 
 - package builds produce `output/debs/Packages.gz`
+- `scripts/generate_package_repo.sh` produces the local package index from
+  `output/debs/*.deb`
 - the required `iso/` paths above are present
 - `scripts/check_iso_candidate_requirements.sh .` passes on a clean public
   build host

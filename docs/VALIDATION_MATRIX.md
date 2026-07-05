@@ -24,6 +24,7 @@ the repository remains a source-only alpha starter.
 | Public package build from fresh clone | Gated | `packaging/STRAYLIGHT_PACKAGE_SPLIT.md`, `docs/PACKAGE_PAYLOAD_INVENTORY.md`, `docs/CLEAN_CLONE_PACKAGE_CHECK.md`, `docs/PACKAGE_BUILD_WRAPPER.md`, `scripts/check_package_dependencies.sh`, `scripts/build-packages.sh`, roadmap milestone | Complete `v0.2.0-alpha` milestone issues |
 | Public/private implementation boundary | Documented | `docs/PUBLIC_SOURCE_MANIFEST.md`, `docs/EXCLUDED_IMPLEMENTATION_AREAS.md`, `SECURITY.md` | Keep excluded areas generic and promote only through roadmap gates |
 | ISO build requirements documented | Documented | `docs/BUILD_ISO.md`, `docs/LIVE_BUILD_REQUIREMENTS.md`, `docs/RELEASE_PROCESS.md`, `scripts/check_iso_candidate_requirements.sh` | Add complete public source and live-build configuration |
+| Package repository generation | Documented | `docs/PACKAGE_REPOSITORY.md`, `scripts/generate_package_repo.sh`, `.gitignore`, `.gitattributes` | Generate `Packages.gz` from public package outputs before ISO candidate builds |
 | ISO artifact is publicly verified | Gated | README marks ISO as alpha test media, `docs/ARTIFACT_POLICY.md` defines attachment requirements | Build reproducible ISO candidate and pass VM boot/install gates |
 | Public source snapshot hygiene | Verified | `.gitattributes`, `docs/PUBLIC_SOURCE_MANIFEST.md`, verifier script | Keep CI and local verifier passing |
 

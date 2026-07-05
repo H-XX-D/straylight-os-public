@@ -436,6 +436,7 @@ Current boundaries:
 - [Glossary](docs/GLOSSARY.md)
 - [Build the ISO](docs/BUILD_ISO.md)
 - [Live-build requirements](docs/LIVE_BUILD_REQUIREMENTS.md)
+- [Package repository generation](docs/PACKAGE_REPOSITORY.md)
 - [Clean-clone package check](docs/CLEAN_CLONE_PACKAGE_CHECK.md)
 - [Package build wrapper](docs/PACKAGE_BUILD_WRAPPER.md)
 - [Examples](examples/README.md)

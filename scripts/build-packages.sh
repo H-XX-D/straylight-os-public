@@ -10,6 +10,7 @@ Public package-build wrapper for StrayLight OS.
 Options:
   --check-deps      Run public host/source dependency checks and exit.
   --clean           Remove generated output before building.
+  --repo-only       Generate output/debs/Packages and Packages.gz from existing .deb files.
   --no-sign         Pass unsigned-build flags to dpkg-buildpackage.
   --list            List known package groups and exit.
   -h, --help        Show this help.
@@ -26,6 +27,7 @@ USAGE
 
 check_deps=0
 clean=0
+repo_only=0
 no_sign=0
 list_only=0
 packages=()
@@ -38,6 +40,10 @@ while [ "$#" -gt 0 ]; do
       ;;
     --clean)
       clean=1
+      shift
+      ;;
+    --repo-only)
+      repo_only=1
       shift
       ;;
     --no-sign)
@@ -128,6 +134,11 @@ if [ "$list_only" -eq 1 ]; then
   exit 0
 fi
 
+if [ "$repo_only" -eq 1 ]; then
+  scripts/generate_package_repo.sh
+  exit $?
+fi
+
 if [ "${#packages[@]}" -eq 0 ]; then
   packages=("${package_order[@]}")
 fi
@@ -185,5 +196,6 @@ for package in "${packages[@]}"; do
   )
 done
 
+scripts/generate_package_repo.sh
 find output/debs -maxdepth 1 -type f -name '*.deb' -print | sort
 echo "package build wrapper completed"
