@@ -394,6 +394,11 @@ straylight-health status --json
 straylight-app-cli list --json
 ```
 
+For artifact-bearing releases, use
+[Post-install health checklist](docs/POST_INSTALL_HEALTH_CHECKLIST.md) as the
+source of truth for command success criteria, blocker classification, and
+public-safe summaries.
+
 Recommended package payload checks:
 
 ```bash
@@ -439,6 +444,7 @@ Current boundaries:
 - [ISO candidate release flow](docs/ISO_CANDIDATE_RELEASE.md)
 - [VM boot validation](docs/VM_BOOT_VALIDATION.md)
 - [Installer and firstboot validation](docs/INSTALLER_FIRSTBOOT_VALIDATION.md)
+- [Post-install health checklist](docs/POST_INSTALL_HEALTH_CHECKLIST.md)
 - [Package repository generation](docs/PACKAGE_REPOSITORY.md)
 - [Clean-clone package check](docs/CLEAN_CLONE_PACKAGE_CHECK.md)
 - [Package build wrapper](docs/PACKAGE_BUILD_WRAPPER.md)

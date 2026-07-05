@@ -15,7 +15,7 @@ Still required before public distribution:
 - VM boot validation run.
 - Installer validation run.
 - Firstboot validation run.
-- Post-install health checks.
+- Post-install health check run.
 - A full source snapshot that excludes generated output and private machine
   state.
 

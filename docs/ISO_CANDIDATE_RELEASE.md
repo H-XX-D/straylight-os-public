@@ -45,6 +45,16 @@ installer completes against the blank test disk, the ISO is detached, and the
 installed system reaches the documented firstboot target. Known alpha
 limitations must be separated from release blockers.
 
+## Post-Install Health Validation
+
+After firstboot validation, use `docs/POST_INSTALL_HEALTH_CHECKLIST.md` to run
+package, service, CLI, app, and required surface checks on the installed system.
+
+Release notes may mark post-install health as `passed` only when required
+commands pass or any non-blocking warnings are listed as known alpha
+limitations. Keep optional hardware and XDP policy checks separate unless the
+release profile requires them.
+
 ## Checksum Requirements
 
 The checksum command writes:

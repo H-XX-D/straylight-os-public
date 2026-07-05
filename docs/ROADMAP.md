@@ -77,7 +77,8 @@ Required outcomes:
 - Installer path is documented in `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`.
 - Firstboot behavior is documented in
   `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`.
-- Post-install health checks are documented.
+- Post-install health checks are documented in
+  `docs/POST_INSTALL_HEALTH_CHECKLIST.md`.
 
 Exit criteria:
 

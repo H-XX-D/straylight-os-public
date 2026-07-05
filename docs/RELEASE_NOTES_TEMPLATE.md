@@ -102,9 +102,13 @@ For ISO candidates, include the ISO and checksum file:
 
 ### Post-Install Health
 
+- Runtime class:
 - Commands:
 - Result:
-- Notes:
+- Failure class:
+- Blockers:
+- Known alpha limitations:
+- Public summary:
 
 ## Verified Behavior
 

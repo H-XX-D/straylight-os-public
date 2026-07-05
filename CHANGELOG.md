@@ -11,6 +11,8 @@ package artifact.
 
 ### Added
 
+- Public post-install health checklist in
+  `docs/POST_INSTALL_HEALTH_CHECKLIST.md`.
 - Public installer and firstboot validation procedure in
   `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`.
 - Public VM boot validation procedure in `docs/VM_BOOT_VALIDATION.md`.

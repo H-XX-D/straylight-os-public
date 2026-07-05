@@ -28,6 +28,7 @@ the repository remains a source-only alpha starter.
 | ISO candidate checksum and release notes | Documented | `docs/ISO_CANDIDATE_RELEASE.md`, `docs/RELEASE_NOTES_TEMPLATE.md`, `scripts/generate_iso_checksum.sh` | Generate and verify checksum before attaching ISO candidate artifacts |
 | VM boot validation flow | Documented | `docs/VM_BOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, `docs/RELEASE_NOTES_TEMPLATE.md` | Run VM boot validation on an ISO candidate |
 | Installer and firstboot validation flow | Documented | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, `docs/RELEASE_NOTES_TEMPLATE.md` | Run installer and firstboot validation on an ISO candidate |
+| Post-install health checklist | Documented | `docs/POST_INSTALL_HEALTH_CHECKLIST.md`, `docs/STRAYLIGHT_SURFACE_MAP.md`, `docs/straylight-app-clis.md`, README installed-system verification | Run post-install health validation on an installed VM disk |
 | ISO artifact is publicly verified | Gated | README marks ISO as alpha test media, `docs/ARTIFACT_POLICY.md` defines attachment requirements | Build reproducible ISO candidate and pass VM boot/install gates |
 | Public source snapshot hygiene | Verified | `.gitattributes`, `docs/PUBLIC_SOURCE_MANIFEST.md`, verifier script | Keep CI and local verifier passing |
 
@@ -51,7 +52,7 @@ the repository remains a source-only alpha starter.
 | VM boot path | Documented | `docs/VM_BOOT_VALIDATION.md`, release notes template | Run VM boot validation on an ISO candidate |
 | Installer path | Documented | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, release notes template | Run VM installer validation on an ISO candidate |
 | Firstboot path | Documented | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, release notes template | Run firstboot validation on an installed VM disk |
-| Post-install health | Gated | Roadmap, seeded issues | Complete post-install health checklist issue |
+| Post-install health | Documented | `docs/POST_INSTALL_HEALTH_CHECKLIST.md`, release notes template | Run post-install health validation on an installed VM disk |
 
 ## Research Claims
 

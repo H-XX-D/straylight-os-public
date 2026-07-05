@@ -55,6 +55,9 @@ Confirm:
 - ISO candidate installer and firstboot validation follows
   `docs/INSTALLER_FIRSTBOOT_VALIDATION.md` or is explicitly marked `not run` or
   `gated`.
+- ISO candidate post-install health validation follows
+  `docs/POST_INSTALL_HEALTH_CHECKLIST.md` or is explicitly marked `not run` or
+  `gated`.
 - No personal paths, private hostnames, local IP addresses, MAC addresses,
   serials, machine IDs, credentials, or generated artifacts are present.
 - GitHub Actions passes on the commit to be tagged.
