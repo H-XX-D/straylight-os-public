@@ -20,6 +20,7 @@ sudo
 # Installer
 calamares
 dosfstools
+e2fsprogs
 cracklib-runtime
 wamerican
 
