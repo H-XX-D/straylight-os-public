@@ -23,6 +23,7 @@ dosfstools
 e2fsprogs
 btrfs-progs
 xfsprogs
+squashfs-tools
 cracklib-runtime
 wamerican
 
