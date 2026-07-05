@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180">
+  <rect width="640" height="180" rx="18" fill="#0d1117"/>
+  <path d="M56 112 104 44l48 68h-32l-16 36-16-36z" fill="#58a6ff"/>
+  <path d="M72 112 104 66l32 46h-22l-10 23-10-23z" fill="#e6edf3" opacity=".92"/>
+  <text x="190" y="104" font-family="Inter, DejaVu Sans, Arial, sans-serif" font-size="50" font-weight="700" fill="#e6edf3">StrayLight OS</text>
+  <text x="194" y="138" font-family="Inter, DejaVu Sans, Arial, sans-serif" font-size="20" fill="#8b949e">research operating environment</text>
+</svg>

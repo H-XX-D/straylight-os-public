@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#0d1117"/>
+  <path d="M0 420c140-68 260-68 360 0s220 68 360 0 220-68 240-54v174H0z" fill="#1f6feb" opacity=".34"/>
+  <path d="M0 320c120-50 230-48 330 6s210 54 330 0 218-56 300-12v226H0z" fill="#58a6ff" opacity=".22"/>
+  <path d="M382 306 480 166l98 140h-64l-34 78-34-78z" fill="#58a6ff"/>
+  <path d="M418 306 480 216l62 90h-42l-20 47-20-47z" fill="#e6edf3" opacity=".92"/>
+  <text x="480" y="438" text-anchor="middle" font-family="Inter, DejaVu Sans, Arial, sans-serif" font-size="38" font-weight="700" fill="#e6edf3">StrayLight OS</text>
+  <text x="480" y="474" text-anchor="middle" font-family="Inter, DejaVu Sans, Arial, sans-serif" font-size="18" fill="#8b949e">Install the control-plane research environment</text>
+</svg>

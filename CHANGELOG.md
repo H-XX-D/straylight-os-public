@@ -35,6 +35,11 @@ package artifact.
   worktrees so post-build validation stays scoped to repository source.
 - UEFI amd64 VM boot validation now reaches the GNOME live session for the
   generated ISO candidate.
+- Calamares StrayLight branding now ships all image and slideshow assets
+  referenced by `branding.desc`, fixing the installer launch path.
+- Calamares settings now use supported `shellprocess@...` instance keys for
+  StrayLight hardware validation and post-install hooks instead of unresolved
+  custom module names.
 - ISO live-build SGX udev includes now match the packaged source rule emitted
   during config-only staging.
 - Status, roadmap, FAQ, and build docs now reflect that package builds,

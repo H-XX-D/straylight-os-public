@@ -21,9 +21,9 @@ strings:
     donateUrl: "https://straylight.dev/donate"
 
 images:
-    productLogo: "logo.png"
-    productIcon: "icon.png"
-    productWelcome: "welcome.png"
+    productLogo: "logo.svg"
+    productIcon: "icon.svg"
+    productWelcome: "welcome.svg"
 
 slideshow: "show.qml"
 
