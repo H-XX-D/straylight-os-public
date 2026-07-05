@@ -25,6 +25,12 @@ package artifact.
   package and ISO build workflows.
 - `straylight-core` packaging now installs the `straylight-numa-run` helper
   emitted by the core package build.
+- Release audit matching now uses per-run temporary files so root and non-root
+  validation paths cannot collide on stale `/tmp` permissions.
+- Release audit now excludes generated live-build work directories and local
+  package injection state.
+- ISO live-build SGX udev includes now match the packaged source rule emitted
+  during config-only staging.
 - Status, roadmap, FAQ, and build docs now reflect that package and ISO
   source-only checks pass on the public tree; package builds, package
   repository generation, ISO builds, and VM/install validation remain gated.

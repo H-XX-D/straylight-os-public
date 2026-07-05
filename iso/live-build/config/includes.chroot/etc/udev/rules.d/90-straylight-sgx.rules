@@ -18,6 +18,11 @@ SUBSYSTEM=="misc", KERNEL=="sgx_provision", \
     GROUP="sgx", MODE="0660"
 
 # StrayLight enclave kernel module device node
+KERNEL=="straylight-enclave", SUBSYSTEM=="misc", \
+    GROUP="straylight", MODE="0660", \
+    SYMLINK+="straylight/enclave", SYMLINK+="straylight/sgx"
+
+# Backward-compatible name for older StrayLight enclave builds
 KERNEL=="straylight-sgx", SUBSYSTEM=="misc", \
     GROUP="straylight", MODE="0660", \
     SYMLINK+="straylight/sgx"
