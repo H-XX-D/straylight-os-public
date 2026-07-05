@@ -10,8 +10,9 @@ release hygiene scripts, not a full private workstation image.
 Use a Debian Trixie-compatible amd64 build host.
 
 ```bash
+sudo apt-get update
 sudo apt-get install -y \
-  build-essential cmake ninja-build pkg-config \
+  build-essential cmake ninja-build pkg-config rsync \
   dpkg-dev debhelper dh-cmake devscripts \
   dkms linux-headers-amd64
 
@@ -46,4 +47,5 @@ sha256sum -c output/straylight-os-1.0.0-amd64.iso.sha256
 
 This public starter does not include every implementation file needed to produce
 an ISO by itself. Use it as the public documentation and hygiene frame for a
-complete source release.
+complete source release. See [Build The ISO](BUILD_ISO.md) for the full source
+layout, package payload, root/live-build requirements, and validation gates.

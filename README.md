@@ -34,6 +34,7 @@ plane, then translating that state back into concise operator-readable output.
 - [Research Tracks](#research-tracks)
 - [Package Groups](#package-groups)
 - [Build From Source](#build-from-source)
+- [ISO Build Requirements](#iso-build-requirements)
 - [Installed-System Verification](#installed-system-verification)
 - [Limitations](#limitations)
 - [Documentation](#documentation)
@@ -256,16 +257,24 @@ service inventory.
 
 ## Build From Source
 
-Build on a Debian Trixie-compatible amd64 host with Debian packaging and
-live-build tooling installed.
+Build on a Debian Bookworm or Trixie compatible amd64 host with Debian
+packaging and live-build tooling installed. The current live-build target is
+Trixie.
+
+This public starter repository documents the release shape and hygiene rules.
+A working ISO build requires the full StrayLight source tree, package-specific
+`debian/` directories, live-build configuration, installer configuration,
+service assets, and locally built runtime `.deb` packages. See
+[Build The ISO](docs/BUILD_ISO.md) for the complete checklist.
 
 ### Install Build Tools
 
 Package build tools:
 
 ```bash
+sudo apt-get update
 sudo apt-get install -y \
-  build-essential cmake ninja-build pkg-config \
+  build-essential cmake ninja-build pkg-config rsync \
   dpkg-dev debhelper dh-cmake devscripts \
   dkms linux-headers-amd64
 ```
@@ -301,6 +310,25 @@ scripts/build-packages.sh --no-sign straylight-desktop
 
 The package builder writes `.deb` files and a local APT `Packages.gz` index
 under `output/debs/`.
+
+## ISO Build Requirements
+
+A buildable ISO source tree must include:
+
+- package rules under `packaging/<package>/debian/`
+- `scripts/build-packages.sh`, `scripts/build-iso.sh`, and the release audit
+- `iso/live-build/auto/config`
+- live-build package lists for the live base and `straylight-os`
+- Calamares installer config under `iso/calamares/`
+- service D-Bus policy, udev rules, and optional theme/icon assets
+- locally built runtime packages under `output/debs/`
+
+The ISO build is root-only because live-build creates and configures a chroot.
+Run `scripts/build-packages.sh --clean --no-sign` before `build-iso.sh` so local
+runtime `.deb` packages are available for injection.
+
+See [Build The ISO](docs/BUILD_ISO.md) for the full dependency and validation
+checklist.
 
 ### Build The ISO
 
@@ -381,20 +409,19 @@ Current boundaries:
 
 ## Documentation
 
+- [Getting started](docs/GETTING_STARTED.md)
+- [Build the ISO](docs/BUILD_ISO.md)
 - [Current release condition](docs/STRAYLIGHT_CURRENT_STATUS.md)
 - [Component surface map](docs/STRAYLIGHT_SURFACE_MAP.md)
 - [Hardware fabric manifest example](docs/STRAYLIGHT_HARDWARE_FABRIC_MANIFEST_EXAMPLE.md)
 - [Network and XDP notes](docs/straylight-network.md)
 - [App CLI reference](docs/straylight-app-clis.md)
-- [ISO distribution preparation](docs/STRAYLIGHT_ISO_DISTRIBUTION_PREP.md)
-- [Getting started](docs/GETTING_STARTED.md)
 - [Privacy and sanitization](docs/PRIVACY_AND_SANITIZATION.md)
 - [Publication checklist](docs/PUBLICATION_CHECKLIST.md)
 - [Package split](packaging/STRAYLIGHT_PACKAGE_SPLIT.md)
-- [GA transformer results review](GA_RESULTS_REVIEW.md)
-- [Sidecar ablation eval](SIDECAR_ABLATION_EVAL.md)
-- [Device Memory ABI](DEVICE_MEMORY_ABI.md)
-- [Ledger spec](LEDGER_SPEC.md)
+
+Additional research notes for GA-GPT2, sidecar evals, Device Memory ABI, and
+Ledger should be published only after separate source and privacy review.
 
 ## Project Hygiene
 
@@ -409,6 +436,4 @@ Before publishing a public source snapshot:
 
 ## License
 
-This public starter snapshot is published without a project license selection. Add a
-license before accepting external contributions or distributing source code beyond
-documentation and examples.
+This public starter snapshot is released under the [MIT License](LICENSE).
