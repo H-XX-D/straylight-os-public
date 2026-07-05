@@ -9,6 +9,14 @@ package artifact.
 
 ## Unreleased
 
+No unreleased changes.
+
+## v0.4.0-alpha - 2026-07-05
+
+Source-only alpha snapshot covering public release hygiene and validation
+documentation through the VM boot, installer, firstboot, and post-install
+health checklist gates.
+
 ### Added
 
 - Public post-install health checklist in
@@ -19,6 +27,16 @@ package artifact.
 - ISO candidate checksum and release-note flow in
   `docs/ISO_CANDIDATE_RELEASE.md`.
 - Public ISO checksum wrapper `scripts/generate_iso_checksum.sh`.
+
+### Current Boundaries
+
+- This is a source snapshot, not a supported binary distribution.
+- No ISO, package, kernel module, VM disk, trace, or generated binary artifact is
+  attached to this tag.
+- VM boot, installer, firstboot, and post-install health procedures are
+  documented, but validation runs still need to pass for a verified ISO.
+- Private lab paths, hostnames, addresses, machine identifiers, and credentials
+  remain intentionally excluded.
 
 ## v0.1.0-alpha - 2026-07-05
 
