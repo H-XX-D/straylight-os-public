@@ -1,0 +1,35 @@
+name: Documentation issue
+description: Report unclear, stale, or misleading public documentation.
+title: "docs: "
+labels:
+  - documentation
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: Location
+      description: Link or name the file and section.
+      placeholder: README.md, docs/BUILD_ISO.md, examples/README.md
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Explain what is unclear, stale, or misleading.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested_change
+    attributes:
+      label: Suggested change
+      description: Propose replacement wording or the missing detail.
+    validations:
+      required: false
+  - type: checkboxes
+    id: hygiene
+    attributes:
+      label: Public hygiene
+      options:
+        - label: This issue does not include private hostnames, local IPs, MAC addresses, credentials, personal paths, or generated lab output.
+          required: true

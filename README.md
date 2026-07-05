@@ -436,6 +436,9 @@ Current boundaries:
 - [Privacy and sanitization](docs/PRIVACY_AND_SANITIZATION.md)
 - [Publication checklist](docs/PUBLICATION_CHECKLIST.md)
 - [Package split](packaging/STRAYLIGHT_PACKAGE_SPLIT.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
 
 Additional research notes for GA-GPT2, sidecar evals, Device Memory ABI, and
 Ledger should be published only after separate source and privacy review.

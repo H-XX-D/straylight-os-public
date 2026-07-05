@@ -1,0 +1,44 @@
+name: Build or ISO issue
+description: Report a reproducible build, package, or ISO documentation issue.
+title: "build: "
+labels:
+  - build
+body:
+  - type: input
+    id: host
+    attributes:
+      label: Build host profile
+      description: Use sanitized, general details only.
+      placeholder: Debian Trixie-compatible amd64 VM, 8 vCPU, 16 GiB RAM
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: Paste the command that failed.
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Result
+      description: Paste the relevant sanitized output.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+  - type: checkboxes
+    id: hygiene
+    attributes:
+      label: Public hygiene
+      options:
+        - label: I removed private hostnames, local IPs, MAC addresses, credentials, personal paths, serials, and generated artifacts from this report.
+          required: true

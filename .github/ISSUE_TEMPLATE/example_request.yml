@@ -1,0 +1,33 @@
+name: Example request
+description: Request a sanitized example manifest, package profile, or config snippet.
+title: "example: "
+labels:
+  - examples
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: Describe the example you need using generic placeholders.
+      placeholder: A two-node hardware fabric manifest with one controller and one accelerator node.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Hardware fabric
+        - XDP or networking
+        - Package profile
+        - ISO build environment
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: hygiene
+    attributes:
+      label: Public hygiene
+      options:
+        - label: This request uses placeholders and does not include private deployment details.
+          required: true
