@@ -1,5 +1,10 @@
 # StrayLight OS
 
+[![public-release-checks](https://github.com/H-XX-D/straylight-os-public/actions/workflows/sanitize.yml/badge.svg)](https://github.com/H-XX-D/straylight-os-public/actions/workflows/sanitize.yml)
+[![Release](https://img.shields.io/github/v/release/H-XX-D/straylight-os-public?include_prereleases&label=release)](https://github.com/H-XX-D/straylight-os-public/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status: Alpha](https://img.shields.io/badge/status-alpha-orange.svg)](docs/ROADMAP.md)
+
 > A Debian/Ubuntu-compatible operating environment for hardware-aware AI,
 > systems automation, kernel-surface observability, high-performance networking,
 > and recovery-focused workstation workflows.
@@ -443,6 +448,8 @@ Current boundaries:
 - [Contributing](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
 - [Code of conduct](CODE_OF_CONDUCT.md)
+- [Governance](GOVERNANCE.md)
+- [Maintainers](MAINTAINERS.md)
 
 Additional research notes for GA-GPT2, sidecar evals, Device Memory ABI, and
 Ledger should be published only after separate source and privacy review.
