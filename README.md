@@ -431,6 +431,8 @@ Current boundaries:
 ## Documentation
 
 - [Getting started](docs/GETTING_STARTED.md)
+- [FAQ](docs/FAQ.md)
+- [Glossary](docs/GLOSSARY.md)
 - [Build the ISO](docs/BUILD_ISO.md)
 - [Examples](examples/README.md)
 - [Current release condition](docs/STRAYLIGHT_CURRENT_STATUS.md)
