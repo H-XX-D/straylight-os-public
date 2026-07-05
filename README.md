@@ -438,6 +438,8 @@ Current boundaries:
 - [Package split](packaging/STRAYLIGHT_PACKAGE_SPLIT.md)
 - [Changelog](CHANGELOG.md)
 - [Release process](docs/RELEASE_PROCESS.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Support](SUPPORT.md)
 - [Contributing](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
 - [Code of conduct](CODE_OF_CONDUCT.md)
