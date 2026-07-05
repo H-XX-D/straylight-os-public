@@ -4,6 +4,7 @@ straylight-os
 # Base system
 linux-image-amd64
 grub-efi-amd64
+efibootmgr
 systemd
 systemd-sysv
 dbus
