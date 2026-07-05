@@ -21,6 +21,8 @@ sudo
 calamares
 dosfstools
 e2fsprogs
+btrfs-progs
+xfsprogs
 cracklib-runtime
 wamerican
 
