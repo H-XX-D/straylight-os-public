@@ -434,6 +434,7 @@ Current boundaries:
 - [FAQ](docs/FAQ.md)
 - [Glossary](docs/GLOSSARY.md)
 - [Build the ISO](docs/BUILD_ISO.md)
+- [Clean-clone package check](docs/CLEAN_CLONE_PACKAGE_CHECK.md)
 - [Examples](examples/README.md)
 - [Current release condition](docs/STRAYLIGHT_CURRENT_STATUS.md)
 - [Validation matrix](docs/VALIDATION_MATRIX.md)

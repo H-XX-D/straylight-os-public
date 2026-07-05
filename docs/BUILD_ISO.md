@@ -80,8 +80,14 @@ Run the preflight dependency check first:
 
 ```bash
 scripts/straylight_release_audit.sh .
+scripts/check_package_dependencies.sh .
 scripts/build-packages.sh --check-deps --no-sign
 ```
+
+The public starter is expected to fail `scripts/check_package_dependencies.sh .`
+with `[MISSING_SOURCE_PATH]` entries until the complete public source tree is
+published. See `docs/CLEAN_CLONE_PACKAGE_CHECK.md` for host prerequisites,
+source payload checks, and failure classes.
 
 Build all package groups:
 

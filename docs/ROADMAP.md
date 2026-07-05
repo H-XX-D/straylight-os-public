@@ -29,6 +29,7 @@ Required outcomes:
 
 - Public implementations for package payloads named in the package split.
 - Package payload inventory maps each group to required source paths.
+- Clean-clone package dependency preflight is documented and runnable.
 - Build scripts present and runnable from a clean Debian-compatible host.
 - Generated output remains ignored and absent from source.
 - Package build order is reproducible.

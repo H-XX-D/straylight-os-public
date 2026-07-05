@@ -66,6 +66,8 @@ The `v0.2.0-alpha` source-tree gate is not complete until:
 - Every package group has the required source payload paths listed above.
 - Each package group has public Debian packaging metadata.
 - Build commands can fail fast with documented missing dependency messages.
+- `scripts/check_package_dependencies.sh .` reports host dependency and source
+  payload gaps using public, repository-relative paths.
 - Generated output remains ignored and absent from the source tree.
 - `scripts/verify_public_snapshot.sh .` passes from a clean checkout.
 
