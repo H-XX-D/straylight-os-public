@@ -448,6 +448,7 @@ Current boundaries:
 - [Changelog](CHANGELOG.md)
 - [Release process](docs/RELEASE_PROCESS.md)
 - [Roadmap](docs/ROADMAP.md)
+- [Architecture decision records](docs/adr/README.md)
 - [Support](SUPPORT.md)
 - [Contributing](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
