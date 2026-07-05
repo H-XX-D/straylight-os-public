@@ -5,11 +5,12 @@ usage() {
   cat <<'USAGE'
 Usage: scripts/check_iso_candidate_requirements.sh [--host-only|--source-only] [ROOT]
 
-Checks whether a clean StrayLight source tree has the host packages and public
-iso/live-build paths required before producing an ISO candidate.
+Checks whether a clean StrayLight source tree has the host packages, public
+iso/live-build paths, and generated package repository required before
+producing an ISO candidate.
 
-The current public starter is expected to report missing ISO source paths until
-the v0.3.0-alpha reproducible ISO candidate gate is complete.
+Use --source-only to verify repository-controlled ISO source paths without
+requiring generated package outputs such as output/debs/Packages.gz.
 USAGE
 }
 
@@ -67,7 +68,7 @@ host_packages=(
   grub-efi-amd64-bin
 )
 
-required_paths=(
+source_paths=(
   "iso/live-build/auto/config|live-build auto config entrypoint"
   "iso/live-build/config/package-lists/live.list.chroot|base live package list"
   "iso/live-build/config/package-lists/straylight.list.chroot|StrayLight package list"
@@ -76,6 +77,9 @@ required_paths=(
   "iso/calamares/settings.conf|Calamares settings"
   "iso/calamares/modules/|Calamares module configuration"
   "scripts/build-iso.sh|ISO build wrapper"
+)
+
+generated_paths=(
   "output/debs/Packages.gz|local package repository index"
 )
 
@@ -98,7 +102,7 @@ fi
 
 if [ "$mode" != "host" ]; then
   echo "ISO source payload check"
-  for entry in "${required_paths[@]}"; do
+  for entry in "${source_paths[@]}"; do
     IFS='|' read -r path description <<EOF
 $entry
 EOF
@@ -106,6 +110,21 @@ EOF
       echo "[OK_ISO_PATH] $path"
     else
       echo "[MISSING_ISO_PATH] $path - $description" >&2
+      fail=1
+    fi
+  done
+fi
+
+if [ "$mode" = "all" ]; then
+  echo "ISO generated prerequisite check"
+  for entry in "${generated_paths[@]}"; do
+    IFS='|' read -r path description <<EOF
+$entry
+EOF
+    if [ -e "$root/$path" ]; then
+      echo "[OK_GENERATED_PATH] $path"
+    else
+      echo "[MISSING_GENERATED_PATH] $path - $description" >&2
       fail=1
     fi
   done

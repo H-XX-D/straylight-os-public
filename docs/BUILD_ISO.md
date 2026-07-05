@@ -1,9 +1,10 @@
 # Build The ISO
 
 This document describes what is actually required to build a StrayLight ISO.
-The public source snapshot is a sanitized documentation and release-hygiene
-frame. It is not, by itself, the full implementation tree needed to produce an
-installable ISO unless the complete package and ISO payloads are present.
+The public source snapshot is a sanitized source, documentation, and
+release-hygiene frame. Building an installable ISO also requires a generated
+local package repository under `output/debs/` and the live-build host tooling
+listed below.
 
 ## Required Host
 
@@ -87,10 +88,13 @@ scripts/check_package_dependencies.sh .
 scripts/build-packages.sh --check-deps --no-sign
 ```
 
-An incomplete source snapshot is expected to fail
-`scripts/check_package_dependencies.sh .` with `[MISSING_SOURCE_PATH]` entries
-until the complete public source tree is published. See
-`docs/CLEAN_CLONE_PACKAGE_CHECK.md` for host prerequisites, source payload
+The current public tree passes the source-payload check with:
+
+```bash
+scripts/check_package_dependencies.sh --source-only .
+```
+
+See `docs/CLEAN_CLONE_PACKAGE_CHECK.md` for host prerequisites, source payload
 checks, and failure classes.
 
 Build all package groups:

@@ -9,7 +9,17 @@ package artifact.
 
 ## Unreleased
 
-No unreleased changes.
+### Added
+
+- Public ISO build wrapper `scripts/build-iso.sh`.
+
+### Changed
+
+- ISO candidate requirement checks now separate repository-controlled source
+  paths from generated package repository output.
+- Status, roadmap, FAQ, and build docs now reflect that package and ISO
+  source-only checks pass on the public tree; package builds, package
+  repository generation, ISO builds, and VM/install validation remain gated.
 
 ## v0.4.0-alpha - 2026-07-05
 

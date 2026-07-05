@@ -2,12 +2,12 @@
 
 ## What is this repository?
 
-This is the public alpha starter repository for StrayLight OS. It contains
+This is the public alpha source repository for StrayLight OS. It contains
 documentation, sanitized examples, package-layout guidance, release hygiene
-scripts, and community process files.
+scripts, community process files, package source payloads, and ISO source
+paths.
 
-It is not yet a complete public source tree and does not currently ship a
-verified ISO or package artifact.
+It does not currently ship a verified package or ISO artifact.
 
 ## Is StrayLight OS a Linux distribution?
 
@@ -15,14 +15,16 @@ StrayLight OS is framed as a Debian/Ubuntu-compatible operating environment. The
 current public docs describe package groups, kernel and eBPF surfaces, daemons,
 CLIs, desktop apps, and an ISO build path on top of a Debian-compatible base.
 
-The public starter repository does not yet contain every implementation file
-needed to produce a full distribution image from a fresh clone.
+The public source tree contains the package and ISO source paths needed for the
+documented preflight checks. Package and ISO artifacts still require clean-host
+build validation before they are treated as public release outputs.
 
 ## Can I build the ISO from this repository today?
 
-Not from this public starter alone. The repository documents what is required to
-build the ISO and what source areas must exist, but the current public snapshot
-is intentionally source-only and incomplete.
+Not until package builds have produced a local package repository under
+`output/debs/`. The repository documents what is required to build the ISO and
+contains the public ISO source paths, but generated packages and ISO artifacts
+are intentionally excluded from source.
 
 Use `docs/BUILD_ISO.md`, `docs/PUBLIC_SOURCE_MANIFEST.md`, and
 `docs/ROADMAP.md` to understand the build requirements and promotion gates.
@@ -34,17 +36,17 @@ also stating the public distribution gate. In the public repository, ISO-related
 claims should be read as alpha/gated unless a GitHub release explicitly attaches
 verified artifacts and validation notes.
 
-## What does "source-only public alpha starter" mean?
+## What does "public alpha source snapshot" mean?
 
-It means the public repository is suitable for reviewing documentation, examples,
-release hygiene, and source layout. It is not a supported binary release, not a
-complete build tree, and not a production distribution.
+It means the public repository is suitable for reviewing documentation,
+examples, release hygiene, package source, ISO source layout, and build gates.
+It is not a supported binary release and not a production distribution.
 
 ## What should contributors work on first?
 
-Start with the open issues under the `v0.2.0-alpha: Complete Public Source Tree`
-milestone. Those issues focus on package payload inventory, clean-clone checks,
-excluded implementation documentation, and public build wrappers.
+Start with package build validation, ISO candidate validation, documentation
+fixes, and sanitized examples. Keep generated artifacts, host details, and
+private deployment data out of pull requests.
 
 ## What is the William Gibson / Neuromancer reference?
 

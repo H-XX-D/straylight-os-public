@@ -1,9 +1,10 @@
 # Roadmap
 
 This roadmap is gate-based. It describes the work needed to move from a public
-starter snapshot toward a complete, reproducible public StrayLight OS release.
+alpha source snapshot toward a complete, reproducible public StrayLight OS
+release.
 
-## Current Stage: Public Alpha Starter
+## Current Stage: Public Alpha Source Snapshot
 
 Status: active.
 
@@ -16,20 +17,24 @@ The public repository currently provides:
 - Release hygiene scripts and GitHub Actions.
 - Community, support, security, issue, and pull request templates.
 - Source-only pre-release tag `v0.1.0-alpha`.
+- Public package source payloads that pass
+  `scripts/check_package_dependencies.sh --source-only .`.
+- Public ISO source paths that pass
+  `scripts/check_iso_candidate_requirements.sh --source-only .`.
 
-Boundary: this is not yet a complete public source tree and does not ship a
-verified ISO or package artifact.
+Boundary: this does not yet ship verified package or ISO artifacts.
 
-## Next Gate: Complete Public Source Tree
+## Next Gate: Public Package Build Validation
 
-Goal: publish enough source for outside users to build package groups from a
-fresh clone.
+Goal: prove that outside users can build package groups from a fresh clone on a
+prepared Debian-compatible build host.
 
 Required outcomes:
 
-- Public implementations for package payloads named in the package split.
+- Public implementations for package payloads named in the package split remain
+  present.
 - Package payload inventory maps each group to required source paths.
-- Clean-clone package dependency preflight is documented and runnable.
+- Clean-clone package dependency preflight passes its source-only mode.
 - Intentionally excluded implementation areas are documented with inclusion
   gates.
 - Public package build wrapper is present and runnable from the repository root.
@@ -40,8 +45,8 @@ Required outcomes:
 Exit criteria:
 
 - A clean clone can run package dependency checks.
-- Package builds either complete or fail with documented missing-host
-  requirements.
+- Package builds complete on a prepared Debian-compatible host, or any failure
+  is documented as a package-build blocker.
 - Documentation states any intentionally excluded implementation areas.
 - `docs/PACKAGE_PAYLOAD_INVENTORY.md` has no unresolved package groups.
 - `docs/EXCLUDED_IMPLEMENTATION_AREAS.md` has no unresolved source-boundary

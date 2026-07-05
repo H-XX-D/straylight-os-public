@@ -1,14 +1,17 @@
 # Clean-Clone Package Dependency Check
 
-This check is the public preflight command for the `v0.2.0-alpha` complete
-source tree gate. It tells an outside user whether a fresh Debian-compatible
-clone has the host packages and source payload paths needed before attempting
-package builds.
+This check is the public preflight command for clean-clone package builds. It
+tells an outside user whether a fresh Debian-compatible clone has the host
+packages and source payload paths needed before attempting package builds.
 
-The current public starter repository is expected to fail the source payload
-portion because it does not yet contain the full implementation tree. That
-failure is intentional and should remain explicit until the missing public
-source paths are added.
+The current public source tree passes the source payload portion with:
+
+```bash
+scripts/check_package_dependencies.sh --source-only .
+```
+
+Full package builds are still gated by host packages, compiler/toolchain
+behavior, and package build validation on a prepared Debian-compatible host.
 
 ## Host Prerequisites
 
@@ -72,12 +75,15 @@ scripts/check_package_dependencies.sh --source-only .
 The command exits non-zero when any host package or source payload path is
 missing.
 
-## Expected Starter Result
+## Expected Public Result
 
-On this source-only alpha starter, the source check should report
-`[MISSING_SOURCE_PATH]` entries for implementation paths listed in
-`docs/PACKAGE_PAYLOAD_INVENTORY.md`. That is the correct failure mode until the
-complete public source tree gate is finished.
+On the current public tree, `--source-only` should report only
+`[OK_SOURCE_PATH]` entries for implementation paths listed in
+`docs/PACKAGE_PAYLOAD_INVENTORY.md`.
+
+On a host without the Debian build dependencies installed, the full check may
+still report `[MISSING_HOST_PACKAGE]` entries. That is a host preparation issue,
+not a missing-source issue.
 
 The check must not read private host paths, interface identifiers, local
 addresses, machine IDs, generated packages, ISO artifacts, or build logs. It

@@ -22,8 +22,9 @@ scripts/generate_iso_checksum.sh output/straylight-os-1.0.0-amd64.iso
 scripts/generate_iso_checksum.sh --check output/straylight-os-1.0.0-amd64.iso
 ```
 
-The current source-only starter is expected to stop before this point because
-the complete package and ISO source payloads are not present.
+The current public source tree should pass source-payload checks, but the full
+ISO candidate flow still requires package builds to produce
+`output/debs/Packages.gz`.
 
 ## VM Boot Validation
 

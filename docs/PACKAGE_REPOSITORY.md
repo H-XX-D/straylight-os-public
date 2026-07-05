@@ -3,10 +3,8 @@
 This document defines the public process for producing the local APT package
 repository consumed by the StrayLight ISO build.
 
-The current source-only starter does not include generated `.deb` artifacts.
-The command below is still present so the repository-generation flow is
-documented and runnable from the repository root once package builds are
-available.
+The public source tree does not include generated `.deb` artifacts. Build
+packages first before generating the local package repository.
 
 ## Inputs
 
@@ -61,7 +59,8 @@ scripts/generate_package_repo.sh --repo-dir output/debs
 | `[PACKAGE_REPO_DEB]` | A `.deb` input included in generation. |
 | `[PACKAGE_REPO_OUTPUT]` | An index file written by the command. |
 
-The source-only public starter is expected to report
+The public source tree should pass `scripts/check_package_dependencies.sh
+--source-only .`; repository generation still reports
 `[MISSING_PACKAGE_REPO_INPUT]` until package artifacts exist.
 
 ## Build Flow Position

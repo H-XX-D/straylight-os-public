@@ -3,10 +3,9 @@
 This document lists the public `iso/` and live-build configuration required
 before StrayLight can publish an ISO candidate.
 
-The current repository is still a source-only public starter. It documents the
-requirements and provides a public checker, but it does not yet contain the
-complete `iso/` implementation tree or generated package repository needed to
-produce an ISO candidate.
+The current repository includes the public `iso/` implementation paths and a
+requirements checker. Producing an ISO candidate still requires a generated
+local package repository under `output/debs/` and live-build host tooling.
 
 ## Required Host
 
@@ -72,9 +71,13 @@ scripts/check_iso_candidate_requirements.sh --source-only .
 | `[MISSING_HOST_PACKAGE]` | Install the named host package before building an ISO. |
 | `[MISSING_HOST_TOOL]` | Run on a Debian-compatible host with the named tool. |
 | `[OK_ISO_PATH]` | Required repository-relative ISO source path exists. |
-| `[MISSING_ISO_PATH]` | Required ISO source path or generated package index is absent. |
+| `[MISSING_ISO_PATH]` | Required ISO source path is absent. |
+| `[OK_GENERATED_PATH]` | Required generated build input exists. |
+| `[MISSING_GENERATED_PATH]` | Required generated build input is absent; usually build packages first. |
 
-The command exits non-zero when any host package or ISO path is missing.
+The full command exits non-zero when any host package, ISO source path, or
+generated prerequisite is missing. `--source-only` checks repository-controlled
+ISO paths and intentionally skips generated package output.
 
 ## Private Build Context Boundary
 

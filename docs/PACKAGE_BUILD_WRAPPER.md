@@ -1,12 +1,11 @@
 # Package Build Wrapper
 
 `scripts/build-packages.sh` is the public package build entrypoint. It exists so
-the documented build commands are runnable from the repository root even while
-the public source tree is still incomplete.
+the documented build commands are runnable from the repository root.
 
-The current source-only starter is expected to fail before package builds start,
-because implementation payloads and Debian package metadata are not all present
-yet. That failure is intentional and public-safe.
+The current public tree includes package source payloads. Package builds are
+now gated by host preparation and build validation rather than missing source
+payloads.
 
 ## Commands
 
@@ -16,7 +15,7 @@ Check host and source prerequisites:
 scripts/build-packages.sh --check-deps --no-sign
 ```
 
-Build all package groups once the complete source tree is present:
+Build all package groups once the host dependencies are present:
 
 ```bash
 scripts/build-packages.sh --clean --no-sign
@@ -60,7 +59,7 @@ The wrapper uses this build order:
 | `[MISSING_HOST_PACKAGE]` | Install the named Debian package before building. |
 | `[MISSING_HOST_TOOL]` | Run on a Debian-compatible host with the named tool. |
 | `[MISSING_SOURCE_PATH]` | The public clone lacks a source payload path required by the package inventory. |
-| `[BUILD_BLOCKED]` | The wrapper stopped before build execution because the source tree or host is incomplete. |
+| `[BUILD_BLOCKED]` | The wrapper stopped before build execution because the host or required build input is incomplete. |
 | `[BUILD_PACKAGE]` | The wrapper is invoking `dpkg-buildpackage` for the named package group. |
 | `[PACKAGE_REPO_OUTPUT]` | The wrapper wrote `Packages` or `Packages.gz`. |
 
