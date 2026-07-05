@@ -43,10 +43,12 @@ Confirm:
 - README and docs describe alpha/gated work accurately.
 - `CHANGELOG.md` names the release and current boundaries.
 - `docs/PUBLIC_SOURCE_MANIFEST.md` matches the files being published.
+- `docs/RELEASE_NOTES_TEMPLATE.md` matches the release type.
 - No personal paths, private hostnames, local IP addresses, MAC addresses,
   serials, machine IDs, credentials, or generated artifacts are present.
 - GitHub Actions passes on the commit to be tagged.
-- Attached artifacts, if any, have explicit checksums and validation notes.
+- Attached artifacts, if any, follow `docs/ARTIFACT_POLICY.md` and have
+  explicit checksums and validation notes.
 
 ## Source Snapshot Commands
 
@@ -56,6 +58,11 @@ git push origin main v0.1.0-alpha
 ```
 
 Then create a GitHub release from the tag and mark it as a pre-release.
+
+## Release Notes
+
+Use `docs/RELEASE_NOTES_TEMPLATE.md` when preparing a public release. Source
+snapshots should explicitly say that no binary artifacts are attached.
 
 ## Artifact Policy
 
@@ -71,3 +78,5 @@ Do not attach these to public source-snapshot releases:
 Artifact-bearing releases need a separate verification note that names the
 build host class, commands, checksums, boot path, installer result, firstboot
 result, and post-install health result.
+
+See `docs/ARTIFACT_POLICY.md` for the full artifact and checksum policy.

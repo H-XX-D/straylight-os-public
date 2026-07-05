@@ -447,6 +447,8 @@ Current boundaries:
 - [Package split](packaging/STRAYLIGHT_PACKAGE_SPLIT.md)
 - [Changelog](CHANGELOG.md)
 - [Release process](docs/RELEASE_PROCESS.md)
+- [Release notes template](docs/RELEASE_NOTES_TEMPLATE.md)
+- [Artifact policy](docs/ARTIFACT_POLICY.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Architecture decision records](docs/adr/README.md)
 - [Support](SUPPORT.md)
