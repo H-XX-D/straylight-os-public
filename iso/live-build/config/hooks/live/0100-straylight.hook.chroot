@@ -15,7 +15,7 @@ cat > /etc/skel/.config/autostart/straylight-installer.desktop <<'DESKTOP'
 Type=Application
 Name=Install StrayLight OS
 Comment=Install StrayLight OS to disk
-Exec=pkexec calamares
+Exec=/usr/bin/straylight-install
 Icon=calamares
 Terminal=false
 Categories=System;
@@ -28,7 +28,7 @@ cat > /usr/share/applications/straylight-installer.desktop <<'DESKTOP'
 Type=Application
 Name=Install StrayLight OS
 Comment=Install StrayLight OS to your hard drive
-Exec=pkexec calamares
+Exec=/usr/bin/straylight-install
 Icon=calamares
 Terminal=false
 Categories=System;
