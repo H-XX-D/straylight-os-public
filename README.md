@@ -436,6 +436,7 @@ Current boundaries:
 - [Build the ISO](docs/BUILD_ISO.md)
 - [Examples](examples/README.md)
 - [Current release condition](docs/STRAYLIGHT_CURRENT_STATUS.md)
+- [Validation matrix](docs/VALIDATION_MATRIX.md)
 - [Component surface map](docs/STRAYLIGHT_SURFACE_MAP.md)
 - [Hardware fabric manifest example](docs/STRAYLIGHT_HARDWARE_FABRIC_MANIFEST_EXAMPLE.md)
 - [Network and XDP notes](docs/straylight-network.md)
