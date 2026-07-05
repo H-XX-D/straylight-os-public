@@ -19,6 +19,7 @@ sudo
 
 # Installer
 calamares
+dosfstools
 cracklib-runtime
 wamerican
 
