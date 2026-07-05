@@ -26,7 +26,7 @@ clone.
 | `MAINTAINERS.md` | Current public maintainer listing |
 | `CODE_OF_CONDUCT.md` | Collaboration expectations |
 | `.github/` | GitHub workflow, ownership, issue, and pull request metadata |
-| `docs/` | Onboarding, validation, ADRs, artifact policy, package payload inventory, package build wrapper, excluded-area boundaries, clean-clone checks, build, release, roadmap, privacy, status, surface, network, and CLI docs |
+| `docs/` | Onboarding, validation, ADRs, artifact policy, package payload inventory, package build wrapper, live-build requirements, excluded-area boundaries, clean-clone checks, build, release, roadmap, privacy, status, surface, network, and CLI docs |
 | `examples/` | Sanitized starter manifests and configuration examples |
 | `packaging/` | Package split and package-layout guidance |
 | `scripts/` | Public release hygiene and snapshot verification scripts |
@@ -60,6 +60,9 @@ The verifier runs the release audit, Markdown link check, shell syntax check,
 and a clean working-tree check. The separate package dependency preflight is
 documented in `docs/CLEAN_CLONE_PACKAGE_CHECK.md` and is expected to fail on the
 source-only starter until implementation payloads are published.
+The ISO candidate requirements checker is documented in
+`docs/LIVE_BUILD_REQUIREMENTS.md` and is expected to fail until public
+live-build configuration and package repository output exist.
 
 ## Archive Hygiene
 

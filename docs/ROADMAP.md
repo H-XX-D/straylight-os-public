@@ -54,6 +54,7 @@ Goal: produce an ISO candidate from a clean public source tree.
 Required outcomes:
 
 - Public live-build configuration is complete.
+- Live-build source requirements and checker are documented.
 - Package repository generation is reproducible.
 - ISO build script documents root requirements and host package dependencies.
 - SHA256 checksum is generated.

@@ -33,6 +33,9 @@ sudo apt-get install -y \
   grub-pc-bin grub-efi-amd64-bin
 ```
 
+The public live-build source requirements and checker are documented in
+`docs/LIVE_BUILD_REQUIREMENTS.md`.
+
 Optional VM smoke-test tooling:
 
 ```bash
@@ -142,6 +145,7 @@ live-build, stages local package payloads, and copies installer/service/theme
 assets into the chroot skeleton.
 
 ```bash
+scripts/check_iso_candidate_requirements.sh .
 sudo scripts/build-iso.sh --clean --config-only
 ```
 
