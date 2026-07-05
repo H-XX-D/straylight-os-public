@@ -9,11 +9,12 @@
 > systems automation, kernel-surface observability, high-performance networking,
 > and recovery-focused workstation workflows.
 
-StrayLight is to AI research and development as Kali is to cybersecurity. It installs kernel modules,
-eBPF datapaths, daemons, CLIs, GUI applications, packaging metadata, and
-operator documentation on top of a bare-bones Linux desktop or server stack. The
-current release profile uses distribution-provided GNOME/GDM/Mutter rather than
-shipping a custom StrayLight compositor or window manager.
+StrayLight is to AI research and development as Kali is to cybersecurity. It
+installs kernel modules, eBPF datapaths, daemons, CLIs, GUI applications,
+packaging metadata, and operator documentation on top of a bare-bones Linux
+desktop or server stack. The current release profile uses distribution-provided
+GNOME/GDM/Mutter rather than shipping a custom StrayLight compositor or window
+manager.
 
 StrayLight keeps a Linux machine understandable and controllable by exposing
 kernel surfaces, daemons, CLIs, and apps as a coherent machine-readable control
@@ -35,6 +36,7 @@ plane, then translating that state back into concise operator-readable output.
 - [Design Lineage](#design-lineage)
 - [What StrayLight Provides](#what-straylight-provides)
 - [Current Verified State](#current-verified-state)
+- [Public Release Model](#public-release-model)
 - [Architecture](#architecture)
 - [Kernel And Datapath Surfaces](#kernel-and-datapath-surfaces)
 - [Research Tracks](#research-tracks)
@@ -99,6 +101,25 @@ still need to be rerun from the sanitized repository.
 
 The ISO is alpha test media. Treat it as distribution-prep output until VM boot,
 installer, firstboot, and post-install health gates pass.
+
+## Public Release Model
+
+StrayLight follows a source-first release model similar to other operating
+system and infrastructure projects: keep repository scope clear, publish build
+requirements next to the source, separate generated artifacts from source
+snapshots, and require explicit validation gates before attaching or promoting
+ISO media.
+
+| Release level | Public meaning |
+|---------------|----------------|
+| Source snapshot | Sanitized documentation, examples, build scripts, and source paths; no generated artifacts |
+| Package build | Debian package groups build from a clean source tree and produce a local APT repository |
+| ISO candidate | live-build produces an ISO and checksum from the package repository |
+| Verified ISO | VM boot, installer, firstboot, and post-install health gates pass and are summarized publicly |
+
+This repository should stay useful even before binary media are published: a
+reader should be able to understand the system shape, inspect the package
+layout, run release-hygiene checks, and see exactly what remains gated.
 
 ## Architecture
 
@@ -184,10 +205,10 @@ measured research results and scaffolds, not production guarantees.
 
 ### Swarm And Fleet Coordination
 
-- A a reference controller plus Jetson Nano swarm was used for staged distributed rendering: the Z6
-  coordinator compiled and staged a C++ worker on each Nano, each Nano rendered
-  a horizontal image band locally, and the the controller pulled the RGB tiles back for
-  stitching.
+- A reference controller plus Jetson Nano swarm was used for staged distributed
+  rendering: the coordinator compiled and staged a C++ worker on each Nano,
+  each Nano rendered a horizontal image band locally, and the controller pulled
+  the RGB tiles back for stitching.
 - The bridge dataplane schedule-fleet proof path validates XIT sidecar receipts
   for routes such as `<controller>.nvidia.bridge_dataplane.scheduler.stamp.fleet`,
   records proof events into a swarm ledger, verifies ledger anchors, and
@@ -205,9 +226,10 @@ measured research results and scaffolds, not production guarantees.
 - Historical GPT-2 runs showed that GA zero-rotor / wedge paths can prevent
   repetition collapse. The strongest recorded result was GPT-2 XL / 1558M Tier
   2 with 3/3 runs avoiding repetition collapse and 3/3 reaching natural EOS.
-- Stronger reference-controller route tests found high-gain steering around scale `50.0` to be
-  the first tested range that meaningfully moved the distribution while keeping
-  readable prose. Extreme scales collapsed coherence.
+- Stronger route tests on the reference controller found high-gain steering
+  around scale `50.0` to be the first tested range that meaningfully moved the
+  distribution while keeping readable prose. Extreme scales collapsed
+  coherence.
 - Layer-masked KV rebase in the `.cog` build was more useful than all-layer KV
   injection. A quick pass found selected masks such as `4,5,6,10,28` more
   interesting than injecting every layer.
@@ -215,9 +237,10 @@ measured research results and scaffolds, not production guarantees.
   were promising, but current reproducibility work must log exact model hashes,
   rotor files, prompts, seeds, scales, sampling settings, and trace metrics.
 - Sidecar evidence packets improved exact-answer performance for `dolphin3:8b`
-  in a small reference controller ablation, but the same eval shape did not produce a clear win
-  for GA-GPT2. GA-GPT2 behaved like a completion model, so future tests should
-  use completion/cloze tasks or an adapter that matches that engine.
+  in a small reference-controller ablation, but the same evaluation shape did
+  not produce a clear win for GA-GPT2. GA-GPT2 behaved like a completion model,
+  so future tests should use completion/cloze tasks or an adapter that matches
+  that engine.
 
 ### AURA / XIT Packet Work
 
@@ -234,7 +257,8 @@ measured research results and scaffolds, not production guarantees.
   FPGA, storage, and graph stages exchange buffer references, dtype/shape,
   hashes, metrics, and control flags while prose remains an inspection layer.
   CPU and CUDA `copy_surface` / `norm_delta` baselines have been validated on
-  the reference controller; XRT/HBM and real transformer KV/residual integration remain future work.
+  the reference controller; XRT/HBM and real transformer KV/residual integration
+  remain future work.
 
 ## Package Groups
 
@@ -285,8 +309,8 @@ Build on a Debian Bookworm or Trixie compatible amd64 host with Debian
 packaging and live-build tooling installed. The current live-build target is
 Trixie.
 
-This public starter repository documents the release shape and hygiene rules.
-A working ISO build requires the full StrayLight source tree, package-specific
+This public source snapshot documents the release shape and hygiene rules. A
+working ISO build requires the full StrayLight source tree, package-specific
 `debian/` directories, live-build configuration, installer configuration,
 service assets, and locally built runtime `.deb` packages. See
 [Build The ISO](docs/BUILD_ISO.md) for the complete checklist.
