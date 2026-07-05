@@ -1,9 +1,9 @@
 # Build The ISO
 
 This document describes what is actually required to build a StrayLight ISO.
-The public starter repository is a sanitized documentation and release-hygiene
+The public source snapshot is a sanitized documentation and release-hygiene
 frame. It is not, by itself, the full implementation tree needed to produce an
-installable ISO.
+installable ISO unless the complete package and ISO payloads are present.
 
 ## Required Host
 
@@ -44,7 +44,7 @@ sudo apt-get install -y qemu-system-x86 ovmf
 
 ## Required Source Tree
 
-A buildable StrayLight source tree needs more than this starter repository. At
+A buildable StrayLight source tree needs the complete implementation payload. At
 minimum, it must contain:
 
 - `scripts/straylight_release_audit.sh`
@@ -87,10 +87,11 @@ scripts/check_package_dependencies.sh .
 scripts/build-packages.sh --check-deps --no-sign
 ```
 
-The public starter is expected to fail `scripts/check_package_dependencies.sh .`
-with `[MISSING_SOURCE_PATH]` entries until the complete public source tree is
-published. See `docs/CLEAN_CLONE_PACKAGE_CHECK.md` for host prerequisites,
-source payload checks, and failure classes.
+An incomplete source snapshot is expected to fail
+`scripts/check_package_dependencies.sh .` with `[MISSING_SOURCE_PATH]` entries
+until the complete public source tree is published. See
+`docs/CLEAN_CLONE_PACKAGE_CHECK.md` for host prerequisites, source payload
+checks, and failure classes.
 
 Build all package groups:
 
@@ -99,9 +100,9 @@ scripts/build-packages.sh --clean --no-sign
 scripts/generate_package_repo.sh
 ```
 
-The public wrapper is documented in `docs/PACKAGE_BUILD_WRAPPER.md`. On the
-source-only starter, it fails before build execution with public-safe missing
-payload messages. Once the complete source tree is present, it invokes
+The public wrapper is documented in `docs/PACKAGE_BUILD_WRAPPER.md`. On an
+incomplete source snapshot, it fails before build execution with public-safe
+missing payload messages. Once the complete source tree is present, it invokes
 `dpkg-buildpackage` for package groups in dependency order.
 
 Expected package output:
