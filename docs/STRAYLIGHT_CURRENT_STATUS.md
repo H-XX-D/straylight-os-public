@@ -31,10 +31,8 @@ Verified in the source handoff and public tree:
 - The public package source payload check passes with
   `scripts/check_package_dependencies.sh --source-only .`.
 
-Still required before public distribution:
+Still required before production-support claims:
 
-- Artifact-bearing release notes that reference the final checksum and validation
-  scope.
 - Real-hardware validation before any production-support claim.
 - Follow-up remediation or explicit release-note treatment for warning-state VM
   health checks.

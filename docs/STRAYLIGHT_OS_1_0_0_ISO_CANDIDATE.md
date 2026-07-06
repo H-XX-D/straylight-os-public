@@ -57,7 +57,7 @@ sha256sum -c output/straylight-os-1.0.0-amd64.iso.sha256
 | Artifact | SHA256 | Notes |
 |----------|--------|-------|
 | `output/straylight-os-1.0.0-amd64.iso` | `d158634893f647ec79947a76264a0f6b4ac65f74c7846fdcdb306fcc10347d06` | ISO candidate with VM validation complete, not a supported production ISO |
-| `output/straylight-os-1.0.0-amd64.iso.sha256` | generated sidecar | Checksum sidecar for the ISO candidate |
+| `output/straylight-os-1.0.0-amd64.iso.sha256` | `40b45ed25caea1cd477fc2b9fd6fea3def4292a58cfbf176f73205bb1c24a756` | Checksum sidecar for the ISO candidate |
 
 ## Validation Results
 

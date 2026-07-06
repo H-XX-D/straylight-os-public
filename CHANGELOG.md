@@ -59,6 +59,8 @@ package artifact.
   the health service active/enabled and warning-state JSON documented.
 - Status and validation docs now reflect the final ISO checksum and completed
   VM validation gates.
+- ISO candidate notes now include the checksum sidecar SHA256 for
+  artifact-bearing pre-release publication.
 
 ## v0.4.0-alpha - 2026-07-05
 

@@ -14,7 +14,10 @@ release explicitly attaches verified artifacts.
 | ISO candidate | A complete source tree has produced an ISO, but VM boot, installer, firstboot, and health gates are still in progress. |
 | Verified ISO | ISO artifact, checksum, boot/install validation, firstboot validation, and post-install health checks are all documented. |
 
-The current public repository supports source snapshots only.
+The current public repository supports source snapshots and alpha ISO candidate
+pre-releases. Stable production releases remain gated until the source tree,
+package builds, ISO builds, installation path, post-install health, and
+real-hardware scope are all documented for the release.
 
 ## Versioning
 

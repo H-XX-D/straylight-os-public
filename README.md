@@ -29,7 +29,7 @@ plane, then translating that state back into concise operator-readable output.
 | ISO artifact | `output/straylight-os-1.0.0-amd64.iso` |
 | Verified package build | 8 package groups succeeded, 0 failed |
 | Public source payload | Package source paths are present; generated build artifacts are excluded |
-| Public distribution gate | VM gates complete; artifact-bearing release notes and real-hardware scope still required |
+| Public distribution gate | Alpha ISO candidate VM gates complete; production support still gated by real-hardware scope |
 
 ## Contents
 
@@ -104,9 +104,9 @@ health command evidence.
 | Release audit | Clean after package and ISO builds |
 | Desktop profile | Distro GNOME/GDM/Mutter with StrayLight apps and app CLI |
 
-The ISO is alpha test media. Treat it as distribution-prep output until an
-artifact-bearing release explicitly labels it as verified and documents any
-remaining real-hardware validation scope.
+The ISO is alpha test media for outside testers. Treat it as distribution-prep
+output unless an artifact-bearing release explicitly labels it as verified and
+documents any remaining real-hardware validation scope.
 
 ## Public Release Model
 
@@ -447,8 +447,9 @@ The release package set and ISO desktop path should not contain or require
 StrayLight is alpha software. The package and ISO layouts are buildable and
 sanitized for test-image validation. VM boot, installer, firstboot, and
 post-install health command validation have passed for the current ISO
-candidate, but public verified-ISO distribution still requires artifact-bearing
-release notes that exclude generated working files and transient private state.
+candidate, but production-support claims still require artifact-bearing release
+notes that exclude generated working files and transient private state plus
+explicit real-hardware validation scope.
 
 Current boundaries:
 
