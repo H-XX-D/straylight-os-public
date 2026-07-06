@@ -3,10 +3,10 @@
 This document defines the public release-note and checksum flow for a
 StrayLight ISO candidate.
 
-An ISO candidate is not a verified installation release. It means a complete
-public source tree produced an ISO and checksum from documented commands, while
-VM boot, installer, firstboot, and post-install health validation may still be
-pending.
+An ISO candidate is not automatically a verified installation release. It means
+a complete public source tree produced an ISO and checksum from documented
+commands. VM boot, installer, firstboot, and post-install health results must be
+recorded separately for each artifact-bearing release.
 
 ## Candidate Build Flow
 
@@ -99,6 +99,9 @@ The release notes must distinguish build success from install validation:
 Do not write "verified ISO" unless the VM boot, installer, firstboot, and
 post-install health gates have passed and are documented.
 
+The current sanitized ISO candidate note is
+`docs/STRAYLIGHT_OS_1_0_0_ISO_CANDIDATE.md`.
+
 ## Artifact Attachment Rule
 
 Do not attach ISO artifacts to a source snapshot.
@@ -110,6 +113,8 @@ are true:
 - package repository generation completed
 - ISO build completed
 - SHA256 checksum was generated and verified
+- VM boot, installer, and firstboot results are summarized as `passed`,
+  `failed`, `gated`, or `not run`
 - release notes include build host class, commands, checksum, known
   limitations, and gated validation state
 - the artifact is explicitly labeled "ISO candidate"

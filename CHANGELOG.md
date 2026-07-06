@@ -46,8 +46,15 @@ package artifact.
   during config-only staging.
 - Status, roadmap, FAQ, and build docs now reflect that package builds,
   package repository generation, ISO builds, checksum verification, and UEFI VM
-  boot validation have passed; installer, firstboot, and post-install health
-  validation remain gated.
+  boot validation have passed.
+- Calamares installer validation now passes in a generic UEFI amd64 QEMU/KVM VM
+  with a blank 64 GiB-class virtual disk.
+- Installed-disk inspection now confirms generated GRUB configuration plus both
+  the StrayLight EFI loader and removable-media fallback loader.
+- Firstboot validation now passes from the installed virtual disk with the ISO
+  detached and reaches the graphical login target.
+- Status and validation docs now reflect that post-install health is the
+  remaining verified-ISO gate.
 
 ## v0.4.0-alpha - 2026-07-05
 

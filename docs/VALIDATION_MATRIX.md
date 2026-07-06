@@ -27,11 +27,11 @@ the repository remains an alpha source tree.
 | ISO source payload from fresh clone | Verified | `scripts/check_iso_candidate_requirements.sh --source-only .`, `scripts/build-iso.sh`, `iso/live-build/`, `iso/calamares/` | Keep ISO source payload check green |
 | ISO build requirements documented | Verified | `docs/BUILD_ISO.md`, `docs/LIVE_BUILD_REQUIREMENTS.md`, `scripts/check_iso_candidate_requirements.sh`, `scripts/build-iso.sh`, generated ISO candidate | Keep ISO build validation green after package repository generation |
 | Package repository generation | Verified | `docs/PACKAGE_REPOSITORY.md`, `scripts/generate_package_repo.sh`, `output/debs/Packages.gz`, `.gitignore`, `.gitattributes` | Keep generated repository output under `output/debs/` |
-| ISO candidate checksum and release notes | Verified | `docs/ISO_CANDIDATE_RELEASE.md`, `docs/RELEASE_NOTES_TEMPLATE.md`, `scripts/generate_iso_checksum.sh`, checksum sidecar | Keep checksum verification green before attaching ISO candidate artifacts |
-| VM boot validation flow | Verified | `docs/VM_BOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, UEFI amd64 QEMU/KVM boot reached the GNOME live session | Run installer and firstboot validation on the ISO candidate |
-| Installer and firstboot validation flow | Documented | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, `docs/RELEASE_NOTES_TEMPLATE.md` | Run installer and firstboot validation on an ISO candidate |
+| ISO candidate checksum and release notes | Verified | `docs/ISO_CANDIDATE_RELEASE.md`, `docs/RELEASE_NOTES_TEMPLATE.md`, `docs/STRAYLIGHT_OS_1_0_0_ISO_CANDIDATE.md`, `scripts/generate_iso_checksum.sh`, checksum sidecar | Keep checksum verification green before attaching ISO candidate artifacts |
+| VM boot validation flow | Verified | `docs/VM_BOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, UEFI amd64 QEMU/KVM boot reached the GNOME live session | Keep VM boot validation green for each ISO candidate |
+| Installer and firstboot validation flow | Verified | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, `docs/BUILD_ISO.md`, `docs/RELEASE_NOTES_TEMPLATE.md`, clean-disk UEFI amd64 VM install completed and firstboot reached graphical login | Run post-install health validation on the installed VM disk |
 | Post-install health checklist | Documented | `docs/POST_INSTALL_HEALTH_CHECKLIST.md`, `docs/STRAYLIGHT_SURFACE_MAP.md`, `docs/straylight-app-clis.md`, README installed-system verification | Run post-install health validation on an installed VM disk |
-| ISO artifact is publicly verified | Gated | README marks ISO as alpha test media, `docs/ARTIFACT_POLICY.md` defines attachment requirements, VM boot passed | Pass installer, firstboot, and post-install health gates |
+| ISO artifact is publicly verified | Gated | README marks ISO as alpha test media, `docs/ARTIFACT_POLICY.md` defines attachment requirements, VM boot, installer, and firstboot passed | Pass post-install health gate and publish artifact release notes |
 | Public source snapshot hygiene | Verified | `.gitattributes`, `docs/PUBLIC_SOURCE_MANIFEST.md`, verifier script | Keep CI and local verifier passing |
 
 ## Runtime And Surface Claims
@@ -49,11 +49,11 @@ the repository remains an alpha source tree.
 
 | Claim | Current status | Public evidence | Next gate |
 |-------|----------------|-----------------|-----------|
-| Debian/Trixie-compatible target | Verified for ISO candidate | README status table, build docs, package and ISO build validation | Validate installed system behavior |
-| Distro GNOME/GDM/Mutter desktop profile | Verified for live ISO boot | README desktop profile notes, UEFI VM boot reached GNOME live session | Validate installed desktop behavior from public ISO candidate |
-| VM boot path | Verified | `docs/VM_BOOT_VALIDATION.md`, UEFI amd64 QEMU/KVM boot reached GNOME live session | Run installer validation on an ISO candidate |
-| Installer path | Documented | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, release notes template | Run VM installer validation on an ISO candidate |
-| Firstboot path | Documented | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, release notes template | Run firstboot validation on an installed VM disk |
+| Debian/Trixie-compatible target | Verified for ISO candidate | README status table, build docs, package, ISO, installer, and firstboot validation | Run post-install health validation on installed system behavior |
+| Distro GNOME/GDM/Mutter desktop profile | Verified for installed VM firstboot | README desktop profile notes, UEFI VM boot reached GNOME live session, installed disk reached graphical login | Run post-install desktop health checks from the installed system |
+| VM boot path | Verified | `docs/VM_BOOT_VALIDATION.md`, UEFI amd64 QEMU/KVM boot reached GNOME live session | Keep boot validation green for each ISO candidate |
+| Installer path | Verified | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, release notes template, clean-disk UEFI VM install reached completion screen | Keep installer validation green for each ISO candidate |
+| Firstboot path | Verified | `docs/INSTALLER_FIRSTBOOT_VALIDATION.md`, release notes template, installed VM booted without ISO to graphical login | Run post-install health validation on the installed VM disk |
 | Post-install health | Documented | `docs/POST_INSTALL_HEALTH_CHECKLIST.md`, release notes template | Run post-install health validation on an installed VM disk |
 
 ## Research Claims
