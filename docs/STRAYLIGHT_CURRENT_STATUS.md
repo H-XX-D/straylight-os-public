@@ -10,7 +10,7 @@ Verified in the source handoff and public tree:
 - An ISO artifact was built from the public source tree at
   `output/straylight-os-1.0.0-amd64.iso`.
 - The ISO checksum sidecar was generated and verified for SHA256
-  `0c74fc9df806609cbf74e0333ce15c6438053302165a6f39b31b4efe8f905373`.
+  `d158634893f647ec79947a76264a0f6b4ac65f74c7846fdcdb306fcc10347d06`.
 - VM boot validation passed in a generic UEFI amd64 QEMU/KVM VM and reached the
   GNOME live session.
 - Installer validation passed in a generic UEFI amd64 QEMU/KVM VM using a blank
@@ -20,16 +20,27 @@ Verified in the source handoff and public tree:
   `EFI/BOOT/BOOTX64.EFI`.
 - Firstboot validation passed with the ISO detached and reached the graphical
   login target for the created test user.
+- Post-install health command validation passed on the installed VM: the health
+  service was active and enabled, and `straylight-health status --json`
+  returned structured JSON.
+- The installed VM health report was warning-state, with `overall_score` 77 and
+  `overall_status` `warn`, due to expected generic-VM conditions such as
+  unavailable SMART status, unreachable gateway/internet, and inactive
+  research-profile services.
 - The release audit passed after package and ISO builds.
 - The public package source payload check passes with
   `scripts/check_package_dependencies.sh --source-only .`.
 
 Still required before public distribution:
 
-- Post-install health check run.
+- Artifact-bearing release notes that reference the final checksum and validation
+  scope.
+- Real-hardware validation before any production-support claim.
+- Follow-up remediation or explicit release-note treatment for warning-state VM
+  health checks.
 
 The public documentation now separates validation procedures from completed
-validation results. VM boot, installer, and firstboot have passed for this ISO
-candidate; post-install health remains the final verified-ISO gate. The
-sanitized release-note draft is in
+validation results. VM boot, installer, firstboot, and post-install health
+command validation have passed for this ISO candidate. The sanitized
+release-note draft is in
 `docs/STRAYLIGHT_OS_1_0_0_ISO_CANDIDATE.md`.

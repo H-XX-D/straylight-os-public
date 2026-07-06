@@ -53,8 +53,12 @@ package artifact.
   the StrayLight EFI loader and removable-media fallback loader.
 - Firstboot validation now passes from the installed virtual disk with the ISO
   detached and reaches the graphical login target.
-- Status and validation docs now reflect that post-install health is the
-  remaining verified-ISO gate.
+- `straylight-core` now packages the health daemon, health CLI, default health
+  configuration, systemd unit, and compatibility CLI symlink.
+- Post-install health command validation now passes on the installed VM with
+  the health service active/enabled and warning-state JSON documented.
+- Status and validation docs now reflect the final ISO checksum and completed
+  VM validation gates.
 
 ## v0.4.0-alpha - 2026-07-05
 

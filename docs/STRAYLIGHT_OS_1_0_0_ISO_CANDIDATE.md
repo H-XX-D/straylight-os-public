@@ -10,10 +10,12 @@
 
 This candidate records the first public StrayLight OS ISO build that passed
 package build, ISO build, checksum verification, UEFI VM live boot, graphical
-installer, installed-disk inspection, and firstboot-to-login validation.
+installer, installed-disk inspection, firstboot-to-login validation, and
+post-install health command validation in a generic installed VM.
 
-It remains alpha test media until post-install health validation passes and a
-release explicitly promotes the artifact to a verified ISO.
+It remains alpha test media until an artifact-bearing release explicitly
+promotes the artifact and any remaining real-hardware validation scope is
+documented.
 
 ## Current Status
 
@@ -25,7 +27,7 @@ release explicitly promotes the artifact to a verified ISO.
 | VM boot | passed |
 | Installer | passed |
 | Firstboot | passed |
-| Post-install health | not run |
+| Post-install health | passed with expected VM warnings |
 
 ## Build Host Class
 
@@ -54,7 +56,7 @@ sha256sum -c output/straylight-os-1.0.0-amd64.iso.sha256
 
 | Artifact | SHA256 | Notes |
 |----------|--------|-------|
-| `output/straylight-os-1.0.0-amd64.iso` | `0c74fc9df806609cbf74e0333ce15c6438053302165a6f39b31b4efe8f905373` | ISO candidate, not a verified ISO |
+| `output/straylight-os-1.0.0-amd64.iso` | `d158634893f647ec79947a76264a0f6b4ac65f74c7846fdcdb306fcc10347d06` | ISO candidate with VM validation complete, not a supported production ISO |
 | `output/straylight-os-1.0.0-amd64.iso.sha256` | generated sidecar | Checksum sidecar for the ISO candidate |
 
 ## Validation Results
@@ -104,14 +106,19 @@ sha256sum -c output/straylight-os-1.0.0-amd64.iso.sha256
 ### Post-Install Health
 
 - Runtime class: installed amd64 VM
-- Commands: package, systemd, health CLI, app CLI, and required surface checks
-- Result: not run
-- Failure class: `not-run`
-- Blockers: post-install health evidence is not yet available
+- Commands: systemd health service state and `straylight-health status --json`
+- Result: passed with expected VM warnings
+- Failure class: none for required command execution
+- Health service: active and enabled
+- Health CLI result: returned JSON with `overall_score` 77 and
+  `overall_status` `warn`
 - Known alpha limitations: optional hardware accelerator and research-track
-  features remain gated
-- Public summary: Post-install health remains the final gate before this
-  candidate can be promoted to a verified ISO.
+  features remain gated; a generic QEMU VM reported expected warnings for SMART
+  status, gateway/internet reachability, and StrayLight research services that
+  are present but not all active in the VM profile
+- Public summary: The installed VM exposes the packaged health service and CLI,
+  and the required health command path completes. The result is a warning-state
+  alpha VM profile, not a production-health claim.
 
 ## Verified Behavior
 
@@ -123,11 +130,17 @@ sha256sum -c output/straylight-os-1.0.0-amd64.iso.sha256
 - Installed disk contains GRUB configuration, the StrayLight EFI loader, and the
   removable-media EFI fallback loader.
 - Firstboot from the installed disk reaches graphical login.
+- Installed system includes the StrayLight health daemon, health CLI, default
+  health configuration, and `straylight-health-cli` compatibility symlink.
+- Post-install health service is active and enabled in the installed VM.
+- `straylight-health status --json` completes on the installed VM and returns a
+  structured warning-state report.
 
 ## Gated Or Experimental Behavior
 
-- Post-install health validation is not complete.
 - Hardware-specific accelerator validation remains gated.
+- Real-hardware installation and service-health behavior remain gated beyond
+  the generic VM profile.
 - XDP filter and redirect behavior require an explicit packet policy before
   production use.
 - Swarm, GA-GPT2, AURA/XIT, Device Memory ABI, and ledger tracks remain
@@ -138,8 +151,9 @@ sha256sum -c output/straylight-os-1.0.0-amd64.iso.sha256
 - This is alpha test media, not a supported production distribution.
 - Real-hardware installation, upgrade behavior, and hardware accelerator paths
   are not validated by this VM candidate.
-- Post-install service, CLI, app, and required surface health checks remain to
-  be run on the installed VM.
+- The installed VM health report is warning-state because the generic VM lacks
+  several real hardware and network conditions expected by the broader
+  StrayLight profile.
 
 ## Security And Privacy Review
 

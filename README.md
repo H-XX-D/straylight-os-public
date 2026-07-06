@@ -29,7 +29,7 @@ plane, then translating that state back into concise operator-readable output.
 | ISO artifact | `output/straylight-os-1.0.0-amd64.iso` |
 | Verified package build | 8 package groups succeeded, 0 failed |
 | Public source payload | Package source paths are present; generated build artifacts are excluded |
-| Public distribution gate | Post-install health validation still required before a verified ISO release |
+| Public distribution gate | VM gates complete; artifact-bearing release notes and real-hardware scope still required |
 
 ## Contents
 
@@ -86,26 +86,27 @@ straylight-intent "<question or request>"
 
 The public source tree now carries the package implementation payload, generated
 package repository, ISO candidate, checksum, VM boot validation, installer
-validation, installed-disk inspection, and firstboot validation evidence needed
-for the final post-install health gate.
+validation, installed-disk inspection, firstboot validation, and installed-VM
+health command evidence.
 
 | Area | Verified state |
 |------|----------------|
 | Package build | 8 package groups succeeded, 0 failed |
 | Package repository | 15 `.deb` packages plus `Packages.gz` |
 | ISO artifact | `output/straylight-os-1.0.0-amd64.iso` |
-| ISO checksum | `0c74fc9df806609cbf74e0333ce15c6438053302165a6f39b31b4efe8f905373` |
+| ISO checksum | `d158634893f647ec79947a76264a0f6b4ac65f74c7846fdcdb306fcc10347d06` |
 | ISO label | `STRAYLIGHT_1_0_0` |
 | VM boot | Passed in a generic UEFI amd64 QEMU/KVM VM and reached the GNOME live session |
 | Installer | Passed in a generic UEFI amd64 QEMU/KVM VM with a blank 64 GiB-class virtual disk |
 | Installed disk | EFI, root, and swap partitions created; GRUB config and EFI fallback loader present |
 | Firstboot | Passed without the ISO attached and reached the graphical login target |
+| Post-install health | Health service active/enabled; `straylight-health status --json` returned warning-state JSON with score 77 |
 | Release audit | Clean after package and ISO builds |
 | Desktop profile | Distro GNOME/GDM/Mutter with StrayLight apps and app CLI |
 
-The ISO is alpha test media. Treat it as distribution-prep output until the
-post-install health gate passes and an artifact-bearing release explicitly
-labels it as verified.
+The ISO is alpha test media. Treat it as distribution-prep output until an
+artifact-bearing release explicitly labels it as verified and documents any
+remaining real-hardware validation scope.
 
 ## Public Release Model
 
@@ -444,15 +445,18 @@ The release package set and ISO desktop path should not contain or require
 ## Limitations
 
 StrayLight is alpha software. The package and ISO layouts are buildable and
-sanitized for test-image validation. VM boot, installer, and firstboot
-validation have passed for the current ISO candidate, but public verified-ISO
-distribution still requires post-install health checks and artifact-bearing
+sanitized for test-image validation. VM boot, installer, firstboot, and
+post-install health command validation have passed for the current ISO
+candidate, but public verified-ISO distribution still requires artifact-bearing
 release notes that exclude generated working files and transient private state.
 
 Current boundaries:
 
-- The ISO still needs post-install health validation before it can be promoted
-  from alpha test media to a verified ISO release artifact.
+- The installed VM health report is warning-state in a generic VM profile; the
+  required health command path passes, but several real-hardware and network
+  conditions remain outside the VM scope.
+- The ISO still needs an artifact-bearing release decision before it can be
+  promoted from alpha test media to a verified ISO release artifact.
 - Generated artifacts and working files must be excluded from public source
   snapshots.
 - The custom compositor and shell are not part of the current release profile.
