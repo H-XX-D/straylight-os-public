@@ -1,0 +1,24 @@
+[Unit]
+Description=StrayLight Health Monitor
+Documentation=https://straylight.dev/docs/health
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/straylight/straylight-healthd
+Restart=on-failure
+RestartSec=5s
+User=root
+LimitNOFILE=65536
+WatchdogSec=60s
+ProtectSystem=strict
+ReadWritePaths=/run/straylight /var/lib/straylight /var/log/straylight
+PrivateTmp=yes
+NoNewPrivileges=yes
+StateDirectory=straylight
+RuntimeDirectory=straylight
+LogsDirectory=straylight
+
+[Install]
+WantedBy=multi-user.target

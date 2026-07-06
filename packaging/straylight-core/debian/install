@@ -4,3 +4,7 @@ usr/bin/straylight-registry
 usr/bin/straylight-scheduler
 usr/bin/straylight-entropy
 usr/bin/straylight-numa-run
+usr/bin/straylight-health
+usr/bin/straylight-health-cli
+usr/lib/straylight/straylight-healthd
+etc/straylight/health.conf

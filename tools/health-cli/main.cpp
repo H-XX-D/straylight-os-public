@@ -16,7 +16,7 @@ static void print_usage() {
     std::cerr
         << "straylight-health — System health dashboard CLI\n\n"
         << "Usage:\n"
-        << "  straylight-health status               Show health score + breakdown\n"
+        << "  straylight-health status [--json]      Show health score + breakdown\n"
         << "  straylight-health watch                 Live updating health display\n"
         << "  straylight-health report [--output FILE]  Generate detailed HTML report\n"
         << "  straylight-health history [--limit N]   Show score history\n"
@@ -57,7 +57,7 @@ static void pretty_print(const nlohmann::json& j, int indent = 0) {
     }
 }
 
-static int cmd_status(straylight::IpcJsonClient& client) {
+static int cmd_status(straylight::IpcJsonClient& client, bool json_output) {
     nlohmann::json request;
     request["jsonrpc"] = "2.0";
     request["id"] = 1;
@@ -77,7 +77,9 @@ static int cmd_status(straylight::IpcJsonClient& client) {
 
     if (resp.contains("result")) {
         const auto& result = resp["result"];
-        if (result.is_string()) {
+        if (json_output) {
+            std::cout << result.dump(2) << "\n";
+        } else if (result.is_string()) {
             std::cout << result.get<std::string>() << "\n";
         } else {
             pretty_print(result);
@@ -164,7 +166,7 @@ static int cmd_report(straylight::IpcJsonClient& client,
     return 0;
 }
 
-static int cmd_history(straylight::IpcJsonClient& client, int limit) {
+static int cmd_history(straylight::IpcJsonClient& client, int limit, bool json_output) {
     nlohmann::json request;
     request["jsonrpc"] = "2.0";
     request["id"] = 1;
@@ -186,7 +188,11 @@ static int cmd_history(straylight::IpcJsonClient& client, int limit) {
     }
 
     if (resp.contains("result")) {
-        pretty_print(resp["result"]);
+        if (json_output) {
+            std::cout << resp["result"].dump(2) << "\n";
+        } else {
+            pretty_print(resp["result"]);
+        }
     }
 
     return 0;
@@ -199,6 +205,13 @@ int main(int argc, char* argv[]) {
     }
 
     std::string command = argv[1];
+    bool json_output = false;
+    for (int i = 2; i < argc; ++i) {
+        std::string arg = argv[i];
+        if (arg == "--json") {
+            json_output = true;
+        }
+    }
 
     if (command == "--help" || command == "-h") {
         print_usage();
@@ -214,7 +227,7 @@ int main(int argc, char* argv[]) {
     }
 
     if (command == "status") {
-        return cmd_status(client);
+        return cmd_status(client, json_output);
     } else if (command == "watch") {
         return cmd_watch(client);
     } else if (command == "report") {
@@ -234,7 +247,7 @@ int main(int argc, char* argv[]) {
                 limit = std::atoi(argv[++i]);
             }
         }
-        return cmd_history(client, limit);
+        return cmd_history(client, limit, json_output);
     } else {
         std::cerr << "Error: unknown command '" << command << "'\n";
         print_usage();

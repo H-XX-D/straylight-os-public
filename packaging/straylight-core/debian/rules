@@ -15,7 +15,8 @@ override_dh_auto_configure:
 override_dh_auto_build:
 	dh_auto_build -- -j$(shell nproc) \
 		straylight-core straylight-bus straylight-registry \
-		straylight-scheduler straylight-entropy
+		straylight-scheduler straylight-entropy \
+		straylight-healthd straylight-health
 
 override_dh_auto_test:
 	dh_auto_test -- ARGS="--output-on-failure -L core"
@@ -29,6 +30,7 @@ override_dh_installsystemd:
 	dh_installsystemd --name=straylight-registry
 	dh_installsystemd --name=straylight-scheduler
 	dh_installsystemd --name=straylight-core
+	dh_installsystemd --name=straylight-health
 
 override_dh_shlibdeps:
 	dh_shlibdeps -l/usr/lib/x86_64-linux-gnu
