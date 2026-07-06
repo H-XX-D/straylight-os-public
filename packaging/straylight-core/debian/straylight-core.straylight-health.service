@@ -11,7 +11,6 @@ Restart=on-failure
 RestartSec=5s
 User=root
 LimitNOFILE=65536
-WatchdogSec=60s
 ProtectSystem=strict
 ReadWritePaths=/run/straylight /var/lib/straylight /var/log/straylight
 PrivateTmp=yes

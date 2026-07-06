@@ -5,7 +5,7 @@ After=straylight-bus.service local-fs.target
 Requires=straylight-bus.service
 
 [Service]
-Type=notify
+Type=simple
 ExecStart=/usr/bin/straylight-fuse
 ExecStop=/bin/fusermount3 -u /var/lib/straylight/tensors
 Restart=on-failure
@@ -15,7 +15,6 @@ CapabilityBoundingSet=CAP_SYS_ADMIN
 AmbientCapabilities=CAP_SYS_ADMIN
 PrivateTmp=true
 LimitNOFILE=65536
-WatchdogSec=60s
 
 [Install]
 WantedBy=multi-user.target

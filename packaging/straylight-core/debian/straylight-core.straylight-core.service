@@ -6,13 +6,12 @@ Requires=straylight-bus.service straylight-registry.service
 Wants=straylight-scheduler.service straylight-entropy.service
 
 [Service]
-Type=notify
+Type=simple
 ExecStart=/usr/bin/straylight-core
 Restart=on-failure
 RestartSec=5s
 User=root
 LimitNOFILE=65536
-WatchdogSec=60s
 ProtectSystem=strict
 ReadWritePaths=/var/lib/straylight /run/straylight
 PrivateTmp=yes

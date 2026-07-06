@@ -4,12 +4,11 @@ After=straylight-bus.service
 Requires=straylight-bus.service
 
 [Service]
-Type=notify
+Type=simple
 ExecStart=/usr/bin/straylight-registry
 Restart=on-failure
 RestartSec=2s
 StateDirectory=straylight
-WatchdogSec=30s
 
 [Install]
 WantedBy=multi-user.target

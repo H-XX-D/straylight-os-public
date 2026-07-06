@@ -5,7 +5,7 @@ After=display-manager.service graphical.target
 
 [Service]
 Type=simple
-ExecStartPre=/usr/lib/straylight/straylight-oobe-check
+ExecCondition=/usr/lib/straylight/straylight-oobe-check
 ExecStart=/usr/bin/straylight-oobe
 Restart=on-failure
 RestartSec=3

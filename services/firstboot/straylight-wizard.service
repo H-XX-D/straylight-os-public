@@ -4,7 +4,7 @@ After=display-manager.service graphical.target
 
 [Service]
 Type=simple
-ExecStartPre=/usr/lib/straylight/straylight-wizard-check
+ExecCondition=/usr/lib/straylight/straylight-wizard-check
 ExecStart=/usr/bin/straylight-wizard
 Restart=no
 

@@ -5,13 +5,12 @@ After=dbus.service
 Requires=dbus.service
 
 [Service]
-Type=notify
+Type=simple
 ExecStart=/usr/bin/straylight-bus
 Restart=on-failure
 RestartSec=2s
 User=root
 LimitNOFILE=65536
-WatchdogSec=30s
 
 [Install]
 WantedBy=multi-user.target

@@ -61,6 +61,11 @@ package artifact.
   VM validation gates.
 - ISO candidate notes now include the checksum sidecar SHA256 for
   artifact-bearing pre-release publication.
+- Systemd units for StrayLight daemons now use `Type=simple` unless the daemon
+  actually implements systemd notify readiness, preventing false auto-restart
+  warnings in installed VM health checks.
+- Firstboot OOBE and wizard systemd guards now use `ExecCondition` so a
+  non-matching firstboot state skips the unit instead of marking it failed.
 
 ## v0.4.0-alpha - 2026-07-05
 
